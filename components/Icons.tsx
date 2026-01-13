@@ -1,0 +1,35 @@
+import { 
+  LayoutGrid, 
+  CheckCircle2, 
+  Briefcase, 
+  Coffee, 
+  Palette, 
+  Plus, 
+  Sparkles, 
+  MoreHorizontal, 
+  Clock, 
+  AlertCircle,
+  ChevronRight,
+  BrainCircuit,
+  X,
+  Trash2,
+  Calendar
+} from 'lucide-react';
+
+export {
+  LayoutGrid,
+  CheckCircle2,
+  Briefcase,
+  Coffee,
+  Palette,
+  Plus,
+  Sparkles,
+  MoreHorizontal,
+  Clock,
+  AlertCircle,
+  ChevronRight,
+  BrainCircuit,
+  X,
+  Trash2,
+  Calendar
+};
