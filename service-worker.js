@@ -1,4 +1,4 @@
-const CACHE_NAME = 'focus-app-v2-production';
+const CACHE_NAME = 'focus-app-v3-production';
 const DATA_CACHE_NAME = 'focus-data-cache-v1';
 
 // Files we strictly want to cache immediately
@@ -13,7 +13,6 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
-        // Try to cache core files, but don't fail if some missing
         return cache.addAll(PRECACHE_URLS).catch(err => {
           console.warn('Precache warning:', err);
         });
@@ -37,14 +36,14 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-// Fetch: Network First strategy for HTML (to get updates), Cache First for assets
+// Fetch Strategy
 self.addEventListener('fetch', (event) => {
-  // Skip cross-origin requests (like Google Fonts or external APIs if needed)
+  // Skip cross-origin requests
   if (!event.request.url.startsWith(self.location.origin) && !event.request.url.includes('cdn-icons-png')) {
     return;
   }
 
-  // Handle HTML requests: Network first, fall back to cache (ensure latest version)
+  // 1. Navigation Requests (HTML): Network First -> Cache -> Fallback to index.html
   if (event.request.mode === 'navigate') {
     event.respondWith(
       fetch(event.request)
@@ -55,14 +54,20 @@ self.addEventListener('fetch', (event) => {
           });
         })
         .catch(() => {
-          return caches.match(event.request);
+          // Network failed, try to get the specific page from cache
+          return caches.match(event.request).then((cachedResponse) => {
+            if (cachedResponse) {
+              return cachedResponse;
+            }
+            // CRITICAL FIX: If exact page not in cache, return index.html (SPA Offline Support)
+            return caches.match('/index.html');
+          });
         })
     );
     return;
   }
 
-  // Handle Assets (JS, CSS, Images): Stale-While-Revalidate
-  // Serve from cache immediately, but update in background
+  // 2. Assets (JS/CSS/Images): Stale-While-Revalidate
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       const fetchPromise = fetch(event.request).then((networkResponse) => {
