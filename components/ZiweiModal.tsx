@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { astro } from 'iztro';
+import { Solar } from 'lunar-javascript';
 import { X, Moon, Sparkles, Copy, Calendar, Download } from './Icons';
 
 interface ZiweiModalProps {
@@ -10,20 +11,157 @@ interface ZiweiModalProps {
 // Helper Types
 type Gender = '男' | '女';
 
-const siHuaMap: Record<string, { 禄: string; 权: string; 科: string; 忌: string }> = {
-  '甲': { 禄:'廉贞', 权:'破军', 科:'武曲', 忌:'太阳' },
-  '乙': { 禄:'天机', 权:'天梁', 科:'紫微', 忌:'太阴' },
-  '丙': { 禄:'天同', 权:'天机', 科:'文昌', 忌:'廉贞' },
-  '丁': { 禄:'太阴', 权:'天同', 科:'天机', 忌:'巨门' },
-  '戊': { 禄:'贪狼', 权:'太阴', 科:'右弼', 忌:'天机' },
-  '己': { 禄:'武曲', 权:'贪狼', 科:'天梁', 忌:'文曲' },
-  '庚': { 禄:'太阳', 权:'武曲', 科:'太阴', 忌:'天同' },
-  '辛': { 禄:'巨门', 权:'太阳', 科:'文曲', 忌:'文昌' },
-  '壬': { 禄:'天梁', 权:'紫微', 科:'左辅', 忌:'武曲' },
-  '癸': { 禄:'破军', 权:'巨门', 科:'太阴', 忌:'贪狼' }
+// ==========================================
+// 核心逻辑: 静态真理表与计算函数
+// ==========================================
+
+// 1. 静态真理表 (避免库版本兼容问题)
+const ZHI_HIDDEN: Record<string, string[]> = {
+    '子':['癸'], '丑':['己','癸','辛'], '寅':['甲','丙','戊'], '卯':['乙'],
+    '辰':['戊','乙','癸'], '巳':['丙','戊','庚'], '午':['丁','己'], '未':['己','丁','乙'],
+    '申':['庚','壬','戊'], '酉':['辛'], '戌':['戊','辛','丁'], '亥':['壬','甲']
 };
 
-const branches = ['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
+const SHI_SHEN_TABLE: Record<string, Record<string, string>> = {
+    '甲':{'甲':'比肩','乙':'劫财','丙':'食神','丁':'伤官','戊':'偏财','己':'正财','庚':'七杀','辛':'正官','壬':'偏印','癸':'正印'},
+    '乙':{'甲':'劫财','乙':'比肩','丙':'伤官','丁':'食神','戊':'正财','己':'偏财','庚':'正官','辛':'七杀','壬':'正印','癸':'偏印'},
+    '丙':{'甲':'偏印','乙':'正印','丙':'比肩','丁':'劫财','戊':'食神','己':'伤官','庚':'偏财','辛':'正财','壬':'七杀','癸':'正官'},
+    '丁':{'甲':'正印','乙':'偏印','丙':'劫财','丁':'比肩','戊':'伤官','己':'食神','庚':'正财','辛':'偏财','壬':'正官','癸':'七杀'},
+    '戊':{'甲':'七杀','乙':'正官','丙':'偏印','丁':'正印','戊':'比肩','己':'劫财','庚':'食神','辛':'伤官','壬':'偏财','癸':'正财'},
+    '己':{'甲':'正官','乙':'七杀','丙':'正印','丁':'偏印','戊':'劫财','己':'比肩','庚':'伤官','辛':'食神','壬':'正财','癸':'偏财'},
+    '庚':{'甲':'偏财','乙':'正财','丙':'七杀','丁':'正官','戊':'偏印','己':'正印','庚':'比肩','辛':'劫财','壬':'食神','癸':'伤官'},
+    '辛':{'甲':'正财','乙':'偏财','丙':'正官','丁':'七杀','戊':'正印','己':'偏印','庚':'劫财','辛':'比肩','壬':'伤官','癸':'食神'},
+    '壬':{'甲':'食神','乙':'伤官','丙':'偏财','丁':'正财','戊':'七杀','己':'正官','庚':'偏印','辛':'正印','壬':'比肩','癸':'劫财'},
+    '癸':{'甲':'伤官','乙':'食神','丙':'正财','丁':'偏财','戊':'正官','己':'七杀','庚':'正印','辛':'偏印','壬':'劫财','癸':'比肩'}
+};
+
+const ZW_SIHUA: Record<string, {禄:string, 权:string, 科:string, 忌:string}> = {
+    '甲': {禄:'廉贞',权:'破军',科:'武曲',忌:'太阳'},
+    '乙': {禄:'天机',权:'天梁',科:'紫微',忌:'太阴'},
+    '丙': {禄:'天同',权:'天机',科:'文昌',忌:'廉贞'},
+    '丁': {禄:'太阴',权:'天同',科:'天机',忌:'巨门'},
+    '戊': {禄:'贪狼',权:'太阴',科:'右弼',忌:'天机'},
+    '己': {禄:'武曲',权:'贪狼',科:'天梁',忌:'文曲'},
+    '庚': {禄:'太阳',权:'武曲',科:'太阴',忌:'天同'},
+    '辛': {禄:'巨门',权:'太阳',科:'文曲',忌:'文昌'},
+    '壬': {禄:'天梁',权:'紫微',科:'左辅',忌:'武曲'},
+    '癸': {禄:'破军',权:'巨门',科:'太阴',忌:'贪狼'}
+};
+
+// 2. 工具函数
+function safeStr(input: any): string {
+    if (input === null || input === undefined) return "";
+    if (typeof input === 'string') return input;
+    if (typeof input.getName === 'function') return input.getName();
+    if (typeof input.toString === 'function') return input.toString();
+    return String(input);
+}
+
+function getTenGods(dayGan: string, targetGan: string) {
+    // @ts-ignore
+    return (SHI_SHEN_TABLE[dayGan] && SHI_SHEN_TABLE[dayGan][targetGan]) || "?";
+}
+
+// 3. 核心生成函数
+const generateReportLogic = (dateInput: string, gender: '男'|'女') => {
+    try {
+        const d = new Date(dateInput);
+        
+        // --- A. 八字计算 (Using lunar-javascript) ---
+        const solar = Solar.fromYmdHms(d.getFullYear(), d.getMonth() + 1, d.getDate(), d.getHours(), d.getMinutes(), 0);
+        const lunar = solar.getLunar();
+        const bazi = lunar.getEightChar();
+        bazi.setSect(2); // 2 = 立春
+
+        const dayMaster = safeStr(bazi.getDayGan()); 
+
+        let r = `【命理深度分析报告 (八字+紫微)】\n`;
+        r += `公历: ${d.toLocaleString('zh-CN')} (${gender})\n`;
+        r += `农历: ${lunar.toString()}\n`;
+        r += `------------------------------------------------\n\n`;
+
+        // 八字渲染
+        r += `## 第一部分：八字命盘\n`;
+        const renderPillar = (ganObj: any, zhiObj: any, name: string) => {
+            const g = safeStr(ganObj);
+            const z = safeStr(zhiObj);
+            const tenGod = getTenGods(dayMaster, g);
+            // @ts-ignore
+            const hiddens = (ZHI_HIDDEN[z] || []).map(h => `${h}<${getTenGods(dayMaster, h)}>`).join(',');
+            return `- ${name}柱: [${g}${z}]\n  * 十神: ${tenGod}\n  * 藏干: ${hiddens}`;
+        };
+        r += renderPillar(bazi.getYearGan(), bazi.getYearZhi(), '年') + '\n';
+        r += renderPillar(bazi.getMonthGan(), bazi.getMonthZhi(), '月') + '\n';
+        
+        const dayZ = safeStr(bazi.getDayZhi());
+        // @ts-ignore
+        const dayHiddens = (ZHI_HIDDEN[dayZ] || []).map(h => `${h}<${getTenGods(dayMaster, h)}>`).join(',');
+        r += `- 日柱: [${dayMaster}${dayZ}] (★日元)\n  * 藏干: ${dayHiddens}\n`;
+        r += renderPillar(bazi.getTimeGan(), bazi.getTimeZhi(), '时') + '\n\n';
+
+        // 大运
+        r += `### 大运\n`;
+        const yun = bazi.getYun(gender === '男' ? 1 : 0);
+        const daYuns = yun.getDaYun();
+        for (let i = 0; i < 8; i++) {
+            const dy = daYuns[i];
+            let gz = "";
+            try { gz = dy.getGanZhi(); } catch(e) { gz = "??"; }
+            if (gz && gz.length >= 1) {
+                r += `[${dy.getStartAge()}-${dy.getEndAge()}岁] ${gz}运 <${getTenGods(dayMaster, gz.charAt(0))}>\n`;
+            }
+        }
+
+        // --- B. 紫微计算 (Using iztro) ---
+        r += `\n------------------------------------------------\n`;
+        r += `## 第二部分：紫微斗数\n\n`;
+        const hourIdx = Math.floor((d.getHours() + 1) / 2) % 12;
+        const iztroDate = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
+        const astrolabe = astro.bySolar(iztroDate, hourIdx, gender, true, 'zh-CN');
+        r += `五行局: ${astrolabe.fiveElementsClass} | 命主: ${astrolabe.soul}\n\n`;
+
+        astrolabe.palaces.forEach(p => {
+            let flags = [];
+            if (p.isBodyPalace) flags.push("★身宫");
+            if (p.isOriginalPalace) flags.push("★来因宫");
+            r += `### ${p.name} [${p.heavenlyStem}${p.earthlyBranch}] ${flags.join(' ')}\n`;
+            
+            // 星曜
+            const allStars = [...(p.majorStars||[]), ...(p.minorStars||[]), ...(p.adhocStars||[])];
+            const starDescs = allStars.map(s => {
+                let txt = s.name;
+                if (s.brightness) txt += `(${s.brightness})`;
+                if (s.mutagen) txt += `[生年${s.mutagen}]`;
+                // @ts-ignore
+                const siHuaMap = ZW_SIHUA[p.heavenlyStem];
+                if (siHuaMap) { 
+                     // Simple validation for centrifugal flow (Departure)
+                     if(siHuaMap.禄===s.name) txt+='[离心禄]';
+                     if(siHuaMap.权===s.name) txt+='[离心权]';
+                     if(siHuaMap.科===s.name) txt+='[离心科]';
+                     if(siHuaMap.忌===s.name) txt+='[离心忌]';
+                }
+                return txt;
+            });
+            r += `  * 星曜: ${starDescs.join(', ') || "无"}\n`;
+            
+            // 宫干四化
+            // @ts-ignore
+            const siHua = ZW_SIHUA[p.heavenlyStem];
+            if (siHua) r += `  * 飞化: ${p.heavenlyStem}干 -> ${siHua.禄}禄、${siHua.权}权、${siHua.科}科、${siHua.忌}忌\n`;
+            if (p.decadal) r += `  * 大限: ${p.decadal.range[0]} - ${p.decadal.range[1]} 岁\n`;
+            r += `\n`;
+        });
+
+        return r;
+    } catch (e: any) {
+        return "排盘出错: " + e.message;
+    }
+};
+
+// ==========================================
+// 组件 UI
+// ==========================================
 
 export const ZiweiModal: React.FC<ZiweiModalProps> = ({ isOpen, onClose }) => {
   const [birthDate, setBirthDate] = useState('');
@@ -40,108 +178,10 @@ export const ZiweiModal: React.FC<ZiweiModalProps> = ({ isOpen, onClose }) => {
     }
   }, [isOpen]);
 
-  const getMutagenByStem = (stem: string, starName: string) => {
-    if (!siHuaMap[stem]) return null;
-    const map = siHuaMap[stem];
-    if (map.禄 === starName) return '禄';
-    if (map.权 === starName) return '权';
-    if (map.科 === starName) return '科';
-    if (map.忌 === starName) return '忌';
-    return null;
-  };
-
-  const getOppositeBranch = (branch: string) => {
-    const idx = branches.indexOf(branch);
-    return branches[(idx + 6) % 12];
-  };
-
-  const generateReport = () => {
-    if (!birthDate) return;
-
-    try {
-      const dateObj = new Date(birthDate);
-      const hour = dateObj.getHours();
-      const hourIndex = Math.floor((hour + 1) / 2) % 12;
-
-      const year = dateObj.getFullYear();
-      const month = dateObj.getMonth() + 1;
-      const day = dateObj.getDate();
-      const solarDateStr = `${year}-${month}-${day}`;
-
-      // Core calculation using iztro
-      const astrolabe = astro.bySolar(solarDateStr, hourIndex, gender, true, 'zh-CN');
-
-      let txt = `【紫微斗数深度命理报告】\n`;
-      txt += `生成标识: iZiwei-Pro-v3 | Focus App集成版\n`;
-      txt += `================================================\n`;
-      txt += `【基本资料】\n`;
-      txt += `阳历: ${solarDateStr} ${hour}时\n`;
-      txt += `农历: ${astrolabe.lunarDate}\n`;
-      txt += `八字: ${astrolabe.chineseDate.yearly} ${astrolabe.chineseDate.monthly} ${astrolabe.chineseDate.daily} ${astrolabe.chineseDate.hourly}\n`;
-      txt += `格局: ${astrolabe.fiveElementsClass} | 命主: ${astrolabe.soul} | 身主: ${astrolabe.body}\n`;
-      txt += `================================================\n\n`;
-
-      astrolabe.palaces.forEach((palace) => {
-        let titleFlags = [];
-        if (palace.isBodyPalace) titleFlags.push("★身宫");
-        if (palace.isOriginalPalace) titleFlags.push("★来因宫");
-        
-        txt += `### ${palace.name} [${palace.heavenlyStem}${palace.earthlyBranch}] ${titleFlags.join(' ')}\n`;
-
-        const processStar = (star: any) => {
-            let s = `${star.name}`;
-            if (star.brightness) s += `(${star.brightness})`;
-            if (star.mutagen) s += `【生年${star.mutagen}】`;
-            
-            // Self mutagen (Departure)
-            const selfMutagen = getMutagenByStem(palace.heavenlyStem, star.name);
-            if (selfMutagen) s += `【离心自化${selfMutagen}】(变动/消散)`;
-
-            // Inward mutagen (Incoming)
-            const oppositeBranch = getOppositeBranch(palace.earthlyBranch);
-            const targetPalace = astrolabe.palaces.find(p => p.earthlyBranch === oppositeBranch);
-            if (targetPalace) {
-                const inwardMutagen = getMutagenByStem(targetPalace.heavenlyStem, star.name);
-                if (inwardMutagen) s += `【向心自化${inwardMutagen}】(外界介入)`;
-            }
-            return s;
-        };
-
-        const majors = (palace.majorStars || []).map(processStar).join("，");
-        const minors = (palace.minorStars || []).map(processStar).join("，");
-        const adhocs = (palace.adhocStars || []).map(s => s.name).join("，");
-
-        txt += ` - 主星: ${majors || "无 (空宫)"}\n`;
-        if(minors) txt += ` - 辅星: ${minors}\n`;
-        if(adhocs) txt += ` - 杂曜: ${adhocs}\n`;
-
-        let shenshas = [];
-        if (palace.changsheng) shenshas.push(`长生:${palace.changsheng}`);
-        if (palace.doctor12) shenshas.push(`博士:${palace.doctor12}`);
-        if (palace.suiqian12) shenshas.push(`岁前:${palace.suiqian12}`);
-        if (palace.jiangqian12) shenshas.push(`将前:${palace.jiangqian12}`);
-        
-        if (shenshas.length > 0) {
-            txt += ` - 神煞: ${shenshas.join(' | ')}\n`;
-        }
-
-        const flow = siHuaMap[palace.heavenlyStem];
-        if (flow) {
-            txt += ` - 宫干飞化: ${palace.heavenlyStem}干 使${flow.禄}化禄、${flow.权}化权、${flow.科}化科、${flow.忌}化忌。\n`;
-        }
-
-        if (palace.decadal) {
-            txt += ` - 大限: ${palace.decadal.range[0]}-${palace.decadal.range[1]}岁\n`;
-        }
-        
-        txt += `\n`;
-      });
-
-      setResult(txt);
-    } catch (e) {
-      console.error(e);
-      setResult("排盘计算出错，请检查输入时间。");
-    }
+  const handleGenerate = () => {
+      if (!birthDate) return;
+      const report = generateReportLogic(birthDate, gender);
+      setResult(report);
   };
 
   const handleCopy = () => {
@@ -223,7 +263,7 @@ export const ZiweiModal: React.FC<ZiweiModalProps> = ({ isOpen, onClose }) => {
                 </div>
 
                 <button 
-                    onClick={generateReport}
+                    onClick={handleGenerate}
                     className="mt-auto w-full bg-black text-white py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2"
                 >
                     <Sparkles size={16} />
