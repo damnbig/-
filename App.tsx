@@ -5,13 +5,15 @@ import {
   Coffee, 
   Palette, 
   Plus,
-  BrainCircuit
+  BrainCircuit,
+  Moon
 } from './components/Icons';
 import { Task, Category, Status, AIAnalysisResult } from './types';
 import { TaskCard } from './components/TaskCard';
 import { NewTaskModal } from './components/NewTaskModal';
 import { ChiefOfStaffModal } from './components/ChiefOfStaffModal';
 import { TaskDetailModal } from './components/TaskDetailModal';
+import { ZiweiModal } from './components/ZiweiModal';
 
 const App: React.FC = () => {
   // --- Persistent State ---
@@ -47,6 +49,7 @@ const App: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<Category | '全部'>('全部');
   const [isNewTaskModalOpen, setNewTaskModalOpen] = useState(false);
   const [isChiefModalOpen, setChiefModalOpen] = useState(false);
+  const [isZiweiModalOpen, setZiweiModalOpen] = useState(false);
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
   const [dragOverColumn, setDragOverColumn] = useState<Status | null>(null);
 
@@ -205,6 +208,12 @@ const App: React.FC = () => {
             </h1>
             <div className="flex gap-2">
               <button 
+                onClick={() => setZiweiModalOpen(true)} 
+                className="w-9 h-9 bg-violet-100 text-violet-600 rounded-full flex items-center justify-center"
+              >
+                <Moon size={18} />
+              </button>
+              <button 
                 onClick={() => setChiefModalOpen(true)} 
                 className="w-9 h-9 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center"
               >
@@ -258,6 +267,13 @@ const App: React.FC = () => {
           </div>
           
           <div className="flex items-center gap-3">
+             <button 
+              className="flex items-center gap-2 bg-white border border-gray-200 text-gray-700 px-4 py-2.5 rounded-full shadow-sm hover:bg-gray-50 hover:scale-105 transition-all text-sm font-semibold"
+              onClick={() => setZiweiModalOpen(true)}
+            >
+              <Moon size={16} className="text-violet-600" />
+              iZiwei
+            </button>
             <button 
               className="flex items-center gap-2 bg-indigo-600 text-white px-5 py-2.5 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all text-sm font-semibold"
               onClick={() => setChiefModalOpen(true)}
@@ -367,6 +383,12 @@ const App: React.FC = () => {
         isOpen={isChiefModalOpen}
         onClose={() => setChiefModalOpen(false)}
         onPlanCreated={handleAIPlanCreated}
+      />
+
+      {/* iZiwei Modal */}
+      <ZiweiModal 
+        isOpen={isZiweiModalOpen}
+        onClose={() => setZiweiModalOpen(false)}
       />
 
       {/* Immersive Task Detail View */}
