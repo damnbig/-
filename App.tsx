@@ -6,7 +6,8 @@ import {
   Palette, 
   Plus,
   BrainCircuit,
-  Moon
+  Moon,
+  FileText
 } from './components/Icons';
 import { Task, Category, Status, AIAnalysisResult } from './types';
 import { TaskCard } from './components/TaskCard';
@@ -14,6 +15,7 @@ import { NewTaskModal } from './components/NewTaskModal';
 import { ChiefOfStaffModal } from './components/ChiefOfStaffModal';
 import { TaskDetailModal } from './components/TaskDetailModal';
 import { ZiweiModal } from './components/ZiweiModal';
+import { StudioDoc } from './components/StudioDoc';
 
 const App: React.FC = () => {
   // --- Persistent State ---
@@ -47,6 +49,7 @@ const App: React.FC = () => {
   }, [tasks]);
   
   const [activeCategory, setActiveCategory] = useState<Category | '全部'>('全部');
+  const [currentView, setCurrentView] = useState<'tasks' | 'docs'>('tasks');
   const [isNewTaskModalOpen, setNewTaskModalOpen] = useState(false);
   const [isChiefModalOpen, setChiefModalOpen] = useState(false);
   const [isZiweiModalOpen, setZiweiModalOpen] = useState(false);
@@ -137,10 +140,13 @@ const App: React.FC = () => {
 
   // --- Render Helpers ---
   const renderNavButton = (cat: Category | '全部', icon: React.ReactNode, label: string) => {
-    const isActive = activeCategory === cat;
+    const isActive = activeCategory === cat && currentView === 'tasks';
     return (
       <button 
-        onClick={() => setActiveCategory(cat)}
+        onClick={() => {
+          setActiveCategory(cat);
+          setCurrentView('tasks');
+        }}
         className={`
           flex items-center gap-3 w-full px-4 py-3 rounded-xl transition-all duration-200 group
           ${isActive 
@@ -158,11 +164,36 @@ const App: React.FC = () => {
     );
   };
 
+  const renderDocButton = () => {
+    const isActive = currentView === 'docs';
+    return (
+      <button 
+        onClick={() => setCurrentView('docs')}
+        className={`
+          flex items-center gap-3 w-full px-4 py-3 rounded-xl transition-all duration-200 group mt-2
+          ${isActive 
+            ? 'bg-white shadow-sm text-gray-900 font-semibold' 
+            : 'text-gray-500 hover:bg-white/50 hover:text-gray-700'
+          }
+        `}
+      >
+        <span className={`${isActive ? 'text-indigo-600' : 'text-gray-400 group-hover:text-gray-500'}`}>
+          <FileText size={18} />
+        </span>
+        <span className="text-sm">工作室文档</span>
+        {isActive && <div className="ml-auto w-1.5 h-1.5 rounded-full bg-indigo-600" />}
+      </button>
+    );
+  };
+
   const renderMobileTab = (cat: Category | '全部', icon: React.ReactNode, label: string) => {
-    const isActive = activeCategory === cat;
+    const isActive = activeCategory === cat && currentView === 'tasks';
     return (
        <button 
-        onClick={() => setActiveCategory(cat)}
+        onClick={() => {
+          setActiveCategory(cat);
+          setCurrentView('tasks');
+        }}
         className="flex flex-col items-center justify-center gap-1 flex-1 py-1"
        >
          <div className={`transition-colors ${isActive ? 'text-indigo-600' : 'text-gray-400'}`}>
@@ -194,12 +225,18 @@ const App: React.FC = () => {
           {renderNavButton('工作', <Briefcase size={18} />, '工作')}
           {renderNavButton('生活', <Coffee size={18} />, '生活')}
           {renderNavButton('创意', <Palette size={18} />, '创意')}
+          
+          <div className="pt-4 pb-2 pl-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest">资料</div>
+          {renderDocButton()}
         </nav>
       </aside>
 
       {/* Main Content */}
       <main className="flex-1 h-full overflow-hidden flex flex-col relative">
-        
+        {currentView === 'docs' ? (
+          <StudioDoc onBack={() => setCurrentView('tasks')} />
+        ) : (
+          <>
         {/* Mobile Header & Controls */}
         <div className="md:hidden flex flex-col bg-[#F5F5F7] pt-safe z-20">
           <div className="flex items-center justify-between px-6 py-4">
@@ -361,12 +398,26 @@ const App: React.FC = () => {
           </div>
         </div>
 
+          </>
+        )}
+
         {/* Mobile Bottom Tab Bar */}
         <div className="md:hidden fixed bottom-0 left-0 right-0 glass pb-safe pt-2 px-6 border-t border-gray-200/50 flex justify-between items-center z-30">
           {renderMobileTab('全部', <LayoutGrid size={24} strokeWidth={activeCategory === '全部' ? 2.5 : 2} />, '总览')}
           {renderMobileTab('工作', <Briefcase size={24} strokeWidth={activeCategory === '工作' ? 2.5 : 2} />, '工作')}
           {renderMobileTab('生活', <Coffee size={24} strokeWidth={activeCategory === '生活' ? 2.5 : 2} />, '生活')}
           {renderMobileTab('创意', <Palette size={24} strokeWidth={activeCategory === '创意' ? 2.5 : 2} />, '创意')}
+          <button 
+            onClick={() => setCurrentView('docs')}
+            className="flex flex-col items-center justify-center gap-1 flex-1 py-1"
+          >
+             <div className={`transition-colors ${currentView === 'docs' ? 'text-indigo-600' : 'text-gray-400'}`}>
+               <FileText size={24} strokeWidth={currentView === 'docs' ? 2.5 : 2} />
+             </div>
+             <span className={`text-[10px] font-medium ${currentView === 'docs' ? 'text-indigo-600' : 'text-gray-400'}`}>
+               文档
+             </span>
+           </button>
         </div>
 
       </main>

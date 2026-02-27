@@ -16,7 +16,8 @@ import {
   Calendar, 
   Moon, 
   Copy,
-  Download
+  Download,
+  FileText
 } from 'lucide-react';
 
 export {
@@ -37,5 +38,6 @@ export {
   Calendar, 
   Moon, 
   Copy,
-  Download
+  Download,
+  FileText
 };
