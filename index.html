@@ -43,8 +43,8 @@
       }
       /* Hide scrollbar for IE, Edge and Firefox */
       .scrollbar-hide {
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
+        -ms-overflow-style: none;
+        scrollbar-width: none;
       }
 
       /* Glassmorphism utilities */
@@ -61,6 +61,39 @@
       }
       .pt-safe {
         padding-top: env(safe-area-inset-top);
+      }
+
+      .mao-reading-shortcut {
+        position: fixed;
+        right: 18px;
+        bottom: calc(82px + env(safe-area-inset-bottom));
+        z-index: 40;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 10px 13px;
+        border: 1px solid rgba(157, 43, 37, 0.18);
+        border-radius: 8px;
+        background: rgba(255, 253, 248, 0.94);
+        color: #8d2924;
+        box-shadow: 0 8px 24px rgba(38, 37, 33, 0.12);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 1;
+        text-decoration: none;
+      }
+
+      .mao-reading-shortcut:active {
+        transform: scale(0.97);
+      }
+
+      @media (min-width: 768px) {
+        .mao-reading-shortcut {
+          right: 28px;
+          bottom: 28px;
+        }
       }
     </style>
   <script type="importmap">
@@ -81,6 +114,10 @@
 </head>
   <body>
     <div id="root"></div>
+    <a class="mao-reading-shortcut" href="/reading/" aria-label="打开毛选共读">
+      <span aria-hidden="true">阅</span>
+      <span>毛选共读</span>
+    </a>
     <script type="module" src="/index.tsx"></script>
     <script>
       // Enhanced Service Worker Registration
