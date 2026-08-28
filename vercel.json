@@ -1,4 +1,15 @@
 {
+  "headers": [
+    {
+      "source": "/r/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive, nosnippet"
+        }
+      ]
+    }
+  ],
   "rewrites": [
     {
       "source": "/reading",
@@ -7,6 +18,14 @@
     {
       "source": "/reading/",
       "destination": "/reading/index.html"
+    },
+    {
+      "source": "/r/6c2f9d81",
+      "destination": "/r/6c2f9d81/index.html"
+    },
+    {
+      "source": "/r/6c2f9d81/",
+      "destination": "/r/6c2f9d81/index.html"
     },
     {
       "source": "/(.*)",
