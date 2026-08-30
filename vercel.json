@@ -28,6 +28,14 @@
       "destination": "/r/6c2f9d81/index.html"
     },
     {
+      "source": "/r/5fd8e05d",
+      "destination": "/r/5fd8e05d/index.html"
+    },
+    {
+      "source": "/r/5fd8e05d/",
+      "destination": "/r/5fd8e05d/index.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
