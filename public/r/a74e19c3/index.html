@@ -140,7 +140,7 @@
     <button class="tool-btn" type="button" data-sheet="tocSheet"><span class="symbol">☷</span><span>目录</span></button>
     <button class="tool-btn" type="button" data-sheet="annotationsSheet"><span class="symbol">✎</span><span>批注</span></button>
     <button class="tool-btn" type="button" data-sheet="settingsSheet"><span class="symbol">Aa</span><span>设置</span></button>
-    <button class="tool-btn" type="button" id="bottomShareBtn"><span class="symbol">↗</span><span>分享</span></button>
+    <button class="tool-btn" type="button" id="copyFullBtn"><span class="symbol">⧉</span><span>复制全文</span></button>
   </div></footer>
 
   <div class="selection-toolbar" id="selectionToolbar" aria-label="文字批注工具">
@@ -249,7 +249,29 @@
     function deleteNote() { if(!editingId)return;state.annotations=state.annotations.filter(function(item){return item.id!==editingId;});saveState();closeSheets();renderHighlights();renderAnnotations();showToast('批注已删除'); }
     function locateNote(id) { const mark=document.querySelector('mark[data-annotation-id="'+id+'"]');if(mark){closeSheets();mark.scrollIntoView({behavior:'smooth',block:'center'});} }
     function notesText() { if(!state.annotations.length)return '';return '《紫微斗数进阶论盘》批注\n\n'+state.annotations.map(function(item,index){return (index+1)+'. '+item.context+'\n「'+item.quote+'」'+(item.note?'\n批注：'+item.note:'');}).join('\n\n'); }
-    async function copyText(text,message) { try{await navigator.clipboard.writeText(text);showToast(message);}catch{showToast('复制失败，请在浏览器中重试');} }
+    function reportText() {
+      const lines=[REPORT.title,'',REPORT.subtitle,'','阅读之前','',document.querySelector('[data-block-id="reading-note"]')?.textContent||''];
+      REPORT.chapters.forEach(function(chapter,index){
+        lines.push('','第 '+(index+1)+' 章 '+chapter.title,'',chapter.intro);
+        chapter.sections.forEach(function(section){
+          lines.push('',section.title);
+          if(section.answer)lines.push('',section.answer);
+          if(section.reasoning)lines.push('','论盘依据',section.reasoning);
+          if(section.synthesis)lines.push('','合参结果',section.synthesis);
+          if(section.boundary)lines.push('','边界与补充',section.boundary);
+        });
+      });
+      return lines.filter(function(line,index){return line!==undefined&&line!==null&&(line!==''||lines[index-1]!=='');}).join('\n').trim()+'\n';
+    }
+    async function copyText(text,message) {
+      try {
+        if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text);}else{throw new Error('Clipboard API unavailable');}
+        showToast(message);
+      } catch {
+        const area=document.createElement('textarea');area.value=text;area.setAttribute('readonly','');area.style.cssText='position:fixed;left:-9999px;top:0;opacity:0';document.body.appendChild(area);area.select();area.setSelectionRange(0,area.value.length);
+        try{if(!document.execCommand('copy'))throw new Error('Copy failed');showToast(message);}catch{showToast('复制失败，请长按正文后全选复制');}finally{area.remove();}
+      }
+    }
     async function sharePage() { if(navigator.share){try{await navigator.share({title:document.title,url:location.href});}catch{}}else{copyText(location.href,'链接已复制');} }
     async function shareNotes() { const text=notesText();if(!text){showToast('还没有可分享的批注');return;}if(navigator.share){try{await navigator.share({title:'论盘批注',text:text});}catch{}}else{copyText(text,'批注已复制');} }
     function updateProgress(save) { const max=Math.max(1,document.documentElement.scrollHeight-innerHeight);const percent=Math.min(100,Math.max(0,Math.round(scrollY/max*100)));document.getElementById('progressBar').style.width=percent+'%';document.getElementById('topProgress').textContent='已读 '+percent+'%';if(save){state.scroll=scrollY;saveState();} }
@@ -263,7 +285,7 @@
     document.getElementById('lineDown').addEventListener('click',function(){state.settings.line=Math.max(1.65,state.settings.line-.1);applySettings();});
     document.getElementById('lineUp').addEventListener('click',function(){state.settings.line=Math.min(2.3,state.settings.line+.1);applySettings();});
     document.querySelectorAll('.theme-dot').forEach(function(button){button.addEventListener('click',function(){state.settings.theme=button.dataset.theme;applySettings();});});
-    document.getElementById('topShareBtn').addEventListener('click',sharePage);document.getElementById('bottomShareBtn').addEventListener('click',sharePage);
+    document.getElementById('topShareBtn').addEventListener('click',sharePage);document.getElementById('copyFullBtn').addEventListener('click',function(){copyText(reportText(),'全文已复制');});
     document.getElementById('shareNotesBtn').addEventListener('click',shareNotes);document.getElementById('copyNotesBtn').addEventListener('click',function(){const text=notesText();if(text)copyText(text,'批注已复制');else showToast('还没有可复制的批注');});
     document.querySelector('main').addEventListener('click',function(event){const mark=event.target.closest('mark[data-annotation-id]');if(mark){const item=state.annotations.find(function(value){return value.id===mark.dataset.annotationId;});if(item)openNoteEditor(item);}});
     document.querySelector('main').addEventListener('mouseup',function(){setTimeout(captureSelection,20);});document.querySelector('main').addEventListener('touchend',function(){setTimeout(captureSelection,120);},{passive:true});
