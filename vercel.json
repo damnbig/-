@@ -93,6 +93,14 @@
       "destination": "/r/58621334/index.html"
     },
     {
+      "source": "/r/4180a56c",
+      "destination": "/r/4180a56c/index.html"
+    },
+    {
+      "source": "/r/4180a56c/",
+      "destination": "/r/4180a56c/index.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

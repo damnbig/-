@@ -1,0 +1,75 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow,noarchive"><meta name="referrer" content="no-referrer"><title>RERUN3 · 最终审计</title><style>:root{color-scheme:light}*{box-sizing:border-box}body{margin:0;background:#f4f1ea;color:#252924;font:17px/1.9 system-ui,"Microsoft YaHei",sans-serif}nav{position:sticky;top:0;z-index:1;background:#fbfaf6ed;border-bottom:1px solid #d9ded4;padding:12px 20px;display:flex;gap:20px;flex-wrap:wrap}a{color:#345d45;text-underline-offset:4px}main{max-width:900px;margin:auto;padding:36px 24px 100px}h1{font-size:clamp(26px,5vw,38px);line-height:1.4}h2{margin-top:48px;padding-top:16px;border-top:1px solid #cbd3c6;scroll-margin-top:110px}h3{line-height:1.5}p,li{overflow-wrap:anywhere}pre{overflow:auto;padding:16px;background:#e9e9e1}table{display:block;overflow:auto;border-collapse:collapse}td,th{padding:8px;border:1px solid #cbd3c6}blockquote,.note{margin:20px 0;padding:16px 20px;background:#e7ecdf;border-left:4px solid #71815e}.toc{display:flex;gap:10px 18px;flex-wrap:wrap}button{font:inherit;background:#345d45;color:white;border:0;border-radius:6px;padding:8px 16px;cursor:pointer}</style></head><body><nav><a href="./">完整运行稿</a><a href="audit.html">最终审计</a><a href="report.md" download>下载原稿</a><a href="audit.md" download>下载审计</a></nav><main><div class="note">以下保留发布前的审计快照；其中“未发布网站”描述的是审计完成时的状态。本次经用户授权，将完整稿和审计一同上线。</div><h1>RERUN3 完成报告与最终人工审计</h1>
+<h2>执行结果</h2>
+<p><strong>默认稳定模式已恢复，19/19步完成，状态COMPLETE。</strong> 本报告区分“流程完整、机器核验通过”和“每一句解释已得到实质验证”。后者不能由机器PASS推出。</p>
+<ul>
+<li>CASE：CASE-19980926-SHEN-F-RERUN3；FP：4180A56C；306条事实。</li>
+<li>输入：公历1998-09-26、女、申时；实际分钟未知，16:00仅用于计算，未追加时差修正。</li>
+<li>顺序：Q0、Q1、Q2、Q3、CP-A、Q4、Q5、Q6、CP-B、Q7、Q7B、Q8、Q9、CP-C、Q10、Q11、Q12、Q12B、CP-D。</li>
+<li>manualReviewRequired=false。三个既有19步COMPLETE案例为基准；未沿用RERUN2逐句课程深审和两次语义返工停轮模式。</li>
+<li>19步有效机器审计均PASS；22份发送回执（19步加3次补充）全部确认且发送时来源快照验证通过。各次只选当前CASE/FP事实包和批准课程，旧事实文件排除。</li>
+<li>RERUN2及全部旧对话保留。无运行器继续占用；未发布网站。</li>
+</ul>
+<p><a href="%E5%AE%8C%E6%95%B4%E8%BF%90%E8%A1%8C%E7%A8%BF.md">完整运行稿</a>约10万字符，按步骤汇集原回答及有记录的机械修复版本；<a href="completion-manifest.json">完成清单</a>提供各步有效版本、审计、回执和文件哈希。</p>
+<h2>本次执行中的修复</h2>
+<ol>
+<li>Q6实际回答截断；只读恢复仍截断后，请模型续接同一题，补完整证据登记与闭包，并校正“生年贪狼忌”为模型确认的“本命夫妻宫癸干飞化贪狼忌”。80项登记全部通过，论断原文保留。</li>
+<li>CP-B漏步骤标题；补CP-B-M标识，校正两处可核验的星名/四化标签，原判断未改写。</li>
+<li>CP-C曾被抓取器误从旧提问定位，保留误抓版本，恢复真实回答。已修复有明确回答边界时不得回退到提问正文的定位漏洞，并加入回归。</li>
+<li>Q11漏E83且E102被错用于多个大限宫位；由模型输出机械替换清单，补E83、E113并按明确宫位修正引用与事实关系标签。没有重论十年结论。</li>
+<li>CP-D漏PENDING_SOURCE/SCOPE_BLOCKED状态栏；模型补报两者本轮无，并校正误写的问题13标签为CP-D-M。未提出或执行问题13。</li>
+<li>修复证据归一化截短DA03-L01等编号的程序错误；旧审计保留，新解析器对Q0至Q10及Q7B重验全部通过。</li>
+</ol>
+<h2>最终人工审计：确定的事实/映射问题</h2>
+<p>以下为整轮完成后的独立发现，<strong>没有静默改入模型原文</strong>。可定位至完整FACT，不能当作仅仅风格争议。</p>
+<table>
+<thead>
+<tr>
+<th>位置</th>
+<th>原文问题</th>
+<th>事实对照与影响</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Q12 C12-2</td>
+<td>“巨门[E71]”“文昌落陷[E72]”</td>
+<td>本题E71=Z017铃星、E72=Z018飞廉；实际巨门为E22=Z071，文昌为E23=Z072。星曜存在，错在引用角色；不是断言没有巨门或文昌。</td>
+</tr>
+<tr>
+<td>Q12 C12-3</td>
+<td>“陀罗[E58]”</td>
+<td>E58=Z034疾厄宫大耗；实际田宅陀罗为E63=Z058。出现多次，需按同一事实统一更正。</td>
+</tr>
+<tr>
+<td>Q3 C3-2</td>
+<td>将外部注入命宫的机制写作“紫杀权能”</td>
+<td>对应S01/S02为武曲禄、贪狼权，紫微七杀在官禄。文字将命迁注入链与身宫星曜混称。</td>
+</tr>
+</tbody></table>
+<p>这些错配说明当前机器检查主要证明“E绑定的FACT存在”，尚未自动证明每个E附近的中文星名与宫职匹配。</p>
+<h2>最终人工审计：时间层级混用</h2>
+<ul>
+<li><strong>Q12 C12-3“大限天梁化禄[E81]”</strong>：E81=F04-L，是本命子女宫壬干天梁禄到田宅；E40=S05也是该本命路径的向心标记。当前24—33岁大限为癸干，化禄是破军（DA03-L/D02-L），不是天梁。天梁大限化禄属于下一限34—43岁（DA04-L）。本命路径真实存在，不能凭同名星化把它算成当前大限引动。</li>
+<li><strong>Q12B C12B-2将E40称为“大限化禄”</strong>：此题下一限E130=DA04-L确为天梁禄，因而其下一限主路径存在；但E40仍是本命S05，需区分“本命标记”与“下一限叠加”，避免重复计为两个独立运限证据。</li>
+<li>Q12末尾“大限天机生年忌”用语混合：天机忌为BS04本命生年忌，2026流年天机权为D03-Q；不能把生年忌的层级改成大限。</li>
+</ul>
+<h2>最终人工审计：明显超出已陈述条件的保证式判断</h2>
+<p>不是因为语气强而否定。问题在于从倾向、保护因素或单项支持，跳成了没有保留反例的现实保证；部分也与同份CP-D自己的降级规则不一致。</p>
+<ul>
+<li>Q11 C11-2“保证了大库不致崩盘”、Q12 C12-3“不致发生穿仓风险”：掌控倾向、吉化或贵人支持不能证明现实资金一定安全，现金流控制与净资产结果仍须分开。</li>
+<li>Q12B C12B-1“行业地位登顶”“彻底确立…领袖权威”：下一限紫微化权与身宫/官禄相接确实存在，但这些支持条件尚不足以推出确定行业排名或实际职位。</li>
+<li>Q12B C12B-2“完美消融…资产重压”“彻底转化为实实在在的房产”：天梁大限禄的有利路径可以保留；完整消灾或已经取得产权的保证，不能只由该路径推出。</li>
+<li>C3-3“保证思想绝对独立”、Q12B C12B-3“之前冷战僵局…退场并失效”：这类排除所有例外的判断没有与之相称的论证。</li>
+</ul>
+<p>以上列为审计发现，不替模型重写为中庸版本，也不据此删除其余具有明确结构支持的强判断。</p>
+<h2>可商榷判断与复核限度</h2>
+<ul>
+<li>多段将合作、大众或来因宫具体落实为“新媒体、粉丝、期权、非传统学科”等职业或变现渠道。可作为竞争落象，尚未得到真实职业、收入、生活史验证，不能从盘面直接确定行业。</li>
+<li>Q7B采用父母宫之夫妻宫代理母亲的转换法，原文给了转换关系与课程名。此次保留这条方法分支，没有仅因第三人内容而全部驯平；具体父母人格、婚姻结局、资产仍未实证。</li>
+<li>模型多次把同一来源的飞化原子和向心/自化标记同时列为支持。应避免把同一路径的两种记录重复计算成独立证据。</li>
+<li>本次按用户要求完成后统一审计，没有逐句查课程公理。课程引用是否逐字、不同课程系列是否兼容、所有推演是否满足课程条件，<strong>没有宣称已全面验证</strong>。CP中“全盘完美冻结/全部通过”的自述不替代独立审计。</li>
+<li>未用真实人生反馈做盲验命中率评估，未证实财富、职业、婚恋或健康预言。</li>
+</ul>
+<h2>验证与交付状态</h2>
+<p>来源/回执/19步顺序回归、可选深审门禁回归、回答抓取与证据归一化回归、类型检查、24个本命与48个年界台账用例、v0.11/v0.12题目检查、生产构建均通过；安装技能校验通过。构建仅保留既有包体积提示。</p>
+<p><strong>流程已完成，质量审计有上述待处理发现。</strong> 原文、机械修复稿、失败抓取、版本清单与审计说明一并交付。尚未上线，发布决定交由用户。</p>
+</main></body></html>
