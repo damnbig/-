@@ -31,7 +31,7 @@ $('unlock-form').addEventListener('submit',async event=>{
   event.preventDefault();if(busy)return;
   if(!crypto.subtle){$('gate-status').textContent='当前浏览器不支持安全解锁，请用最新版 Safari 或 Chrome 打开 HTTPS 链接。';return;}
   busy=true;$('unlock').disabled=true;$('unlock').querySelector('span').textContent='正在解锁…';$('gate-status').textContent='';
-  let password=$('password').value;
+  let password=$('password').value.trim().replace(/[０-９]/g,char=>String(char.charCodeAt(0)-0xFEE0));
   try{
     let envelope;
     try{const response=await fetch('/r/4180a56c/content.enc.json',{cache:'no-store',signal:AbortSignal.timeout(20000)});if(!response.ok)throw new Error();envelope=await response.json();}catch{throw new Error('network');}
