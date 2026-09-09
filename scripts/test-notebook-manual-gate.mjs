@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import { assertWorkflowAllowed, canAdvanceAfterAudit } from './lib/notebook-manual-gate.mjs';
+const blocked = { notebook: { manualBlock: { status: 'BLOCKED', stepId: 'Q1' }, manualApprovals: { Q1: { status: 'PASS' } } } };
+assert.throws(() => assertWorkflowAllowed(blocked), /Manual review blocks Q1/);
+assert.throws(() => canAdvanceAfterAudit(blocked, 'Q1', { status: 'PASS' }), /cannot override/);
+const review = { notebook: { manualReviewRequired: true, manualApprovals: { Q0: { status: 'PASS' } } } };
+assert.equal(canAdvanceAfterAudit(review, 'Q1', { status: 'PASS' }), false);
+assert.equal(canAdvanceAfterAudit(review, 'Q0', { status: 'PASS' }), true);
+assert.equal(canAdvanceAfterAudit(review, 'Q0', { status: 'BLOCKED' }), false);
+assert.equal(canAdvanceAfterAudit({ notebook: {} }, 'Q1', { status: 'PASS' }), true);
+console.log('Manual gate regression passed.');

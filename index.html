@@ -120,16 +120,26 @@
     </a>
     <script type="module" src="/index.tsx"></script>
     <script>
-      // Enhanced Service Worker Registration
+      // Keep local development free of stale service-worker assets.
       if ('serviceWorker' in navigator) {
+        const isLocalDevelopment = ['localhost', '127.0.0.1'].includes(window.location.hostname);
         window.addEventListener('load', () => {
+          if (isLocalDevelopment) {
+            navigator.serviceWorker.getRegistrations()
+              .then(registrations => Promise.all(registrations.map(registration => registration.unregister())))
+              .then(() => {
+                if (!('caches' in window)) return undefined;
+                return caches.keys().then(keys => Promise.all(
+                  keys.filter(key => key.startsWith('focus-')).map(key => caches.delete(key))
+                ));
+              })
+              .catch(error => console.log('Local SW cleanup failed:', error));
+            return;
+          }
+
           navigator.serviceWorker.register('/service-worker.js')
-            .then(registration => {
-              console.log('Focus App SW registered');
-            })
-            .catch(registrationError => {
-              console.log('SW registration failed:', registrationError);
-            });
+            .then(() => console.log('Focus App SW registered'))
+            .catch(registrationError => console.log('SW registration failed:', registrationError));
         });
       }
     </script>

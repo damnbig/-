@@ -17,7 +17,12 @@ import {
   Moon, 
   Copy,
   Download,
-  FileText
+  FileText,
+  Database,
+  ShieldCheck,
+  ListChecks,
+  ChevronDown,
+  Check
 } from 'lucide-react';
 
 export {
@@ -39,5 +44,10 @@ export {
   Moon, 
   Copy,
   Download,
-  FileText
+  FileText,
+  Database,
+  ShieldCheck,
+  ListChecks,
+  ChevronDown,
+  Check
 };

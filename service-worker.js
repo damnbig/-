@@ -1,4 +1,4 @@
-const CACHE_NAME = 'focus-app-v3-production';
+const CACHE_NAME = 'focus-app-v4-1-production';
 const DATA_CACHE_NAME = 'focus-data-cache-v1';
 
 // Files we strictly want to cache immediately

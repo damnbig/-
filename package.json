@@ -4,22 +4,36 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "sync:questions": "node scripts/sync-advanced-questions.mjs",
+    "predev": "npm run sync:questions",
     "dev": "vite",
-    "build": "vite build && node scripts/copy-static.mjs",
-    "preview": "vite preview"
+    "prebuild": "npm run sync:questions",
+    "build": "npm run typecheck && npm run verify:ledger && npm run verify:questions && vite build && node scripts/copy-static.mjs",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "verify:ledger": "node scripts/verify-ziwei-ledger.mjs",
+    "verify:questions": "node scripts/verify-advanced-questions.mjs",
+    "verify:notebooklm-runner": "node scripts/test-notebook-response-audit.mjs",
+    "notebooklm:status": "node scripts/notebooklm-playwright.mjs status",
+    "notebooklm:include-optionals": "node scripts/notebooklm-runner.mjs include-optionals",
+    "notebooklm:login": "node scripts/notebooklm-playwright.mjs login",
+    "notebooklm:run": "node scripts/notebooklm-playwright.mjs run",
+    "notebooklm:repair": "node scripts/notebooklm-playwright.mjs repair",
+    "reading:build": "node scripts/build-reading-report.mjs"
   },
   "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "lucide-react": "^0.344.0",
     "@google/genai": "^1.35.0",
     "iztro": "^2.5.3",
-    "lunar-javascript": "^1.6.12"
+    "lucide-react": "^0.344.0",
+    "lunar-javascript": "^1.6.12",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@vitejs/plugin-react": "^4.2.1",
+    "playwright-core": "^1.62.1",
     "typescript": "^5.2.2",
     "vite": "^5.2.0"
   }
