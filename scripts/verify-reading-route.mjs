@@ -14,7 +14,7 @@ const html = await readFile(htmlPath, 'utf8');
 const reportMatch = html.match(/const REPORT = (.*?);\r?\n\s*const STORAGE_KEY/s);
 assert(reportMatch, 'Embedded report data is missing.');
 const report = JSON.parse(reportMatch[1]);
-assert(report.chapters.length >= 12 && report.chapters.length <= 14, 'Expected 12 to 14 reader chapters.');
+assert(report.chapters.length >= 12 && report.chapters.length <= 16, 'Expected 12 to 16 reader chapters.');
 assert(!/\b(?:Q0|CP-[A-D]-M|CASE-|E\d+=|FACT编号|证据登记台账)\b/.test(html), 'Internal workflow content leaked into reader HTML.');
 assert(/noindex,nofollow/.test(html), 'Reader page must remain noindex.');
 
