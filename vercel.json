@@ -101,14 +101,6 @@
       "destination": "/r/4180a56c/index.html"
     },
     {
-      "source": "/r/c9ec7050",
-      "destination": "/r/c9ec7050/index.html"
-    },
-    {
-      "source": "/r/c9ec7050/",
-      "destination": "/r/c9ec7050/index.html"
-    },
-    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
