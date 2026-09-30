@@ -109,6 +109,14 @@
       "destination": "/r/c9ec7050/index.html"
     },
     {
+      "source": "/r/cf76ca67",
+      "destination": "/r/cf76ca67/index.html"
+    },
+    {
+      "source": "/r/cf76ca67/",
+      "destination": "/r/cf76ca67/index.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
