@@ -116,6 +116,8 @@
       "source": "/r/cf76ca67/",
       "destination": "/r/cf76ca67/index.html"
     },
+    {"source": "/r/8e4b2a91", "destination": "/r/8e4b2a91/index.html"},
+    {"source": "/r/8e4b2a91/", "destination": "/r/8e4b2a91/index.html"},
     {
       "source": "/(.*)",
       "destination": "/index.html"

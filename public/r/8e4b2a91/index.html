@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="robots" content="noindex,nofollow,noarchive,nosnippet" />
+  <meta name="googlebot" content="noindex,nofollow,noarchive,nosnippet" />
+  <meta name="theme-color" content="#f5f2ea" id="themeColor" />
+  <title>感情与相处</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg:#f5f2ea; --surface:rgba(250,248,243,.97); --text:#20242c; --muted:#747980;
+      --line:rgba(32,36,44,.14); --accent:#6d42e8; --accent-soft:rgba(109,66,232,.09);
+      --secondary:#356957; --warm:#a24e48; --page:760px; --font-size:18px; --line-height:1.92;
+      --yellow:rgba(246,207,74,.48); --green:rgba(92,184,121,.38); --blue:rgba(79,151,214,.34); --red:rgba(221,103,96,.36);
+    }
+    html[data-theme="white"] { --bg:#fcfcfb; --surface:rgba(255,255,255,.97); --text:#1e2228; --muted:#73777d; }
+    html[data-theme="green"] { --bg:#e3ebdf; --surface:rgba(237,243,233,.97); --text:#253028; --muted:#687169; --accent:#6340c9; }
+    html[data-theme="dark"] { color-scheme:dark; --bg:#191a1c; --surface:rgba(29,30,33,.98); --text:#d5d2ca; --muted:#929189; --line:rgba(255,255,255,.12); --accent:#a78bfa; --accent-soft:rgba(167,139,250,.12); --secondary:#77bfa3; --warm:#df8d84; --yellow:rgba(180,141,38,.48); --green:rgba(48,136,75,.45); --blue:rgba(46,112,164,.48); --red:rgba(168,68,62,.48); }
+    * { box-sizing:border-box; }
+    html { background:var(--bg); scroll-behavior:smooth; }
+    body { margin:0; background:var(--bg); color:var(--text); font-family:"Noto Serif SC","Source Han Serif SC","Songti SC","STSong",serif; -webkit-font-smoothing:antialiased; }
+    button,textarea { color:inherit; -webkit-tap-highlight-color:transparent; }
+    button { font:inherit; }
+    .progress { position:fixed; inset:0 0 auto; height:2px; z-index:80; background:transparent; }
+    .progress span { display:block; width:0; height:100%; background:var(--accent); }
+    .topbar,.bottombar { position:fixed; left:0; right:0; z-index:70; background:var(--surface); border-color:var(--line); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); }
+    .topbar { top:0; padding-top:env(safe-area-inset-top); border-bottom:1px solid var(--line); }
+    .bottombar { bottom:0; padding-bottom:env(safe-area-inset-bottom); border-top:1px solid var(--line); }
+    .bar-inner { max-width:var(--page); margin:auto; display:flex; align-items:center; }
+    .topbar .bar-inner { height:54px; padding:0 14px; gap:11px; }
+    .bottombar .bar-inner { min-height:66px; padding:6px 7px 4px; justify-content:space-around; }
+    .brand-mark { width:34px; height:34px; flex:0 0 auto; display:grid; place-items:center; border-radius:50%; color:white; background:var(--accent); font:700 18px/1 system-ui,sans-serif; box-shadow:0 5px 14px rgba(109,66,232,.23); }
+    .bar-title { flex:1; min-width:0; font:650 14px/1.25 system-ui,sans-serif; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .bar-title small { display:block; margin-top:3px; color:var(--muted); font-size:10px; font-weight:500; }
+    .icon-btn { width:40px; height:40px; border:0; border-radius:50%; background:transparent; display:grid; place-items:center; font:600 18px/1 system-ui,sans-serif; }
+    .icon-btn:active,.tool-btn:active { background:var(--accent-soft); color:var(--accent); }
+    .tool-btn { flex:1; min-width:0; min-height:52px; border:0; background:transparent; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; color:var(--muted); font:11px/1 system-ui,sans-serif; }
+    .tool-btn .symbol { color:var(--text); font-size:19px; line-height:1; }
+    main { max-width:var(--page); min-height:100vh; margin:auto; padding:calc(82px + env(safe-area-inset-top)) clamp(22px,5.5vw,48px) calc(112px + env(safe-area-inset-bottom)); }
+    .report-head { min-height:min(560px,72vh); display:flex; flex-direction:column; justify-content:center; padding:34px 0 54px; border-bottom:1px solid var(--line); }
+    .kicker { margin:0 0 18px; color:var(--accent); font:750 12px/1 system-ui,sans-serif; }
+    h1 { margin:0; max-width:620px; font-size:clamp(36px,9vw,58px); line-height:1.18; letter-spacing:0; }
+    .subtitle { max-width:560px; margin:20px 0 0; color:var(--muted); font:16px/1.8 system-ui,sans-serif; }
+    .report-meta { display:flex; gap:18px; margin-top:28px; color:var(--secondary); font:650 12px/1 system-ui,sans-serif; }
+    .reading-note { margin:52px 0 10px; padding:24px 0; border-block:1px solid var(--line); }
+    .reading-note h2 { margin:0 0 12px; color:var(--warm); font:750 15px/1 system-ui,sans-serif; }
+    .reading-note p { margin:0; color:var(--muted); font:15px/1.9 system-ui,sans-serif; }
+    article { font-size:var(--font-size); line-height:var(--line-height); letter-spacing:0; }
+    .chapter { padding-top:58px; scroll-margin-top:72px; }
+    .chapter + .chapter { margin-top:38px; border-top:1px solid var(--line); }
+    .chapter-label { margin:0 0 11px; color:var(--accent); font:750 11px/1 system-ui,sans-serif; }
+    .chapter h2 { margin:0; font-size:1.55em; line-height:1.45; letter-spacing:0; }
+    .method { margin:20px 0 34px; border-left:3px solid var(--secondary); padding-left:16px; color:var(--muted); }
+    .method summary { cursor:pointer; color:var(--secondary); font:700 13px/1.5 system-ui,sans-serif; list-style:none; }
+    .method summary::-webkit-details-marker { display:none; }
+    .method summary::after { content:'＋'; margin-left:7px; font-weight:500; }
+    .method[open] summary::after { content:'－'; }
+    .method p { margin:12px 0 0; font-size:.88em; line-height:1.8; }
+    .topic { padding:32px 0 4px; scroll-margin-top:72px; }
+    .topic + .topic { margin-top:18px; border-top:1px solid var(--line); }
+    .topic h3 { margin:0 0 19px; font-size:1.08em; line-height:1.65; letter-spacing:0; }
+    .topic p { margin:0 0 1.35em; text-align:justify; overflow-wrap:break-word; user-select:text; -webkit-user-select:text; }
+    .lead { font-weight:500; }
+    .analysis-label { margin:25px 0 11px; color:var(--secondary); font:750 11px/1 system-ui,sans-serif; }
+    .reasoning { color:color-mix(in srgb,var(--text) 88%,var(--muted)); font-size:.94em; }
+    .synthesis { font-size:.94em; }
+    .boundary { margin-top:22px; padding:17px 0 0 16px; border-top:1px dashed var(--line); border-left:3px solid var(--warm); color:var(--muted); font-size:.88em; }
+    mark.reader-highlight { color:inherit; padding:.08em 0; border-radius:2px; cursor:pointer; box-decoration-break:clone; -webkit-box-decoration-break:clone; }
+    mark[data-color="yellow"] { background:var(--yellow); } mark[data-color="green"] { background:var(--green); } mark[data-color="blue"] { background:var(--blue); } mark[data-color="red"] { background:var(--red); }
+    mark.has-note { border-bottom:2px solid var(--accent); }
+    .end-note { margin-top:68px; padding-top:26px; border-top:1px solid var(--line); color:var(--muted); font:13px/1.8 system-ui,sans-serif; }
+    .overlay { position:fixed; inset:0; z-index:90; background:rgba(0,0,0,.3); opacity:0; pointer-events:none; transition:opacity .2s; }
+    .overlay.open { opacity:1; pointer-events:auto; }
+    .sheet { position:fixed; left:0; right:0; bottom:0; z-index:100; max-height:84vh; overflow-y:auto; padding:10px 20px calc(22px + env(safe-area-inset-bottom)); border-top:1px solid var(--line); border-radius:8px 8px 0 0; background:var(--surface); transform:translateY(105%); transition:transform .24s ease; backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); }
+    .sheet.open { transform:translateY(0); }
+    .sheet-handle { width:38px; height:4px; margin:0 auto 16px; border-radius:4px; background:var(--line); }
+    .sheet h2 { margin:0 0 18px; font:750 18px/1.35 system-ui,sans-serif; }
+    .sheet-note { margin:-8px 0 15px; color:var(--muted); font:12px/1.65 system-ui,sans-serif; }
+    .toc-list,.annotation-list { list-style:none; margin:0; padding:0; }
+    .toc-list a { display:flex; gap:12px; align-items:baseline; padding:14px 2px; border-bottom:1px solid var(--line); color:var(--text); text-decoration:none; font:14px/1.5 system-ui,sans-serif; }
+    .toc-list small { color:var(--accent); font-weight:700; }
+    .annotation-item { display:grid; grid-template-columns:9px 1fr auto; gap:9px; align-items:start; padding:14px 0; border-bottom:1px solid var(--line); font-family:system-ui,sans-serif; }
+    .annotation-swatch { width:7px; height:30px; border-radius:2px; }
+    .annotation-copy { min-width:0; }
+    .annotation-quote { margin:0; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; font-size:14px; line-height:1.55; }
+    .annotation-note { margin:5px 0 0; color:var(--muted); font-size:12px; line-height:1.55; }
+    .annotation-context { margin:5px 0 0; color:var(--accent); font-size:10px; }
+    .annotation-actions { display:flex; }
+    .mini-btn { width:36px; height:36px; border:0; border-radius:50%; background:transparent; font:16px/1 system-ui,sans-serif; }
+    .empty-state { padding:28px 0; color:var(--muted); text-align:center; font:14px/1.75 system-ui,sans-serif; }
+    .selection-toolbar { position:fixed; left:50%; bottom:calc(80px + env(safe-area-inset-bottom)); z-index:86; display:flex; gap:7px; align-items:center; padding:8px 10px; border:1px solid var(--line); border-radius:8px; background:var(--surface); box-shadow:0 9px 30px rgba(0,0,0,.2); opacity:0; pointer-events:none; transform:translate(-50%,16px); transition:.18s ease; }
+    .selection-toolbar.open { opacity:1; pointer-events:auto; transform:translate(-50%,0); }
+    .color-dot,.theme-dot { width:31px; height:31px; padding:0; border:1px solid rgba(0,0,0,.15); border-radius:50%; }
+    .color-yellow { background:#f4cd4a; } .color-green { background:#64be7e; } .color-blue { background:#5ba1da; } .color-red { background:#e06962; }
+    .selection-note { width:34px; height:34px; border:0; border-left:1px solid var(--line); background:transparent; font:18px/1 system-ui,sans-serif; }
+    textarea { width:100%; min-height:130px; resize:vertical; padding:12px; border:1px solid var(--line); border-radius:5px; background:var(--bg); color:var(--text); font:15px/1.65 system-ui,sans-serif; }
+    .setting-row { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:15px 0; border-bottom:1px solid var(--line); font:14px/1.4 system-ui,sans-serif; }
+    .stepper,.themes,.sheet-actions { display:flex; align-items:center; gap:9px; }
+    .stepper button { width:40px; height:34px; border:1px solid var(--line); border-radius:5px; background:transparent; }
+    .theme-paper { background:#f5f2ea; } .theme-white { background:#fcfcfb; } .theme-green { background:#e3ebdf; } .theme-dark { background:#191a1c; }
+    .theme-dot.active,.color-dot.active { outline:2px solid var(--accent); outline-offset:3px; }
+    .sheet-actions { justify-content:flex-end; flex-wrap:wrap; margin-top:16px; }
+    .command-btn { min-height:40px; padding:0 15px; border:1px solid var(--line); border-radius:5px; background:transparent; font:650 13px/1 system-ui,sans-serif; }
+    .command-btn.primary { border-color:var(--accent); background:var(--accent); color:#fff; }
+    .command-btn.danger { color:#b33d36; }
+    .toast { position:fixed; left:50%; bottom:calc(88px + env(safe-area-inset-bottom)); z-index:120; max-width:calc(100vw - 40px); padding:10px 14px; border-radius:5px; background:#242529; color:#fff; font:13px/1.4 system-ui,sans-serif; opacity:0; pointer-events:none; transform:translate(-50%,12px); transition:.18s; }
+    .toast.open { opacity:1; transform:translate(-50%,0); }
+    @media (min-width:760px) { .sheet { left:50%; right:auto; width:560px; transform:translate(-50%,105%); } .sheet.open { transform:translate(-50%,0); } }
+    @media (max-width:420px) { .report-head { min-height:68vh; } .report-meta { gap:12px; } .topic h3 { font-size:1.02em; } }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { transition:none !important; } }
+
+    .source-body { color:var(--text); }
+    .source-body p { margin:0 0 1.1em; }
+    .source-body ul,.source-body ol { margin:0 0 1.35em; padding-left:1.45em; }
+    .source-body li { margin:.45em 0; padding-left:.12em; overflow-wrap:break-word; }
+    .source-body li p { margin:.3em 0; }
+    .source-body strong { font-weight:700; }
+    .source-body em { font-style:normal; color:var(--secondary); }
+    .reader-lead { font-size:1em; font-weight:500; }
+    .reader-lead p { margin-bottom:.9em; }
+    .supplement-opening { margin:30px 0 48px; }
+    .supplement-opening p:last-child { color:var(--muted); font-size:.88em; }
+    .reader-summary { color:color-mix(in srgb,var(--text) 87%,var(--muted)); font-size:.94em; }
+    .reader-summary p { margin-bottom:1.05em; }
+    .reader-group { margin-top:27px; }
+    .reader-group-label { margin-bottom:10px; color:var(--secondary); font:750 11px/1.5 system-ui,sans-serif; }
+    .reader-group ol,.reader-group ul { list-style:none; margin:0; padding:0; }
+    .reader-group li { margin:0 0 1.05em; padding:0; }
+    .reader-group li:last-child { margin-bottom:0; }
+    .reader-reasoning { color:color-mix(in srgb,var(--text) 91%,var(--muted)); font-size:.94em; }
+    .reader-reasoning em,.reader-reasoning strong { color:var(--text); font-weight:600; }
+    .reader-synthesis { font-size:.94em; }
+    .reader-synthesis em,.reader-synthesis strong { color:var(--secondary); font-weight:650; }
+    .reader-boundary { padding:15px 0 0 17px; border-top:1px dashed var(--line); border-left:3px solid var(--warm); color:var(--muted); font-size:.88em; }
+    .reader-boundary .reader-group-label { color:var(--warm); }
+    .reader-extra { font-size:.92em; }
+    .source-original { margin:36px 0 0; padding-top:15px; border-top:1px solid var(--line); }
+    .source-original summary { cursor:pointer; color:var(--muted); font:700 12px/1.5 system-ui,sans-serif; list-style:none; }
+    .source-original summary::-webkit-details-marker { display:none; }
+    .source-original summary::after { content:'＋'; margin-left:7px; font-weight:500; }
+    .source-original[open] summary::after { content:'－'; }
+    .source-original-body { margin-top:18px; padding-left:15px; border-left:2px solid var(--line); color:var(--muted); font-size:.82em; }
+    .source-original-body ul,.source-original-body ol { list-style:revert; padding-left:1.45em; }
+    .source-original-body li { margin:.45em 0; }
+    .method ul,.method ol { margin:12px 0; padding-left:1.4em; font-size:.88em; line-height:1.75; }
+    .method li { margin:.35em 0; }
+
+ .report-head{min-height:280px;padding:36px 0}.reading-note{margin-top:28px}
+ .source-body p,.source-body li{text-align:left;overflow-wrap:anywhere}
+ .source-body li{margin-bottom:.85em}.source-body h4{font-size:1em;margin:2em 0 1em;line-height:1.7}
+ .source-body strong{font-weight:650}.source-body table{width:100%;border-collapse:collapse;font-size:.87em;line-height:1.8}
+ .source-body th,.source-body td{padding:14px;border:1px solid var(--line);text-align:left;vertical-align:top}
+ @media(max-width:600px){.source-body table,.source-body tbody,.source-body tr,.source-body td{display:block}.source-body thead{display:none}.source-body tr{padding:12px 0;border-bottom:1px solid var(--line)}.source-body td{border:0;padding:10px 0}.source-body td:before{content:attr(data-label);display:block;color:var(--secondary);font:600 12px/1.8 system-ui;margin-bottom:5px}.report-head{min-height:240px}.topic p{ text-align:left }}
+ </style>
+</head>
+<body>
+  <div class="progress"><span id="progressBar"></span></div>
+  <header class="topbar"><div class="bar-inner">
+    <span class="brand-mark" aria-hidden="true">◐</span>
+    <div class="bar-title">感情与相处<small id="topProgress">已读 0%</small></div>
+    <button class="icon-btn" type="button" id="topShareBtn" aria-label="分享页面" title="分享页面">↗</button>
+  </div></header>
+
+  <main>
+    <header class="report-head">
+      <p class="kicker">紫微斗数 · 感情专项</p>
+      <h1>感情与相处</h1>
+      <p class="subtitle">从亲密关系中的自己，读到长久相处，再看2026—2027年的变化。</p>
+      <div class="report-meta"><span>3 个章节</span><span>连续阅读</span><span>移动端阅读</span></div>
+    </header>
+
+    <section class="reading-note">
+      <h2>阅读之前</h2>
+      <p data-block-id="reading-note">命盘呈现的是较稳定的倾向和容易反复出现的课题，并不强制每个人活成完全相同的结果。同盘之人因家庭背景、地域文化、成长条件、个人选择和自我修炼不同，现实表现会有轻重与形式差异。越能觉察并主动处理自身模式，越可能把原有压力转化为能力。以下内容请结合实际经历阅读。</p>
+    </section>
+
+    <article id="reportBody"><section class="chapter" id="chapter-1"><p class="chapter-label">第 1 章</p><h2>感情底色与核心矛盾</h2><div class="source-body supplement-opening"><span></span></div><section class="topic" id="s1-1"><h3>一、 核心判断：你在亲密关系中是一个怎样的人？</h3><div class="source-body" data-block-id="S1-1-answer"><p>从本命盘的整体气象来看，你在亲密关系中最核心的底色可以概括为：<strong>“外在敏锐热烈、相处渴求担当，但精神深处极其刚硬自守，且伴随着强烈的原则审查与掌控张力。”</strong></p>
+<p>最值得你看清的核心矛盾在于：<strong>“你骨子里渴望甚至依赖一个强大、有主见、能扛事的伴侣来托底生活；但当对方真正展现出强烈的支配欲和控制企图时，你极其自尊硬气的内核又绝不肯轻易低头。”</strong></p>
+<p>具体由以下盘面主线构成：</p>
+<ol>
+<li><strong>感知敏锐但性子急利落（命宫壬子·贪狼、擎羊、火星、地空）</strong>：
+贪狼坐命且对宫紫微生年权，你具备极强的人际洞察力，天生懂得观察人、理解对方的需求与情绪。但贪狼同宫坐了擎羊与火星，课程在论述羊火时明确指出，这赋予了你直接、果断、性急且追求高效率的反应方式。在感情中，你绝不是拖泥带水、含糊其辞的小女生，一旦动心便有推动关系的魄力；可一旦被触及边界，言语表达会非常直接，甚至带有一种“刀锋式”的尖锐。同时地空的存在，又让你在热情投入的同时，偶尔会闪现突如其来的冷静、抽离或不按常理出牌的疏离感。</li>
+<li><strong>精神世界极重原则与安全感，容易自我紧绷（福德宫壬寅·武曲生年忌、自化忌，天相）</strong>：
+福德宫代表精神修养、内心思维与安宁感。你的福德宫坐武曲生年忌，且本宫壬干使武曲自化忌，同时命宫壬干也化武曲忌飞入福德！课程特别强调，生年忌与自化忌同见并不会相互抵消。武曲是金、重执行与现实承诺，化忌则代表把事情极度当真、容易执著、绷紧神经，甚至在内心深处形成严苛的防线。你在感情中其实非常害怕失控与背叛，表面上可能落落大方，内里却经常在做“原则与现实的压力测试”，容易产生精神内耗与难以言说的防备感。</li>
+<li><strong>夫妻宫呈现出的稳定渴望与暗中较劲（夫妻宫庚戌·廉贞、天府、陀罗、地劫）</strong>：
+天府是令星、重家庭完整，择偶时偏好有能力、有胆识、稳健持重的人，厌恶软弱；廉贞则重条理、规矩与前因后果。然而宫内同坐陀罗与地劫：陀罗代表打转、纠结、反复磨合与放不下；地劫则带来现实落空感或不可控的波折。这意味着你的感情往往伴随着漫长的内心拉扯与暗中角力，既想求全稳固，又容易陷入细枝末节的原则争执。</li>
+</ol>
+</div></section><section class="topic" id="s1-2"><h3>二、 你的感情动力学：吸引、表达、亲近与分歧</h3><div class="source-body" data-block-id="S1-2-answer"><h4>1. 吸引你的人 vs 你需要的人 vs 适合长期相处的人</h4>
+<p>课程一再强调，不能把夫妻宫单一星曜直接等同于配偶的真实出生盘，但它反映了你投射在伴侣身上的期待与相处模型：</p>
+<ul>
+<li><strong>容易吸引你的人（“强人与门面”）</strong>：
+你容易被外在成熟、体面、有气场且具备现实治理能力的异性吸引（夫妻宫廉贞天府，迁移宫紫微权）。对方通常有主见、说话有分量、在工作或生活中能拿主意、像个“舵手”，能给你带来稳定与掌控全局的安全感。你很难对唯唯诺诺、需要你步步提携照顾的软弱对象产生持久的爱意。</li>
+<li><strong>你潜意识需要的人（“现实担当与后盾”）</strong>：
+因为你命宫带羊火空且财福线受武曲双忌冲压，你在现实生活与心理层面其实承受着不小的奔波与焦虑。你真正需要的是一个不仅能在现实中守住阵地（天府守库、管事），而且在大事上说话算数、能兑现诺言的硬核盟友（武曲天相对宫之照）。</li>
+<li><strong>适合长期相处的人（“懂得放权退让、带温柔缓冲器的人”）</strong>：
+<strong>这里存在着必须看清的关键区别</strong>：吸引你的往往是“大权在握的管理者”（廉府），但<strong>真正能与你白头偕老的人，绝不能是个硬碰硬的专制者</strong>。
+盘面上，你夫妻宫庚干化武曲权直接压入你的福德宫（夫之官）！课程明确指出，“夫权入福”意味着伴侣的意志极度试图侵入并影响命主的思想观念，甚至在生活方式与金钱规则上实行强势干预。如果对方也是个寸步不让的铁腕人物，两强相遇就会引发课程所说的“权忌交战”——对方想改造你的思维，而你内心武曲双忌极度固执自守，碰撞出来的精神痛苦会非常剧烈。因此，最适合你的人，必须具备天府的底气与担当，但在相处沟通时懂得柔化分寸、给彼此留有独立空间。</li>
+</ul>
+<h4>2. 你怎样表达喜欢与投入感情？</h4>
+<ul>
+<li><strong>投入时极其当真，将对方纳入未来版图</strong>：
+你命宫壬干化天梁禄直接飞入田宅宫（癸卯）。田宅是家庭、私密领地与安身立命之所。你在感情上一旦确立关系，绝不是抱着玩玩的心态，而是会迅速把对方规划进“我们的家”这一实体蓝图中，愿意为家庭建设倾注实际资源与庇护心意。</li>
+<li><strong>表达爱意的方式带着期待与高标准</strong>：
+父母宫癸丑、田宅宫癸卯的癸干飞贪狼忌入命，叠加福德宫武曲生年忌与自化忌，往往会转化为对伴侣的高期待与严要求——希望对方不断上进、变得更加成熟完美。同时，夫妻宫庚干也化太阳禄入田宅，这说明双方如果合拍，很容易就“安家立业、照顾彼此的家庭”达成一致的温情愿景。</li>
+</ul>
+<h4>3. 处理亲近与分歧时的相处模式</h4>
+<ul>
+<li><strong>面对亲近</strong>：
+命宫贪狼带火星让你在感情升温期有极强的情感黏合力与互动情趣。但夫妻宫坐陀罗、地劫，福德坐武曲双忌，会导致你在亲密关系走入深水区后，容易出现周期性的“心理防备期”——既想百分之百交心，又暗中保留一份审视。</li>
+<li><strong>面对分歧</strong>：
+你的盘面呈现出一种极其鲜明的**“陀罗式的暗中忍耐纠结 ➔ 擎羊火星式的瞬间决绝爆发”**的双重机制。
+在冲突初期，受天府的顾全面子以及陀罗的拖延打转影响，你可能选择隐忍、自己跟自己较劲，或者在心里反复盘算、不断追问原因（廉府特征：追根究底问为什么）；但这种情绪不是被化解了，而是积压在武曲忌的福德宫中。一旦积压到某个临界点，命宫的擎羊与火星就会瞬间接管，你会突然说出极其刺痛人心、不留余地的重话，甚至产生“大不了彻底掀桌断舍离”的极端冲动。</li>
+</ul>
+</div></section><section class="topic" id="s1-3"><h3>三、 模式复盘：哪些是自身习惯？哪些取决于对方与外部？</h3><div class="source-body" data-block-id="S1-3-answer"><p>课程在《感情关系的对象、对待与分离》中反复叮嘱：咨询时要分清哪些是命主自身的选择与行为惯性，哪些是对方的特质或现实环境的作用，不能把所有感情波折都当成命主的“原罪”，也不要搞宿命论。</p>
+<h4>1. 即使换了对象也可能再次出现的“自身模式”</h4>
+<p>这些源自你本命盘的性格构造，只要你不加觉察，很容易在不同的人身上重复上演：</p>
+<ul>
+<li><strong>“精神审查机制过重，容易把伴侣逼入死角”</strong>：
+福德宫武曲双忌导致你对生活中的原则、对错、承诺看得过分绝对。在两性相处中，你很容易把一些琐碎的习惯差异上升为“原则问题”或“态度问题”，在心里默默给对方扣分或严厉追责，让伴侣感到窒息和沉重的压力。</li>
+<li><strong>“爱挑强者，却又无法忍受被真正管束”的择偶悖论</strong>：
+你的迁移宫坐紫微生年权，命宫坐擎羊，天生自带强烈的自尊与主权意识；可你偏偏又容易被夫妻宫廉府那种自带指挥官光环的人吸引。结果往往是：恋爱初期你崇拜对方的能干与担当，交往深入后你却极度反感对方对你指手画脚、试图掌控你的想法（夫权入福）。</li>
+<li><strong>“情绪累积期的冷耗与爆发期的决绝”</strong>：
+陀罗的“拖着不说、在心里打转”与擎羊火星的“一刀切、说重话”并存。如果前中期不建立坦诚平等的沟通通道，总是先忍耐后爆炸，任何伴侣在面对突如其来的剧烈震荡时都会感到措手不及。</li>
+</ul>
+<h4>2. 主要取决于对方特点或外部环境的“变量”</h4>
+<p>这些并不全是你个人的责任，很大程度上依赖于现实的具体匹配：</p>
+<ul>
+<li><strong>对方是否有足够包容的沟通分寸（“夫权入福”能否转化为助力）</strong>：
+课程指出，夫妻权入福德，如果伴侣性格强势霸道，就会演变成控制思想、干涉内政；但若对方成熟开明，这种“权”也可以转化为在现实事业上给你实质指点、在关键时刻替你拿主意并为你遮风挡雨的正向力量。这完全取决于对方本人的涵养与双方的相处默契。</li>
+<li><strong>生活习惯与相处摩擦是否引发冷战（“夫忌入父冲疾厄”）</strong>：
+夫妻宫庚干化天同忌入父母宫，正冲对宫的疾厄宫（丁未）。在课程定义中，“夫冲疾”的标准取象是**“对方使本人不爽，身体不想靠近，具备冷战条件”**，但课程特别明确这不等于必然离婚或分手。这往往取决于对方的生活作息、个人卫生、脾气秉性或外部琐事是否踩中你的不适点；如果对方懂得生活体贴，这一冲克的破坏力就会大幅减轻。</li>
+<li><strong>物理距离与生活重心的调节（“聚少离多的缓和效应”）</strong>：
+课程案例多次证明，夫妻宫与命福线带有较多煞曜与权忌交战时，如果双方各自有独立追求的事业、经常需要出差跑动，或者在日常生活中保持适度的“个人独立空间”（聚少离多、分工自治），往往能神奇地避开日常摩擦的直接碰撞，把矛盾降到最低。</li>
+</ul>
+</div></section><section class="topic" id="s1-4"><h3>四、 全盘串联：感情与金钱、事业、家庭的共同主线</h3><div class="source-body" data-block-id="S1-4-answer"><p>你盘面上的感情问题绝非孤立存在，它与你的财务底线、事业野心及家庭归属紧紧纠缠在同一条能量动线上：</p>
+<ol>
+<li><strong>金钱与精神安全的死结（财帛宫戊申·破军天马 vs 福德宫武曲双忌）</strong>：
+财帛宫破军带天马，代表你在财务求财上具有开拓、变动、敢于折腾或外出奔波的特质；但它正对着福德宫的武曲生年忌与自化忌。课程指出，财福线受冲，往往意味着**“精神的紧绷极度挂钩于现实经济的底气与掌控感”**。
+在感情中，你对伴侣的经济独立性、理财观念以及是否具备可靠的现实生存能力极其敏锐。你无法接受一个对未来毫无规划、经济上随波逐流的伴侣；一旦家庭财务出现不可控风险，你的精神防线会率先崩溃，从而极大地波及两人的感情温度。</li>
+<li><strong>事业对感情的滋养与投射（官禄宫甲辰·七杀 ➔ 廉贞化禄入夫妻）</strong>：
+官禄宫七杀独坐，代表你在工作上敢闯敢拼、具有极强的开拓性与职业韧劲。极为亮眼的是：<strong>官禄宫甲干化廉贞禄，直接飞入了夫妻宫！</strong>
+课程体系中，“官禄化禄入夫妻”是一个非常健康的良性信号：
+<ul>
+<li>意味着你能够把工作上的成就感、专注力与资源转化对感情的体贴与善意；</li>
+<li>当你的个人事业顺风顺水、精力得到充分施展时，你对伴侣的苛求和审查反而会大大减少，整个人的情感状态会变得宽容而充满魅力；</li>
+<li>反之，如果你自身事业受阻、能量无处安放，你就容易把过剩的精力与挑剔转嫁到伴侣身上，放大感情中的细节矛盾。</li>
+</ul>
+</li>
+<li><strong>家庭安顿是双方最终的合力目标（田宅宫癸卯·太阳、天梁生年禄、天魁）</strong>：
+田宅宫坐天梁生年禄与太阳，且命宫（天梁禄）、夫妻宫（太阳禄）双双化禄汇聚于田宅！这清楚地揭示出：<strong>无论你在外如何刚毅要强，你内心深处对“一个温暖、体面、有秩序、能避风的稳固家园”有着极高的渴望与建设诚意</strong>。如果一段关系能够以“共同经营一个稳固的家、共同守护一份长远的基业”为契机，你们之间往往能形成极深的利益与情感同盟，这也正是化解一切摩擦的最强底牌。</li>
+</ol>
+</div></section><section class="topic" id="s1-5"><h3>五、 现阶段（23—32岁庚戌大限）的提醒与客观边界</h3><div class="source-body" data-block-id="S1-5-answer"><p>你当前正处于 <strong>23—32岁庚戌大限</strong>（大运命宫正好重叠本命夫妻宫，坐廉府、陀罗、地劫）：</p>
+<ol>
+<li><strong>大限的感情放大镜效应</strong>：
+大运命宫直接走入夫妻宫，意味着这十年中，“亲密关系、婚姻考量、合作责任以及如何与重要他人相处”，会极其自然地成为你人生最核心的课题之一。</li>
+<li><strong>大限四化的张力</strong>：
+大运庚干再次引发：太阳化禄入田宅、<strong>武曲化权入福德</strong>、太阴化科入兄弟、<strong>天同化忌入父母冲疾厄</strong>。这表明当前大运在加深你对“买房、成家、安定”渴求的同时，伴侣意志与你个人思想的碰撞（权入福）、生活琐事带来的内在不适（忌冲疾）也会体现得更加明显。</li>
+<li><strong>课程的现实边界</strong>：
+必须重申课程的严谨共识：<strong>盘面显示的是相处模式、倾向与潜在的张力结构，绝不代表某种注定破裂的宿命结局</strong>。历史上同样带着夫妻煞曜、甚至权忌交错的命例中，依然有许多通过互相尊重边界、聚少离多或在事业上各展所长而相濡以沫的正向反例。</li>
+</ol>
+<p>看清这些结构，不是为了让你画地为牢，而是帮助你建立自觉：在未来遇到喜欢的人时，<strong>给自己的“高标准原则审查”松一松绑，在对方试图拿主意时学会有弹性的沟通，并永远保有一处能让自己专注投入的事业领地</strong>——如此，你便能把命盘中天府的稳健与贪狼的魅力发挥到极致，牢牢握住属于自己的幸福。</p>
+<p>🌿 这盘的官禄七杀飞禄入夫妻宫，显示事业的充实度会直接改变你在感情中的宽容度。如果你愿意，我们可以把视角切到你的事业与财富线上，看看你在当前大限最适合借由怎样的工作节奏，来为自己的生活与内心建立最坚实的安全感？</p>
+</div></section></section><section class="chapter" id="chapter-2"><p class="chapter-label">第 2 章</p><h2>关系的发展与长期相处</h2><div class="source-body supplement-opening"><p>在紫微斗数与本课程的体系中，静态的星曜配置勾勒的是心理诉求与行为底色，而<strong>动态的宫位互化、对待关系与三方四正联动</strong>，呈现的则是两个人从相识、热络、磨合到长期共同生活时，容易演进出的<strong>具体互动路径</strong>。</p>
+<p>不重复上一轮的基础性格标签，围绕你关心的“关系演变过程、优势转化为负担的机制、长久性关键与适合模式”，梳理出以下最重要的判断与具体推断依据：</p>
+</div><section class="topic" id="s2-1"><h3>一、 最重要的核心结论</h3><div class="source-body" data-block-id="S2-1-answer"><ol>
+<li><strong>关系最具风险的关键阶段不在“相识开启”，而在“建立共同生活规则时的权责界定”与“分歧爆发时的情绪断崖”</strong>。
+你的盘面（贪狼火星、羊刃在命，官禄化禄入夫）具备极快的破冰能力与很强的经营诚意；但进入深水区后，容易从“陀罗式的暗中忍耐与反刍”骤变为“擎羊火星式的掀桌决绝”，且夫妻宫化权入福德（思维侵入）、化忌冲疾厄（身体与情绪抗拒），使共同生活极易卡在“控制 vs 抵抗”的冷战或硬碰硬中。</li>
+<li><strong>你的“高标准、能扛事与规划力”是经营关系的利器，但一旦失去外部事业宣泄口，就会反噬为“感情内部的高压审查”</strong>。
+官禄七杀飞禄入夫妻，说明你把精力放在个人事业攻坚时，对感情最宽容、最能付出；若个人重心失衡或受阻，武曲双忌在福德的紧绷就会全盘转嫁到伴侣身上，变成不可逾越的“原则审判”。</li>
+<li><strong>长期长久的真正核心是“空间自治、尊重边界与共同筑巢”</strong>。
+对你而言，“全面捆绑、时刻同频”的亲密是危险的；最有利于长期的生活结构是“精神与生活保留自主缓冲区（适度聚少离多或各自事业独立）+ 共同奔赴现实稳固目标（双禄汇入田宅建家）”。</li>
+</ol>
+</div></section><section class="topic" id="s2-2"><h3>二、 关系发展的四个阶段：动态演变过程与关键节点</h3><div class="source-body" data-block-id="S2-2-answer"><p>结合盘面的化象与星曜组合，一段关系在你身上往往呈现以下步步推进的过程：</p>
+<h4>1. 开始阶段：火星贪狼的高效破冰，但防备心迅速拉起</h4>
+<ul>
+<li><strong>具体过程</strong>：
+你命坐贪狼与火星，对宫紫微生年权，你其实非常懂得如何展现自身魅力、捕捉社交信号。遇到合眼缘或有能力的异性，你绝不扭捏，互动直接且推进迅速。</li>
+<li><strong>内在机制</strong>：
+但这一阶段你其实“热在表面、冷在核心”。命宫带地空、福德坐武曲双忌，你的潜意识极快就会升起防护栏。表面上相谈甚欢，内心深处已经在拿现实指标、处事态度进行严格的“静默打分”。</li>
+</ul>
+<h4>2. 逐渐亲密：以“责任与未来蓝图”建立深度链接，但也容易过早背负重担</h4>
+<ul>
+<li><strong>具体过程</strong>：
+当你真正认可一个人时，你的投入方式非常实在——命宫壬干化天梁禄入田宅，夫妻宫庚干化太阳禄入田宅，你很自然地会把对方纳入自己对“未来家庭、安稳住所、长远生活”的规划中。你愿意为对方出谋划策，在现实生活或工作上给予照顾和庇护。</li>
+<li><strong>转折隐患</strong>：
+你习惯展现自己“能扛事、有担当、讲义气”的大女主一面（天梁禄+官禄七杀飞禄入夫）。但这也容易在亲密初期给对方营造出一种“你非常强大、不需要太多安抚”的错觉，甚至过早纵容了对方把某些生活责任转嫁到你身上。</li>
+</ul>
+<h4>3. 发生分歧：“陀罗式的反刍”叠加“夫权入福与夫忌冲疾”的拉扯过程</h4>
+<p>这是最容易反复出现、且最值得你看清的相处循环：</p>
+<ul>
+<li><strong>第一步：暗中积压与细节反刍（夫妻宫陀罗、天府）</strong>
+天府顾全面子、廉贞重规则，刚开始遇到观念不合或对方的不当行为时，你很少立刻大吵大闹，而是把事情压在心底，一个人反复琢磨、打转（陀罗）。你在等对方主动察觉并纠错，甚至在心里不断记账。</li>
+<li><strong>第二步：伴侣的干涉与侵入（夫妻宫庚干化武曲权入福德）</strong>
+你吸引来的伴侣通常是有主见的强人。当出现分歧时，对方倾向于用自己的逻辑说服你、改造你、管束你（夫权入福）。而你的福德宫原本就坐武曲生年忌且自化忌，内心防线坚如磐石，极度反感他人对你指手画脚。此时双方形成“权忌交战”——对方想强推，你内心筑起高墙冷眼相对。</li>
+<li><strong>第三步：内在抗拒与身体排斥（夫妻宫庚干化天同忌入父母，冲疾厄）</strong>
+课程特别指出，“夫冲疾”在相处中的标准表现不是必然离婚，而是**“对方言行让本人感到极为不爽与内伤，身体层面产生本能的嫌弃、抗拒靠近，关系进入冷战”**。你会开始在日常接触中拉开物理距离、拒绝沟通、甚至分床或冷暴力。</li>
+<li><strong>第四步：临界点爆发与决绝切断（命宫擎羊、火星接管）</strong>
+冷战和忍耐是有限度的。当对方某一句话彻底踩碎你的底线，或者陀罗积攒的委屈超过承受阈值时，命宫的擎羊火星瞬间爆发。你往往会突然用最冷酷、最决绝的语言摊牌，甚至直接做出断联、分手的冲动举动，让对方觉得“前面明明还好好的，怎么突然就彻底翻脸”。</li>
+</ul>
+<h4>4. 长期共同生活：从激情走向“现实合伙”</h4>
+<ul>
+<li>长期生活能否平稳，完全取决于你们能否跨越“谁管谁”的权力斗争。一旦双方建立起明确的分工界限，把彼此的精力锚定在“共同资产积累、买房置业、家庭防护”（田宅宫天梁禄与太阳禄）上，这种务实的盟友关系反而会展现出极强的韧性。</li>
+</ul>
+</div></section><section class="topic" id="s2-3"><h3>三、 你的优势如何变成负担？——盘面特质的双刃剑</h3><div class="source-body" data-block-id="S2-3-answer"><table>
+<thead>
+<tr>
+<th style="text-align:left">你的能力与特质</th>
+<th style="text-align:left">经营关系时的正面威力</th>
+<th style="text-align:left">失去平衡时转化为的感情负担</th>
+<th style="text-align:left">调节的关键依据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>能扛事、有谋略、敢付出</strong><br><em>(官禄宫甲干飞廉贞禄入夫妻)</em></td>
+<td style="text-align:left">愿为伴侣托底，当伴侣遇到现实困难时，你能提供极其宝贵的资源和破局建议，是不可多得的现实贤内助。</td>
+<td style="text-align:left"><strong>过界干涉与委屈感</strong>：当你过度介入对方的人生课题时，若对方不听或做不到，你就会产生“我全心为你，你却烂泥扶不上墙”的巨大怨气。</td>
+<td style="text-align:left">守住“各自因果”边界，给对方留出犯错与独立承担的余地。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>讲求原则、重视承诺</strong><br><em>(福德武曲生年忌+自化忌)</em></td>
+<td style="text-align:left">感情忠诚度极高，言出必行，绝不会在道德底线和现实契约上含糊，给家庭极强的稳定托底。</td>
+<td style="text-align:left"><strong>道德紧箍咒与精神内耗</strong>：把日常琐碎摩擦全部上升到“人品、原则与态度”层面，用非黑即白的法官视角审查伴侣，令对方战战兢兢。</td>
+<td style="text-align:left">区分“根本原则”与“生活习惯/性格差异”，允许亲密关系中存在模糊和不完美。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>决断快、效率高、边界清晰</strong><br><em>(命宫擎羊、火星、地空)</em></td>
+<td style="text-align:left">遇到消耗性的烂桃花或原则性背叛能及时止损，绝不纠缠泥潭，保护自己免受长久伤害。</td>
+<td style="text-align:left"><strong>毁灭性沟通</strong>：在正常磨合中缺乏缓冲带，容易在愤怒时说出不可挽回的绝情话，把原本可以通过沟通解决的矛盾推向死局。</td>
+<td style="text-align:left">分歧期引入“强制冷静时钟”，用文字沟通代替当面交锋，避开羊火的冲动峰值。</td>
+</tr>
+</tbody>
+</table>
+</div></section><section class="topic" id="s2-4"><h3>四、 适合与不适合你的伴侣模型：倾向、盘象与现实边界</h3><div class="source-body" data-block-id="S2-4-answer"><p>课程强调，夫妻宫的星曜是命主投射的择偶滤镜，不能直接推导为对方的现实盘，但它清楚地区分了**“情感诱惑”<strong>与</strong>“生存适配”**：</p>
+<h4>1. 表面极具吸引力，但极易引发长期内耗的类型（“霸道总管型”）</h4>
+<ul>
+<li><strong>特征表现</strong>：
+社会地位高、说一不二、大男子主义、极度渴望掌控一切生活细节（紫微权与廉贞天府的强势面）。</li>
+<li><strong>为何不利于长久</strong>：
+这种人最初能满足你对“强者”的崇拜，但一旦进入同居或婚姻，对方便会本能地行使“夫权入福”，试图彻底改造你的思想、干涉你的交友、甚至规训你的生活方式。这会直接激怒你命宫的擎羊与迁移的紫微权，演变为长年累月的“暗中较劲”与“冷战抗拒”，最终把感情消磨殆尽。</li>
+</ul>
+<h4>2. 真正适合你的伴侣特质与互动模式（“稳健守成、尊重边界的盟友型”）</h4>
+<ul>
+<li><strong>伴侣特质</strong>：
+<ul>
+<li><strong>性格稳重大气，但情绪基调柔和</strong>：具备天府的安稳守成与廉贞的体面分寸，但在日常生活中不爱争长论短，懂得用温和理性的态度包容你的急脾气（不与羊火正面互怼）。</li>
+<li><strong>具有独立担当，但不热衷于支配他人</strong>：在外面是独当一面的能手，回到家则愿意“放权”，尊重你的决定权与独立思维。</li>
+</ul>
+</li>
+<li><strong>最适合你们的相处结构</strong>：
+<ul>
+<li><strong>物理与心理空间的“适度自治”</strong>：
+课程案例中多次印证，夫妻宫带煞、互有刑冲或权忌干涉的格局，<strong>“聚少离多”或“分工各管一摊”往往是极佳的化解良药</strong>。例如双方各自有需要出差奔波的工作，或者在家庭分工中“一人管财务与资产，一人管日常事务”，互不强行干涉对方的操作细节，摩擦率会骤降。</li>
+<li><strong>共同锚定在“建家与资产积累”</strong>：
+田宅宫的双禄是你们最好的合力点。将注意力从“你今天态度好不好”转移到“我们今年一起买房、投资、经营共同资产”上，用务实的现实成就来转化精神内耗。</li>
+</ul>
+</li>
+</ul>
+</div></section><section class="topic" id="s2-5"><h3>五、 核心矛盾的终极支柱：为什么“个人事业”是你感情的最强护城河？</h3><div class="source-body" data-block-id="S2-5-answer"><p>在整张盘的联动中，事业不仅是赚钱的工具，更是你<strong>感情生态的调节总阀门</strong>：</p>
+<ol>
+<li><strong>能量守恒规律（官禄七杀飞禄入夫妻 vs 福德武曲双忌）</strong>：
+你身上蕴含着极强的杀破狼开拓力（命贪狼火羊、财破军马、官七杀），同时内心又有高密度的武曲双忌需要消解。
+<ul>
+<li><strong>当你的事业全力运转时</strong>：你的攻坚欲、好胜心和审查机制会完全被职场目标吸纳。工作上的突破会转化为成就感，官禄化禄入夫，使你在面对伴侣时呈现出温柔、慷慨、赞美和支持的状态。</li>
+<li><strong>当你的事业停滞、无聊或受挫时</strong>：过剩的精力与内在的焦虑无处安放，福德的武曲忌就会转向内耗，并把放大镜对准伴侣——伴侣的某句无心之言、某个生活陋习，都会被你解读为不可忍受的危机。</li>
+</ul>
+</li>
+<li><strong>结论</strong>：
+<strong>保持对个人事业的独立追求与专注度，并不是感情的阻碍，反而是你维系长久健康亲密关系最重要的前提条件。</strong> 只要你的个人天地足够宽广，你在感情中就会是那个游刃有余、懂生活又讲义气的最佳伴侣。</li>
+</ol>
+</div></section></section><section class="chapter" id="chapter-3"><p class="chapter-label">第 3 章</p><h2>2026—2027年的感情变化</h2><div class="source-body supplement-opening"><p>从你盘面在当前<strong>23—32岁庚戌大限</strong>的坐标出发，结合2026丙午年剩余阶段与2027丁未年的流年飞星，这两年你在感情上呈现出截然不同的气象与课题。</p>
+</div><section class="topic" id="s3-1"><h3>一、 2026年剩余阶段 vs 2027年：核心区别与发展动线</h3><div class="source-body" data-block-id="S3-1-answer"><p>这两年最主要的区别可以概括为：<strong>2026年是“规则碰撞、心结审查与阻力出清期”，而2027年则是“温和沟通机缘打开，但自身心理与外界环境受扰期”。</strong></p>
+<h4>1. 2026年剩余阶段（丙午年）：阻力集中于夫妻与规则，重在稳住心神、避免决绝断裂</h4>
+<ul>
+<li><strong>盘面依据</strong>：
+<ul>
+<li><strong>流年命宫</strong>在丙午（重叠本命迁移、大限财帛），坐紫微生年权；<strong>流年夫妻宫</strong>在甲辰（重叠本命官禄、大限迁移），坐七杀。</li>
+<li><strong>2026流年天干为丙</strong>：天同化禄入癸丑（本命父母/大限田宅/流年疾厄），天机化权入乙巳（本命交友），文昌化科入辛亥（本命兄弟），而<strong>廉贞化忌直接飞入庚戌（重叠本命夫妻、当前大限命宫、流年官禄）</strong>，并正向<strong>对冲甲辰（2026流年夫妻宫）</strong>！</li>
+</ul>
+</li>
+<li><strong>具体表现与发展判断</strong>：
+<ul>
+<li><strong>规则感与原则心结加重</strong>：廉贞主条理、规矩、道德次序与精神锁扣。廉贞化忌叠入本命夫妻宫和大限命宫，且宫内同坐陀罗与地劫，直接冲动流年夫妻位。这意味着2026年尾声在感情领域是一个“卡顿感强、防备心重、容易为规矩或原则闹别扭”的时段。</li>
+<li><strong>如果已有伴侣</strong>：双方最容易在“事业与生活的分工、日常责任的承诺是否兑现、彼此态度是否合乎规矩”上发生暗中较劲。陀罗的打转遇上廉贞忌，容易翻旧账或心里觉得委屈失望，甚至产生冷战与精神疏离。</li>
+<li><strong>如果目前单身</strong>：这一阶段并非轻松敲定良缘的窗口。接触到的人可能自带较强的现实包袱或观念摩擦，你自身的审查防备也处于高位，宁缺毋滥，容易在初期接触中因为细节踩雷而迅速叫停。</li>
+<li><strong>此时你最该看重的</strong>：<strong>“不激化矛盾，不做情绪化的彻底断舍离”</strong>。廉贞忌冲流夫时，硬要争出谁对谁错只会加剧内耗。</li>
+</ul>
+</li>
+</ul>
+<h4>2. 2027年（丁未年）：外部机缘转柔和、斯文贵人显现，但自身心神容易被外界干扰</h4>
+<ul>
+<li><strong>盘面依据</strong>：
+<ul>
+<li><strong>流年命宫</strong>在丁未（重叠本命疾厄、大限子女）；<strong>流年夫妻宫</strong>在乙巳（重叠本命交友、大限疾厄），坐天机、天钺。</li>
+<li><strong>2027流年天干为丁</strong>：
+<ul>
+<li><strong>天机化科入乙巳（2027流年夫妻宫）</strong>，且对宫辛亥有太阴化禄并坐禄存（双禄交驰拱照流夫）；</li>
+<li>天同化权入癸丑（流年迁移）；</li>
+<li><strong>巨门化忌入癸丑（流年迁移），正冲丁未（2027流年命宫）</strong>！</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>具体表现与发展判断</strong>：
+<ul>
+<li><strong>感情互动的画风大幅柔化（天机科+天钺+双禄照）</strong>：天机主脑力、智识与灵动，化科主名声、礼貌、温和安抚与体面交流；天钺是贵人星。这表明2027年两性接触的阻力不再集中于“硬碰硬的审查”，相处氛围明显轻松、理性、斯文许多。</li>
+<li><strong>机会来源（交友位引动）</strong>：由于流夫叠在本命交友宫，2027年的情感机缘极易通过<strong>同学圈、朋友引荐、职场同行或社交活动</strong>自然展开。</li>
+<li><strong>真正的阻力来源（巨门忌冲流年命宫）</strong>：2027年最大的考验不在对方好不好，而在<strong>你自己的身心承载力与外界口舌</strong>。巨门化忌冲流命（本命疾厄），代表在2027年，你容易因为工作劳累、身体精力下降、家庭/住所琐事，或者外界环境的风言风语而感到心烦意乱、缺乏安全感。</li>
+<li><strong>如果已有伴侣</strong>：两人之间的直接沟通能够讲通道理（天机科），但要极力防范因为外部家庭杂音、外人评价或你个人情绪不佳时导致的无端猜疑。</li>
+<li><strong>如果目前单身</strong>：2027年有非常值得关注的、能聊得来的斯文智识型桃花机缘，但你在建立信任时，容易受巨门忌的疑心影响，需要给自己多一点观察期。</li>
+</ul>
+</li>
+</ul>
+</div></section><section class="topic" id="s3-2"><h3>二、 长期底色与近两年结合：感情上最值得记住的三件事</h3><div class="source-body" data-block-id="S3-2-answer"><p>结合你的全盘长期结构与这两年的运程转换，以下三件事是你最需要分清主次的指南：</p>
+<h4>1. 【需要自己调整的】：打破“陀罗式闷着忍耐 ➔ 擎羊火星式掀桌断裂”的极端沟通循环</h4>
+<ul>
+<li><strong>为什么必须调整</strong>：
+你夫妻宫坐陀罗，福德宫坐武曲生年忌与自化忌，遇到分歧时你习惯在心里自己打转、扣分、闷着不吭声；可一旦超过容忍阈值，命宫的擎羊与火星便会瞬间接管，爆发出不可逆转的绝情决裂。</li>
+<li><strong>具体做法</strong>：
+在相处中引入**“早期温和反馈机制”**。感到被冒犯或不适时，在小事阶段就用事实平和沟通，不要因为怕冲突而压抑，更不要等内耗蓄满后再一瞬间用最伤人的话炸毁关系。</li>
+</ul>
+<h4>2. 【需要客观判断的】：严格审查对方是“稳健担当的盟友”，还是“试图改造你的精神独裁者”</h4>
+<ul>
+<li><strong>为什么不能盲目要求自己迁就</strong>：
+你夫妻宫庚干化武曲权直接压入福德宫。你天生容易被有主见的强人吸引，但你骨子里极具自尊，精神防线坚硬。</li>
+<li><strong>判断标准</strong>：
+如果一个伴侣的“强势”体现为<strong>在外部风雨中能扛大事、做实事，但在家懂得尊重你的私人界限与独立思维</strong>，这是你的正向福禄；反之，若对方将强势用在<strong>规训你的思想、干涉你的交友、强行改变你的原则</strong>上，这属于结构性的“权忌交战”，这种不合适绝不是通过你委屈自己就能弥平的，必须果断设立防线。</li>
+</ul>
+<h4>3. 【需要客观判断的】：审视两人的精力是凝聚在“现实筑巢”，还是消耗在“情绪审查”</h4>
+<ul>
+<li><strong>为什么这是长久的试金石</strong>：
+你的命宫与夫妻宫双双化禄汇聚于田宅宫（癸卯·天梁生年禄、太阳）。这意味着你所有的安全感与福气，最终都要落实在**“共同拥有一个安稳的家、共同守护一份长远的家庭资产”**上。</li>
+<li><strong>判断标准</strong>：
+适合你的长久关系，必定是“务实合伙”的——两人有共同的生活目标，各司其职，彼此留有适度的物理与生活空间（甚至适度聚少离多）。若一段关系长年累月卡在“你爱不爱我、谁听谁的、互相挑刺打冷战”的情绪泥潭中，说明这段关系严重脱离了你命盘最健康的滋养轨道。</li>
+</ul>
+</div></section><section class="topic" id="s3-3"><h3>为进一步贴近现实，请问三个简短问题：</h3><div class="source-body" data-block-id="S3-3-answer"><ol>
+<li>你目前是有正在相处/考量的特定对象，还是完全处于单身自由状态？</li>
+<li>在过去的相处经历中，最让你无法忍受的是对方的“专横管束、试图说教”，还是“软弱无能、缺乏现实担当”？</li>
+<li>你当前的工作或个人事业，近期是否有出差奔波、岗位调整或较为繁重的变动？</li>
+</ol>
+</div></section></section></article>
+  </main>
+
+  <footer class="bottombar"><div class="bar-inner">
+    <button class="tool-btn" type="button" data-sheet="tocSheet"><span class="symbol">☷</span><span>目录</span></button>
+    <button class="tool-btn" type="button" data-sheet="annotationsSheet"><span class="symbol">✎</span><span>批注</span></button>
+    <button class="tool-btn" type="button" data-sheet="settingsSheet"><span class="symbol">Aa</span><span>设置</span></button>
+    <button class="tool-btn" type="button" id="copyFullBtn"><span class="symbol">⧉</span><span>复制全文</span></button>
+  </div></footer>
+
+  <div class="selection-toolbar" id="selectionToolbar" aria-label="文字批注工具">
+    <button class="color-dot color-yellow" type="button" data-highlight-color="yellow" aria-label="黄色标记"></button>
+    <button class="color-dot color-green" type="button" data-highlight-color="green" aria-label="绿色标记"></button>
+    <button class="color-dot color-blue" type="button" data-highlight-color="blue" aria-label="蓝色标记"></button>
+    <button class="color-dot color-red" type="button" data-highlight-color="red" aria-label="红色标记"></button>
+    <button class="selection-note" type="button" id="selectionNoteBtn" aria-label="添加批注" title="添加批注">✎</button>
+  </div>
+
+  <div class="overlay" id="overlay"></div>
+  <section class="sheet" id="tocSheet" aria-label="目录"><div class="sheet-handle"></div><h2>目录</h2><ol class="toc-list" id="tocList"></ol></section>
+  <section class="sheet" id="annotationsSheet" aria-label="我的批注"><div class="sheet-handle"></div><h2>我的批注</h2><p class="sheet-note">长按并选中文字即可划线或写批注。内容只保存在当前设备；分享时会由你主动选择发送对象。</p><div class="annotation-list" id="annotationList"></div><div class="sheet-actions"><button class="command-btn" type="button" id="shareNotesBtn">分享批注</button><button class="command-btn" type="button" id="copyNotesBtn">复制批注</button></div></section>
+  <section class="sheet" id="settingsSheet" aria-label="阅读设置"><div class="sheet-handle"></div><h2>阅读设置</h2><div class="setting-row"><span>字号</span><div class="stepper"><button type="button" id="fontDown">A−</button><span id="fontValue">18</span><button type="button" id="fontUp">A＋</button></div></div><div class="setting-row"><span>行距</span><div class="stepper"><button type="button" id="lineDown">紧</button><span id="lineValue">1.92</span><button type="button" id="lineUp">松</button></div></div><div class="setting-row"><span>背景</span><div class="themes"><button class="theme-dot theme-paper" type="button" data-theme="paper" aria-label="米白"></button><button class="theme-dot theme-white" type="button" data-theme="white" aria-label="白色"></button><button class="theme-dot theme-green" type="button" data-theme="green" aria-label="护眼"></button><button class="theme-dot theme-dark" type="button" data-theme="dark" aria-label="夜间"></button></div></div></section>
+  <section class="sheet" id="noteSheet" aria-label="编辑批注"><div class="sheet-handle"></div><h2 id="noteTitle">添加批注</h2><p class="sheet-note" id="noteQuote"></p><div class="setting-row"><span>标记颜色</span><div class="themes"><button class="color-dot color-yellow" type="button" data-note-color="yellow" aria-label="黄色"></button><button class="color-dot color-green" type="button" data-note-color="green" aria-label="绿色"></button><button class="color-dot color-blue" type="button" data-note-color="blue" aria-label="蓝色"></button><button class="color-dot color-red" type="button" data-note-color="red" aria-label="红色"></button></div></div><textarea id="noteText" maxlength="2000" placeholder="写下你的理解、疑问或现实经历……"></textarea><div class="sheet-actions"><button class="command-btn danger" type="button" id="deleteNoteBtn">删除</button><button class="command-btn" type="button" id="cancelNoteBtn">取消</button><button class="command-btn primary" type="button" id="saveNoteBtn">保存</button></div></section>
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+    const REPORT = {"title":"感情与相处","subtitle":"从亲密关系中的自己，读到长久相处，再看2026—2027年的变化。","chapters":[{"question":1,"title":"感情底色与核心矛盾","intro":"","openingHtml":"\u003cspan>\u003c/span>","sections":[{"id":"S1-1","title":"一、 核心判断：你在亲密关系中是一个怎样的人？","sourceMarkdown":"从本命盘的整体气象来看，你在亲密关系中最核心的底色可以概括为：**“外在敏锐热烈、相处渴求担当，但精神深处极其刚硬自守，且伴随着强烈的原则审查与掌控张力。”**\r\n\r\n最值得你看清的核心矛盾在于：**“你骨子里渴望甚至依赖一个强大、有主见、能扛事的伴侣来托底生活；但当对方真正展现出强烈的支配欲和控制企图时，你极其自尊硬气的内核又绝不肯轻易低头。”**\r\n\r\n具体由以下盘面主线构成：\r\n1. **感知敏锐但性子急利落（命宫壬子·贪狼、擎羊、火星、地空）**：\r\n   贪狼坐命且对宫紫微生年权，你具备极强的人际洞察力，天生懂得观察人、理解对方的需求与情绪。但贪狼同宫坐了擎羊与火星，课程在论述羊火时明确指出，这赋予了你直接、果断、性急且追求高效率的反应方式。在感情中，你绝不是拖泥带水、含糊其辞的小女生，一旦动心便有推动关系的魄力；可一旦被触及边界，言语表达会非常直接，甚至带有一种“刀锋式”的尖锐。同时地空的存在，又让你在热情投入的同时，偶尔会闪现突如其来的冷静、抽离或不按常理出牌的疏离感。\r\n2. **精神世界极重原则与安全感，容易自我紧绷（福德宫壬寅·武曲生年忌、自化忌，天相）**：\r\n   福德宫代表精神修养、内心思维与安宁感。你的福德宫坐武曲生年忌，且本宫壬干使武曲自化忌，同时命宫壬干也化武曲忌飞入福德！课程特别强调，生年忌与自化忌同见并不会相互抵消。武曲是金、重执行与现实承诺，化忌则代表把事情极度当真、容易执著、绷紧神经，甚至在内心深处形成严苛的防线。你在感情中其实非常害怕失控与背叛，表面上可能落落大方，内里却经常在做“原则与现实的压力测试”，容易产生精神内耗与难以言说的防备感。\r\n3. **夫妻宫呈现出的稳定渴望与暗中较劲（夫妻宫庚戌·廉贞、天府、陀罗、地劫）**：\r\n   天府是令星、重家庭完整，择偶时偏好有能力、有胆识、稳健持重的人，厌恶软弱；廉贞则重条理、规矩与前因后果。然而宫内同坐陀罗与地劫：陀罗代表打转、纠结、反复磨合与放不下；地劫则带来现实落空感或不可控的波折。这意味着你的感情往往伴随着漫长的内心拉扯与暗中角力，既想求全稳固，又容易陷入细枝末节的原则争执。","sourceHtml":"\u003cp>从本命盘的整体气象来看，你在亲密关系中最核心的底色可以概括为：\u003cstrong>“外在敏锐热烈、相处渴求担当，但精神深处极其刚硬自守，且伴随着强烈的原则审查与掌控张力。”\u003c/strong>\u003c/p>\n\u003cp>最值得你看清的核心矛盾在于：\u003cstrong>“你骨子里渴望甚至依赖一个强大、有主见、能扛事的伴侣来托底生活；但当对方真正展现出强烈的支配欲和控制企图时，你极其自尊硬气的内核又绝不肯轻易低头。”\u003c/strong>\u003c/p>\n\u003cp>具体由以下盘面主线构成：\u003c/p>\n\u003col>\n\u003cli>\u003cstrong>感知敏锐但性子急利落（命宫壬子·贪狼、擎羊、火星、地空）\u003c/strong>：\n贪狼坐命且对宫紫微生年权，你具备极强的人际洞察力，天生懂得观察人、理解对方的需求与情绪。但贪狼同宫坐了擎羊与火星，课程在论述羊火时明确指出，这赋予了你直接、果断、性急且追求高效率的反应方式。在感情中，你绝不是拖泥带水、含糊其辞的小女生，一旦动心便有推动关系的魄力；可一旦被触及边界，言语表达会非常直接，甚至带有一种“刀锋式”的尖锐。同时地空的存在，又让你在热情投入的同时，偶尔会闪现突如其来的冷静、抽离或不按常理出牌的疏离感。\u003c/li>\n\u003cli>\u003cstrong>精神世界极重原则与安全感，容易自我紧绷（福德宫壬寅·武曲生年忌、自化忌，天相）\u003c/strong>：\n福德宫代表精神修养、内心思维与安宁感。你的福德宫坐武曲生年忌，且本宫壬干使武曲自化忌，同时命宫壬干也化武曲忌飞入福德！课程特别强调，生年忌与自化忌同见并不会相互抵消。武曲是金、重执行与现实承诺，化忌则代表把事情极度当真、容易执著、绷紧神经，甚至在内心深处形成严苛的防线。你在感情中其实非常害怕失控与背叛，表面上可能落落大方，内里却经常在做“原则与现实的压力测试”，容易产生精神内耗与难以言说的防备感。\u003c/li>\n\u003cli>\u003cstrong>夫妻宫呈现出的稳定渴望与暗中较劲（夫妻宫庚戌·廉贞、天府、陀罗、地劫）\u003c/strong>：\n天府是令星、重家庭完整，择偶时偏好有能力、有胆识、稳健持重的人，厌恶软弱；廉贞则重条理、规矩与前因后果。然而宫内同坐陀罗与地劫：陀罗代表打转、纠结、反复磨合与放不下；地劫则带来现实落空感或不可控的波折。这意味着你的感情往往伴随着漫长的内心拉扯与暗中角力，既想求全稳固，又容易陷入细枝末节的原则争执。\u003c/li>\n\u003c/ol>\n"},{"id":"S1-2","title":"二、 你的感情动力学：吸引、表达、亲近与分歧","sourceMarkdown":"#### 1. 吸引你的人 vs 你需要的人 vs 适合长期相处的人\r\n课程一再强调，不能把夫妻宫单一星曜直接等同于配偶的真实出生盘，但它反映了你投射在伴侣身上的期待与相处模型：\r\n* **容易吸引你的人（“强人与门面”）**：\r\n  你容易被外在成熟、体面、有气场且具备现实治理能力的异性吸引（夫妻宫廉贞天府，迁移宫紫微权）。对方通常有主见、说话有分量、在工作或生活中能拿主意、像个“舵手”，能给你带来稳定与掌控全局的安全感。你很难对唯唯诺诺、需要你步步提携照顾的软弱对象产生持久的爱意。\r\n* **你潜意识需要的人（“现实担当与后盾”）**：\r\n  因为你命宫带羊火空且财福线受武曲双忌冲压，你在现实生活与心理层面其实承受着不小的奔波与焦虑。你真正需要的是一个不仅能在现实中守住阵地（天府守库、管事），而且在大事上说话算数、能兑现诺言的硬核盟友（武曲天相对宫之照）。\r\n* **适合长期相处的人（“懂得放权退让、带温柔缓冲器的人”）**：\r\n  **这里存在着必须看清的关键区别**：吸引你的往往是“大权在握的管理者”（廉府），但**真正能与你白头偕老的人，绝不能是个硬碰硬的专制者**。\r\n  盘面上，你夫妻宫庚干化武曲权直接压入你的福德宫（夫之官）！课程明确指出，“夫权入福”意味着伴侣的意志极度试图侵入并影响命主的思想观念，甚至在生活方式与金钱规则上实行强势干预。如果对方也是个寸步不让的铁腕人物，两强相遇就会引发课程所说的“权忌交战”——对方想改造你的思维，而你内心武曲双忌极度固执自守，碰撞出来的精神痛苦会非常剧烈。因此，最适合你的人，必须具备天府的底气与担当，但在相处沟通时懂得柔化分寸、给彼此留有独立空间。\r\n\r\n#### 2. 你怎样表达喜欢与投入感情？\r\n* **投入时极其当真，将对方纳入未来版图**：\r\n  你命宫壬干化天梁禄直接飞入田宅宫（癸卯）。田宅是家庭、私密领地与安身立命之所。你在感情上一旦确立关系，绝不是抱着玩玩的心态，而是会迅速把对方规划进“我们的家”这一实体蓝图中，愿意为家庭建设倾注实际资源与庇护心意。\r\n* **表达爱意的方式带着期待与高标准**：\r\n  父母宫癸丑、田宅宫癸卯的癸干飞贪狼忌入命，叠加福德宫武曲生年忌与自化忌，往往会转化为对伴侣的高期待与严要求——希望对方不断上进、变得更加成熟完美。同时，夫妻宫庚干也化太阳禄入田宅，这说明双方如果合拍，很容易就“安家立业、照顾彼此的家庭”达成一致的温情愿景。\r\n\r\n#### 3. 处理亲近与分歧时的相处模式\r\n* **面对亲近**：\r\n  命宫贪狼带火星让你在感情升温期有极强的情感黏合力与互动情趣。但夫妻宫坐陀罗、地劫，福德坐武曲双忌，会导致你在亲密关系走入深水区后，容易出现周期性的“心理防备期”——既想百分之百交心，又暗中保留一份审视。\r\n* **面对分歧**：\r\n  你的盘面呈现出一种极其鲜明的**“陀罗式的暗中忍耐纠结 ➔ 擎羊火星式的瞬间决绝爆发”**的双重机制。\r\n  在冲突初期，受天府的顾全面子以及陀罗的拖延打转影响，你可能选择隐忍、自己跟自己较劲，或者在心里反复盘算、不断追问原因（廉府特征：追根究底问为什么）；但这种情绪不是被化解了，而是积压在武曲忌的福德宫中。一旦积压到某个临界点，命宫的擎羊与火星就会瞬间接管，你会突然说出极其刺痛人心、不留余地的重话，甚至产生“大不了彻底掀桌断舍离”的极端冲动。","sourceHtml":"\u003ch4>1. 吸引你的人 vs 你需要的人 vs 适合长期相处的人\u003c/h4>\n\u003cp>课程一再强调，不能把夫妻宫单一星曜直接等同于配偶的真实出生盘，但它反映了你投射在伴侣身上的期待与相处模型：\u003c/p>\n\u003cul>\n\u003cli>\u003cstrong>容易吸引你的人（“强人与门面”）\u003c/strong>：\n你容易被外在成熟、体面、有气场且具备现实治理能力的异性吸引（夫妻宫廉贞天府，迁移宫紫微权）。对方通常有主见、说话有分量、在工作或生活中能拿主意、像个“舵手”，能给你带来稳定与掌控全局的安全感。你很难对唯唯诺诺、需要你步步提携照顾的软弱对象产生持久的爱意。\u003c/li>\n\u003cli>\u003cstrong>你潜意识需要的人（“现实担当与后盾”）\u003c/strong>：\n因为你命宫带羊火空且财福线受武曲双忌冲压，你在现实生活与心理层面其实承受着不小的奔波与焦虑。你真正需要的是一个不仅能在现实中守住阵地（天府守库、管事），而且在大事上说话算数、能兑现诺言的硬核盟友（武曲天相对宫之照）。\u003c/li>\n\u003cli>\u003cstrong>适合长期相处的人（“懂得放权退让、带温柔缓冲器的人”）\u003c/strong>：\n\u003cstrong>这里存在着必须看清的关键区别\u003c/strong>：吸引你的往往是“大权在握的管理者”（廉府），但\u003cstrong>真正能与你白头偕老的人，绝不能是个硬碰硬的专制者\u003c/strong>。\n盘面上，你夫妻宫庚干化武曲权直接压入你的福德宫（夫之官）！课程明确指出，“夫权入福”意味着伴侣的意志极度试图侵入并影响命主的思想观念，甚至在生活方式与金钱规则上实行强势干预。如果对方也是个寸步不让的铁腕人物，两强相遇就会引发课程所说的“权忌交战”——对方想改造你的思维，而你内心武曲双忌极度固执自守，碰撞出来的精神痛苦会非常剧烈。因此，最适合你的人，必须具备天府的底气与担当，但在相处沟通时懂得柔化分寸、给彼此留有独立空间。\u003c/li>\n\u003c/ul>\n\u003ch4>2. 你怎样表达喜欢与投入感情？\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>投入时极其当真，将对方纳入未来版图\u003c/strong>：\n你命宫壬干化天梁禄直接飞入田宅宫（癸卯）。田宅是家庭、私密领地与安身立命之所。你在感情上一旦确立关系，绝不是抱着玩玩的心态，而是会迅速把对方规划进“我们的家”这一实体蓝图中，愿意为家庭建设倾注实际资源与庇护心意。\u003c/li>\n\u003cli>\u003cstrong>表达爱意的方式带着期待与高标准\u003c/strong>：\n父母宫癸丑、田宅宫癸卯的癸干飞贪狼忌入命，叠加福德宫武曲生年忌与自化忌，往往会转化为对伴侣的高期待与严要求——希望对方不断上进、变得更加成熟完美。同时，夫妻宫庚干也化太阳禄入田宅，这说明双方如果合拍，很容易就“安家立业、照顾彼此的家庭”达成一致的温情愿景。\u003c/li>\n\u003c/ul>\n\u003ch4>3. 处理亲近与分歧时的相处模式\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>面对亲近\u003c/strong>：\n命宫贪狼带火星让你在感情升温期有极强的情感黏合力与互动情趣。但夫妻宫坐陀罗、地劫，福德坐武曲双忌，会导致你在亲密关系走入深水区后，容易出现周期性的“心理防备期”——既想百分之百交心，又暗中保留一份审视。\u003c/li>\n\u003cli>\u003cstrong>面对分歧\u003c/strong>：\n你的盘面呈现出一种极其鲜明的**“陀罗式的暗中忍耐纠结 ➔ 擎羊火星式的瞬间决绝爆发”**的双重机制。\n在冲突初期，受天府的顾全面子以及陀罗的拖延打转影响，你可能选择隐忍、自己跟自己较劲，或者在心里反复盘算、不断追问原因（廉府特征：追根究底问为什么）；但这种情绪不是被化解了，而是积压在武曲忌的福德宫中。一旦积压到某个临界点，命宫的擎羊与火星就会瞬间接管，你会突然说出极其刺痛人心、不留余地的重话，甚至产生“大不了彻底掀桌断舍离”的极端冲动。\u003c/li>\n\u003c/ul>\n"},{"id":"S1-3","title":"三、 模式复盘：哪些是自身习惯？哪些取决于对方与外部？","sourceMarkdown":"课程在《感情关系的对象、对待与分离》中反复叮嘱：咨询时要分清哪些是命主自身的选择与行为惯性，哪些是对方的特质或现实环境的作用，不能把所有感情波折都当成命主的“原罪”，也不要搞宿命论。\r\n\r\n#### 1. 即使换了对象也可能再次出现的“自身模式”\r\n这些源自你本命盘的性格构造，只要你不加觉察，很容易在不同的人身上重复上演：\r\n* **“精神审查机制过重，容易把伴侣逼入死角”**：\r\n  福德宫武曲双忌导致你对生活中的原则、对错、承诺看得过分绝对。在两性相处中，你很容易把一些琐碎的习惯差异上升为“原则问题”或“态度问题”，在心里默默给对方扣分或严厉追责，让伴侣感到窒息和沉重的压力。\r\n* **“爱挑强者，却又无法忍受被真正管束”的择偶悖论**：\r\n  你的迁移宫坐紫微生年权，命宫坐擎羊，天生自带强烈的自尊与主权意识；可你偏偏又容易被夫妻宫廉府那种自带指挥官光环的人吸引。结果往往是：恋爱初期你崇拜对方的能干与担当，交往深入后你却极度反感对方对你指手画脚、试图掌控你的想法（夫权入福）。\r\n* **“情绪累积期的冷耗与爆发期的决绝”**：\r\n  陀罗的“拖着不说、在心里打转”与擎羊火星的“一刀切、说重话”并存。如果前中期不建立坦诚平等的沟通通道，总是先忍耐后爆炸，任何伴侣在面对突如其来的剧烈震荡时都会感到措手不及。\r\n\r\n#### 2. 主要取决于对方特点或外部环境的“变量”\r\n这些并不全是你个人的责任，很大程度上依赖于现实的具体匹配：\r\n* **对方是否有足够包容的沟通分寸（“夫权入福”能否转化为助力）**：\r\n  课程指出，夫妻权入福德，如果伴侣性格强势霸道，就会演变成控制思想、干涉内政；但若对方成熟开明，这种“权”也可以转化为在现实事业上给你实质指点、在关键时刻替你拿主意并为你遮风挡雨的正向力量。这完全取决于对方本人的涵养与双方的相处默契。\r\n* **生活习惯与相处摩擦是否引发冷战（“夫忌入父冲疾厄”）**：\r\n  夫妻宫庚干化天同忌入父母宫，正冲对宫的疾厄宫（丁未）。在课程定义中，“夫冲疾”的标准取象是**“对方使本人不爽，身体不想靠近，具备冷战条件”**，但课程特别明确这不等于必然离婚或分手。这往往取决于对方的生活作息、个人卫生、脾气秉性或外部琐事是否踩中你的不适点；如果对方懂得生活体贴，这一冲克的破坏力就会大幅减轻。\r\n* **物理距离与生活重心的调节（“聚少离多的缓和效应”）**：\r\n  课程案例多次证明，夫妻宫与命福线带有较多煞曜与权忌交战时，如果双方各自有独立追求的事业、经常需要出差跑动，或者在日常生活中保持适度的“个人独立空间”（聚少离多、分工自治），往往能神奇地避开日常摩擦的直接碰撞，把矛盾降到最低。","sourceHtml":"\u003cp>课程在《感情关系的对象、对待与分离》中反复叮嘱：咨询时要分清哪些是命主自身的选择与行为惯性，哪些是对方的特质或现实环境的作用，不能把所有感情波折都当成命主的“原罪”，也不要搞宿命论。\u003c/p>\n\u003ch4>1. 即使换了对象也可能再次出现的“自身模式”\u003c/h4>\n\u003cp>这些源自你本命盘的性格构造，只要你不加觉察，很容易在不同的人身上重复上演：\u003c/p>\n\u003cul>\n\u003cli>\u003cstrong>“精神审查机制过重，容易把伴侣逼入死角”\u003c/strong>：\n福德宫武曲双忌导致你对生活中的原则、对错、承诺看得过分绝对。在两性相处中，你很容易把一些琐碎的习惯差异上升为“原则问题”或“态度问题”，在心里默默给对方扣分或严厉追责，让伴侣感到窒息和沉重的压力。\u003c/li>\n\u003cli>\u003cstrong>“爱挑强者，却又无法忍受被真正管束”的择偶悖论\u003c/strong>：\n你的迁移宫坐紫微生年权，命宫坐擎羊，天生自带强烈的自尊与主权意识；可你偏偏又容易被夫妻宫廉府那种自带指挥官光环的人吸引。结果往往是：恋爱初期你崇拜对方的能干与担当，交往深入后你却极度反感对方对你指手画脚、试图掌控你的想法（夫权入福）。\u003c/li>\n\u003cli>\u003cstrong>“情绪累积期的冷耗与爆发期的决绝”\u003c/strong>：\n陀罗的“拖着不说、在心里打转”与擎羊火星的“一刀切、说重话”并存。如果前中期不建立坦诚平等的沟通通道，总是先忍耐后爆炸，任何伴侣在面对突如其来的剧烈震荡时都会感到措手不及。\u003c/li>\n\u003c/ul>\n\u003ch4>2. 主要取决于对方特点或外部环境的“变量”\u003c/h4>\n\u003cp>这些并不全是你个人的责任，很大程度上依赖于现实的具体匹配：\u003c/p>\n\u003cul>\n\u003cli>\u003cstrong>对方是否有足够包容的沟通分寸（“夫权入福”能否转化为助力）\u003c/strong>：\n课程指出，夫妻权入福德，如果伴侣性格强势霸道，就会演变成控制思想、干涉内政；但若对方成熟开明，这种“权”也可以转化为在现实事业上给你实质指点、在关键时刻替你拿主意并为你遮风挡雨的正向力量。这完全取决于对方本人的涵养与双方的相处默契。\u003c/li>\n\u003cli>\u003cstrong>生活习惯与相处摩擦是否引发冷战（“夫忌入父冲疾厄”）\u003c/strong>：\n夫妻宫庚干化天同忌入父母宫，正冲对宫的疾厄宫（丁未）。在课程定义中，“夫冲疾”的标准取象是**“对方使本人不爽，身体不想靠近，具备冷战条件”**，但课程特别明确这不等于必然离婚或分手。这往往取决于对方的生活作息、个人卫生、脾气秉性或外部琐事是否踩中你的不适点；如果对方懂得生活体贴，这一冲克的破坏力就会大幅减轻。\u003c/li>\n\u003cli>\u003cstrong>物理距离与生活重心的调节（“聚少离多的缓和效应”）\u003c/strong>：\n课程案例多次证明，夫妻宫与命福线带有较多煞曜与权忌交战时，如果双方各自有独立追求的事业、经常需要出差跑动，或者在日常生活中保持适度的“个人独立空间”（聚少离多、分工自治），往往能神奇地避开日常摩擦的直接碰撞，把矛盾降到最低。\u003c/li>\n\u003c/ul>\n"},{"id":"S1-4","title":"四、 全盘串联：感情与金钱、事业、家庭的共同主线","sourceMarkdown":"你盘面上的感情问题绝非孤立存在，它与你的财务底线、事业野心及家庭归属紧紧纠缠在同一条能量动线上：\r\n\r\n1. **金钱与精神安全的死结（财帛宫戊申·破军天马 vs 福德宫武曲双忌）**：\r\n   财帛宫破军带天马，代表你在财务求财上具有开拓、变动、敢于折腾或外出奔波的特质；但它正对着福德宫的武曲生年忌与自化忌。课程指出，财福线受冲，往往意味着**“精神的紧绷极度挂钩于现实经济的底气与掌控感”**。\r\n   在感情中，你对伴侣的经济独立性、理财观念以及是否具备可靠的现实生存能力极其敏锐。你无法接受一个对未来毫无规划、经济上随波逐流的伴侣；一旦家庭财务出现不可控风险，你的精神防线会率先崩溃，从而极大地波及两人的感情温度。\r\n2. **事业对感情的滋养与投射（官禄宫甲辰·七杀 ➔ 廉贞化禄入夫妻）**：\r\n   官禄宫七杀独坐，代表你在工作上敢闯敢拼、具有极强的开拓性与职业韧劲。极为亮眼的是：**官禄宫甲干化廉贞禄，直接飞入了夫妻宫！**\r\n   课程体系中，“官禄化禄入夫妻”是一个非常健康的良性信号：\r\n   * 意味着你能够把工作上的成就感、专注力与资源转化对感情的体贴与善意；\r\n   * 当你的个人事业顺风顺水、精力得到充分施展时，你对伴侣的苛求和审查反而会大大减少，整个人的情感状态会变得宽容而充满魅力；\r\n   * 反之，如果你自身事业受阻、能量无处安放，你就容易把过剩的精力与挑剔转嫁到伴侣身上，放大感情中的细节矛盾。\r\n3. **家庭安顿是双方最终的合力目标（田宅宫癸卯·太阳、天梁生年禄、天魁）**：\r\n   田宅宫坐天梁生年禄与太阳，且命宫（天梁禄）、夫妻宫（太阳禄）双双化禄汇聚于田宅！这清楚地揭示出：**无论你在外如何刚毅要强，你内心深处对“一个温暖、体面、有秩序、能避风的稳固家园”有着极高的渴望与建设诚意**。如果一段关系能够以“共同经营一个稳固的家、共同守护一份长远的基业”为契机，你们之间往往能形成极深的利益与情感同盟，这也正是化解一切摩擦的最强底牌。","sourceHtml":"\u003cp>你盘面上的感情问题绝非孤立存在，它与你的财务底线、事业野心及家庭归属紧紧纠缠在同一条能量动线上：\u003c/p>\n\u003col>\n\u003cli>\u003cstrong>金钱与精神安全的死结（财帛宫戊申·破军天马 vs 福德宫武曲双忌）\u003c/strong>：\n财帛宫破军带天马，代表你在财务求财上具有开拓、变动、敢于折腾或外出奔波的特质；但它正对着福德宫的武曲生年忌与自化忌。课程指出，财福线受冲，往往意味着**“精神的紧绷极度挂钩于现实经济的底气与掌控感”**。\n在感情中，你对伴侣的经济独立性、理财观念以及是否具备可靠的现实生存能力极其敏锐。你无法接受一个对未来毫无规划、经济上随波逐流的伴侣；一旦家庭财务出现不可控风险，你的精神防线会率先崩溃，从而极大地波及两人的感情温度。\u003c/li>\n\u003cli>\u003cstrong>事业对感情的滋养与投射（官禄宫甲辰·七杀 ➔ 廉贞化禄入夫妻）\u003c/strong>：\n官禄宫七杀独坐，代表你在工作上敢闯敢拼、具有极强的开拓性与职业韧劲。极为亮眼的是：\u003cstrong>官禄宫甲干化廉贞禄，直接飞入了夫妻宫！\u003c/strong>\n课程体系中，“官禄化禄入夫妻”是一个非常健康的良性信号：\n\u003cul>\n\u003cli>意味着你能够把工作上的成就感、专注力与资源转化对感情的体贴与善意；\u003c/li>\n\u003cli>当你的个人事业顺风顺水、精力得到充分施展时，你对伴侣的苛求和审查反而会大大减少，整个人的情感状态会变得宽容而充满魅力；\u003c/li>\n\u003cli>反之，如果你自身事业受阻、能量无处安放，你就容易把过剩的精力与挑剔转嫁到伴侣身上，放大感情中的细节矛盾。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>家庭安顿是双方最终的合力目标（田宅宫癸卯·太阳、天梁生年禄、天魁）\u003c/strong>：\n田宅宫坐天梁生年禄与太阳，且命宫（天梁禄）、夫妻宫（太阳禄）双双化禄汇聚于田宅！这清楚地揭示出：\u003cstrong>无论你在外如何刚毅要强，你内心深处对“一个温暖、体面、有秩序、能避风的稳固家园”有着极高的渴望与建设诚意\u003c/strong>。如果一段关系能够以“共同经营一个稳固的家、共同守护一份长远的基业”为契机，你们之间往往能形成极深的利益与情感同盟，这也正是化解一切摩擦的最强底牌。\u003c/li>\n\u003c/ol>\n"},{"id":"S1-5","title":"五、 现阶段（23—32岁庚戌大限）的提醒与客观边界","sourceMarkdown":"你当前正处于 **23—32岁庚戌大限**（大运命宫正好重叠本命夫妻宫，坐廉府、陀罗、地劫）：\r\n1. **大限的感情放大镜效应**：\r\n   大运命宫直接走入夫妻宫，意味着这十年中，“亲密关系、婚姻考量、合作责任以及如何与重要他人相处”，会极其自然地成为你人生最核心的课题之一。\r\n2. **大限四化的张力**：\r\n   大运庚干再次引发：太阳化禄入田宅、**武曲化权入福德**、太阴化科入兄弟、**天同化忌入父母冲疾厄**。这表明当前大运在加深你对“买房、成家、安定”渴求的同时，伴侣意志与你个人思想的碰撞（权入福）、生活琐事带来的内在不适（忌冲疾）也会体现得更加明显。\r\n3. **课程的现实边界**：\r\n   必须重申课程的严谨共识：**盘面显示的是相处模式、倾向与潜在的张力结构，绝不代表某种注定破裂的宿命结局**。历史上同样带着夫妻煞曜、甚至权忌交错的命例中，依然有许多通过互相尊重边界、聚少离多或在事业上各展所长而相濡以沫的正向反例。\r\n\r\n看清这些结构，不是为了让你画地为牢，而是帮助你建立自觉：在未来遇到喜欢的人时，**给自己的“高标准原则审查”松一松绑，在对方试图拿主意时学会有弹性的沟通，并永远保有一处能让自己专注投入的事业领地**——如此，你便能把命盘中天府的稳健与贪狼的魅力发挥到极致，牢牢握住属于自己的幸福。\r\n\r\n\n🌿 这盘的官禄七杀飞禄入夫妻宫，显示事业的充实度会直接改变你在感情中的宽容度。如果你愿意，我们可以把视角切到你的事业与财富线上，看看你在当前大限最适合借由怎样的工作节奏，来为自己的生活与内心建立最坚实的安全感？","sourceHtml":"\u003cp>你当前正处于 \u003cstrong>23—32岁庚戌大限\u003c/strong>（大运命宫正好重叠本命夫妻宫，坐廉府、陀罗、地劫）：\u003c/p>\n\u003col>\n\u003cli>\u003cstrong>大限的感情放大镜效应\u003c/strong>：\n大运命宫直接走入夫妻宫，意味着这十年中，“亲密关系、婚姻考量、合作责任以及如何与重要他人相处”，会极其自然地成为你人生最核心的课题之一。\u003c/li>\n\u003cli>\u003cstrong>大限四化的张力\u003c/strong>：\n大运庚干再次引发：太阳化禄入田宅、\u003cstrong>武曲化权入福德\u003c/strong>、太阴化科入兄弟、\u003cstrong>天同化忌入父母冲疾厄\u003c/strong>。这表明当前大运在加深你对“买房、成家、安定”渴求的同时，伴侣意志与你个人思想的碰撞（权入福）、生活琐事带来的内在不适（忌冲疾）也会体现得更加明显。\u003c/li>\n\u003cli>\u003cstrong>课程的现实边界\u003c/strong>：\n必须重申课程的严谨共识：\u003cstrong>盘面显示的是相处模式、倾向与潜在的张力结构，绝不代表某种注定破裂的宿命结局\u003c/strong>。历史上同样带着夫妻煞曜、甚至权忌交错的命例中，依然有许多通过互相尊重边界、聚少离多或在事业上各展所长而相濡以沫的正向反例。\u003c/li>\n\u003c/ol>\n\u003cp>看清这些结构，不是为了让你画地为牢，而是帮助你建立自觉：在未来遇到喜欢的人时，\u003cstrong>给自己的“高标准原则审查”松一松绑，在对方试图拿主意时学会有弹性的沟通，并永远保有一处能让自己专注投入的事业领地\u003c/strong>——如此，你便能把命盘中天府的稳健与贪狼的魅力发挥到极致，牢牢握住属于自己的幸福。\u003c/p>\n\u003cp>🌿 这盘的官禄七杀飞禄入夫妻宫，显示事业的充实度会直接改变你在感情中的宽容度。如果你愿意，我们可以把视角切到你的事业与财富线上，看看你在当前大限最适合借由怎样的工作节奏，来为自己的生活与内心建立最坚实的安全感？\u003c/p>\n"}]},{"question":2,"title":"关系的发展与长期相处","intro":"在紫微斗数与本课程的体系中，静态的星曜配置勾勒的是心理诉求与行为底色，而**动态的宫位互化、对待关系与三方四正联动**，呈现的则是两个人从相识、热络、磨合到长期共同生活时，容易演进出的**具体互动路径**。\r\n\r\n不重复上一轮的基础性格标签，围绕你关心的“关系演变过程、优势转化为负担的机制、长久性关键与适合模式”，梳理出以下最重要的判断与具体推断依据：","openingHtml":"\u003cp>在紫微斗数与本课程的体系中，静态的星曜配置勾勒的是心理诉求与行为底色，而\u003cstrong>动态的宫位互化、对待关系与三方四正联动\u003c/strong>，呈现的则是两个人从相识、热络、磨合到长期共同生活时，容易演进出的\u003cstrong>具体互动路径\u003c/strong>。\u003c/p>\n\u003cp>不重复上一轮的基础性格标签，围绕你关心的“关系演变过程、优势转化为负担的机制、长久性关键与适合模式”，梳理出以下最重要的判断与具体推断依据：\u003c/p>\n","sections":[{"id":"S2-1","title":"一、 最重要的核心结论","sourceMarkdown":"1. **关系最具风险的关键阶段不在“相识开启”，而在“建立共同生活规则时的权责界定”与“分歧爆发时的情绪断崖”**。\r\n   你的盘面（贪狼火星、羊刃在命，官禄化禄入夫）具备极快的破冰能力与很强的经营诚意；但进入深水区后，容易从“陀罗式的暗中忍耐与反刍”骤变为“擎羊火星式的掀桌决绝”，且夫妻宫化权入福德（思维侵入）、化忌冲疾厄（身体与情绪抗拒），使共同生活极易卡在“控制 vs 抵抗”的冷战或硬碰硬中。\r\n2. **你的“高标准、能扛事与规划力”是经营关系的利器，但一旦失去外部事业宣泄口，就会反噬为“感情内部的高压审查”**。\r\n   官禄七杀飞禄入夫妻，说明你把精力放在个人事业攻坚时，对感情最宽容、最能付出；若个人重心失衡或受阻，武曲双忌在福德的紧绷就会全盘转嫁到伴侣身上，变成不可逾越的“原则审判”。\r\n3. **长期长久的真正核心是“空间自治、尊重边界与共同筑巢”**。\r\n   对你而言，“全面捆绑、时刻同频”的亲密是危险的；最有利于长期的生活结构是“精神与生活保留自主缓冲区（适度聚少离多或各自事业独立）+ 共同奔赴现实稳固目标（双禄汇入田宅建家）”。","sourceHtml":"\u003col>\n\u003cli>\u003cstrong>关系最具风险的关键阶段不在“相识开启”，而在“建立共同生活规则时的权责界定”与“分歧爆发时的情绪断崖”\u003c/strong>。\n你的盘面（贪狼火星、羊刃在命，官禄化禄入夫）具备极快的破冰能力与很强的经营诚意；但进入深水区后，容易从“陀罗式的暗中忍耐与反刍”骤变为“擎羊火星式的掀桌决绝”，且夫妻宫化权入福德（思维侵入）、化忌冲疾厄（身体与情绪抗拒），使共同生活极易卡在“控制 vs 抵抗”的冷战或硬碰硬中。\u003c/li>\n\u003cli>\u003cstrong>你的“高标准、能扛事与规划力”是经营关系的利器，但一旦失去外部事业宣泄口，就会反噬为“感情内部的高压审查”\u003c/strong>。\n官禄七杀飞禄入夫妻，说明你把精力放在个人事业攻坚时，对感情最宽容、最能付出；若个人重心失衡或受阻，武曲双忌在福德的紧绷就会全盘转嫁到伴侣身上，变成不可逾越的“原则审判”。\u003c/li>\n\u003cli>\u003cstrong>长期长久的真正核心是“空间自治、尊重边界与共同筑巢”\u003c/strong>。\n对你而言，“全面捆绑、时刻同频”的亲密是危险的；最有利于长期的生活结构是“精神与生活保留自主缓冲区（适度聚少离多或各自事业独立）+ 共同奔赴现实稳固目标（双禄汇入田宅建家）”。\u003c/li>\n\u003c/ol>\n"},{"id":"S2-2","title":"二、 关系发展的四个阶段：动态演变过程与关键节点","sourceMarkdown":"结合盘面的化象与星曜组合，一段关系在你身上往往呈现以下步步推进的过程：\r\n\r\n#### 1. 开始阶段：火星贪狼的高效破冰，但防备心迅速拉起\r\n* **具体过程**：\r\n  你命坐贪狼与火星，对宫紫微生年权，你其实非常懂得如何展现自身魅力、捕捉社交信号。遇到合眼缘或有能力的异性，你绝不扭捏，互动直接且推进迅速。\r\n* **内在机制**：\r\n  但这一阶段你其实“热在表面、冷在核心”。命宫带地空、福德坐武曲双忌，你的潜意识极快就会升起防护栏。表面上相谈甚欢，内心深处已经在拿现实指标、处事态度进行严格的“静默打分”。\r\n\r\n#### 2. 逐渐亲密：以“责任与未来蓝图”建立深度链接，但也容易过早背负重担\r\n* **具体过程**：\r\n  当你真正认可一个人时，你的投入方式非常实在——命宫壬干化天梁禄入田宅，夫妻宫庚干化太阳禄入田宅，你很自然地会把对方纳入自己对“未来家庭、安稳住所、长远生活”的规划中。你愿意为对方出谋划策，在现实生活或工作上给予照顾和庇护。\r\n* **转折隐患**：\r\n  你习惯展现自己“能扛事、有担当、讲义气”的大女主一面（天梁禄+官禄七杀飞禄入夫）。但这也容易在亲密初期给对方营造出一种“你非常强大、不需要太多安抚”的错觉，甚至过早纵容了对方把某些生活责任转嫁到你身上。\r\n\r\n#### 3. 发生分歧：“陀罗式的反刍”叠加“夫权入福与夫忌冲疾”的拉扯过程\r\n这是最容易反复出现、且最值得你看清的相处循环：\r\n* **第一步：暗中积压与细节反刍（夫妻宫陀罗、天府）**\r\n  天府顾全面子、廉贞重规则，刚开始遇到观念不合或对方的不当行为时，你很少立刻大吵大闹，而是把事情压在心底，一个人反复琢磨、打转（陀罗）。你在等对方主动察觉并纠错，甚至在心里不断记账。\r\n* **第二步：伴侣的干涉与侵入（夫妻宫庚干化武曲权入福德）**\r\n  你吸引来的伴侣通常是有主见的强人。当出现分歧时，对方倾向于用自己的逻辑说服你、改造你、管束你（夫权入福）。而你的福德宫原本就坐武曲生年忌且自化忌，内心防线坚如磐石，极度反感他人对你指手画脚。此时双方形成“权忌交战”——对方想强推，你内心筑起高墙冷眼相对。\r\n* **第三步：内在抗拒与身体排斥（夫妻宫庚干化天同忌入父母，冲疾厄）**\r\n  课程特别指出，“夫冲疾”在相处中的标准表现不是必然离婚，而是**“对方言行让本人感到极为不爽与内伤，身体层面产生本能的嫌弃、抗拒靠近，关系进入冷战”**。你会开始在日常接触中拉开物理距离、拒绝沟通、甚至分床或冷暴力。\r\n* **第四步：临界点爆发与决绝切断（命宫擎羊、火星接管）**\r\n  冷战和忍耐是有限度的。当对方某一句话彻底踩碎你的底线，或者陀罗积攒的委屈超过承受阈值时，命宫的擎羊火星瞬间爆发。你往往会突然用最冷酷、最决绝的语言摊牌，甚至直接做出断联、分手的冲动举动，让对方觉得“前面明明还好好的，怎么突然就彻底翻脸”。\r\n\r\n#### 4. 长期共同生活：从激情走向“现实合伙”\r\n* 长期生活能否平稳，完全取决于你们能否跨越“谁管谁”的权力斗争。一旦双方建立起明确的分工界限，把彼此的精力锚定在“共同资产积累、买房置业、家庭防护”（田宅宫天梁禄与太阳禄）上，这种务实的盟友关系反而会展现出极强的韧性。","sourceHtml":"\u003cp>结合盘面的化象与星曜组合，一段关系在你身上往往呈现以下步步推进的过程：\u003c/p>\n\u003ch4>1. 开始阶段：火星贪狼的高效破冰，但防备心迅速拉起\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>具体过程\u003c/strong>：\n你命坐贪狼与火星，对宫紫微生年权，你其实非常懂得如何展现自身魅力、捕捉社交信号。遇到合眼缘或有能力的异性，你绝不扭捏，互动直接且推进迅速。\u003c/li>\n\u003cli>\u003cstrong>内在机制\u003c/strong>：\n但这一阶段你其实“热在表面、冷在核心”。命宫带地空、福德坐武曲双忌，你的潜意识极快就会升起防护栏。表面上相谈甚欢，内心深处已经在拿现实指标、处事态度进行严格的“静默打分”。\u003c/li>\n\u003c/ul>\n\u003ch4>2. 逐渐亲密：以“责任与未来蓝图”建立深度链接，但也容易过早背负重担\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>具体过程\u003c/strong>：\n当你真正认可一个人时，你的投入方式非常实在——命宫壬干化天梁禄入田宅，夫妻宫庚干化太阳禄入田宅，你很自然地会把对方纳入自己对“未来家庭、安稳住所、长远生活”的规划中。你愿意为对方出谋划策，在现实生活或工作上给予照顾和庇护。\u003c/li>\n\u003cli>\u003cstrong>转折隐患\u003c/strong>：\n你习惯展现自己“能扛事、有担当、讲义气”的大女主一面（天梁禄+官禄七杀飞禄入夫）。但这也容易在亲密初期给对方营造出一种“你非常强大、不需要太多安抚”的错觉，甚至过早纵容了对方把某些生活责任转嫁到你身上。\u003c/li>\n\u003c/ul>\n\u003ch4>3. 发生分歧：“陀罗式的反刍”叠加“夫权入福与夫忌冲疾”的拉扯过程\u003c/h4>\n\u003cp>这是最容易反复出现、且最值得你看清的相处循环：\u003c/p>\n\u003cul>\n\u003cli>\u003cstrong>第一步：暗中积压与细节反刍（夫妻宫陀罗、天府）\u003c/strong>\n天府顾全面子、廉贞重规则，刚开始遇到观念不合或对方的不当行为时，你很少立刻大吵大闹，而是把事情压在心底，一个人反复琢磨、打转（陀罗）。你在等对方主动察觉并纠错，甚至在心里不断记账。\u003c/li>\n\u003cli>\u003cstrong>第二步：伴侣的干涉与侵入（夫妻宫庚干化武曲权入福德）\u003c/strong>\n你吸引来的伴侣通常是有主见的强人。当出现分歧时，对方倾向于用自己的逻辑说服你、改造你、管束你（夫权入福）。而你的福德宫原本就坐武曲生年忌且自化忌，内心防线坚如磐石，极度反感他人对你指手画脚。此时双方形成“权忌交战”——对方想强推，你内心筑起高墙冷眼相对。\u003c/li>\n\u003cli>\u003cstrong>第三步：内在抗拒与身体排斥（夫妻宫庚干化天同忌入父母，冲疾厄）\u003c/strong>\n课程特别指出，“夫冲疾”在相处中的标准表现不是必然离婚，而是**“对方言行让本人感到极为不爽与内伤，身体层面产生本能的嫌弃、抗拒靠近，关系进入冷战”**。你会开始在日常接触中拉开物理距离、拒绝沟通、甚至分床或冷暴力。\u003c/li>\n\u003cli>\u003cstrong>第四步：临界点爆发与决绝切断（命宫擎羊、火星接管）\u003c/strong>\n冷战和忍耐是有限度的。当对方某一句话彻底踩碎你的底线，或者陀罗积攒的委屈超过承受阈值时，命宫的擎羊火星瞬间爆发。你往往会突然用最冷酷、最决绝的语言摊牌，甚至直接做出断联、分手的冲动举动，让对方觉得“前面明明还好好的，怎么突然就彻底翻脸”。\u003c/li>\n\u003c/ul>\n\u003ch4>4. 长期共同生活：从激情走向“现实合伙”\u003c/h4>\n\u003cul>\n\u003cli>长期生活能否平稳，完全取决于你们能否跨越“谁管谁”的权力斗争。一旦双方建立起明确的分工界限，把彼此的精力锚定在“共同资产积累、买房置业、家庭防护”（田宅宫天梁禄与太阳禄）上，这种务实的盟友关系反而会展现出极强的韧性。\u003c/li>\n\u003c/ul>\n"},{"id":"S2-3","title":"三、 你的优势如何变成负担？——盘面特质的双刃剑","sourceMarkdown":"| 你的能力与特质 | 经营关系时的正面威力 | 失去平衡时转化为的感情负担 | 调节的关键依据 |\r\n| :--- | :--- | :--- | :--- |\r\n| **能扛事、有谋略、敢付出**\u003cbr>*(官禄宫甲干飞廉贞禄入夫妻)* | 愿为伴侣托底，当伴侣遇到现实困难时，你能提供极其宝贵的资源和破局建议，是不可多得的现实贤内助。 | **过界干涉与委屈感**：当你过度介入对方的人生课题时，若对方不听或做不到，你就会产生“我全心为你，你却烂泥扶不上墙”的巨大怨气。 | 守住“各自因果”边界，给对方留出犯错与独立承担的余地。 |\r\n| **讲求原则、重视承诺**\u003cbr>*(福德武曲生年忌+自化忌)* | 感情忠诚度极高，言出必行，绝不会在道德底线和现实契约上含糊，给家庭极强的稳定托底。 | **道德紧箍咒与精神内耗**：把日常琐碎摩擦全部上升到“人品、原则与态度”层面，用非黑即白的法官视角审查伴侣，令对方战战兢兢。 | 区分“根本原则”与“生活习惯/性格差异”，允许亲密关系中存在模糊和不完美。 |\r\n| **决断快、效率高、边界清晰**\u003cbr>*(命宫擎羊、火星、地空)* | 遇到消耗性的烂桃花或原则性背叛能及时止损，绝不纠缠泥潭，保护自己免受长久伤害。 | **毁灭性沟通**：在正常磨合中缺乏缓冲带，容易在愤怒时说出不可挽回的绝情话，把原本可以通过沟通解决的矛盾推向死局。 | 分歧期引入“强制冷静时钟”，用文字沟通代替当面交锋，避开羊火的冲动峰值。 |","sourceHtml":"\u003ctable>\n\u003cthead>\n\u003ctr>\n\u003cth style=\"text-align:left\">你的能力与特质\u003c/th>\n\u003cth style=\"text-align:left\">经营关系时的正面威力\u003c/th>\n\u003cth style=\"text-align:left\">失去平衡时转化为的感情负担\u003c/th>\n\u003cth style=\"text-align:left\">调节的关键依据\u003c/th>\n\u003c/tr>\n\u003c/thead>\n\u003ctbody>\n\u003ctr>\n\u003ctd style=\"text-align:left\">\u003cstrong>能扛事、有谋略、敢付出\u003c/strong>\u003cbr>\u003cem>(官禄宫甲干飞廉贞禄入夫妻)\u003c/em>\u003c/td>\n\u003ctd style=\"text-align:left\">愿为伴侣托底，当伴侣遇到现实困难时，你能提供极其宝贵的资源和破局建议，是不可多得的现实贤内助。\u003c/td>\n\u003ctd style=\"text-align:left\">\u003cstrong>过界干涉与委屈感\u003c/strong>：当你过度介入对方的人生课题时，若对方不听或做不到，你就会产生“我全心为你，你却烂泥扶不上墙”的巨大怨气。\u003c/td>\n\u003ctd style=\"text-align:left\">守住“各自因果”边界，给对方留出犯错与独立承担的余地。\u003c/td>\n\u003c/tr>\n\u003ctr>\n\u003ctd style=\"text-align:left\">\u003cstrong>讲求原则、重视承诺\u003c/strong>\u003cbr>\u003cem>(福德武曲生年忌+自化忌)\u003c/em>\u003c/td>\n\u003ctd style=\"text-align:left\">感情忠诚度极高，言出必行，绝不会在道德底线和现实契约上含糊，给家庭极强的稳定托底。\u003c/td>\n\u003ctd style=\"text-align:left\">\u003cstrong>道德紧箍咒与精神内耗\u003c/strong>：把日常琐碎摩擦全部上升到“人品、原则与态度”层面，用非黑即白的法官视角审查伴侣，令对方战战兢兢。\u003c/td>\n\u003ctd style=\"text-align:left\">区分“根本原则”与“生活习惯/性格差异”，允许亲密关系中存在模糊和不完美。\u003c/td>\n\u003c/tr>\n\u003ctr>\n\u003ctd style=\"text-align:left\">\u003cstrong>决断快、效率高、边界清晰\u003c/strong>\u003cbr>\u003cem>(命宫擎羊、火星、地空)\u003c/em>\u003c/td>\n\u003ctd style=\"text-align:left\">遇到消耗性的烂桃花或原则性背叛能及时止损，绝不纠缠泥潭，保护自己免受长久伤害。\u003c/td>\n\u003ctd style=\"text-align:left\">\u003cstrong>毁灭性沟通\u003c/strong>：在正常磨合中缺乏缓冲带，容易在愤怒时说出不可挽回的绝情话，把原本可以通过沟通解决的矛盾推向死局。\u003c/td>\n\u003ctd style=\"text-align:left\">分歧期引入“强制冷静时钟”，用文字沟通代替当面交锋，避开羊火的冲动峰值。\u003c/td>\n\u003c/tr>\n\u003c/tbody>\n\u003c/table>\n"},{"id":"S2-4","title":"四、 适合与不适合你的伴侣模型：倾向、盘象与现实边界","sourceMarkdown":"课程强调，夫妻宫的星曜是命主投射的择偶滤镜，不能直接推导为对方的现实盘，但它清楚地区分了**“情感诱惑”**与**“生存适配”**：\r\n\r\n#### 1. 表面极具吸引力，但极易引发长期内耗的类型（“霸道总管型”）\r\n* **特征表现**：\r\n  社会地位高、说一不二、大男子主义、极度渴望掌控一切生活细节（紫微权与廉贞天府的强势面）。\r\n* **为何不利于长久**：\r\n  这种人最初能满足你对“强者”的崇拜，但一旦进入同居或婚姻，对方便会本能地行使“夫权入福”，试图彻底改造你的思想、干涉你的交友、甚至规训你的生活方式。这会直接激怒你命宫的擎羊与迁移的紫微权，演变为长年累月的“暗中较劲”与“冷战抗拒”，最终把感情消磨殆尽。\r\n\r\n#### 2. 真正适合你的伴侣特质与互动模式（“稳健守成、尊重边界的盟友型”）\r\n* **伴侣特质**：\r\n  * **性格稳重大气，但情绪基调柔和**：具备天府的安稳守成与廉贞的体面分寸，但在日常生活中不爱争长论短，懂得用温和理性的态度包容你的急脾气（不与羊火正面互怼）。\r\n  * **具有独立担当，但不热衷于支配他人**：在外面是独当一面的能手，回到家则愿意“放权”，尊重你的决定权与独立思维。\r\n* **最适合你们的相处结构**：\r\n  * **物理与心理空间的“适度自治”**：\r\n    课程案例中多次印证，夫妻宫带煞、互有刑冲或权忌干涉的格局，**“聚少离多”或“分工各管一摊”往往是极佳的化解良药**。例如双方各自有需要出差奔波的工作，或者在家庭分工中“一人管财务与资产，一人管日常事务”，互不强行干涉对方的操作细节，摩擦率会骤降。\r\n  * **共同锚定在“建家与资产积累”**：\r\n    田宅宫的双禄是你们最好的合力点。将注意力从“你今天态度好不好”转移到“我们今年一起买房、投资、经营共同资产”上，用务实的现实成就来转化精神内耗。","sourceHtml":"\u003cp>课程强调，夫妻宫的星曜是命主投射的择偶滤镜，不能直接推导为对方的现实盘，但它清楚地区分了**“情感诱惑”\u003cstrong>与\u003c/strong>“生存适配”**：\u003c/p>\n\u003ch4>1. 表面极具吸引力，但极易引发长期内耗的类型（“霸道总管型”）\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>特征表现\u003c/strong>：\n社会地位高、说一不二、大男子主义、极度渴望掌控一切生活细节（紫微权与廉贞天府的强势面）。\u003c/li>\n\u003cli>\u003cstrong>为何不利于长久\u003c/strong>：\n这种人最初能满足你对“强者”的崇拜，但一旦进入同居或婚姻，对方便会本能地行使“夫权入福”，试图彻底改造你的思想、干涉你的交友、甚至规训你的生活方式。这会直接激怒你命宫的擎羊与迁移的紫微权，演变为长年累月的“暗中较劲”与“冷战抗拒”，最终把感情消磨殆尽。\u003c/li>\n\u003c/ul>\n\u003ch4>2. 真正适合你的伴侣特质与互动模式（“稳健守成、尊重边界的盟友型”）\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>伴侣特质\u003c/strong>：\n\u003cul>\n\u003cli>\u003cstrong>性格稳重大气，但情绪基调柔和\u003c/strong>：具备天府的安稳守成与廉贞的体面分寸，但在日常生活中不爱争长论短，懂得用温和理性的态度包容你的急脾气（不与羊火正面互怼）。\u003c/li>\n\u003cli>\u003cstrong>具有独立担当，但不热衷于支配他人\u003c/strong>：在外面是独当一面的能手，回到家则愿意“放权”，尊重你的决定权与独立思维。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>最适合你们的相处结构\u003c/strong>：\n\u003cul>\n\u003cli>\u003cstrong>物理与心理空间的“适度自治”\u003c/strong>：\n课程案例中多次印证，夫妻宫带煞、互有刑冲或权忌干涉的格局，\u003cstrong>“聚少离多”或“分工各管一摊”往往是极佳的化解良药\u003c/strong>。例如双方各自有需要出差奔波的工作，或者在家庭分工中“一人管财务与资产，一人管日常事务”，互不强行干涉对方的操作细节，摩擦率会骤降。\u003c/li>\n\u003cli>\u003cstrong>共同锚定在“建家与资产积累”\u003c/strong>：\n田宅宫的双禄是你们最好的合力点。将注意力从“你今天态度好不好”转移到“我们今年一起买房、投资、经营共同资产”上，用务实的现实成就来转化精神内耗。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n"},{"id":"S2-5","title":"五、 核心矛盾的终极支柱：为什么“个人事业”是你感情的最强护城河？","sourceMarkdown":"在整张盘的联动中，事业不仅是赚钱的工具，更是你**感情生态的调节总阀门**：\r\n\r\n1. **能量守恒规律（官禄七杀飞禄入夫妻 vs 福德武曲双忌）**：\r\n   你身上蕴含着极强的杀破狼开拓力（命贪狼火羊、财破军马、官七杀），同时内心又有高密度的武曲双忌需要消解。\r\n   * **当你的事业全力运转时**：你的攻坚欲、好胜心和审查机制会完全被职场目标吸纳。工作上的突破会转化为成就感，官禄化禄入夫，使你在面对伴侣时呈现出温柔、慷慨、赞美和支持的状态。\r\n   * **当你的事业停滞、无聊或受挫时**：过剩的精力与内在的焦虑无处安放，福德的武曲忌就会转向内耗，并把放大镜对准伴侣——伴侣的某句无心之言、某个生活陋习，都会被你解读为不可忍受的危机。\r\n2. **结论**：\r\n   **保持对个人事业的独立追求与专注度，并不是感情的阻碍，反而是你维系长久健康亲密关系最重要的前提条件。** 只要你的个人天地足够宽广，你在感情中就会是那个游刃有余、懂生活又讲义气的最佳伴侣。","sourceHtml":"\u003cp>在整张盘的联动中，事业不仅是赚钱的工具，更是你\u003cstrong>感情生态的调节总阀门\u003c/strong>：\u003c/p>\n\u003col>\n\u003cli>\u003cstrong>能量守恒规律（官禄七杀飞禄入夫妻 vs 福德武曲双忌）\u003c/strong>：\n你身上蕴含着极强的杀破狼开拓力（命贪狼火羊、财破军马、官七杀），同时内心又有高密度的武曲双忌需要消解。\n\u003cul>\n\u003cli>\u003cstrong>当你的事业全力运转时\u003c/strong>：你的攻坚欲、好胜心和审查机制会完全被职场目标吸纳。工作上的突破会转化为成就感，官禄化禄入夫，使你在面对伴侣时呈现出温柔、慷慨、赞美和支持的状态。\u003c/li>\n\u003cli>\u003cstrong>当你的事业停滞、无聊或受挫时\u003c/strong>：过剩的精力与内在的焦虑无处安放，福德的武曲忌就会转向内耗，并把放大镜对准伴侣——伴侣的某句无心之言、某个生活陋习，都会被你解读为不可忍受的危机。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>结论\u003c/strong>：\n\u003cstrong>保持对个人事业的独立追求与专注度，并不是感情的阻碍，反而是你维系长久健康亲密关系最重要的前提条件。\u003c/strong> 只要你的个人天地足够宽广，你在感情中就会是那个游刃有余、懂生活又讲义气的最佳伴侣。\u003c/li>\n\u003c/ol>\n"}]},{"question":3,"title":"2026—2027年的感情变化","intro":"从你盘面在当前**23—32岁庚戌大限**的坐标出发，结合2026丙午年剩余阶段与2027丁未年的流年飞星，这两年你在感情上呈现出截然不同的气象与课题。","openingHtml":"\u003cp>从你盘面在当前\u003cstrong>23—32岁庚戌大限\u003c/strong>的坐标出发，结合2026丙午年剩余阶段与2027丁未年的流年飞星，这两年你在感情上呈现出截然不同的气象与课题。\u003c/p>\n","sections":[{"id":"S3-1","title":"一、 2026年剩余阶段 vs 2027年：核心区别与发展动线","sourceMarkdown":"这两年最主要的区别可以概括为：**2026年是“规则碰撞、心结审查与阻力出清期”，而2027年则是“温和沟通机缘打开，但自身心理与外界环境受扰期”。**\r\n\r\n#### 1. 2026年剩余阶段（丙午年）：阻力集中于夫妻与规则，重在稳住心神、避免决绝断裂\r\n* **盘面依据**：\r\n  * **流年命宫**在丙午（重叠本命迁移、大限财帛），坐紫微生年权；**流年夫妻宫**在甲辰（重叠本命官禄、大限迁移），坐七杀。\r\n  * **2026流年天干为丙**：天同化禄入癸丑（本命父母/大限田宅/流年疾厄），天机化权入乙巳（本命交友），文昌化科入辛亥（本命兄弟），而**廉贞化忌直接飞入庚戌（重叠本命夫妻、当前大限命宫、流年官禄）**，并正向**对冲甲辰（2026流年夫妻宫）**！\r\n* **具体表现与发展判断**：\r\n  * **规则感与原则心结加重**：廉贞主条理、规矩、道德次序与精神锁扣。廉贞化忌叠入本命夫妻宫和大限命宫，且宫内同坐陀罗与地劫，直接冲动流年夫妻位。这意味着2026年尾声在感情领域是一个“卡顿感强、防备心重、容易为规矩或原则闹别扭”的时段。\r\n  * **如果已有伴侣**：双方最容易在“事业与生活的分工、日常责任的承诺是否兑现、彼此态度是否合乎规矩”上发生暗中较劲。陀罗的打转遇上廉贞忌，容易翻旧账或心里觉得委屈失望，甚至产生冷战与精神疏离。\r\n  * **如果目前单身**：这一阶段并非轻松敲定良缘的窗口。接触到的人可能自带较强的现实包袱或观念摩擦，你自身的审查防备也处于高位，宁缺毋滥，容易在初期接触中因为细节踩雷而迅速叫停。\r\n  * **此时你最该看重的**：**“不激化矛盾，不做情绪化的彻底断舍离”**。廉贞忌冲流夫时，硬要争出谁对谁错只会加剧内耗。\r\n\r\n#### 2. 2027年（丁未年）：外部机缘转柔和、斯文贵人显现，但自身心神容易被外界干扰\r\n* **盘面依据**：\r\n  * **流年命宫**在丁未（重叠本命疾厄、大限子女）；**流年夫妻宫**在乙巳（重叠本命交友、大限疾厄），坐天机、天钺。\r\n  * **2027流年天干为丁**：\r\n    * **天机化科入乙巳（2027流年夫妻宫）**，且对宫辛亥有太阴化禄并坐禄存（双禄交驰拱照流夫）；\r\n    * 天同化权入癸丑（流年迁移）；\r\n    * **巨门化忌入癸丑（流年迁移），正冲丁未（2027流年命宫）**！\r\n* **具体表现与发展判断**：\r\n  * **感情互动的画风大幅柔化（天机科+天钺+双禄照）**：天机主脑力、智识与灵动，化科主名声、礼貌、温和安抚与体面交流；天钺是贵人星。这表明2027年两性接触的阻力不再集中于“硬碰硬的审查”，相处氛围明显轻松、理性、斯文许多。\r\n  * **机会来源（交友位引动）**：由于流夫叠在本命交友宫，2027年的情感机缘极易通过**同学圈、朋友引荐、职场同行或社交活动**自然展开。\r\n  * **真正的阻力来源（巨门忌冲流年命宫）**：2027年最大的考验不在对方好不好，而在**你自己的身心承载力与外界口舌**。巨门化忌冲流命（本命疾厄），代表在2027年，你容易因为工作劳累、身体精力下降、家庭/住所琐事，或者外界环境的风言风语而感到心烦意乱、缺乏安全感。\r\n  * **如果已有伴侣**：两人之间的直接沟通能够讲通道理（天机科），但要极力防范因为外部家庭杂音、外人评价或你个人情绪不佳时导致的无端猜疑。\r\n  * **如果目前单身**：2027年有非常值得关注的、能聊得来的斯文智识型桃花机缘，但你在建立信任时，容易受巨门忌的疑心影响，需要给自己多一点观察期。","sourceHtml":"\u003cp>这两年最主要的区别可以概括为：\u003cstrong>2026年是“规则碰撞、心结审查与阻力出清期”，而2027年则是“温和沟通机缘打开，但自身心理与外界环境受扰期”。\u003c/strong>\u003c/p>\n\u003ch4>1. 2026年剩余阶段（丙午年）：阻力集中于夫妻与规则，重在稳住心神、避免决绝断裂\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>盘面依据\u003c/strong>：\n\u003cul>\n\u003cli>\u003cstrong>流年命宫\u003c/strong>在丙午（重叠本命迁移、大限财帛），坐紫微生年权；\u003cstrong>流年夫妻宫\u003c/strong>在甲辰（重叠本命官禄、大限迁移），坐七杀。\u003c/li>\n\u003cli>\u003cstrong>2026流年天干为丙\u003c/strong>：天同化禄入癸丑（本命父母/大限田宅/流年疾厄），天机化权入乙巳（本命交友），文昌化科入辛亥（本命兄弟），而\u003cstrong>廉贞化忌直接飞入庚戌（重叠本命夫妻、当前大限命宫、流年官禄）\u003c/strong>，并正向\u003cstrong>对冲甲辰（2026流年夫妻宫）\u003c/strong>！\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>具体表现与发展判断\u003c/strong>：\n\u003cul>\n\u003cli>\u003cstrong>规则感与原则心结加重\u003c/strong>：廉贞主条理、规矩、道德次序与精神锁扣。廉贞化忌叠入本命夫妻宫和大限命宫，且宫内同坐陀罗与地劫，直接冲动流年夫妻位。这意味着2026年尾声在感情领域是一个“卡顿感强、防备心重、容易为规矩或原则闹别扭”的时段。\u003c/li>\n\u003cli>\u003cstrong>如果已有伴侣\u003c/strong>：双方最容易在“事业与生活的分工、日常责任的承诺是否兑现、彼此态度是否合乎规矩”上发生暗中较劲。陀罗的打转遇上廉贞忌，容易翻旧账或心里觉得委屈失望，甚至产生冷战与精神疏离。\u003c/li>\n\u003cli>\u003cstrong>如果目前单身\u003c/strong>：这一阶段并非轻松敲定良缘的窗口。接触到的人可能自带较强的现实包袱或观念摩擦，你自身的审查防备也处于高位，宁缺毋滥，容易在初期接触中因为细节踩雷而迅速叫停。\u003c/li>\n\u003cli>\u003cstrong>此时你最该看重的\u003c/strong>：\u003cstrong>“不激化矛盾，不做情绪化的彻底断舍离”\u003c/strong>。廉贞忌冲流夫时，硬要争出谁对谁错只会加剧内耗。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n\u003ch4>2. 2027年（丁未年）：外部机缘转柔和、斯文贵人显现，但自身心神容易被外界干扰\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>盘面依据\u003c/strong>：\n\u003cul>\n\u003cli>\u003cstrong>流年命宫\u003c/strong>在丁未（重叠本命疾厄、大限子女）；\u003cstrong>流年夫妻宫\u003c/strong>在乙巳（重叠本命交友、大限疾厄），坐天机、天钺。\u003c/li>\n\u003cli>\u003cstrong>2027流年天干为丁\u003c/strong>：\n\u003cul>\n\u003cli>\u003cstrong>天机化科入乙巳（2027流年夫妻宫）\u003c/strong>，且对宫辛亥有太阴化禄并坐禄存（双禄交驰拱照流夫）；\u003c/li>\n\u003cli>天同化权入癸丑（流年迁移）；\u003c/li>\n\u003cli>\u003cstrong>巨门化忌入癸丑（流年迁移），正冲丁未（2027流年命宫）\u003c/strong>！\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>具体表现与发展判断\u003c/strong>：\n\u003cul>\n\u003cli>\u003cstrong>感情互动的画风大幅柔化（天机科+天钺+双禄照）\u003c/strong>：天机主脑力、智识与灵动，化科主名声、礼貌、温和安抚与体面交流；天钺是贵人星。这表明2027年两性接触的阻力不再集中于“硬碰硬的审查”，相处氛围明显轻松、理性、斯文许多。\u003c/li>\n\u003cli>\u003cstrong>机会来源（交友位引动）\u003c/strong>：由于流夫叠在本命交友宫，2027年的情感机缘极易通过\u003cstrong>同学圈、朋友引荐、职场同行或社交活动\u003c/strong>自然展开。\u003c/li>\n\u003cli>\u003cstrong>真正的阻力来源（巨门忌冲流年命宫）\u003c/strong>：2027年最大的考验不在对方好不好，而在\u003cstrong>你自己的身心承载力与外界口舌\u003c/strong>。巨门化忌冲流命（本命疾厄），代表在2027年，你容易因为工作劳累、身体精力下降、家庭/住所琐事，或者外界环境的风言风语而感到心烦意乱、缺乏安全感。\u003c/li>\n\u003cli>\u003cstrong>如果已有伴侣\u003c/strong>：两人之间的直接沟通能够讲通道理（天机科），但要极力防范因为外部家庭杂音、外人评价或你个人情绪不佳时导致的无端猜疑。\u003c/li>\n\u003cli>\u003cstrong>如果目前单身\u003c/strong>：2027年有非常值得关注的、能聊得来的斯文智识型桃花机缘，但你在建立信任时，容易受巨门忌的疑心影响，需要给自己多一点观察期。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n"},{"id":"S3-2","title":"二、 长期底色与近两年结合：感情上最值得记住的三件事","sourceMarkdown":"结合你的全盘长期结构与这两年的运程转换，以下三件事是你最需要分清主次的指南：\r\n\r\n#### 1. 【需要自己调整的】：打破“陀罗式闷着忍耐 ➔ 擎羊火星式掀桌断裂”的极端沟通循环\r\n* **为什么必须调整**：\r\n  你夫妻宫坐陀罗，福德宫坐武曲生年忌与自化忌，遇到分歧时你习惯在心里自己打转、扣分、闷着不吭声；可一旦超过容忍阈值，命宫的擎羊与火星便会瞬间接管，爆发出不可逆转的绝情决裂。\r\n* **具体做法**：\r\n  在相处中引入**“早期温和反馈机制”**。感到被冒犯或不适时，在小事阶段就用事实平和沟通，不要因为怕冲突而压抑，更不要等内耗蓄满后再一瞬间用最伤人的话炸毁关系。\r\n\r\n#### 2. 【需要客观判断的】：严格审查对方是“稳健担当的盟友”，还是“试图改造你的精神独裁者”\r\n* **为什么不能盲目要求自己迁就**：\r\n  你夫妻宫庚干化武曲权直接压入福德宫。你天生容易被有主见的强人吸引，但你骨子里极具自尊，精神防线坚硬。\r\n* **判断标准**：\r\n  如果一个伴侣的“强势”体现为**在外部风雨中能扛大事、做实事，但在家懂得尊重你的私人界限与独立思维**，这是你的正向福禄；反之，若对方将强势用在**规训你的思想、干涉你的交友、强行改变你的原则**上，这属于结构性的“权忌交战”，这种不合适绝不是通过你委屈自己就能弥平的，必须果断设立防线。\r\n\r\n#### 3. 【需要客观判断的】：审视两人的精力是凝聚在“现实筑巢”，还是消耗在“情绪审查”\r\n* **为什么这是长久的试金石**：\r\n  你的命宫与夫妻宫双双化禄汇聚于田宅宫（癸卯·天梁生年禄、太阳）。这意味着你所有的安全感与福气，最终都要落实在**“共同拥有一个安稳的家、共同守护一份长远的家庭资产”**上。\r\n* **判断标准**：\r\n  适合你的长久关系，必定是“务实合伙”的——两人有共同的生活目标，各司其职，彼此留有适度的物理与生活空间（甚至适度聚少离多）。若一段关系长年累月卡在“你爱不爱我、谁听谁的、互相挑刺打冷战”的情绪泥潭中，说明这段关系严重脱离了你命盘最健康的滋养轨道。","sourceHtml":"\u003cp>结合你的全盘长期结构与这两年的运程转换，以下三件事是你最需要分清主次的指南：\u003c/p>\n\u003ch4>1. 【需要自己调整的】：打破“陀罗式闷着忍耐 ➔ 擎羊火星式掀桌断裂”的极端沟通循环\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>为什么必须调整\u003c/strong>：\n你夫妻宫坐陀罗，福德宫坐武曲生年忌与自化忌，遇到分歧时你习惯在心里自己打转、扣分、闷着不吭声；可一旦超过容忍阈值，命宫的擎羊与火星便会瞬间接管，爆发出不可逆转的绝情决裂。\u003c/li>\n\u003cli>\u003cstrong>具体做法\u003c/strong>：\n在相处中引入**“早期温和反馈机制”**。感到被冒犯或不适时，在小事阶段就用事实平和沟通，不要因为怕冲突而压抑，更不要等内耗蓄满后再一瞬间用最伤人的话炸毁关系。\u003c/li>\n\u003c/ul>\n\u003ch4>2. 【需要客观判断的】：严格审查对方是“稳健担当的盟友”，还是“试图改造你的精神独裁者”\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>为什么不能盲目要求自己迁就\u003c/strong>：\n你夫妻宫庚干化武曲权直接压入福德宫。你天生容易被有主见的强人吸引，但你骨子里极具自尊，精神防线坚硬。\u003c/li>\n\u003cli>\u003cstrong>判断标准\u003c/strong>：\n如果一个伴侣的“强势”体现为\u003cstrong>在外部风雨中能扛大事、做实事，但在家懂得尊重你的私人界限与独立思维\u003c/strong>，这是你的正向福禄；反之，若对方将强势用在\u003cstrong>规训你的思想、干涉你的交友、强行改变你的原则\u003c/strong>上，这属于结构性的“权忌交战”，这种不合适绝不是通过你委屈自己就能弥平的，必须果断设立防线。\u003c/li>\n\u003c/ul>\n\u003ch4>3. 【需要客观判断的】：审视两人的精力是凝聚在“现实筑巢”，还是消耗在“情绪审查”\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>为什么这是长久的试金石\u003c/strong>：\n你的命宫与夫妻宫双双化禄汇聚于田宅宫（癸卯·天梁生年禄、太阳）。这意味着你所有的安全感与福气，最终都要落实在**“共同拥有一个安稳的家、共同守护一份长远的家庭资产”**上。\u003c/li>\n\u003cli>\u003cstrong>判断标准\u003c/strong>：\n适合你的长久关系，必定是“务实合伙”的——两人有共同的生活目标，各司其职，彼此留有适度的物理与生活空间（甚至适度聚少离多）。若一段关系长年累月卡在“你爱不爱我、谁听谁的、互相挑刺打冷战”的情绪泥潭中，说明这段关系严重脱离了你命盘最健康的滋养轨道。\u003c/li>\n\u003c/ul>\n"},{"id":"S3-3","title":"为进一步贴近现实，请问三个简短问题：","sourceMarkdown":"1. 你目前是有正在相处/考量的特定对象，还是完全处于单身自由状态？\r\n2. 在过去的相处经历中，最让你无法忍受的是对方的“专横管束、试图说教”，还是“软弱无能、缺乏现实担当”？\r\n3. 你当前的工作或个人事业，近期是否有出差奔波、岗位调整或较为繁重的变动？","sourceHtml":"\u003col>\n\u003cli>你目前是有正在相处/考量的特定对象，还是完全处于单身自由状态？\u003c/li>\n\u003cli>在过去的相处经历中，最让你无法忍受的是对方的“专横管束、试图说教”，还是“软弱无能、缺乏现实担当”？\u003c/li>\n\u003cli>你当前的工作或个人事业，近期是否有出差奔波、岗位调整或较为繁重的变动？\u003c/li>\n\u003c/ol>\n"}]}]};
+    const STORAGE_KEY = 'romance-reading-8e4b2a91-v1';
+    const root = document.documentElement;
+    const reportBody = document.getElementById('reportBody');
+    const selectionToolbar = document.getElementById('selectionToolbar');
+    let state = loadState();
+    let pendingSelection = null;
+    let editingId = null;
+    let noteColor = 'yellow';
+    let toastTimer;
+    let scrollFrame;
+
+    function loadState() {
+      const fallback = { settings:{font:18,line:1.92,theme:'paper'}, annotations:[], scroll:0 };
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+        return saved ? { ...fallback, ...saved, settings:{...fallback.settings,...saved.settings}, annotations:Array.isArray(saved.annotations)?saved.annotations:[] } : fallback;
+      } catch { return fallback; }
+    }
+    function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+    function escapeHtml(value) { return String(value).replace(/[&<>"']/g, function(char){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[char]; }); }
+    function showToast(message) { const toast=document.getElementById('toast'); toast.textContent=message; toast.classList.add('open'); clearTimeout(toastTimer); toastTimer=setTimeout(function(){toast.classList.remove('open');},2200); }
+    function blockTextMap() {
+      const map = { 'reading-note': document.querySelector('[data-block-id="reading-note"]')?.textContent || '' };
+      REPORT.chapters.forEach(function(chapter){ chapter.sections.forEach(function(section){ if(section.sourceHtml){map[section.id+'-answer']={html:section.sourceHtml};}else{['answer','reasoning','synthesis','boundary'].forEach(function(field){ if(section[field]) map[section.id+'-'+field]=section[field]; });} }); });
+      return map;
+    }
+    function renderReport() {
+      reportBody.innerHTML = REPORT.chapters.map(function(chapter,index){
+        const chapterId='chapter-'+String(chapter.question).toLowerCase();
+        const sections=chapter.sections.map(function(section){
+          return '<section class="topic" id="'+escapeHtml(section.id.toLowerCase())+'">'+
+            '<h3>'+escapeHtml(section.title)+'</h3>'+
+            (section.sourceHtml?'<div class="source-body" data-block-id="'+escapeHtml(section.id)+'-answer">'+section.sourceHtml+'</div>':(section.answer?'<p class="lead" data-block-id="'+escapeHtml(section.id)+'-answer">'+escapeHtml(section.answer)+'</p>':''))+
+            (section.reasoning?'<div class="analysis-label">论盘依据</div><p class="reasoning" data-block-id="'+escapeHtml(section.id)+'-reasoning">'+escapeHtml(section.reasoning)+'</p>':'')+
+            (section.synthesis?'<div class="analysis-label">合参结果</div><p class="synthesis" data-block-id="'+escapeHtml(section.id)+'-synthesis">'+escapeHtml(section.synthesis)+'</p>':'')+
+            (section.boundary?'<p class="boundary" data-block-id="'+escapeHtml(section.id)+'-boundary">'+escapeHtml(section.boundary)+'</p>':'')+
+          '</section>';
+        }).join('');
+        return '<section class="chapter" id="'+chapterId+'"><p class="chapter-label">第 '+(index+1)+' 章</p><h2>'+escapeHtml(chapter.title)+'</h2>'+(chapter.openingHtml?'<div class="source-body supplement-opening">'+chapter.openingHtml+'</div>':'<details class="method"><summary>本章取法</summary><p>'+escapeHtml(chapter.intro)+'</p>'+(chapter.introHtml||'')+'</details>')+sections+'</section>';
+      }).join('');
+      document.getElementById('tocList').innerHTML = REPORT.chapters.map(function(chapter,index){ return '<li><a href="#chapter-'+String(chapter.question).toLowerCase()+'"><small>'+(index+1).toString().padStart(2,'0')+'</small><span>'+escapeHtml(chapter.title)+'</span></a></li>'; }).join('');
+      renderHighlights(); renderAnnotations();
+    }
+    function contextFor(blockId) {
+      const sectionId=blockId.replace(/-(?:answer|reasoning|synthesis|boundary)$/,'');
+      for(const chapter of REPORT.chapters){ const section=chapter.sections.find(function(item){return item.id===sectionId;}); if(section) return chapter.title+' · '+section.title; }
+      return '阅读说明';
+    }
+    function renderAnnotations() {
+      const list=document.getElementById('annotationList');
+      if(!state.annotations.length){ list.innerHTML='<div class="empty-state">还没有批注。<br>在正文里长按并选中文字即可开始。</div>'; return; }
+      list.innerHTML=state.annotations.map(function(item){
+        return '<div class="annotation-item"><span class="annotation-swatch color-'+escapeHtml(item.color)+'"></span><div class="annotation-copy"><p class="annotation-quote">'+escapeHtml(item.quote)+'</p>'+(item.note?'<p class="annotation-note">'+escapeHtml(item.note)+'</p>':'')+'<p class="annotation-context">'+escapeHtml(item.context)+'</p></div><div class="annotation-actions"><button class="mini-btn" type="button" data-locate="'+escapeHtml(item.id)+'" aria-label="定位原文">⌖</button><button class="mini-btn" type="button" data-edit="'+escapeHtml(item.id)+'" aria-label="编辑批注">✎</button></div></div>';
+      }).join('');
+    }
+    function applySettings() {
+      root.style.setProperty('--font-size',state.settings.font+'px'); root.style.setProperty('--line-height',Number(state.settings.line).toFixed(2)); root.dataset.theme=state.settings.theme;
+      document.getElementById('fontValue').textContent=state.settings.font; document.getElementById('lineValue').textContent=Number(state.settings.line).toFixed(2);
+      document.querySelectorAll('.theme-dot').forEach(function(button){button.classList.toggle('active',button.dataset.theme===state.settings.theme);});
+      document.getElementById('themeColor').content=state.settings.theme==='dark'?'#191a1c':state.settings.theme==='green'?'#e3ebdf':state.settings.theme==='white'?'#fcfcfb':'#f5f2ea'; saveState();
+    }
+    function openSheet(id) { closeSheets(); document.getElementById(id).classList.add('open'); document.getElementById('overlay').classList.add('open'); if(id==='annotationsSheet') renderAnnotations(); }
+    function closeSheets() { document.querySelectorAll('.sheet.open').forEach(function(sheet){sheet.classList.remove('open');}); document.getElementById('overlay').classList.remove('open'); }
+    function clearSelection() { pendingSelection=null; selectionToolbar.classList.remove('open'); const selection=getSelection(); if(selection) selection.removeAllRanges(); }
+    function textOffset(block,node,offset) { const range=document.createRange(); range.selectNodeContents(block); range.setEnd(node,offset); return range.toString().length; }
+    function captureSelection() {
+      const selection=getSelection(); if(!selection || selection.isCollapsed || !selection.rangeCount) return;
+      const range=selection.getRangeAt(0); const startElement=range.startContainer.nodeType===1?range.startContainer:range.startContainer.parentElement; const endElement=range.endContainer.nodeType===1?range.endContainer:range.endContainer.parentElement;
+      const startBlock=startElement?.closest('[data-block-id]'); const endBlock=endElement?.closest('[data-block-id]'); if(!startBlock || !endBlock) return;
+      const blocks=Array.from(document.querySelectorAll('main [data-block-id]')); let startIndex=blocks.indexOf(startBlock),endIndex=blocks.indexOf(endBlock); if(startIndex<0||endIndex<0)return; if(startIndex>endIndex){const temp=startIndex;startIndex=endIndex;endIndex=temp;}
+      const segments=[]; for(let index=startIndex;index<=endIndex;index+=1){const block=blocks[index];const length=block.textContent.length;const start=index===startIndex?textOffset(block,range.startContainer,range.startOffset):0;const end=index===endIndex?textOffset(block,range.endContainer,range.endOffset):length;if(end>start)segments.push({blockId:block.dataset.blockId,start:start,end:end});}
+      const quote=selection.toString().replace(/s+/g,' ').trim(); if(!quote||!segments.length)return; pendingSelection={quote:quote,segments:segments,context:contextFor(segments[0].blockId)}; selectionToolbar.classList.add('open');
+    }
+    function overlaps(segments,ignoreId) { return state.annotations.some(function(item){if(item.id===ignoreId)return false;return item.segments.some(function(existing){return segments.some(function(segment){return existing.blockId===segment.blockId&&segment.start<existing.end&&segment.end>existing.start;});});}); }
+    function createAnnotation(color,note) {
+      if(!pendingSelection)return null; if(overlaps(pendingSelection.segments,null)){showToast('这段已经有标记，可从批注列表修改');return null;}
+      const item={id:crypto.randomUUID?crypto.randomUUID():String(Date.now())+Math.random(),color:color,quote:pendingSelection.quote,note:note||'',context:pendingSelection.context,segments:pendingSelection.segments,createdAt:new Date().toISOString()}; state.annotations.push(item);saveState();clearSelection();renderHighlights();renderAnnotations();return item;
+    }
+    function findTextPoint(element,target) { const walker=document.createTreeWalker(element,NodeFilter.SHOW_TEXT);let node,seen=0;while((node=walker.nextNode())){const next=seen+node.nodeValue.length;if(target<=next)return{node:node,offset:Math.max(0,target-seen)};seen=next;}return null; }
+    function renderHighlights() {
+      const originals=blockTextMap(); Object.entries(originals).forEach(function(entry){const element=document.querySelector('[data-block-id="'+entry[0]+'"]');if(element){if(typeof entry[1]==='object')element.innerHTML=entry[1].html;else element.textContent=entry[1];}});
+      const byBlock={};state.annotations.forEach(function(item){item.segments.forEach(function(segment){(byBlock[segment.blockId]||=[]).push({...segment,item:item});});});
+      Object.entries(byBlock).forEach(function(entry){const element=document.querySelector('[data-block-id="'+entry[0]+'"]');if(!element)return;entry[1].sort(function(a,b){return b.start-a.start;}).forEach(function(segment){const start=findTextPoint(element,segment.start),end=findTextPoint(element,segment.end);if(!start||!end)return;const range=document.createRange();range.setStart(start.node,start.offset);range.setEnd(end.node,end.offset);const mark=document.createElement('mark');mark.className='reader-highlight'+(segment.item.note?' has-note':'');mark.dataset.annotationId=segment.item.id;mark.dataset.color=segment.item.color;try{range.surroundContents(mark);}catch{}});});
+    }
+    function openNoteEditor(item) { editingId=item?.id||null;noteColor=item?.color||'yellow';document.getElementById('noteTitle').textContent=item?'编辑批注':'添加批注';document.getElementById('noteQuote').textContent=item?.quote||pendingSelection?.quote||'';document.getElementById('noteText').value=item?.note||'';document.getElementById('deleteNoteBtn').hidden=!item;document.querySelectorAll('[data-note-color]').forEach(function(button){button.classList.toggle('active',button.dataset.noteColor===noteColor);});openSheet('noteSheet');setTimeout(function(){document.getElementById('noteText').focus();},260); }
+    function saveNote() { const note=document.getElementById('noteText').value.trim();if(editingId){const item=state.annotations.find(function(value){return value.id===editingId;});if(item){item.note=note;item.color=noteColor;}saveState();closeSheets();renderHighlights();renderAnnotations();showToast('批注已保存');}else{const item=createAnnotation(noteColor,note);if(item){closeSheets();showToast(note?'批注已保存':'重点已标记');}} }
+    function deleteNote() { if(!editingId)return;state.annotations=state.annotations.filter(function(item){return item.id!==editingId;});saveState();closeSheets();renderHighlights();renderAnnotations();showToast('批注已删除'); }
+    function locateNote(id) { const mark=document.querySelector('mark[data-annotation-id="'+id+'"]');if(mark){closeSheets();mark.scrollIntoView({behavior:'smooth',block:'center'});} }
+    function notesText() { if(!state.annotations.length)return '';return '《紫微斗数进阶论盘》批注\n\n'+state.annotations.map(function(item,index){return (index+1)+'. '+item.context+'\n「'+item.quote+'」'+(item.note?'\n批注：'+item.note:'');}).join('\n\n'); }
+    function reportText() {
+      const lines=[REPORT.title,'',REPORT.subtitle,'','阅读之前','',document.querySelector('[data-block-id="reading-note"]')?.textContent||''];
+      REPORT.chapters.forEach(function(chapter,index){
+        lines.push('','第 '+(index+1)+' 章 '+chapter.title,'',chapter.intro);if(chapter.introMarkdown)lines.push('','本题看盘路径',chapter.introMarkdown);
+        chapter.sections.forEach(function(section){
+          lines.push('',section.title);
+          if(section.sourceMarkdown)lines.push('',section.sourceMarkdown);else if(section.answer)lines.push('',section.answer);
+          if(section.reasoning)lines.push('','论盘依据',section.reasoning);
+          if(section.synthesis)lines.push('','合参结果',section.synthesis);
+          if(section.boundary)lines.push('','边界与补充',section.boundary);
+        });
+      });
+      return lines.filter(function(line,index){return line!==undefined&&line!==null&&(line!==''||lines[index-1]!=='');}).join('\n').trim()+'\n';
+    }
+    async function copyText(text,message) {
+      try {
+        if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text);}else{throw new Error('Clipboard API unavailable');}
+        showToast(message);
+      } catch {
+        const area=document.createElement('textarea');area.value=text;area.setAttribute('readonly','');area.style.cssText='position:fixed;left:-9999px;top:0;opacity:0';document.body.appendChild(area);area.select();area.setSelectionRange(0,area.value.length);
+        try{if(!document.execCommand('copy'))throw new Error('Copy failed');showToast(message);}catch{showToast('复制失败，请长按正文后全选复制');}finally{area.remove();}
+      }
+    }
+    async function sharePage() { if(navigator.share){try{await navigator.share({title:document.title,url:location.href});}catch{}}else{copyText(location.href,'链接已复制');} }
+    async function shareNotes() { const text=notesText();if(!text){showToast('还没有可分享的批注');return;}if(navigator.share){try{await navigator.share({title:'论盘批注',text:text});}catch{}}else{copyText(text,'批注已复制');} }
+    function updateProgress(save) { const max=Math.max(1,document.documentElement.scrollHeight-innerHeight);const percent=Math.min(100,Math.max(0,Math.round(scrollY/max*100)));document.getElementById('progressBar').style.width=percent+'%';document.getElementById('topProgress').textContent='已读 '+percent+'%';if(save){state.scroll=scrollY;saveState();} }
+
+    renderReport();applySettings();
+    document.querySelectorAll('[data-sheet]').forEach(function(button){button.addEventListener('click',function(){openSheet(button.dataset.sheet);});});
+    document.getElementById('overlay').addEventListener('click',closeSheets);
+    document.getElementById('tocList').addEventListener('click',function(event){if(event.target.closest('a'))closeSheets();});
+    document.getElementById('fontDown').addEventListener('click',function(){state.settings.font=Math.max(16,state.settings.font-1);applySettings();});
+    document.getElementById('fontUp').addEventListener('click',function(){state.settings.font=Math.min(26,state.settings.font+1);applySettings();});
+    document.getElementById('lineDown').addEventListener('click',function(){state.settings.line=Math.max(1.65,state.settings.line-.1);applySettings();});
+    document.getElementById('lineUp').addEventListener('click',function(){state.settings.line=Math.min(2.3,state.settings.line+.1);applySettings();});
+    document.querySelectorAll('.theme-dot').forEach(function(button){button.addEventListener('click',function(){state.settings.theme=button.dataset.theme;applySettings();});});
+    document.getElementById('topShareBtn').addEventListener('click',sharePage);document.getElementById('copyFullBtn').addEventListener('click',function(){copyText(reportText(),'全文已复制');});
+    document.getElementById('shareNotesBtn').addEventListener('click',shareNotes);document.getElementById('copyNotesBtn').addEventListener('click',function(){const text=notesText();if(text)copyText(text,'批注已复制');else showToast('还没有可复制的批注');});
+    document.querySelector('main').addEventListener('click',function(event){const mark=event.target.closest('mark[data-annotation-id]');if(mark){const item=state.annotations.find(function(value){return value.id===mark.dataset.annotationId;});if(item)openNoteEditor(item);}});
+    document.querySelector('main').addEventListener('mouseup',function(){setTimeout(captureSelection,20);});document.querySelector('main').addEventListener('touchend',function(){setTimeout(captureSelection,120);},{passive:true});
+    document.querySelectorAll('[data-highlight-color]').forEach(function(button){button.addEventListener('click',function(){if(createAnnotation(button.dataset.highlightColor,''))showToast('重点已标记');});});
+    document.getElementById('selectionNoteBtn').addEventListener('click',function(){if(pendingSelection)openNoteEditor(null);});
+    document.querySelectorAll('[data-note-color]').forEach(function(button){button.addEventListener('click',function(){noteColor=button.dataset.noteColor;document.querySelectorAll('[data-note-color]').forEach(function(item){item.classList.toggle('active',item===button);});});});
+    document.getElementById('saveNoteBtn').addEventListener('click',saveNote);document.getElementById('cancelNoteBtn').addEventListener('click',function(){closeSheets();if(!editingId)clearSelection();});document.getElementById('deleteNoteBtn').addEventListener('click',deleteNote);
+    document.getElementById('annotationList').addEventListener('click',function(event){const locate=event.target.closest('[data-locate]'),edit=event.target.closest('[data-edit]');if(locate)locateNote(locate.dataset.locate);if(edit){const item=state.annotations.find(function(value){return value.id===edit.dataset.edit;});if(item)openNoteEditor(item);}});
+    addEventListener('scroll',function(){cancelAnimationFrame(scrollFrame);scrollFrame=requestAnimationFrame(function(){updateProgress(true);});},{passive:true});
+    addEventListener('load',function(){if(state.scroll>0&&state.scroll<document.documentElement.scrollHeight-innerHeight)scrollTo(0,state.scroll);updateProgress(false);});
+  </script>
+<script>document.querySelectorAll('.source-body table').forEach(t=>{const h=[...t.querySelectorAll('th')].map(x=>x.textContent);t.querySelectorAll('tbody tr').forEach(r=>[...r.children].forEach((c,i)=>c.dataset.label=h[i]||''))});</script></body>
+</html>
