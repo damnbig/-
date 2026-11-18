@@ -1,0 +1,1086 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="robots" content="noindex,nofollow,noarchive,nosnippet" />
+  <meta name="googlebot" content="noindex,nofollow,noarchive,nosnippet" />
+  <meta name="theme-color" content="#f5f2ea" id="themeColor" />
+  <title>感情与事业</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg:#f5f2ea; --surface:rgba(250,248,243,.97); --text:#20242c; --muted:#747980;
+      --line:rgba(32,36,44,.14); --accent:#6d42e8; --accent-soft:rgba(109,66,232,.09);
+      --secondary:#356957; --warm:#a24e48; --page:760px; --font-size:18px; --line-height:1.92;
+      --yellow:rgba(246,207,74,.48); --green:rgba(92,184,121,.38); --blue:rgba(79,151,214,.34); --red:rgba(221,103,96,.36);
+    }
+    html[data-theme="white"] { --bg:#fcfcfb; --surface:rgba(255,255,255,.97); --text:#1e2228; --muted:#73777d; }
+    html[data-theme="green"] { --bg:#e3ebdf; --surface:rgba(237,243,233,.97); --text:#253028; --muted:#687169; --accent:#6340c9; }
+    html[data-theme="dark"] { color-scheme:dark; --bg:#191a1c; --surface:rgba(29,30,33,.98); --text:#d5d2ca; --muted:#929189; --line:rgba(255,255,255,.12); --accent:#a78bfa; --accent-soft:rgba(167,139,250,.12); --secondary:#77bfa3; --warm:#df8d84; --yellow:rgba(180,141,38,.48); --green:rgba(48,136,75,.45); --blue:rgba(46,112,164,.48); --red:rgba(168,68,62,.48); }
+    * { box-sizing:border-box; }
+    html { background:var(--bg); scroll-behavior:smooth; }
+    body { margin:0; background:var(--bg); color:var(--text); font-family:"Noto Serif SC","Source Han Serif SC","Songti SC","STSong",serif; -webkit-font-smoothing:antialiased; }
+    button,textarea { color:inherit; -webkit-tap-highlight-color:transparent; }
+    button { font:inherit; }
+    .progress { position:fixed; inset:0 0 auto; height:2px; z-index:80; background:transparent; }
+    .progress span { display:block; width:0; height:100%; background:var(--accent); }
+    .topbar,.bottombar { position:fixed; left:0; right:0; z-index:70; background:var(--surface); border-color:var(--line); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); }
+    .topbar { top:0; padding-top:env(safe-area-inset-top); border-bottom:1px solid var(--line); }
+    .bottombar { bottom:0; padding-bottom:env(safe-area-inset-bottom); border-top:1px solid var(--line); }
+    .bar-inner { max-width:var(--page); margin:auto; display:flex; align-items:center; }
+    .topbar .bar-inner { height:54px; padding:0 14px; gap:11px; }
+    .bottombar .bar-inner { min-height:66px; padding:6px 7px 4px; justify-content:space-around; }
+    .brand-mark { width:34px; height:34px; flex:0 0 auto; display:grid; place-items:center; border-radius:50%; color:white; background:var(--accent); font:700 18px/1 system-ui,sans-serif; box-shadow:0 5px 14px rgba(109,66,232,.23); }
+    .bar-title { flex:1; min-width:0; font:650 14px/1.25 system-ui,sans-serif; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .bar-title small { display:block; margin-top:3px; color:var(--muted); font-size:10px; font-weight:500; }
+    .icon-btn { width:40px; height:40px; border:0; border-radius:50%; background:transparent; display:grid; place-items:center; font:600 18px/1 system-ui,sans-serif; }
+    .icon-btn:active,.tool-btn:active { background:var(--accent-soft); color:var(--accent); }
+    .tool-btn { flex:1; min-width:0; min-height:52px; border:0; background:transparent; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; color:var(--muted); font:11px/1 system-ui,sans-serif; }
+    .tool-btn .symbol { color:var(--text); font-size:19px; line-height:1; }
+    main { max-width:var(--page); min-height:100vh; margin:auto; padding:calc(82px + env(safe-area-inset-top)) clamp(22px,5.5vw,48px) calc(112px + env(safe-area-inset-bottom)); }
+    .report-head { min-height:min(560px,72vh); display:flex; flex-direction:column; justify-content:center; padding:34px 0 54px; border-bottom:1px solid var(--line); }
+    .kicker { margin:0 0 18px; color:var(--accent); font:750 12px/1 system-ui,sans-serif; }
+    h1 { margin:0; max-width:620px; font-size:clamp(36px,9vw,58px); line-height:1.18; letter-spacing:0; }
+    .subtitle { max-width:560px; margin:20px 0 0; color:var(--muted); font:16px/1.8 system-ui,sans-serif; }
+    .report-meta { display:flex; gap:18px; margin-top:28px; color:var(--secondary); font:650 12px/1 system-ui,sans-serif; }
+    .reading-note { margin:52px 0 10px; padding:24px 0; border-block:1px solid var(--line); }
+    .reading-note h2 { margin:0 0 12px; color:var(--warm); font:750 15px/1 system-ui,sans-serif; }
+    .reading-note p { margin:0; color:var(--muted); font:15px/1.9 system-ui,sans-serif; }
+    article { font-size:var(--font-size); line-height:var(--line-height); letter-spacing:0; }
+    .chapter { padding-top:58px; scroll-margin-top:72px; }
+    .chapter + .chapter { margin-top:38px; border-top:1px solid var(--line); }
+    .chapter-label { margin:0 0 11px; color:var(--accent); font:750 11px/1 system-ui,sans-serif; }
+    .chapter h2 { margin:0; font-size:1.55em; line-height:1.45; letter-spacing:0; }
+    .method { margin:20px 0 34px; border-left:3px solid var(--secondary); padding-left:16px; color:var(--muted); }
+    .method summary { cursor:pointer; color:var(--secondary); font:700 13px/1.5 system-ui,sans-serif; list-style:none; }
+    .method summary::-webkit-details-marker { display:none; }
+    .method summary::after { content:'＋'; margin-left:7px; font-weight:500; }
+    .method[open] summary::after { content:'－'; }
+    .method p { margin:12px 0 0; font-size:.88em; line-height:1.8; }
+    .topic { padding:32px 0 4px; scroll-margin-top:72px; }
+    .topic + .topic { margin-top:18px; border-top:1px solid var(--line); }
+    .topic h3 { margin:0 0 19px; font-size:1.08em; line-height:1.65; letter-spacing:0; }
+    .topic p { margin:0 0 1.35em; text-align:justify; overflow-wrap:break-word; user-select:text; -webkit-user-select:text; }
+    .lead { font-weight:500; }
+    .analysis-label { margin:25px 0 11px; color:var(--secondary); font:750 11px/1 system-ui,sans-serif; }
+    .reasoning { color:color-mix(in srgb,var(--text) 88%,var(--muted)); font-size:.94em; }
+    .synthesis { font-size:.94em; }
+    .boundary { margin-top:22px; padding:17px 0 0 16px; border-top:1px dashed var(--line); border-left:3px solid var(--warm); color:var(--muted); font-size:.88em; }
+    mark.reader-highlight { color:inherit; padding:.08em 0; border-radius:2px; cursor:pointer; box-decoration-break:clone; -webkit-box-decoration-break:clone; }
+    mark[data-color="yellow"] { background:var(--yellow); } mark[data-color="green"] { background:var(--green); } mark[data-color="blue"] { background:var(--blue); } mark[data-color="red"] { background:var(--red); }
+    mark.has-note { border-bottom:2px solid var(--accent); }
+    .end-note { margin-top:68px; padding-top:26px; border-top:1px solid var(--line); color:var(--muted); font:13px/1.8 system-ui,sans-serif; }
+    .overlay { position:fixed; inset:0; z-index:90; background:rgba(0,0,0,.3); opacity:0; pointer-events:none; transition:opacity .2s; }
+    .overlay.open { opacity:1; pointer-events:auto; }
+    .sheet { position:fixed; left:0; right:0; bottom:0; z-index:100; max-height:84vh; overflow-y:auto; padding:10px 20px calc(22px + env(safe-area-inset-bottom)); border-top:1px solid var(--line); border-radius:8px 8px 0 0; background:var(--surface); transform:translateY(105%); transition:transform .24s ease; backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); }
+    .sheet.open { transform:translateY(0); }
+    .sheet-handle { width:38px; height:4px; margin:0 auto 16px; border-radius:4px; background:var(--line); }
+    .sheet h2 { margin:0 0 18px; font:750 18px/1.35 system-ui,sans-serif; }
+    .sheet-note { margin:-8px 0 15px; color:var(--muted); font:12px/1.65 system-ui,sans-serif; }
+    .toc-list,.annotation-list { list-style:none; margin:0; padding:0; }
+    .toc-list a { display:flex; gap:12px; align-items:baseline; padding:14px 2px; border-bottom:1px solid var(--line); color:var(--text); text-decoration:none; font:14px/1.5 system-ui,sans-serif; }
+    .toc-list small { color:var(--accent); font-weight:700; }
+    .annotation-item { display:grid; grid-template-columns:9px 1fr auto; gap:9px; align-items:start; padding:14px 0; border-bottom:1px solid var(--line); font-family:system-ui,sans-serif; }
+    .annotation-swatch { width:7px; height:30px; border-radius:2px; }
+    .annotation-copy { min-width:0; }
+    .annotation-quote { margin:0; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; font-size:14px; line-height:1.55; }
+    .annotation-note { margin:5px 0 0; color:var(--muted); font-size:12px; line-height:1.55; }
+    .annotation-context { margin:5px 0 0; color:var(--accent); font-size:10px; }
+    .annotation-actions { display:flex; }
+    .mini-btn { width:36px; height:36px; border:0; border-radius:50%; background:transparent; font:16px/1 system-ui,sans-serif; }
+    .empty-state { padding:28px 0; color:var(--muted); text-align:center; font:14px/1.75 system-ui,sans-serif; }
+    .selection-toolbar { position:fixed; left:50%; bottom:calc(80px + env(safe-area-inset-bottom)); z-index:86; display:flex; gap:7px; align-items:center; padding:8px 10px; border:1px solid var(--line); border-radius:8px; background:var(--surface); box-shadow:0 9px 30px rgba(0,0,0,.2); opacity:0; pointer-events:none; transform:translate(-50%,16px); transition:.18s ease; }
+    .selection-toolbar.open { opacity:1; pointer-events:auto; transform:translate(-50%,0); }
+    .color-dot,.theme-dot { width:31px; height:31px; padding:0; border:1px solid rgba(0,0,0,.15); border-radius:50%; }
+    .color-yellow { background:#f4cd4a; } .color-green { background:#64be7e; } .color-blue { background:#5ba1da; } .color-red { background:#e06962; }
+    .selection-note { width:34px; height:34px; border:0; border-left:1px solid var(--line); background:transparent; font:18px/1 system-ui,sans-serif; }
+    textarea { width:100%; min-height:130px; resize:vertical; padding:12px; border:1px solid var(--line); border-radius:5px; background:var(--bg); color:var(--text); font:15px/1.65 system-ui,sans-serif; }
+    .setting-row { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:15px 0; border-bottom:1px solid var(--line); font:14px/1.4 system-ui,sans-serif; }
+    .stepper,.themes,.sheet-actions { display:flex; align-items:center; gap:9px; }
+    .stepper button { width:40px; height:34px; border:1px solid var(--line); border-radius:5px; background:transparent; }
+    .theme-paper { background:#f5f2ea; } .theme-white { background:#fcfcfb; } .theme-green { background:#e3ebdf; } .theme-dark { background:#191a1c; }
+    .theme-dot.active,.color-dot.active { outline:2px solid var(--accent); outline-offset:3px; }
+    .sheet-actions { justify-content:flex-end; flex-wrap:wrap; margin-top:16px; }
+    .command-btn { min-height:40px; padding:0 15px; border:1px solid var(--line); border-radius:5px; background:transparent; font:650 13px/1 system-ui,sans-serif; }
+    .command-btn.primary { border-color:var(--accent); background:var(--accent); color:#fff; }
+    .command-btn.danger { color:#b33d36; }
+    .toast { position:fixed; left:50%; bottom:calc(88px + env(safe-area-inset-bottom)); z-index:120; max-width:calc(100vw - 40px); padding:10px 14px; border-radius:5px; background:#242529; color:#fff; font:13px/1.4 system-ui,sans-serif; opacity:0; pointer-events:none; transform:translate(-50%,12px); transition:.18s; }
+    .toast.open { opacity:1; transform:translate(-50%,0); }
+    @media (min-width:760px) { .sheet { left:50%; right:auto; width:560px; transform:translate(-50%,105%); } .sheet.open { transform:translate(-50%,0); } }
+    @media (max-width:420px) { .report-head { min-height:68vh; } .report-meta { gap:12px; } .topic h3 { font-size:1.02em; } }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { transition:none !important; } }
+
+    .source-body { color:var(--text); }
+    .source-body p { margin:0 0 1.1em; }
+    .source-body ul,.source-body ol { margin:0 0 1.35em; padding-left:1.45em; }
+    .source-body li { margin:.45em 0; padding-left:.12em; overflow-wrap:break-word; }
+    .source-body li p { margin:.3em 0; }
+    .source-body strong { font-weight:700; }
+    .source-body em { font-style:normal; color:var(--secondary); }
+    .reader-lead { font-size:1em; font-weight:500; }
+    .reader-lead p { margin-bottom:.9em; }
+    .supplement-opening { margin:30px 0 48px; }
+    .supplement-opening p:last-child { color:var(--muted); font-size:.88em; }
+    .reader-summary { color:color-mix(in srgb,var(--text) 87%,var(--muted)); font-size:.94em; }
+    .reader-summary p { margin-bottom:1.05em; }
+    .reader-group { margin-top:27px; }
+    .reader-group-label { margin-bottom:10px; color:var(--secondary); font:750 11px/1.5 system-ui,sans-serif; }
+    .reader-group ol,.reader-group ul { list-style:none; margin:0; padding:0; }
+    .reader-group li { margin:0 0 1.05em; padding:0; }
+    .reader-group li:last-child { margin-bottom:0; }
+    .reader-reasoning { color:color-mix(in srgb,var(--text) 91%,var(--muted)); font-size:.94em; }
+    .reader-reasoning em,.reader-reasoning strong { color:var(--text); font-weight:600; }
+    .reader-synthesis { font-size:.94em; }
+    .reader-synthesis em,.reader-synthesis strong { color:var(--secondary); font-weight:650; }
+    .reader-boundary { padding:15px 0 0 17px; border-top:1px dashed var(--line); border-left:3px solid var(--warm); color:var(--muted); font-size:.88em; }
+    .reader-boundary .reader-group-label { color:var(--warm); }
+    .reader-extra { font-size:.92em; }
+    .source-original { margin:36px 0 0; padding-top:15px; border-top:1px solid var(--line); }
+    .source-original summary { cursor:pointer; color:var(--muted); font:700 12px/1.5 system-ui,sans-serif; list-style:none; }
+    .source-original summary::-webkit-details-marker { display:none; }
+    .source-original summary::after { content:'＋'; margin-left:7px; font-weight:500; }
+    .source-original[open] summary::after { content:'－'; }
+    .source-original-body { margin-top:18px; padding-left:15px; border-left:2px solid var(--line); color:var(--muted); font-size:.82em; }
+    .source-original-body ul,.source-original-body ol { list-style:revert; padding-left:1.45em; }
+    .source-original-body li { margin:.45em 0; }
+    .method ul,.method ol { margin:12px 0; padding-left:1.4em; font-size:.88em; line-height:1.75; }
+    .method li { margin:.35em 0; }
+
+ .report-head{min-height:280px;padding:36px 0}.reading-note{margin-top:28px}
+ .source-body p,.source-body li{text-align:left;overflow-wrap:anywhere}
+ .source-body li{margin-bottom:.85em}.source-body h4{font-size:1em;margin:2em 0 1em;line-height:1.7}
+ .source-body strong{font-weight:650}.source-body table{width:100%;border-collapse:collapse;font-size:.87em;line-height:1.8}
+ .source-body th,.source-body td{padding:14px;border:1px solid var(--line);text-align:left;vertical-align:top}
+ @media(max-width:600px){.source-body table,.source-body tbody,.source-body tr,.source-body td{display:block}.source-body thead{display:none}.source-body tr{padding:12px 0;border-bottom:1px solid var(--line)}.source-body td{border:0;padding:10px 0}.source-body td:before{content:attr(data-label);display:block;color:var(--secondary);font:600 12px/1.8 system-ui;margin-bottom:5px}.report-head{min-height:240px}.topic p{ text-align:left }}
+ </style>
+</head>
+<body>
+  <div class="progress"><span id="progressBar"></span></div>
+  <header class="topbar"><div class="bar-inner">
+    <span class="brand-mark" aria-hidden="true">◐</span>
+    <div class="bar-title">感情与事业<small id="topProgress">已读 0%</small></div>
+    <button class="icon-btn" type="button" id="topShareBtn" aria-label="分享页面" title="分享页面">↗</button>
+  </div></header>
+
+  <main>
+    <header class="report-head">
+      <p class="kicker">紫微斗数 · 感情与事业</p>
+      <h1>感情与事业</h1>
+      <p class="subtitle">先看清自己的底色，再读相处方式、事业方向与2026—2027年的变化。</p>
+      <div class="report-meta"><span>6 个章节</span><span>连续阅读</span><span>移动端阅读</span></div>
+    </header>
+
+    <section class="reading-note">
+      <h2>阅读之前</h2>
+      <p data-block-id="reading-note">命盘呈现的是较稳定的倾向和容易反复出现的课题，并不强制每个人活成完全相同的结果。同盘之人因家庭背景、地域文化、成长条件、个人选择和自我修炼不同，现实表现会有轻重与形式差异。越能觉察并主动处理自身模式，越可能把原有压力转化为能力。以下内容请结合实际经历阅读。</p>
+    </section>
+
+    <article id="reportBody"><section class="chapter" id="chapter-1"><p class="chapter-label">第 1 章</p><h2>亲密关系中的自己</h2><div class="source-body supplement-opening"><p>在紫微斗数的研读体系中，分析感情绝不能孤立单看夫妻宫，而必须将<strong>命宫（自我性格与处事底色）</strong>、<strong>夫妻宫（择偶偏好与伴侣特质）</strong>、<strong>福德宫（内在精神世界与情绪诉求）</strong>以及<strong>田宅宫（关系落地后的同居与家宅状态）</strong>，结合<strong>宫干四化飞伏的方向与主体</strong>融为一体。</p>
+</div><section class="topic" id="s1-1"><h3>一、 在亲密关系中你是怎样的人？最值得看清的核心特点是什么？</h3><div class="source-body" data-block-id="S1-1-answer"><h4>1. 核心判断</h4>
+<p>你是一个<strong>“外在兼具理性现实感与情商魅力，内心高度独立自尊，但在亲密关系中极易吸引‘高依赖、强管束、情感索取型’伴侣”</strong>的人。最值得看清的核心矛盾在于：<strong>你自身有极强的主见与边界感，但在感情深处却常常被对方当作“必须全面抓紧的避风港”，从而在“渴望被坚实依靠”与“厌恶被过度管束消耗”之间反复拉扯</strong>。</p>
+<h4>2. 具体表现与白话解读</h4>
+<ul>
+<li><strong>兼具务实计算与情调品味（命宫武曲庙、贪狼庙化禄+天魁）</strong>：
+你的命宫由武曲与贪狼共同坐守，且贪狼自带生年禄。在亲密关系里，你绝不是不食人间烟火、纯靠浪漫幻想维系关系的“恋爱脑”。武曲让你看重现实支撑、执行力与能力匹配；贪狼化禄与天魁则赋予你天然的社交敏锐度、懂他人需求的情商、以及对生活品味和浪漫情调的高追求。你愿意在关系中投入资源、共享成果，但前提是<strong>这段关系必须具备现实价值与良性向上的空间</strong>。</li>
+<li><strong>内在骨子极刚，绝不愿为人附庸（身宫在官禄坐紫微旺、七杀平+禄存）</strong>：
+官禄宫作为你的身宫（后半生行事倾向），紫杀带禄存正照夫妻宫。这意味着你在人生追求和做人底线上有极强的傲骨与掌控欲。你在两性相处中可以体贴温和，但主权必须牢牢掌握在自己手里，绝不容许伴侣践踏你的尊严或随意左右你的职业与发展。</li>
+<li><strong>“夫妻忌入命”的根本宿命感（核心关键点）</strong>：
+盘中最关键的飞化是：<strong>本命夫妻宫（癸亥）宫干飞贪狼化忌直接进入你的命宫（乙丑）</strong>。
+依据课程主张，<strong>“夫忌入命”在两性对待中代表伴侣对你有深度的执着、黏缠、索取与控制欲（忌比权黏，是抓整个人）</strong>。无论对方表面多么优秀，一旦确认关系，对方便极容易对你产生沉重的情感依赖、行踪查勤、挑剔甚至“因为太在乎你而把焦虑全面倒给你”。这往往会让你感到窒息与沉重，觉得对方像是在向你“讨债”。</li>
+</ul>
+</div></section><section class="topic" id="s1-2"><h3>二、 我看重怎样的关系、容易被什么人吸引，怎样表达喜欢和处理分歧？</h3><div class="source-body" data-block-id="S1-2-answer"><h4>1. 你看重怎样的关系？</h4>
+<ul>
+<li><strong>判断</strong>：你看重<strong>“兼具体面尊严、现实稳固度与长远规划”的盟友型亲密关系</strong>。</li>
+<li><strong>依据与表现</strong>：
+你的命宫化天机禄、天梁权双双注入田宅宫（丙辰），紫微化科入官禄宫。你衡量一段感情是否值得走下去，核心指标在于<strong>“能不能一起把家底筑牢、生活品质搞好，且双方在社会上都能拿得出手”</strong>。你无法长期忍受毫无建树、游手好闲或只消耗你情绪价值的关系。</li>
+</ul>
+<h4>2. 你容易被什么样的人吸引？</h4>
+<ul>
+<li><strong>判断</strong>：你最容易被<strong>“举止稳重成熟、自带领袖或担当气质、具备现实经营能力，但内在略带神秘或深沉心机”</strong>的人吸引。</li>
+<li><strong>依据与表现</strong>：
+<ul>
+<li><strong>外在吸引点（夫妻宫天府得、左辅）</strong>：天府为南斗主星，主稳重、守成、有主见与指挥欲（令星）。你天然排斥怯懦、犹豫不决、毫无魄力的人，容易被那些做事大方得体、能独当一面、像“掌柜/主心骨”一样的人吸引。左辅在夫妻宫，也代表你倾向于欣赏身边有助力、有资源、能给你带来切实协助的对象。</li>
+<li><strong>隐藏特质（夫妻宫带铃星利）</strong>：天府同宫坐铃星。铃星属暗煞，主暗中较劲、内敛慢热、沉闷执拗。吸引你的人往往不是大喇喇的冲动型，而是心思深沉、性格有内劲、情绪不轻易外露，甚至带有一点冷感的人。</li>
+<li><strong>审美偏好（福德宫天相陷、咸池、右弼化科）</strong>：福德宫带咸池与右弼科，说明你非常看重对方的外在衣品、谈吐风度与审美品味，对方必须在某个瞬间让你感到赏心悦目、带得出去。</li>
+</ul>
+</li>
+</ul>
+<h4>3. 你怎样表达喜欢？</h4>
+<ul>
+<li><strong>判断</strong>：你的表达方式是<strong>“高情商体贴+直接纳入生活领地的实质投入”</strong>。</li>
+<li><strong>依据与表现</strong>：
+<ul>
+<li>日常相处中，命宫贪狼禄让你极其懂得察言观色，知道对方爱听什么、需要什么，能给予非常舒适的互动氛围。</li>
+<li>但你更深层的喜欢极其务实：命宫乙干化天机禄、天梁权直接进入田宅宫。一旦真正认可对方，你会主动把对方拉入你的私人领域与未来生活版图，愿意为双方未来的居住环境、生活条件添砖加瓦、出谋划策，用“筑巢”和“给资源”来表达深情。</li>
+</ul>
+</li>
+</ul>
+<h4>4. 你怎样处理分歧？</h4>
+<ul>
+<li><strong>判断</strong>：<strong>前期维持克制体面 ➔ 中期遭遇暗火冷战 ➔ 后期若踩底线则决绝硬碰，但若进入家宅同居则易陷入细节反复纠缠</strong>。</li>
+<li><strong>依据与表现</strong>：
+<ul>
+<li><strong>克制与粉饰面子（福德天相+右弼科）</strong>：初期发生矛盾，你往往顾及颜面与风度，不愿意把场面搞得太难看，会试图用理智、讲道理或自我消化来维持体面。</li>
+<li><strong>伴侣与你的冷热交战（夫妻铃星 vs 夫忌入命）</strong>：对方因为坐铃星且忌入你的命宫，遇到分歧时极易采取“生闷气、冷战、隐性挑刺或情感施压”的方式；而你命宫坐武曲、身宫坐紫杀，本质上是“吃软不吃硬”的刀锋性格，一旦对方触及原则底线，你会迅速收起温柔，展现出刚烈、冷酷甚至寸步不让的一面。</li>
+<li><strong>家宅内的较真拉扯（田宅宫天机生年忌+自化权+陀罗）</strong>：如果分歧发生在同居、婚姻或柴米油盐的具体事务中，田宅宫的天机忌权交战配合陀罗就会被引爆。表现为：<strong>双方对家里具体事情的规矩、细节、谁说了算展开旷日持久的精神拉扯与反复辩论，事情很难利索翻篇，往往原地打转、不断消耗心力</strong>。</li>
+</ul>
+</li>
+</ul>
+</div></section><section class="topic" id="s1-3"><h3>三、 吸引我的人、我需要的人和适合长期相处的人，是否有区别？</h3><div class="source-body" data-block-id="S1-3-answer"><h4>1. 明确判断</h4>
+<p><strong>有非常清晰且不可忽视的结构性区别</strong>。正是这三者的错位，容易让你陷入感情的拉扯与困惑。</p>
+<h4>2. 三者的具体拆解</h4>
+<ul>
+<li><strong>【吸引你的人】—— 具备光鲜外表、强势担当与神秘气场者（天府+铃星+咸池）</strong>
+<ul>
+<li>你容易被那些有主见、有事业心、像天府一样稳得住场面、甚至有点“霸道总裁”或“管家统领”气质的人打动。对方如果带点深沉内敛（铃星）和生活情调（咸池），会迅速引发你的审美与荷尔蒙共鸣。</li>
+</ul>
+</li>
+<li><strong>【你需要的人】—— 能托底现实、分担责任且认可你独立主权的合作者（天府+禄存照夫妻）</strong>
+<ul>
+<li>因为你自身能力强、野心大、追求卓越（官禄紫杀禄存），你真正需要的是在现实、资源或事业上能与你平起平坐，能在风雨来临时为你提供稳固依靠、而不是靠你单方面供养的成熟伴侣。</li>
+</ul>
+</li>
+<li><strong>【适合长期相处的人】—— 内核极度松弛大度、情绪稳定、绝不搞冷暴力与精神绑架的人</strong>
+<ul>
+<li><strong>核心矛盾所在</strong>：吸引你的“天府+铃星”往往自带“爱指挥（天府）”和“暗较劲、生闷气（铃星）”的特质。一旦落地长期相处，加上对方“夫忌入命”对你产生的占有欲与挑剔，这种强对强的组合就会演变成权力争夺与冷战。</li>
+<li><strong>长期相处的破局之道</strong>：最适合你长期生活的人，必须拥有极高的情绪包容度。面对你偶发的高要求和家宅细节较真（田宅天机忌权陀罗），对方不能用铃星式的冷战或管束来回应，而必须能够像润滑剂一样包容化解，懂得“遇事直说、不藏心机、在生活琐事上乐于退让”。</li>
+</ul>
+</li>
+</ul>
+</div></section><section class="topic" id="s1-4"><h3>四、 哪些问题换了对象仍可能再次出现？哪些取决于对方或环境？</h3><div class="source-body" data-block-id="S1-4-answer"><h4>1. 换了对象仍可能因为你的性格与习惯再次出现的问题（主观内生模式）</h4>
+<ul>
+<li><strong>“被索取感与被管束感”的周期性复发（夫妻癸干化贪狼忌入命）</strong>：
+<ul>
+<li>这是你盘面自带的客体投射机制。因为你能力出众且懂得照顾人，你在关系中容易在不知不觉中承担起“主理人”的角色，结果反而纵容或吸引了那些把精神寄托全盘压在你身上的伴侣。每换一个对象，初期你享受对方的粘人与在乎，中后期就极易因为对方的过度依赖、患得患失或管束施压而感到窒息。</li>
+</ul>
+</li>
+<li><strong>同居落地后的“琐事内耗与规矩拉扯”（田宅宫天机忌、自化权、陀罗）</strong>：
+<ul>
+<li>田宅宫是你私密领地的缩影。天机忌+自化权主在家宅内部思维打结、规矩严苛且要争夺掌控权；陀罗主拖延磨蹭、暗暗内耗。无论换谁同居，只要两人生活习惯不一致，你自身就容易陷入“看不惯、想改造对方、反复纠结挑刺、越争辩越心烦”的心智死循环。</li>
+</ul>
+</li>
+<li><strong>“底线被触后的决绝断裂”（命武贪 vs 身紫杀）</strong>：
+<ul>
+<li>武曲与七杀皆属金，主刚毅与决断。你在关系好时懂得柔情（贪狼禄、右弼科），但内心设定了极严格的“自尊底线”。一旦对方越界且反复消耗你的耐心，你极容易启动“情感断崖式冷切断”，宁可彻底斩断也不愿在消耗中苟延残喘。</li>
+</ul>
+</li>
+</ul>
+<h4>2. 取决于对方性格或环境的外部变量（客体与情境模式）</h4>
+<ul>
+<li><strong>冲突发生时，是“冷战暗耗”还是“良性化解”（取决于对方是否坐实铃星特质）</strong>：
+<ul>
+<li>夫妻宫的铃星是伴侣特质的镜像。如果对方现实中是一个情商通透、心胸豁达、有话摊开讲的人，就能有效化解你盘中“铃星”的破坏力；反之，若对方同样是个深沉自负、习惯冷暴力冷战的人，分歧就会演变成漫长而痛苦的内耗。</li>
+</ul>
+</li>
+<li><strong>财务与共同资产的互动方向（夫妻癸干破军化禄入财帛）</strong>：
+<ul>
+<li>夫妻宫化禄入财帛，代表伴侣在金钱消费或资产运用上会深深卷入你的财务系统。这段关系究竟是在经济上共同做大蛋糕、互相扶持，还是演变成对方大手大脚破耗你的财物，完全取决于对方现实中的经济实力、理财成熟度以及双方的法律与资产界限安排。</li>
+</ul>
+</li>
+<li><strong>大限行运的阶段性触发（当前24–33岁癸亥大限）</strong>：
+<ul>
+<li>问事时间为2026年（虚岁29），你目前正处于<strong>24–33岁癸亥大限</strong>，<strong>大限命宫正好重叠本命夫妻宫（癸亥）</strong>！</li>
+<li>这一大限的宫干正是“癸”，大限命宫再度飞出<strong>贪狼化忌入本命命宫（大限福德宫）</strong>。这意味着在当下的这十年里，亲密关系的建立、拉扯、情绪压力与自我救赎，被全盘最高频度地引动。这并非一生不变的永恒僵局，而是当前大限特定环境下的高压考验，走到下一大限（34–43岁壬戌），焦点与互动模式便会随之换轨。</li>
+</ul>
+</li>
+</ul>
+</div></section></section><section class="chapter" id="chapter-2"><p class="chapter-label">第 2 章</p><h2>相处、边界与长久关系</h2><div class="source-body supplement-opening"><p>在两性关系的演化中，性格只是底色，<strong>宫位之间的动力交互（四化飞伏与宫位叠合）才是决定关系如何在时间中展开的真实轨迹</strong>。</p>
+</div><section class="topic" id="s2-1"><h3>一、 关系的四个阶段：哪些环节最值得关注？什么真正影响长久性？</h3><div class="source-body" data-block-id="S2-1-answer"><h4>1. 核心判断</h4>
+<p>在<strong>“开始关系 ➔ 逐渐亲密 ➔ 发生分歧 ➔ 长期共同生活”</strong>四个环节中：</p>
+<ul>
+<li><strong>“逐渐亲密”是你的关系体验转折点</strong>；</li>
+<li><strong>“长期共同生活（落地同居/婚姻）”是决定你关系长久性与质量的最核心命脉环节</strong>；</li>
+<li>真正影响关系成败的，<strong>绝不是恋爱初期的心动与吸引，而是“亲密后的掌控边界”与“同居落地后的生活秩序拉扯”</strong>。</li>
+</ul>
+<h4>2. 各环节的具体表现与关键依据</h4>
+<ul>
+<li><strong>【开始关系】—— 门槛最低、极易展开（轻度关注）</strong>
+<ul>
+<li><strong>表现</strong>：由于命宫坐武曲庙、贪狼庙化禄并见天魁，迁移宫化武曲禄、贪狼权入命宫，你在社交与异性互动中极具魅力、情商极高，善于理解他人需求且谈吐体面。此时关系的开始通常非常顺畅，彼此能迅速建立好感。</li>
+</ul>
+</li>
+<li><strong>【逐渐亲密】—— 蜜月期向索取期的质变（高度关注）</strong>
+<ul>
+<li><strong>表现</strong>：一旦双方确认专属关系、感情走向深入，伴侣的互动模式会发生剧烈变化。</li>
+<li><strong>关键依据</strong>：<strong>本命夫妻宫（癸亥）干飞贪狼化忌直接进入你的命宫（乙丑）</strong>。课程明确指出，“忌比权更黏，是抓整个人”。伴侣在关系确立前或许大度稳重（天府象），但一旦进入深度亲密，对方便极易展现出极强的情感占有欲、查勤管束、患得患失或心理依赖，将自身的情绪焦虑全面压在你身上。你起初或许视其为在乎，但很快就会产生强烈的窒息感与“被索取感”。</li>
+</ul>
+</li>
+<li><strong>【发生分歧】—— 冷战暗耗与硬碰硬的对峙（中度关注）</strong>
+<ul>
+<li><strong>表现</strong>：夫妻宫坐铃星利，身宫（丁巳）坐紫微旺、七杀平带禄存，正照夫妻宫。课程指出，天府见铃星主内敛慢热、暗自较劲；而武曲与紫杀皆属刚烈之星，骨子里吃软不吃硬。当分歧发生时，对方倾向于生闷气、冷战或暗施心理压力（铃星）；你虽有福德天相右弼科试图维持体面，但一旦对方触碰你的底线，你绝不委曲求全，极易直接硬碰硬，导致僵局难以软化。</li>
+</ul>
+</li>
+<li><strong>【长期共同生活】—— 全盘最核心的真正考场（最值得生死关注！）</strong>
+<ul>
+<li><strong>表现</strong>：恋爱时风平浪静，但一旦同居、买房、结婚或天天生活在同一物理空间，摩擦会呈几何倍数爆发。</li>
+<li><strong>关键依据</strong>：<strong>田宅宫（丙辰）坐天机生年忌、自化权（离心权），并与陀罗庙同宫</strong>；同时<strong>命宫乙干化天机禄、天梁权双双飞入田宅宫</strong>。
+<ul>
+<li>课程明确指出，“权忌交战”主剧烈争夺与拉扯，天机忌主思维打结、规矩严苛、观念不合，陀罗主原地打转、旷日持久的精神暗耗。</li>
+<li>你出于深爱愿意将对方纳入家宅生活（命禄权入田），但由于田宅宫自身的权忌陀罗结构，两人在同一屋檐下的生活琐事、作息秩序、家务分工及私人空间划分上，极易产生没完没了的辩论与细节挑刺。<strong>这段关系能不能走完一辈子，90%取决于能不能平稳度过“同居生活关”</strong>。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div></section><section class="topic" id="s2-2"><h3>二、 你的哪些特点能经营好关系，又会在什么条件下成为负担？</h3><div class="source-body" data-block-id="S2-2-answer"><h4>1. 能够经营好关系的优势</h4>
+<ul>
+<li><strong>高情商的共情与资源共享意愿（命宫贪狼生年禄+天魁）</strong>：
+你非常清楚在人际与感情中如何给予对方舒适的情绪价值，懂情调、有品味，且具备极强的现实办事能力，能与伴侣共同创造美好的物质与生活体验。</li>
+<li><strong>强大的家庭建设与长远规划能力（命宫化天机禄、天梁权入田宅）</strong>：
+你对家庭绝不敷衍，愿意主动承担买房置业、生活兜底、搭建安稳生活环境的责任，是一个能在现实风雨中为家庭提供坚实庇护的可靠盟友。</li>
+<li><strong>维持大局体面的克制修养（福德宫天相陷+右弼生年科）</strong>：
+科星主理性与适度缓冲。你在感情遇到小风浪时，能够顾及双方颜面与尊严，不至于在公共场合把关系撕得粉碎，给予彼此最初的台阶与体面。</li>
+</ul>
+<h4>2. 在何种条件下会转变为关系的致命负担？</h4>
+<ul>
+<li><strong>当“愿意操心”退化为“田宅权忌陀罗的细节较真与微观管理”</strong>：
+<ul>
+<li><em>触发条件</em>：双方朝夕相处、进入日常生活细节。</li>
+<li><em>负担机制</em>：田宅坐天机生年忌+自化权+陀罗。你对家庭秩序和生活规则有着极其执着甚至完美主义的高标准。当伴侣的行为方式不符合你的预期时，你容易把天梁的“照顾”演变成“说教与纠偏”，天机的敏感多虑演变成反复纠结，陀罗则让你暗自生闷气、翻旧账。这种无处不在的微观审视，会让伴侣感到窒息和挫败，也让你自身心力交瘁。</li>
+</ul>
+</li>
+<li><strong>当“极强傲骨”在遭遇“伴侣情感窒息（夫忌入命）”时触发“绝决切断”</strong>：
+<ul>
+<li><em>触发条件</em>：伴侣因为不安全感而频繁查勤、无理取闹或情感勒索（夫忌入命）。</li>
+<li><em>负担机制</em>：你的身宫是官禄紫杀禄存。你无法长期忍受被当成弱者或被随意摆布。一旦你觉得对方正在无底线消耗你的尊严与精力，你内心的武曲金性与紫杀决断就会瞬间启动。你会直接关闭沟通通道，表现出极端的冷漠与绝情，拒绝给关系留任何回旋余地。</li>
+</ul>
+</li>
+</ul>
+</div></section><section class="topic" id="s2-3"><h3>三、 反复出现的相处过程是怎样一步步形成的？</h3><div class="source-body" data-block-id="S2-3-answer"><p>如果过往或未来存在某种反复出现的相处模式，它在你的命盘中有着非常清晰的<strong>动态演进链条</strong>：</p>
+<p>【第一步：体面吸引】
+命宫武贪禄魁 ➔ 吸引并选择稳重大度、有主见、具备现实能力的伴侣（天府+左辅），双方以高品质社交和现实互助切入。
+▼
+【第二步：深陷与锁紧】
+关系深入确认 ➔ 对方触发“夫妻癸干贪狼化忌入命”（夫忌入命）：伴侣开始表现出极强的情感黏附、占有欲、疑心或挑剔，将个人安全感全面寄托在你身上。
+▼
+【第三步：同居落地与阵地冲突】
+命主以真情回应（命化禄权入田），双方同居或共谋生活 ➔ 田宅宫“天机忌+自化权+陀罗”被全面引爆：
+日常规矩、家务细节、空间主导权反复拉扯；对方用“铃星式冷战与施压”应对，命主用“天机权陀的反复较真与说教”抗衡。
+▼
+【第四步：窒息爆发与绝决撤离】
+伴侣越抓紧管束（夫忌入命），命主越渴望逃离；冷战消耗磨尽耐心后，身宫紫杀与命宫武曲启动“断崖式切割”，双方在极其疲惫中走向停滞或分离。</p>
+</div></section><section class="topic" id="s2-4"><h3>四、 什么样的伴侣特点与相处方式真正适合你？</h3><div class="source-body" data-block-id="S2-4-answer"><p>基于全盘的星曜与四化配置，要打破上述循环，以下<strong>现实条件与相处模式</strong>是至关重要的破局关键：</p>
+<h4>1. 伴侣的核心特质：情绪内核极度松弛，绝不搞“冷战与心机”</h4>
+<ul>
+<li><strong>依据</strong>：你的夫妻宫坐天府+铃星，且夫忌入命。</li>
+<li><strong>匹配标准</strong>：
+<ul>
+<li>对方可以有大局担当与事业心（契合天府），但<strong>日常情绪必须松弛通透、豁达大度</strong>。</li>
+<li>最忌讳找同样心思深沉、遇事冷暴力、生闷气（坐实铃星阴暗面）的人。对方必须是<strong>“有话当场直说、笑脸化解尴尬、不记仇、不搞精神控制”</strong>的性格。当你因为琐事焦虑纠结（田宅天机忌）时，对方能以幽默宽厚的态度包容，而不是反向对抗。</li>
+</ul>
+</li>
+</ul>
+<h4>2. 自主空间（物理与心理距离）是关系的“第一保鲜剂”</h4>
+<ul>
+<li><strong>依据</strong>：田宅宫天机忌权陀罗，夫妻宫夫忌入命。</li>
+<li><strong>相处方式</strong>：
+<ul>
+<li>课程在多处明确指出，面对夫妻与家宅系统的煞忌交战，“聚少离多、保留独立空间、各自忙碌事业”往往是减少摩擦最有效的现实解法。</li>
+<li><strong>切忌整天腻在一起或过度过问彼此日常细节</strong>。在居住安排上，双方最好拥有各自独立的书房或私人空间；在生活节奏上，允许各自出差、加班或拥有独立的社交圈子。<strong>适当的物理距离，能瞬间解除田宅陀罗的琐碎内耗与夫妻忌入命的窒息感</strong>。</li>
+</ul>
+</li>
+</ul>
+<h4>3. 财务与金钱：必须设立清晰明晰的“防火墙”</h4>
+<ul>
+<li><strong>依据</strong>：
+<ul>
+<li>本命夫妻宫癸干<strong>破军化禄入财帛宫（辛酉）</strong>；</li>
+<li>本命田宅宫丙干<strong>廉贞化忌入财帛宫（辛酉）</strong>；</li>
+<li>课程提示：夫妻禄入财代表伴侣会深度卷入金钱系统；田宅忌入财则代表家宅、共同生活或同居开销极易成为财务损耗与争吵由头。</li>
+</ul>
+</li>
+<li><strong>相处方式</strong>：
+<ul>
+<li>双方可以共同承担家庭开销或建立共同生活基金，但<strong>个人的核心资产、储蓄账户与投资决策必须保持高度独立，账目明晰</strong>。</li>
+<li>绝不可因为感情上头而为伴侣背负债务、进行模糊不清的联合高风险投资，更不要把房产产权搞成混乱的糊涂账，否则极易在感情发生裂痕时引发严重的现实纠纷。</li>
+</ul>
+</li>
+</ul>
+<h4>4. 事业与家庭权力的分工：生活小事由你做主，社会事业彼此并肩</h4>
+<ul>
+<li><strong>依据</strong>：身宫官禄坐紫微七杀禄存，田宅天梁权。</li>
+<li><strong>相处方式</strong>：
+<ul>
+<li>你在社会和职场上有极高的自我实现要求，对方必须发自内心认可你的野心与工作节奏，不能要求你回归家庭做顺从的附属品。</li>
+<li>而在家庭内部日常生活的微观管理上（天梁权），最适合你的伴侣是“在生活细节上愿意放手、乐于听你安排、不与你争抢琐事主导权”的人。外面是并肩作战的平起平坐，家里是由你定规矩的安心踏实，这种“大独立、小包容”的格局才能让你真正卸下防备。</li>
+</ul>
+</li>
+</ul>
+</div></section><section class="topic" id="s2-5"><h3>五、 当前时层提示（24–33岁癸亥大限）</h3><div class="source-body" data-block-id="S2-5-answer"><p>需要特别看清的是：问事时间为2026年（虚岁29），你目前正处于<strong>24–33岁癸亥大限</strong>，<strong>大限命宫正好叠合本命夫妻宫（癸亥）</strong>。</p>
+<ul>
+<li>这一大限的宫干正是“癸”，大限命宫再度飞出<strong>贪狼化忌入本命命宫（大限福德宫）</strong>。</li>
+<li>这说明<strong>上述“亲密关系的控制、黏缠、精神内耗与空间争夺”，正是你当前这十年大运集中爆发与修行的主课题</strong>。看清这一机制，主动拉开生活物理距离、守住财务独立底线、放松对家宅生活细节的掌控，便是你在这段运势中保护自我与经营感情的最佳心法。</li>
+</ul>
+</div></section></section><section class="chapter" id="chapter-3"><p class="chapter-label">第 3 章</p><h2>2026—2027：感情的机会与考验</h2><div class="source-body supplement-opening"><span></span></div><section class="topic" id="s3-1"><h3>一、 两年总体节奏与核心机制对比</h3><div class="source-body" data-block-id="S3-1-answer"><p>目前问事时间为 <strong>2026年11月17日</strong>（农历十月初九，丙午年己亥月），你正处在 <strong>24–33岁癸亥大限</strong>（大限命宫重叠本命夫妻宫癸亥）。</p>
+<p>从整个大限来看，大限命宫（癸亥）再度飞出<strong>贪狼化忌入本命命宫/大限福德宫（乙丑）</strong>，这奠定了整整十年里伴侣对你的情感执着、精神索取与管束压力是常态化背景。然而，<strong>2026丙午年剩余阶段</strong>与即将到来的<strong>2027丁未年</strong>，在感情推进的机制与侧重点上有着质的区别：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">维度</th>
+<th style="text-align:left">2026 丙午年（剩余阶段）</th>
+<th style="text-align:left">2027 丁未年</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>流年命宫与焦点</strong></td>
+<td style="text-align:left"><strong>流年命宫在午（本命交友/大限疾厄）</strong>，对宫子位为本命兄弟、流年迁移宫，天同旺、太阴庙，太阴带生年权与向心权</td>
+<td style="text-align:left"><strong>流年命宫在未（本命迁移/大限财帛）</strong>，对宫正照本命命宫丑（武曲贪狼禄）</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>四化核心牵引</strong></td>
+<td style="text-align:left"><strong>天同化禄入子、天机化权入田、廉贞化忌入财</strong>（冲福德）</td>
+<td style="text-align:left"><strong>太阴化禄入子、天同化权入子、天机化科入辰、巨门化忌入寅</strong>（冲申位）</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>关键主题</strong></td>
+<td style="text-align:left"><strong>“关系界限与现实开销的冲撞”</strong>：从社交/暧昧向内收拢，但财务与精神压力凸显</td>
+<td style="text-align:left"><strong>“个人主导权回归与严肃承诺/名分确立”</strong>：外部桃花与承诺机遇大增，但直面深层磨合与家庭阻力</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>关系推进节点</strong></td>
+<td style="text-align:left">适合<strong>理清边界、观察现实条件、踩刹车</strong></td>
+<td style="text-align:left">适合<strong>对外公开、确立名分、推进严肃关系</strong>，或<strong>引爆沉疴彻底切割</strong></td>
+</tr>
+</tbody>
+</table>
+</div></section><section class="topic" id="s3-2"><h3>二、 2026年剩余阶段（丙午年秋冬）：机会、阻力与选择方式</h3><div class="source-body" data-block-id="S3-2-answer"><h4>1. 机会点与阻力分析</h4>
+<ul>
+<li><strong>机会特点（外围向内试探）</strong>：
+<ul>
+<li>2026年流年命宫在午，流年夫妻宫在辰（叠本命田宅宫，坐天机生年忌、自化权、陀罗）。</li>
+<li>流年干丙使<strong>天同化禄入子</strong>（流年迁移宫），同时天机化权入辰位流年夫妻宫；辰位另有本命子女宫壬干飞入的天梁向心禄。此时的关系多由社交、朋友聚会或外围活动衍生而来，具有一定的浪漫或亲密试探性。</li>
+</ul>
+</li>
+<li><strong>阻力与现实压力（精神与财务的隐形消耗）</strong>：
+<ul>
+<li>丙干使<strong>廉贞化忌入酉（本命财帛/大限夫妻/流年田宅）</strong>，直接正照卯位（本命福德/大限官禄/流年子女）。</li>
+<li><strong>核心阻力在“精神压力与金钱/人际摩擦”</strong>：廉贞化忌入财冲福德，意味着年底阶段感情极易牵扯到现实花销、共同人际圈或人情往来的分歧，进而让你精神紧绷、感到心累消耗。同时，流年夫妻宫坐田宅天机忌权陀，凡是试图在年底敲定同居、见家人或深入家庭生活细节的举动，都会遇到思维打结与习惯不合的拉扯。</li>
+</ul>
+</li>
+<li><strong>你的选择方式</strong>：
+<ul>
+<li><strong>收拢防线、拒绝上头</strong>。面对年底的各种情感互动，你更看重<strong>“这段关系是否消耗我的精神与精力”</strong>。你会本能地压制冲动，把重心收回到自己的生活秩序中，对伴侣或追求者的过度要求采取冷处理。</li>
+</ul>
+</li>
+</ul>
+</div></section><section class="topic" id="s3-3"><h3>三、 2027年（丁未年）：机会、阻力与选择方式</h3><div class="source-body" data-block-id="S3-3-answer"><h4>1. 机会点与深层推进（质的飞跃）</h4>
+<ul>
+<li><strong>机会特点（高光正照、名分与严肃契约机缘）</strong>：
+<ul>
+<li>2027流年命宫进入未（本命迁移/大限财帛），流年夫妻宫在巳（重叠<strong>本命官禄/身宫</strong>，坐紫微旺、七杀平、禄存）。</li>
+<li>未宫与丑宫（本命命宫武贪禄魁）形成本对正照；未宫化武曲禄、贪狼权入丑位本命命宫，由丑宫接受向心禄权，流年夫妻宫更是见到了高规格的紫杀禄存！</li>
+<li><strong>无论单身还是已有伴侣，2027年都是关系推向“严肃承诺、公开名分、社会认可”的极强年份</strong>。这一年遇到的对象，或者伴侣展现出来的特质，会高度符合你对“有能力、有担当、社会地位对等”的务实追求。</li>
+</ul>
+</li>
+<li><strong>阻力与考验：长辈、文书与深层信任</strong>：
+<ul>
+<li>丁干使巨门化忌入甲寅（本命父母宫／当前大限田宅宫／2027流年疾厄宫），正冲庚申（本命疾厄宫／当前大限子女宫／2027流年父母宫）。</li>
+<li>巨门主口舌争端、隐瞒与信任缺乏，文昌陷地同坐父母宫。巨门忌坐本命父母/流年疾厄，冲本命疾厄/流年父母。这意味着2027年要确立名分、推进婚约或见家长时，<strong>最容易遇到的阻力是双方家庭长辈的意见、契约文书上的分歧、或因隐瞒不坦诚而引发的言语信任危机</strong>，而不是日常起居谁洗碗的琐事。</li>
+<li>寅位是大限田宅宫，巨门忌入大限田宅，代表这十年大运的“家庭根据地”坐了巨门忌，双方在构建长远家庭基础时，容易有暗藏的隔阂、不透明或现实家宅阻滞。</li>
+<li>辰位在2027年是流年子女宫（主两性亲密交往、约会场景、桃花活动）。天机化科入流年子女，且辰位本有天梁庙、天机自化离心权，这意味着2027年你在<strong>恋爱约会、亲密关系互动、或者备孕/子女议题上</strong>，表现得非常理性、斯文且有条理，善于用讲道理、立规矩的方式化解尴尬，不再像2026年那样充满私密领地的防备与焦虑。</li>
+<li>辰为大限仆役，化科代表在此大限的人际往来中，能通过朋友、平辈或合伙关系获得体面的建议与声誉背书。</li>
+</ul>
+</li>
+<li><strong>你的选择方式</strong>：
+<ul>
+<li><strong>夺回主动权、注重现实结果</strong>。2027年你身宫紫微七杀的气场全面接管流年夫妻系统。你不再愿意委屈求全或在暧昧拉扯中耗费心力，你最看重的是<strong>“能不能堂堂正正走下去、未来生活规划是否绝对清晰可靠”</strong>。合适则雷厉风行敲定长远承诺，触碰底线则毫不拖泥带水。</li>
+</ul>
+</li>
+</ul>
+</div></section><section class="topic" id="s3-4"><h3>四、 状态分化解读（单身 vs 已有伴侣）</h3><div class="source-body" data-block-id="S3-4-answer"><h4>1. 若当前处于单身状态</h4>
+<ul>
+<li><strong>2026年剩余阶段</strong>：
+<ul>
+<li>容易出现带有社交、职场或生活圈属性的桃花接触，但多流于浅层互动或情绪拉扯。对方若急于确定关系或过度查勤管束，极易踩到你的防备雷区；年底前你更倾向于观望，不易轻易交出全部信任。</li>
+</ul>
+</li>
+<li><strong>2027年</strong>：
+<ul>
+<li><strong>正缘与严肃恋爱的高发期</strong>。流年夫妻宫见紫杀禄存，流年命对命宫见武贪禄魁，极易出现个人能力强、社会形象体面、做事干脆利落的对象。你会被对方的可靠与决断吸引，关系有极大机会迅速公开并走向确立。但深入接触后需警惕双方家庭理念的磨合（巨门忌入本命父母／大限田宅，冲申位）。</li>
+</ul>
+</li>
+</ul>
+<h4>2. 若当前已有伴侣（恋爱中或已婚）</h4>
+<ul>
+<li><strong>2026年剩余阶段</strong>：
+<ul>
+<li>正处于考验彼此空间感的疲劳期。对方可能因不安全感而施加情感管束（夫忌入命），两人在财务开销（廉贞忌冲福德）或生活琐碎事务上易有隐性心结。此时切忌强行推进同居或改造对方，宜给彼此留足物理与心理空隙。</li>
+</ul>
+</li>
+<li><strong>2027年</strong>：
+<ul>
+<li><strong>关系的“定性与分水岭之年”</strong>。流年夫妻宫叠身宫紫杀，面临“是领证确立长远承诺，还是彻底解决长期累积矛盾”的抉择。如果双方在家庭定位、房产规划和深层沟通上能经受住巨门忌入大限田宅、本命父母宫的信任与文书考验，关系能迈入极为稳固的社会盟友阶段；反之，若矛盾长期无法化解，紫杀的决绝决断力会被引爆，促使你快刀斩乱麻走向切割。</li>
+</ul>
+</li>
+</ul>
+</div></section><section class="topic" id="s3-5"><h3>五、 最重要的三条感情判断</h3><div class="source-body" data-block-id="S3-5-answer"><ol>
+<li><strong>2026年底重在“守界防耗”，2027年才是“定性与结果”的主场</strong>：
+2026年剩余时间切勿在情绪上头或被催促时强行推进关系落地，凡事多设财务与精神防火墙；把决定性的考察与实质性的名分确立放到2027年，彼时气场与机缘更加明朗。</li>
+<li><strong>推进关系必须直面“长辈、文书与深层信任”的现实考验</strong>：
+2027年若要从恋爱走向长远生活，真正的生死考场在于<strong>“长远家庭基础、文书名分、双方长辈态度及深层坦诚度”</strong>。必须把话摆在明面上谈清楚，切忌带着隐瞒或含糊妥协进入共同生活。</li>
+<li><strong>伴侣能力可以强，但言语沟通与情绪底色必须宽厚</strong>：
+你的盘面在2027年极易吸引强人（紫杀天府），但如果对方言辞刻薄、遇事爱翻旧账猜忌（引动巨门忌与天府铃星），即便现实条件再好也会沦为精神苦狱；唯有懂得在琐事上装糊涂、语言温和包容的人，才能真正与你携手长久。</li>
+</ol>
+</div></section><section class="topic" id="s3-6"><h3>六、 感情与事业心力的牵连</h3><div class="source-body" data-block-id="S3-6-answer"><p>廉贞忌坐入的不只是流年田宅，它直接坐落在大限夫妻宫（大限伴侣的实质载体）。伴侣在这个大限里的现实表现，在2026年底直接与你的家宅、同居空间和财务系统发生剧烈冲撞。</p>
+<p>廉贞化忌冲对宫卯位（大限官禄＋本命福德＋流年子女），说明年底若在感情上强行粘稠、过度介入对方的财务或强行推进同居，不仅会直接导致你精神压力激增，更会直接干扰到你在大限阶段的事业发展节奏与心力专注度。</p>
+</div></section></section><section class="chapter" id="chapter-4"><p class="chapter-label">第 4 章</p><h2>事业本事与适合的发展方式</h2><div class="source-body supplement-opening"><p>你在事业上的格局非常鲜明：<strong>外在具备极高情商与现实变现嗅觉，内在具有极强的将帅决断力与山头意识，属于典型的“将相兼备、能攻能守、能把资源迅速变现并建立独立阵地”的实干主理人</strong>。</p>
+</div><section class="topic" id="s4-1"><h3>一、 你是怎样的工作者？主要本事在哪里？</h3><div class="source-body" data-block-id="S4-1-answer"><h4>1. 核心判断</h4>
+<p>你不是安分守己的纯事务型螺丝钉，也不是脱离现实的纯理论研究者。你是一个<strong>“极度务实、擅长攻坚与资源转化、对成果和变现极度敏感、且必须拥有独立主导权”的攻防兼备型工作者</strong>。</p>
+<h4>2. 主要本事与关键盘面依据</h4>
+<ul>
+<li><strong>资源嗅觉、敏锐共情与“生财转化力”（命宫武曲庙、贪狼庙化禄+天魁，迁移化武曲禄、贪狼权入命）</strong>：
+<ul>
+<li>武曲是正财星，贪狼是欲望、情商、社交与资源整合之星，且贪狼自带生年禄。</li>
+<li>在课程中，贪狼禄不仅主好人缘，在事业中更是<strong>对市场需求、客户痛点、资源交换规则有着本能的敏锐嗅觉</strong>；武曲则赋予你强大的数字观念与交付执行力。</li>
+<li>对宫迁移（己未）又送来向心武曲禄与贪狼权。这代表<strong>只要你走向外部市场、接触外部客户与社会平台，外界就会源源不断给你递来资源、项目与掌权扩张的机会</strong>。你能把看似散乱的人脉与信息迅速转化为实打实的业绩或商业成果。</li>
+</ul>
+</li>
+<li><strong>统领大局、定盘托底的“将帅担当”（身宫在官禄坐紫微旺、七杀平+禄存）</strong>：
+<ul>
+<li>身宫（后半生行事偏好与实际着力点）落在官禄宫，坐紫微、七杀与禄存。</li>
+<li>课程指出，紫微为帝星，七杀为战将，紫杀同宫主<strong>“将在前线，亲力亲为，敢扛最硬的指标，能开辟新局面”</strong>；禄存同宫更代表你追求的是高度稳固、有资产沉淀、抗风险能力极强的实体成果。你在工作中骨子极硬，遇到突发危机或混乱局面时，能迅速稳住阵脚、拍板定案，具有天然的领袖气质。</li>
+</ul>
+</li>
+<li><strong>极强的制度边界感与防御意识（官禄禄存正照夫妻天府）</strong>：
+<ul>
+<li>你既有贪狼开疆拓土的灵活性，又有禄存与紫微守住底线的稳健。你绝不会盲目冒险，每一笔账、每一个合作条约、每一次交付，你都会把风控与收益边界算得清清楚楚。</li>
+</ul>
+</li>
+</ul>
+</div></section><section class="topic" id="s4-2"><h3>二、 适合承担什么职责、怎样发展？适合的任务、工作方式与环境</h3><div class="source-body" data-block-id="S4-2-answer"><h4>1. 适合承担的职责</h4>
+<ul>
+<li><strong>业务主理人 / 独立部门负责人 / 核心项目操盘手</strong>：能够自负盈亏、带领团队攻克明确业绩或交付指标的岗位。</li>
+<li><strong>高客单转化 / 核心资源对接收割者</strong>：利用高情商、专业度与气场，搞定关键客户、促成大额合作或复杂商务谈判的职责。</li>
+<li><strong>资产与实体项目运营者</strong>：涉及供应链、实体资产配置、稳健型商业项目搭建与统筹管理。</li>
+</ul>
+<h4>2. 适合的任务类型</h4>
+<ul>
+<li><strong>从“0到1打硬仗”或“从1到10立规矩”的任务</strong>（契合紫微七杀）：目标清晰、阻力较大、需要强势推进打破僵局的任务，最能激发你的潜能。</li>
+<li><strong>利益链条复杂、需要高度情商与利益平衡的任务</strong>（契合武曲贪狼禄）：单纯靠技术搞不定的事，需要协调各方诉求、通过利益共赢促成落地的复合型任务。</li>
+<li><strong>拒绝纯琐碎、无权无利的重复性苦力</strong>：若任务只要求按部就班当工具人、无权做决定、也看不到现实回报，你会极度厌烦。</li>
+</ul>
+<h4>3. 适合的工作方式与环境</h4>
+<ul>
+<li><strong>工作方式：目标导向 + 高度自主裁量权</strong>
+<ul>
+<li>你最适合“定好核心目标与考核指标，中间具体怎么执行、用什么人、怎么分配资源由你说了算”的机制。</li>
+<li>你极度排斥被微观管理，不能忍受领导每天查考勤、抠细枝末节的汇报格式。</li>
+</ul>
+</li>
+<li><strong>组织环境：扁平化、看重战功、靠山明确的环境</strong>
+<ul>
+<li><strong>能直面高层或外部市场</strong>：命坐天魁，迁移见禄权入命，你非常适合在高层注视下直接拿成果说话，或者直接与外部市场打交道。</li>
+<li><strong>山头林立但给你划定独立势力范围的环境</strong>：身坐紫杀禄存，你适合拥有自己的一亩三分地（闭环业务线），在自己的领地里行使主权。</li>
+</ul>
+</li>
+</ul>
+</div></section><section class="topic" id="s4-3"><h3>三、 你怎样学习和积累本事？什么能让你持续投入？</h3><div class="source-body" data-block-id="S4-3-answer"><h4>1. 你怎样学习和积累本事？</h4>
+<ul>
+<li><strong>“战火与实操中淬炼”（武贪+紫杀，而非纯书斋死读）</strong>：
+<ul>
+<li>你的本事不是靠关在象牙塔里读死书学来的。武曲和七杀都是实战派的金性星曜，你最快的成长方式是<strong>直接下场做项目、管事情、踩坑并即时复盘</strong>。</li>
+<li>在实操中，只要把你的利益或责任绑定进去，你的心智和手腕会以极高的速度完成迭代。</li>
+</ul>
+</li>
+<li><strong>“高人指点与关键资源点拨”（命坐天魁，天机化科）</strong>：
+<ul>
+<li>天魁是贵人星，你善于向行业内的权威、前辈或成功操盘手学习核心经验。你往往不是全盘照搬，而是敏锐抓住对方最核心的商业逻辑或做人做事的精髓，迅速化为己用。</li>
+</ul>
+</li>
+<li><strong>“建立严谨的底层逻辑与标准流”（田宅天机生年忌+自化权+陀罗，父母文昌陷）</strong>：
+<ul>
+<li>天机忌权带陀罗在田宅（潜意识的底层根据地），你对知识体系有着极其较真、甚至略带焦虑的钻研精神。你学习一项技能，必须搞懂它的底层运作逻辑、把规则扣严实，否则你内心会缺乏掌控感。这种“打破砂锅问到底”的劲头，使你的专业底子往往非常扎实。</li>
+</ul>
+</li>
+</ul>
+<h4>2. 什么能让你持续投入？</h4>
+<ul>
+<li><strong>看得见、摸得着的现实回报（武曲正财 + 贪狼禄 + 官禄禄存）</strong>：
+<ul>
+<li>画大饼、谈情怀对你基本无效。能让你夜以继日投入的动力，必须是<strong>真金白银的提成、股权期权、明确的资产沉淀，或者社会地位与职级的实质性晋升</strong>。</li>
+</ul>
+</li>
+<li><strong>拥有说了算的权力与掌控感（紫杀身宫）</strong>：
+<ul>
+<li>当一个项目是由你主导、打上你个人烙印、成功后能带来极强成就感与权威感时，你的精力就像取之不尽的发动机。</li>
+</ul>
+</li>
+</ul>
+</div></section><section class="topic" id="s4-4"><h3>四、 什么容易使你的能力难以兑现？（核心卡点）</h3><div class="source-body" data-block-id="S4-4-answer"><h4>1. 财帛宫廉贞平、破军陷与煞忌冲耗：交付落地与落袋为安的损耗</h4>
+<ul>
+<li><strong>盘面依据</strong>：财帛宫在辛酉，坐<strong>廉贞平、破军陷</strong>。辛干使文昌化忌入甲寅（本命父母/大限田宅），冲申位疾厄。</li>
+<li><strong>表现</strong>：
+<ul>
+<li>破军在财帛主“开销大、资金流大进大出、敢于投入但波动剧烈”；廉贞主权谋与复杂关系。</li>
+<li>你的命宫（武贪禄）和官禄（紫杀禄存）非常强，说明你能揽来大业务、也能把盘子支棱起来；但<strong>财帛宫廉贞平、破军陷的组合，往往导致你在把事情转化为“长期、稳定、落袋为安的纯利润”时，面临巨大的损耗与周转风险</strong>。</li>
+<li>很多时候是“业务流水非常漂亮、名气很大，但中间环节成本高昂、应收账款滞纳，或者又被你投入到下一轮扩张中”，导致实际落入个人口袋的现金流与你的付出不成正比。</li>
+</ul>
+</li>
+</ul>
+<h4>2. “大包大揽+防备多疑”导致团队协同脱节</h4>
+<ul>
+<li><strong>盘面依据</strong>：身宫官禄坐七杀带禄存，正照夫妻宫天府铃星。</li>
+<li><strong>表现</strong>：
+<ul>
+<li>禄存虽主财禄与稳健，但也主“孤立、防卫、保守与不轻易信人”；七杀主凡事信不过别人、喜欢亲自冲锋。</li>
+<li>在事业成长到一定体量时，你容易陷入<strong>“觉得下属干得太慢太差，索性自己全干了”</strong>的陷阱。你不敢轻易放权，把所有核心节点全抓在自己手里，结果把自己累得精疲力竭，反而限制了业务的进一步放大。</li>
+</ul>
+</li>
+</ul>
+<h4>3. 规章制度、合同文书与长辈/上级的摩擦（父母宫文昌陷，辛干化昌忌）</h4>
+<ul>
+<li><strong>盘面依据</strong>：本命父母宫在甲寅，坐文昌陷；财帛宫辛干飞文昌化忌入父母宫。</li>
+<li><strong>表现</strong>：
+<ul>
+<li>父母宫代表领导、法规、审计、资质与制度。文昌陷坐父母，财帛宫飞文昌忌入此宫、冲申位疾厄，说明你在搞钱、开展业务的过程中，<strong>极容易在合同条款、合规流程、审批文书、或与顶头上司的汇报对齐上吃闷亏</strong>。</li>
+<li>你重在往前冲拿结果，若忽视了合规漏洞或得罪了制度掌控者，容易在最后关头被规章流程或上级意志卡脖子。</li>
+</ul>
+</li>
+</ul>
+</div></section><section class="topic" id="s4-5"><h3>五、 换环境依然可能重复的问题 vs 换对环境能显著改善的问题</h3><div class="source-body" data-block-id="S4-5-answer"><h4>1. 即使换了环境，依然容易因你的习惯而重复的问题（内生性课题）</h4>
+<ul>
+<li><strong>“大权独揽后的身心过载”</strong>：
+<ul>
+<li>无论去哪家公司或自己创业，只要你做事，你那种紫杀式的掌控欲与禄存的防备心就会冒头。你总是很难忍受别人办事的低效，最后又变成你一个人扛下所有责任，陷入周期性的身心疲惫。</li>
+</ul>
+</li>
+<li><strong>“资产周转的大进大出与资金焦虑（财帛廉破）”</strong>：
+<ul>
+<li>你骨子里有破军的开拓冒险基因，赚了钱就想继续滚大盘子，或者为了拿下大单愿意垫资、重度投入。这种对资金的高杠杆运作与消耗习惯，换了平台依然会存在，必须在心智上建立强制储蓄与利润隔离机制。</li>
+</ul>
+</li>
+<li><strong>“底层逻辑未闭环时的焦虑内耗（田宅天机忌陀）”</strong>：
+<ul>
+<li>在工作筹备阶段，由于你极其在乎底层逻辑的安全感，你容易在方案细节、风控假设上自我纠结、反复推演（陀罗打转），甚至在前期把团队逼得神经紧张。</li>
+</ul>
+</li>
+</ul>
+<h4>2. 确实需要选对环境才能改善的问题（环境依赖性课题）</h4>
+<ul>
+<li><strong>直属上级的权力风格与容人度（规避父母宫文昌陷的压制）</strong>：
+<ul>
+<li><strong>差环境</strong>：遇到控制欲极强、嫉贤妒能、整天挑你汇报字眼和流程合规的官僚型领导。在那种环境下，你的锋芒（紫杀武贪）会被视为威胁，文昌陷的文书雷区会被无限放大，你会极其痛苦甚至发生严重龃龉。</li>
+<li><strong>好环境</strong>：遇到看重成果、愿意放权、能在组织高层为你遮风挡雨、只考核最终业绩的开明统帅。你只要负责在前线攻城略地，后台由对方替你搞定合规与人事，你的能量能释放十倍。</li>
+</ul>
+</li>
+<li><strong>考核机制是否与“利益直接挂钩”</strong>：
+<ul>
+<li><strong>差环境</strong>：大锅饭国企、吃资历的大厂中台或纯事务性行政部门。无论你多么能干，收益与职级都锁死在既定年资上，这会瞬间杀死武贪与禄存的自驱力，让你感到才能被活埋。</li>
+<li><strong>好环境</strong>：强激励机制的商业机构、独立核算的事业部、核心业务线或自主创业合伙。只要回报与打下的战果成正比，你爆发出的战斗力将极为惊人。</li>
+</ul>
+</li>
+<li><strong>业务属性必须具备“外部延展性”（激活迁移禄权入命）</strong>：
+<ul>
+<li><strong>差环境</strong>：完全封闭对内、天天与内部同事勾心斗角内耗的死水环境。</li>
+<li><strong>好环境</strong>：需要面向外部市场、与外部供应商/大客户/跨国界跨领域打交道的开放生态。迁移宫给命宫输送的武曲禄、贪狼权，只有在你走向外部广阔天地时，才能被最大限度地激活。</li>
+</ul>
+</li>
+</ul>
+</div></section><section class="topic" id="s4-6"><h3>六、 总结与事业核心建议</h3><div class="source-body" data-block-id="S4-6-answer"><p>你天生就是<strong>“拿结果的战将与主理人”</strong>。</p>
+<ul>
+<li><strong>战术上</strong>：继续发挥你武贪禄魁的高情商敏锐嗅觉与紫杀禄存的强大攻坚力，把业务主导权抓在手里；</li>
+<li><strong>防守上</strong>：必须警惕财帛廉破的现金流损耗与文昌陷的合同合规隐患，每一项成果落地都要“见好就收、利润封顶落袋”；</li>
+<li><strong>格局上</strong>：学会克服紫杀禄存的猜疑与大包大揽，通过合理的制度把琐碎执行分流给下属，将自己真正解脱出来，聚焦于战略方向与外部资源的持续收割。</li>
+</ul>
+</div></section></section><section class="chapter" id="chapter-5"><p class="chapter-label">第 5 章</p><h2>2026—2027：事业与收入</h2><div class="source-body supplement-opening"><p>在紫微斗数的行运架构中，<strong>大限是十年环境的底色与战略中枢，流年则是战术切入点与具体事件的承载面</strong>。</p>
+</div><section class="topic" id="s5-1"><h3>一、 两年事业的核心区别与演进脉络</h3><div class="source-body" data-block-id="S5-1-answer"><table>
+<thead>
+<tr>
+<th style="text-align:left">维度</th>
+<th style="text-align:left">2026 丙午年（剩余阶段）</th>
+<th style="text-align:left">2027 丁未年</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>流年定位与重心</strong></td>
+<td style="text-align:left"><strong>流年命宫在午（本命交友/大限疾厄）</strong>，流年官禄在戌（无十四主星，对宫辰为天机天梁；天同、太阴在子位流迁，太阴带生年权与向心权）。<br>重心在<strong>“人际协调、执行落地、修补防守与现金流回笼”</strong>。</td>
+<td style="text-align:left"><strong>流年命宫在未（本命迁移/大限财帛）</strong>，流年官禄在亥（重叠大限命宫/本命夫妻，天府左辅铃星）。<br>重心在<strong>“平台跃迁、对外开疆拓土、独立执掌大权与确立山头”</strong>。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>四化核心牵引</strong></td>
+<td style="text-align:left">丙干：天同禄入子（流迁）、天机权入辰（流夫/本田）、昌科入寅（流财）、<strong>廉贞忌入酉（流田/本财/大妻），正冲卯位（流子/本福/大官）</strong>。</td>
+<td style="text-align:left">丁干：太阴禄、天同权入子（流友）、天机科入辰（流子/本田）、<strong>巨门忌入寅（流疾/本父/大田），正冲申位（流父/本疾/大子）</strong>。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>变动的核心性质</strong></td>
+<td style="text-align:left"><strong>业务层面与项目细节的调整</strong>。多体现为内部协同、清账收尾、应对合规或资金垫付压力，不宜轻易颠覆平台。</td>
+<td style="text-align:left"><strong>平台、地位、核心业务线或合作方式的重大升级</strong>。极易出现外部猎头邀约、开拓新市场/新分支、自立门户或拿到核心操盘大权。</td>
+</tr>
+</tbody>
+</table>
+</div></section><section class="topic" id="s5-2"><h3>二、 2026年剩余阶段（丙午年秋冬）：机会、阻力与工作状态</h3><div class="source-body" data-block-id="S5-2-answer"><h4>1. 核心判断</h4>
+<p>年底阶段你的事业处于<strong>“攻守转换的防守期”</strong>。此时切忌盲目扩大战线或垫资扩张，核心任务是<strong>“防范资金与精力被过度消耗，守住既有基本盘，理清业务账目”</strong>。</p>
+<h4>2. 各维度具体表现与盘面依据</h4>
+<ul>
+<li><strong>承担责任与工作内容</strong>：
+<ul>
+<li>流年命在午（交友位），流官在戌（子女位）。你的工作重心大量消耗在“对外沟通、对接合作方、解决琐碎人际协调、处理历史遗留项目”上。</li>
+<li>天同禄入流迁，代表外部看似机会活跃、应酬往来多，但大多属于试探性、合作性意向，真正要落到合同与实权上阻力重重。</li>
+</ul>
+</li>
+<li><strong>收入回报与资金阻力（关键考场）</strong>：
+<ul>
+<li><strong>核心依据</strong>：丙干<strong>廉贞化忌直接坐入辛酉（流年田宅 / 本命财帛 / 大限夫妻），正冲乙卯（流年子女 / 本命福德 / 大限官禄）</strong>。</li>
+<li><strong>表现</strong>：廉贞化忌在财帛冲大限官禄（大运事业气数位）。这表明年底你在金钱上有明显的<strong>“回款受阻、垫资压力、项目超支或因合作方/伴侣事务导致财务周转吃紧”</strong>。这种财务与资源上的卡顿，会直接反噬到你的精神状态（冲福德）和工作专注度（冲大官），让你感到心力交瘁。</li>
+</ul>
+</li>
+<li><strong>合作关系与自主空间</strong>：
+<ul>
+<li>合作方此时往往自顾不暇或对条件极其苛刻；廉贞忌在流田，代表你的“根据地/后方资源”在被向外抽取。</li>
+<li>此时你的自主空间被压缩，大部分时间是在被动应对外部需求或修补漏洞。</li>
+</ul>
+</li>
+</ul>
+</div></section><section class="topic" id="s5-3"><h3>三、 2027年（丁未年）：机会、阻力与全面跃迁</h3><div class="source-body" data-block-id="S5-3-answer"><h4>1. 核心判断</h4>
+<p>2027年是你在当前大限中<strong>“事业爆发力最强、最容易打破天花板、真正确立独立阵地”的高光年份</strong>。你的角色将从“一线执行与防守协调”直接跃升为<strong>“独立操盘手、主导者或开疆拓土的统领”</strong>。</p>
+<h4>2. 各维度具体表现与盘面依据</h4>
+<ul>
+<li><strong>平台跃迁与自主空间（最大机会）</strong>：
+<ul>
+<li><strong>核心依据</strong>：流年命宫在未（本命迁移 / 大限财帛），未宫对宫正照本命命宫丑（武曲庙、贪狼庙化禄、天魁，且接纳己未化来的武曲禄与贪狼权）；<strong>流年官禄宫在亥（重叠大限命宫 / 本命夫妻，坐天府得、左辅）</strong>；流年夫妻宫在巳（重叠<strong>本命官禄/身宫</strong>，坐紫微旺、七杀平、禄存）。</li>
+<li><strong>表现</strong>：
+<ul>
+<li><strong>自主空间达到顶峰</strong>：流命走入迁移，流官坐天府（令星、掌柜星），流夫（事业对宫）照紫杀禄存。你在这一年极难再被别人微观管理，你将获得极高的业务独立裁量权，甚至直接独立负责一条完整的业务线、一个独立的区域市场、或以合伙人姿态主导项目。</li>
+<li><strong>外部向心力极强</strong>：走向外部市场、差旅、外埠业务或对接更高维度的平台，会极大激发你的潜能。如果换工作或变动，多偏向于<strong>“被高薪挖角去开辟新部门、或从单一雇员转向利益分成更深的分支业务负责人”</strong>。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>工作内容与承担责任</strong>：
+<ul>
+<li>从2026年的琐碎协调，转变为<strong>“制定战略规划、统筹大局资源、攻克大客户与重大业绩指标”</strong>。你需要像天府一样管全局、像七杀一样打硬仗。</li>
+</ul>
+</li>
+<li><strong>合作关系</strong>：
+<ul>
+<li>流官见左辅，流友（甲子）见太阴化禄、天同化权。这意味着你能接触到实力雄厚、资金充沛的合作方或团队下属，外部合作层级显著提升。</li>
+</ul>
+</li>
+<li><strong>收入回报与阻力考场（关键暗礁）</strong>：
+<ul>
+<li><strong>收入回报</strong>：流年命宫踏入大限财帛宫，且正照本命武贪生年禄与向心禄权，收入流水、业务规模和提成空间会呈现几何级数的扩张。</li>
+<li><strong>核心阻力（文书、资质、制度与高层信任）</strong>：
+<ul>
+<li><strong>核心依据</strong>：丁干使<strong>巨门化忌入甲寅（流年疾厄 / 本命父母 / 大限田宅），正冲庚申（流年父母 / 本命疾厄 / 大限子女）</strong>。父母宫本坐文昌陷。</li>
+<li><strong>表现</strong>：巨门主口舌争端、暗藏条款、是非与信任隔阂；文昌陷坐父母，与2027巨门忌同宫，正冲申位，父疾线全盘震荡。</li>
+<li>这代表2027年你在大展拳脚时，<strong>最容易绊倒你的不是市场竞争，而是“合同契约漏洞、合规资质审核、发票账目问题、或者与原单位/监管部门/高层管理者的言语误解与政策摩擦”</strong>。稍有不慎，容易陷入长期的文书纠纷或信任危机。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div></section><section class="topic" id="s5-4"><h3>四、 结合你的本事：哪些方向值得争取？哪些事情投入多却回报有限？</h3><div class="source-body" data-block-id="S5-4-answer"><p>结合你“武贪禄魁的敏锐转化力”与“紫杀禄存的阵地掌控力”，两年的战略取舍如下：</p>
+<h4>1. 绝对值得争取的高回报方向</h4>
+<ul>
+<li><strong>“独立带队、自负盈亏、利益直接绑定的业务线”（2027重点突击）</strong>：
+<ul>
+<li>借由2027年流官天府左辅与身宫紫杀的强旺势头，极力争取独立负责一个新业务、新品牌或新区域。你有极强的算账与变现能力（武贪正照），这种能让你拥有主导权且利润直接挂钩的赛道，投入产出比最高。</li>
+</ul>
+</li>
+<li><strong>“深耕高价值外部客户或高客单转化”（利用迁移向心禄权）</strong>：
+<ul>
+<li>凡是需要“出外、见大客户、搞定复杂利益链条”的事，勇敢接下。外界会给你递资源，你的情商与气场能最大化变现。</li>
+</ul>
+</li>
+<li><strong>“在2026年底建立严格的业务回款与风控隔离机制”</strong>：
+<ul>
+<li>在2026年把历史项目的款项追回，厘清权责。虽然过程磨人（廉贞忌），但这是守住胜利果实的关键。</li>
+</ul>
+</li>
+</ul>
+<h4>2. 极易投入多、回报有限甚至反噬的深坑</h4>
+<ul>
+<li><strong>在2026年底盲目接下“需要重度垫资或回报期模糊的合作项目”</strong>：
+<ul>
+<li>2026流年田宅坐廉贞忌冲大官，此时任何打着“未来有大收益”、但现在需要你压上大量现金、时间去搞人情关系的合作，最后大概率沦为资金黑洞，严重拖垮你的事业气数。</li>
+</ul>
+</li>
+<li><strong>在2027年参与“合同权责含糊、合规打擦边球的灰色业务”</strong>：
+<ul>
+<li>2027巨门化忌入寅，与文昌陷同宫，正冲申位。任何依赖口头承诺、没有严密法律条文保护、或者存在资质瑕疵的事，无论表面利润多诱人，最终都极其容易因口舌是非、审计调查或合作方翻脸不认人，导致付出付诸东流。</li>
+</ul>
+</li>
+<li><strong>事必躬亲的“保姆式管理”（重度消耗紫杀与天机）</strong>：
+<ul>
+<li>如果你把精力浪费在替下属改每一份PPT、扣每一个表格细节上，田宅天机忌陀罗的内耗就会爆发，你会被琐碎事务死死缠住，从而错失2027年外部扩张（迁移照命）的历史性机遇。</li>
+</ul>
+</li>
+</ul>
+</div></section><section class="topic" id="s5-5"><h3>五、 给你的发展建议与行动心法</h3><div class="source-body" data-block-id="S5-5-answer"><ol>
+<li><strong>2026年底（丙午）：“收网、清账、稳心态”</strong>
+面对业务摩擦与人际消耗，保持冷静态势。拒绝无意义的酒局与空头合作，把主要精力放在既有业务的安全交付和资金回笼上，为来年的爆发积蓄弹药。</li>
+<li><strong>2027年（丁未）：“出击、称帅、锁文书”</strong>
+这一年只要有走向更大平台、独立主导业务、或走向外部市场的机会，绝不退缩，果断亮剑争取名分与主权；但在签字盖章、合同拟定、股权协议以及向上汇报时，必须做到十二分的法务严密与流程透明，彻底掐灭巨门忌的口舌与文书隐患。</li>
+</ol>
+</div></section><section class="topic" id="s5-6"><h3>六、 关于2026年事业节奏的补充</h3><div class="source-body" data-block-id="S5-6-answer"><p>2026流年官禄宫在戌无主星，直接受对宫辰位（本命田宅/2026流年夫妻，坐天机生年忌+离心权+陀罗，且得流年天机化权）的影响。这意味着2026年事业发展本就<strong>缺乏稳定的内部自主抓手，更容易受制于合作方、伴侣或领地内部的拉扯</strong>。
+*   而天同、太阴双权真正在甲子（2026流年迁移宫），代表2026年在外部社交、走动或外部合作意向中确实存在声势或意向，但因为流年官禄本宫无主星托底，这些外部意向在年底很难转化为直接落地的权责，反衬出“2026年底重在防守协调、不宜盲目扩张”的判断成立。</p>
+</div></section></section><section class="chapter" id="chapter-6"><p class="chapter-label">第 6 章</p><h2>事业与感情，共同的人生主线</h2><div class="source-body supplement-opening"><span></span></div><section class="topic" id="s6-1"><h3>一、 最值得记住的三条事业判断及其对发展选择的决定性影响</h3><div class="source-body" data-block-id="S6-1-answer"><p>这三条判断不仅概括了你的事业格局与运势节奏，更直接规定了你在面对职业岔路口时<strong>“选什么、放弃什么、怎样打赢”</strong>的实操策略。</p>
+<h4>1. 结构定位：“将相兼备的阵地操盘手”，必须以“自负盈亏的独立主导权”为择业第一硬指标</h4>
+<ul>
+<li><strong>深层展开（未讲透的线索）</strong>：
+你的命宫是武曲庙、贪狼庙化禄带天魁，身宫在官禄坐紫微旺、七杀平带禄存。在斗数构架中，武贪生年禄主“敏锐嗅觉、高情商谈判与强大的生财变现力”；身宫紫杀禄存则主“坐镇将帅、自立规矩、追求高度安全与资产沉淀”。
+这意味着你兼具<strong>前线开拓者的灵活性</strong>与<strong>幕后统帅的霸气</strong>。你骨子里最排斥的不是加班或高压，而是“被外行微观管理”以及“干出成绩却由别人决定分多少”。</li>
+<li><strong>内在冲突与取舍</strong>：
+<ul>
+<li><em>冲突点</em>：贪狼禄喜欢在外部市场游刃有余、广结善缘；但身宫紫杀禄存又有极强的防御心与独占欲（信不过下属或同僚，总想亲自包揽控盘）。</li>
+<li><em>最终取舍</em>：<strong>最终必须以“紫杀禄存的闭环主导权”为纲，以“贪狼禄的灵活性”为用</strong>。你绝不适合长期在大机构里做层层汇报、没有拍板权的“大螺丝钉”；任何不能给你划定独立势力范围、不看战功只看站队的岗位，无论薪酬表面多高，都会迅速窒息你的能量。</li>
+</ul>
+</li>
+<li><strong>如何影响发展选择</strong>：
+<ul>
+<li><strong>选择赛道</strong>：优先选择“业务线独立核算、目标明确、打下战功直接拿分红/分润”的方向（如独立业务部门主理人、高客单复杂业务操盘、关键市场开拓），或者以项目合伙人身份做事。</li>
+<li><strong>管理突破</strong>：必须强行克服“凡事信不过别人、大包大揽”的习惯。你只需牢牢掌控“钱流节点（财帛风控）”与“最终交付验收权（紫杀）”，把过程细节通过流程分发出去，否则你的精力上限就会直接锁死业务规模的天花板。</li>
+</ul>
+</li>
+</ul>
+<h4>2. 财富与交付命门：财帛宫廉贞平、破军陷，业务必须“重现金流落袋，严防垫资、长周期沉淀与账目漏洞”</h4>
+<ul>
+<li><strong>深层展开（未讲透的线索）</strong>：
+你的命官极强（武贪双庙化禄、紫微七杀），但财帛宫落在辛酉，坐<strong>廉贞平、破军陷</strong>；且辛干飞<strong>文昌化忌直入甲寅（本命父母宫，受冲的是申位疾厄宫）</strong>。
+在课程中，破军陷在财帛主“资金流大进大出、敢打敢拼但极难沉淀”，容易赚快钱也容易一把亏回去；破军陷且同宫见火星，增加资金运用的急躁与波动；辛干文昌化忌入父母（契约、法规、审计位），意味着<strong>你在财务上最容易栽在“合同漏洞、开票与法务瑕疵、以及合作伙伴账目不清”上</strong>。</li>
+<li><strong>内在冲突与取舍</strong>：
+<ul>
+<li><em>冲突点</em>：破军的冒险本能促使你想把赚到的钱立即复投、滚动杠杆以追求更大体量；但官禄宫的禄存却极度渴望安全垫，本命田宅的天机忌陀罗更承受不住资金断流的惊涛骇浪。</li>
+<li><em>最终取舍</em>：<strong>最终必须彻底压制破军的投机冲动，听从禄存的保守风控指令</strong>。宁可发展慢一点，也必须守住“确定性利润落袋”。</li>
+</ul>
+</li>
+<li><strong>如何影响发展选择</strong>：
+<ul>
+<li><strong>合同与合作硬原则</strong>：绝不做回款周期漫长、权责含糊、全凭口头讲义气的项目；严防重资产垫资；合同拟定必须做到字斟句酌、法务闭环。</li>
+<li><strong>资金蓄水池机制</strong>：每一笔业务做成，必须强行把核心利润抽离出业务周转账户，转入低风险实体或锁定储蓄中，严禁业务资金与个人身家混同。</li>
+</ul>
+</li>
+</ul>
+<h4>3. 运势战略节律：2026年底“退回防守、回笼资金、理清账目”，2027年“果断抢滩、公开掌权、严防合规”</h4>
+<ul>
+<li><strong>深层展开（两年差异与落子重心）</strong>：
+<ul>
+<li><strong>2026年剩余阶段（丙午）</strong>：流年命在戊午，流年田宅在辛酉，坐廉贞化忌，<strong>正冲乙卯（流年子女 / 本命福德 / 当前大限官禄）</strong>。大限官禄（事业气数）直接被冲，说明年底是典型的“耗散防守期”。此时任何试图在业务上强行大举扩张、或垫付大额资金的行为，都会直接打碎你的事业专注度与精神状态。</li>
+<li><strong>2027年（丁未）</strong>：流年命宫踏入己未（本命迁移 / 当前大限财帛），正照本命武贪禄魁；流年官禄在癸亥（当前大限命宫，天府左辅）；流年夫妻在丁巳（重叠本命官禄/身宫，紫微七杀禄存）。但丁干<strong>巨门化忌入甲寅（本命父母 / 当前大限田宅 / 2027流年疾厄）</strong>，正冲庚申。</li>
+</ul>
+</li>
+<li><strong>如何影响发展选择</strong>：
+<ul>
+<li><strong>2026年底的动作</strong>：<strong>“做减法、收应收、踩刹车”</strong>。拒绝一切看似宏大但需要你承担资金风险的新提案；不急于在年底前做职业跳槽定夺，把精力放在收尾和清理历史账目上。</li>
+<li><strong>2027年的动作</strong>：<strong>“抢山头、谈名分、锁合规”</strong>。这一年有极强的高规格平台机遇或外部主导权砸向你，必须果断走向台前争夺主导地位（天府紫杀禄存）；但巨门忌坐大限田宅冲父疾线，提醒你在签字盖章、股权分配、劳动协议和资质审批上必须聘请专业人士严审，杜绝一切隐患。</li>
+</ul>
+</li>
+</ul>
+</div></section><section class="topic" id="s6-2"><h3>二、 事业与感情的深层联系：同一个人的共同底色与互相影响</h3><div class="source-body" data-block-id="S6-2-answer"><p>这两套分析绝非割裂的拼盘，而是完全贯通于你同一套<strong>命理骨架与行事底层逻辑</strong>之中。</p>
+<h4>1. 共同的底层性格与相处习惯（共通主线）</h4>
+<ul>
+<li><strong>“开局高情商亲和，底色极刚决不妥协”</strong>：
+<ul>
+<li><em>在感情中</em>：命宫贪狼禄让你懂情趣、懂包容，但身宫紫微七杀禄存决定了你吃软不吃硬，一旦对方触碰底线便毫不留情绝决切割。</li>
+<li><em>在事业中</em>：你同样善于商务交际、深谙利益互惠（武贪禄魁），但一旦涉及业务方向与原则底线，你的将帅霸权（紫杀）寸步不让，绝不容许他人指手画脚。</li>
+</ul>
+</li>
+<li><strong>“对根据地和生活细节的较真内耗（田宅天机忌+自化权+陀罗）”</strong>：
+<ul>
+<li><em>在感情中</em>：落地同居后，容易对生活规矩、家务细节不断挑剔、思维打结、翻旧账。</li>
+<li><em>在事业中</em>：项目筹备期容易在底层逻辑、方案漏洞和假设上过度纠结、反复推演，给团队和自己带来巨大的精神内耗。</li>
+</ul>
+</li>
+<li><strong>“大包大揽带来的窒息与疲惫”</strong>：
+<ul>
+<li><em>在感情中</em>：容易习惯性替伴侣操心拿主意，结果吸引或纵容了对方的情感依赖（夫忌入命），反过来让自己感到被索取和沉重。</li>
+<li><em>在事业中</em>：觉得下属办事不牢靠，索性全抓在手里，导致自己身心过载、难以规模化。</li>
+</ul>
+</li>
+</ul>
+<h4>2. 各自独立的维度（不可混为一谈的部分）</h4>
+<ul>
+<li><strong>感情的专属困境：客体的情感索取与反弹（夫妻癸干贪狼忌入命）</strong>
+这是亲密关系独有的引动。你在职场上极少会任由合作伙伴对你进行无底线的情感绑架；但在感情里，伴侣往往会把其个人的脆弱与焦虑倾倒给你，这种“被死死抓住整个人”的沉重感是感情特有的。</li>
+<li><strong>事业的专属困境：现金流与合约合规风险（财帛廉贞平、破军陷、父母文昌陷）</strong>
+这是商业与社会的客观规则对你的考验，取决于市场周期、法律规范与商业利益博弈，无法简单用“性格强弱”来解释。</li>
+</ul>
+<h4>3. 事业与感情是怎样在盘面上真正互相影响的？（核心证据链）</h4>
+<ul>
+<li><strong>当前大限（24–33岁癸亥）将二者深度捆绑</strong>：
+你当前的大限命宫，<strong>正好重叠你的本命夫妻宫（癸亥）</strong>！这决定了在这十年里，<strong>感情状态的稳固与否，直接作为你个人运势的基座，剧烈牵动你的事业心力</strong>。</li>
+<li><strong>2026年底的现实共振点（辛酉）</strong>：
+辛酉位在全盘中身兼三职：<strong>本命财帛宫 / 当前大限夫妻宫 / 2026流年田宅宫</strong>；对宫乙卯则是<strong>本命福德宫 / 当前大限官禄宫 / 2026流年子女宫</strong>。
+2026丙干使<strong>廉贞化忌直接坐入辛酉，正冲乙卯</strong>！
+<ul>
+<li><strong>具体的互相影响</strong>：如果年底你在感情上发生激烈的空间争夺或伴侣出现危机（大限夫妻/流年田宅受忌），不仅会导致家庭内部鸡犬不宁，<strong>更会直接抽干你的资金流动性（本命财帛坐忌），并直接击溃你在年底的事业专注力与业务推进节奏（正冲大限官禄）</strong>。反过来，若年底业务资金受阻，也会迅速激化亲密关系的矛盾。</li>
+</ul>
+</li>
+<li><strong>2027年的良性托举与共同考验</strong>：
+2027流年夫妻宫重叠本命官禄/身宫（丁巳，紫杀禄存），流年官禄宫重叠大限命宫/本命夫妻（癸亥，天府左辅）。这表明到2027年，<strong>你的事业平台晋升与严肃伴侣的出现/定性是高度同频共振的</strong>——真正适合你的伴侣，必然是在社会能力上能与你并肩作战、在名分上能与你平起平坐的强有力盟友；而你们共同面临的深层考验，则是双方长辈和家庭根基的合规接纳（巨门忌入大田冲父疾）。</li>
+</ul>
+</div></section><section class="topic" id="s6-3"><h3>三、 进一步了解现实情况</h3><div class="source-body" data-block-id="S6-3-answer"><p>为避免将推演停留于纯逻辑模型，若你希望在后续探讨中进一步校准具体的现实选择，以下三个核心背景信息最为关键：</p>
+<ol>
+<li><strong>目前现实中你的业务/工作形态更偏向哪一类？</strong>（例如：受雇于体系化大机构、担任企业内部独立业务线负责人、自己创业/自由职业主理人、还是处于转换与探索期？）</li>
+<li><strong>当前在财务运作与收入分配上，你的支配权如何？</strong>（主要依靠固定年薪，还是有直接绑定的高比例业务分红/股权/独立营收流水？过往是否有项目资金垫付或账目受阻的经历？）</li>
+<li><strong>在团队或业务推进中，你目前是否有法律合规、合同契约、或与核心领导/投资长辈之间的沟通卡点正在发生？</strong></li>
+</ol>
+</div></section></section></article>
+  </main>
+
+  <footer class="bottombar"><div class="bar-inner">
+    <button class="tool-btn" type="button" data-sheet="tocSheet"><span class="symbol">☷</span><span>目录</span></button>
+    <button class="tool-btn" type="button" data-sheet="annotationsSheet"><span class="symbol">✎</span><span>批注</span></button>
+    <button class="tool-btn" type="button" data-sheet="settingsSheet"><span class="symbol">Aa</span><span>设置</span></button>
+    <button class="tool-btn" type="button" id="copyFullBtn"><span class="symbol">⧉</span><span>复制全文</span></button>
+  </div></footer>
+
+  <div class="selection-toolbar" id="selectionToolbar" aria-label="文字批注工具">
+    <button class="color-dot color-yellow" type="button" data-highlight-color="yellow" aria-label="黄色标记"></button>
+    <button class="color-dot color-green" type="button" data-highlight-color="green" aria-label="绿色标记"></button>
+    <button class="color-dot color-blue" type="button" data-highlight-color="blue" aria-label="蓝色标记"></button>
+    <button class="color-dot color-red" type="button" data-highlight-color="red" aria-label="红色标记"></button>
+    <button class="selection-note" type="button" id="selectionNoteBtn" aria-label="添加批注" title="添加批注">✎</button>
+  </div>
+
+  <div class="overlay" id="overlay"></div>
+  <section class="sheet" id="tocSheet" aria-label="目录"><div class="sheet-handle"></div><h2>目录</h2><ol class="toc-list" id="tocList"></ol></section>
+  <section class="sheet" id="annotationsSheet" aria-label="我的批注"><div class="sheet-handle"></div><h2>我的批注</h2><p class="sheet-note">长按并选中文字即可划线或写批注。内容只保存在当前设备；分享时会由你主动选择发送对象。</p><div class="annotation-list" id="annotationList"></div><div class="sheet-actions"><button class="command-btn" type="button" id="shareNotesBtn">分享批注</button><button class="command-btn" type="button" id="copyNotesBtn">复制批注</button></div></section>
+  <section class="sheet" id="settingsSheet" aria-label="阅读设置"><div class="sheet-handle"></div><h2>阅读设置</h2><div class="setting-row"><span>字号</span><div class="stepper"><button type="button" id="fontDown">A−</button><span id="fontValue">18</span><button type="button" id="fontUp">A＋</button></div></div><div class="setting-row"><span>行距</span><div class="stepper"><button type="button" id="lineDown">紧</button><span id="lineValue">1.92</span><button type="button" id="lineUp">松</button></div></div><div class="setting-row"><span>背景</span><div class="themes"><button class="theme-dot theme-paper" type="button" data-theme="paper" aria-label="米白"></button><button class="theme-dot theme-white" type="button" data-theme="white" aria-label="白色"></button><button class="theme-dot theme-green" type="button" data-theme="green" aria-label="护眼"></button><button class="theme-dot theme-dark" type="button" data-theme="dark" aria-label="夜间"></button></div></div></section>
+  <section class="sheet" id="noteSheet" aria-label="编辑批注"><div class="sheet-handle"></div><h2 id="noteTitle">添加批注</h2><p class="sheet-note" id="noteQuote"></p><div class="setting-row"><span>标记颜色</span><div class="themes"><button class="color-dot color-yellow" type="button" data-note-color="yellow" aria-label="黄色"></button><button class="color-dot color-green" type="button" data-note-color="green" aria-label="绿色"></button><button class="color-dot color-blue" type="button" data-note-color="blue" aria-label="蓝色"></button><button class="color-dot color-red" type="button" data-note-color="red" aria-label="红色"></button></div></div><textarea id="noteText" maxlength="2000" placeholder="写下你的理解、疑问或现实经历……"></textarea><div class="sheet-actions"><button class="command-btn danger" type="button" id="deleteNoteBtn">删除</button><button class="command-btn" type="button" id="cancelNoteBtn">取消</button><button class="command-btn primary" type="button" id="saveNoteBtn">保存</button></div></section>
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+    const REPORT = {"title":"感情与事业","subtitle":"先看清自己的底色，再读相处方式、事业方向与2026—2027年的变化。","chapters":[{"question":1,"title":"亲密关系中的自己","intro":"在紫微斗数的研读体系中，分析感情绝不能孤立单看夫妻宫，而必须将**命宫（自我性格与处事底色）**、**夫妻宫（择偶偏好与伴侣特质）**、**福德宫（内在精神世界与情绪诉求）**以及**田宅宫（关系落地后的同居与家宅状态）**，结合**宫干四化飞伏的方向与主体**融为一体。","openingHtml":"\u003cp>在紫微斗数的研读体系中，分析感情绝不能孤立单看夫妻宫，而必须将\u003cstrong>命宫（自我性格与处事底色）\u003c/strong>、\u003cstrong>夫妻宫（择偶偏好与伴侣特质）\u003c/strong>、\u003cstrong>福德宫（内在精神世界与情绪诉求）\u003c/strong>以及\u003cstrong>田宅宫（关系落地后的同居与家宅状态）\u003c/strong>，结合\u003cstrong>宫干四化飞伏的方向与主体\u003c/strong>融为一体。\u003c/p>\n","sections":[{"id":"S1-1","title":"一、 在亲密关系中你是怎样的人？最值得看清的核心特点是什么？","sourceMarkdown":"#### 1. 核心判断\r\n你是一个**“外在兼具理性现实感与情商魅力，内心高度独立自尊，但在亲密关系中极易吸引‘高依赖、强管束、情感索取型’伴侣”**的人。最值得看清的核心矛盾在于：**你自身有极强的主见与边界感，但在感情深处却常常被对方当作“必须全面抓紧的避风港”，从而在“渴望被坚实依靠”与“厌恶被过度管束消耗”之间反复拉扯**。\r\n\r\n#### 2. 具体表现与白话解读\r\n*   **兼具务实计算与情调品味（命宫武曲庙、贪狼庙化禄+天魁）**：\r\n    你的命宫由武曲与贪狼共同坐守，且贪狼自带生年禄。在亲密关系里，你绝不是不食人间烟火、纯靠浪漫幻想维系关系的“恋爱脑”。武曲让你看重现实支撑、执行力与能力匹配；贪狼化禄与天魁则赋予你天然的社交敏锐度、懂他人需求的情商、以及对生活品味和浪漫情调的高追求。你愿意在关系中投入资源、共享成果，但前提是**这段关系必须具备现实价值与良性向上的空间**。\r\n*   **内在骨子极刚，绝不愿为人附庸（身宫在官禄坐紫微旺、七杀平+禄存）**：\r\n    官禄宫作为你的身宫（后半生行事倾向），紫杀带禄存正照夫妻宫。这意味着你在人生追求和做人底线上有极强的傲骨与掌控欲。你在两性相处中可以体贴温和，但主权必须牢牢掌握在自己手里，绝不容许伴侣践踏你的尊严或随意左右你的职业与发展。\r\n*   **“夫妻忌入命”的根本宿命感（核心关键点）**：\r\n    盘中最关键的飞化是：**本命夫妻宫（癸亥）宫干飞贪狼化忌直接进入你的命宫（乙丑）**。\r\n    依据课程主张，**“夫忌入命”在两性对待中代表伴侣对你有深度的执着、黏缠、索取与控制欲（忌比权黏，是抓整个人）**。无论对方表面多么优秀，一旦确认关系，对方便极容易对你产生沉重的情感依赖、行踪查勤、挑剔甚至“因为太在乎你而把焦虑全面倒给你”。这往往会让你感到窒息与沉重，觉得对方像是在向你“讨债”。","sourceHtml":"\u003ch4>1. 核心判断\u003c/h4>\n\u003cp>你是一个\u003cstrong>“外在兼具理性现实感与情商魅力，内心高度独立自尊，但在亲密关系中极易吸引‘高依赖、强管束、情感索取型’伴侣”\u003c/strong>的人。最值得看清的核心矛盾在于：\u003cstrong>你自身有极强的主见与边界感，但在感情深处却常常被对方当作“必须全面抓紧的避风港”，从而在“渴望被坚实依靠”与“厌恶被过度管束消耗”之间反复拉扯\u003c/strong>。\u003c/p>\n\u003ch4>2. 具体表现与白话解读\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>兼具务实计算与情调品味（命宫武曲庙、贪狼庙化禄+天魁）\u003c/strong>：\n你的命宫由武曲与贪狼共同坐守，且贪狼自带生年禄。在亲密关系里，你绝不是不食人间烟火、纯靠浪漫幻想维系关系的“恋爱脑”。武曲让你看重现实支撑、执行力与能力匹配；贪狼化禄与天魁则赋予你天然的社交敏锐度、懂他人需求的情商、以及对生活品味和浪漫情调的高追求。你愿意在关系中投入资源、共享成果，但前提是\u003cstrong>这段关系必须具备现实价值与良性向上的空间\u003c/strong>。\u003c/li>\n\u003cli>\u003cstrong>内在骨子极刚，绝不愿为人附庸（身宫在官禄坐紫微旺、七杀平+禄存）\u003c/strong>：\n官禄宫作为你的身宫（后半生行事倾向），紫杀带禄存正照夫妻宫。这意味着你在人生追求和做人底线上有极强的傲骨与掌控欲。你在两性相处中可以体贴温和，但主权必须牢牢掌握在自己手里，绝不容许伴侣践踏你的尊严或随意左右你的职业与发展。\u003c/li>\n\u003cli>\u003cstrong>“夫妻忌入命”的根本宿命感（核心关键点）\u003c/strong>：\n盘中最关键的飞化是：\u003cstrong>本命夫妻宫（癸亥）宫干飞贪狼化忌直接进入你的命宫（乙丑）\u003c/strong>。\n依据课程主张，\u003cstrong>“夫忌入命”在两性对待中代表伴侣对你有深度的执着、黏缠、索取与控制欲（忌比权黏，是抓整个人）\u003c/strong>。无论对方表面多么优秀，一旦确认关系，对方便极容易对你产生沉重的情感依赖、行踪查勤、挑剔甚至“因为太在乎你而把焦虑全面倒给你”。这往往会让你感到窒息与沉重，觉得对方像是在向你“讨债”。\u003c/li>\n\u003c/ul>\n"},{"id":"S1-2","title":"二、 我看重怎样的关系、容易被什么人吸引，怎样表达喜欢和处理分歧？","sourceMarkdown":"#### 1. 你看重怎样的关系？\r\n*   **判断**：你看重**“兼具体面尊严、现实稳固度与长远规划”的盟友型亲密关系**。\r\n*   **依据与表现**：\r\n    你的命宫化天机禄、天梁权双双注入田宅宫（丙辰），紫微化科入官禄宫。你衡量一段感情是否值得走下去，核心指标在于**“能不能一起把家底筑牢、生活品质搞好，且双方在社会上都能拿得出手”**。你无法长期忍受毫无建树、游手好闲或只消耗你情绪价值的关系。\r\n\r\n#### 2. 你容易被什么样的人吸引？\r\n*   **判断**：你最容易被**“举止稳重成熟、自带领袖或担当气质、具备现实经营能力，但内在略带神秘或深沉心机”**的人吸引。\r\n*   **依据与表现**：\r\n    *   **外在吸引点（夫妻宫天府得、左辅）**：天府为南斗主星，主稳重、守成、有主见与指挥欲（令星）。你天然排斥怯懦、犹豫不决、毫无魄力的人，容易被那些做事大方得体、能独当一面、像“掌柜/主心骨”一样的人吸引。左辅在夫妻宫，也代表你倾向于欣赏身边有助力、有资源、能给你带来切实协助的对象。\r\n    *   **隐藏特质（夫妻宫带铃星利）**：天府同宫坐铃星。铃星属暗煞，主暗中较劲、内敛慢热、沉闷执拗。吸引你的人往往不是大喇喇的冲动型，而是心思深沉、性格有内劲、情绪不轻易外露，甚至带有一点冷感的人。\r\n    *   **审美偏好（福德宫天相陷、咸池、右弼化科）**：福德宫带咸池与右弼科，说明你非常看重对方的外在衣品、谈吐风度与审美品味，对方必须在某个瞬间让你感到赏心悦目、带得出去。\r\n\r\n#### 3. 你怎样表达喜欢？\r\n*   **判断**：你的表达方式是**“高情商体贴+直接纳入生活领地的实质投入”**。\r\n*   **依据与表现**：\r\n    *   日常相处中，命宫贪狼禄让你极其懂得察言观色，知道对方爱听什么、需要什么，能给予非常舒适的互动氛围。\r\n    *   但你更深层的喜欢极其务实：命宫乙干化天机禄、天梁权直接进入田宅宫。一旦真正认可对方，你会主动把对方拉入你的私人领域与未来生活版图，愿意为双方未来的居住环境、生活条件添砖加瓦、出谋划策，用“筑巢”和“给资源”来表达深情。\r\n\r\n#### 4. 你怎样处理分歧？\r\n*   **判断**：**前期维持克制体面 ➔ 中期遭遇暗火冷战 ➔ 后期若踩底线则决绝硬碰，但若进入家宅同居则易陷入细节反复纠缠**。\r\n*   **依据与表现**：\r\n    *   **克制与粉饰面子（福德天相+右弼科）**：初期发生矛盾，你往往顾及颜面与风度，不愿意把场面搞得太难看，会试图用理智、讲道理或自我消化来维持体面。\r\n    *   **伴侣与你的冷热交战（夫妻铃星 vs 夫忌入命）**：对方因为坐铃星且忌入你的命宫，遇到分歧时极易采取“生闷气、冷战、隐性挑刺或情感施压”的方式；而你命宫坐武曲、身宫坐紫杀，本质上是“吃软不吃硬”的刀锋性格，一旦对方触及原则底线，你会迅速收起温柔，展现出刚烈、冷酷甚至寸步不让的一面。\r\n    *   **家宅内的较真拉扯（田宅宫天机生年忌+自化权+陀罗）**：如果分歧发生在同居、婚姻或柴米油盐的具体事务中，田宅宫的天机忌权交战配合陀罗就会被引爆。表现为：**双方对家里具体事情的规矩、细节、谁说了算展开旷日持久的精神拉扯与反复辩论，事情很难利索翻篇，往往原地打转、不断消耗心力**。","sourceHtml":"\u003ch4>1. 你看重怎样的关系？\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>判断\u003c/strong>：你看重\u003cstrong>“兼具体面尊严、现实稳固度与长远规划”的盟友型亲密关系\u003c/strong>。\u003c/li>\n\u003cli>\u003cstrong>依据与表现\u003c/strong>：\n你的命宫化天机禄、天梁权双双注入田宅宫（丙辰），紫微化科入官禄宫。你衡量一段感情是否值得走下去，核心指标在于\u003cstrong>“能不能一起把家底筑牢、生活品质搞好，且双方在社会上都能拿得出手”\u003c/strong>。你无法长期忍受毫无建树、游手好闲或只消耗你情绪价值的关系。\u003c/li>\n\u003c/ul>\n\u003ch4>2. 你容易被什么样的人吸引？\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>判断\u003c/strong>：你最容易被\u003cstrong>“举止稳重成熟、自带领袖或担当气质、具备现实经营能力，但内在略带神秘或深沉心机”\u003c/strong>的人吸引。\u003c/li>\n\u003cli>\u003cstrong>依据与表现\u003c/strong>：\n\u003cul>\n\u003cli>\u003cstrong>外在吸引点（夫妻宫天府得、左辅）\u003c/strong>：天府为南斗主星，主稳重、守成、有主见与指挥欲（令星）。你天然排斥怯懦、犹豫不决、毫无魄力的人，容易被那些做事大方得体、能独当一面、像“掌柜/主心骨”一样的人吸引。左辅在夫妻宫，也代表你倾向于欣赏身边有助力、有资源、能给你带来切实协助的对象。\u003c/li>\n\u003cli>\u003cstrong>隐藏特质（夫妻宫带铃星利）\u003c/strong>：天府同宫坐铃星。铃星属暗煞，主暗中较劲、内敛慢热、沉闷执拗。吸引你的人往往不是大喇喇的冲动型，而是心思深沉、性格有内劲、情绪不轻易外露，甚至带有一点冷感的人。\u003c/li>\n\u003cli>\u003cstrong>审美偏好（福德宫天相陷、咸池、右弼化科）\u003c/strong>：福德宫带咸池与右弼科，说明你非常看重对方的外在衣品、谈吐风度与审美品味，对方必须在某个瞬间让你感到赏心悦目、带得出去。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n\u003ch4>3. 你怎样表达喜欢？\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>判断\u003c/strong>：你的表达方式是\u003cstrong>“高情商体贴+直接纳入生活领地的实质投入”\u003c/strong>。\u003c/li>\n\u003cli>\u003cstrong>依据与表现\u003c/strong>：\n\u003cul>\n\u003cli>日常相处中，命宫贪狼禄让你极其懂得察言观色，知道对方爱听什么、需要什么，能给予非常舒适的互动氛围。\u003c/li>\n\u003cli>但你更深层的喜欢极其务实：命宫乙干化天机禄、天梁权直接进入田宅宫。一旦真正认可对方，你会主动把对方拉入你的私人领域与未来生活版图，愿意为双方未来的居住环境、生活条件添砖加瓦、出谋划策，用“筑巢”和“给资源”来表达深情。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n\u003ch4>4. 你怎样处理分歧？\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>判断\u003c/strong>：\u003cstrong>前期维持克制体面 ➔ 中期遭遇暗火冷战 ➔ 后期若踩底线则决绝硬碰，但若进入家宅同居则易陷入细节反复纠缠\u003c/strong>。\u003c/li>\n\u003cli>\u003cstrong>依据与表现\u003c/strong>：\n\u003cul>\n\u003cli>\u003cstrong>克制与粉饰面子（福德天相+右弼科）\u003c/strong>：初期发生矛盾，你往往顾及颜面与风度，不愿意把场面搞得太难看，会试图用理智、讲道理或自我消化来维持体面。\u003c/li>\n\u003cli>\u003cstrong>伴侣与你的冷热交战（夫妻铃星 vs 夫忌入命）\u003c/strong>：对方因为坐铃星且忌入你的命宫，遇到分歧时极易采取“生闷气、冷战、隐性挑刺或情感施压”的方式；而你命宫坐武曲、身宫坐紫杀，本质上是“吃软不吃硬”的刀锋性格，一旦对方触及原则底线，你会迅速收起温柔，展现出刚烈、冷酷甚至寸步不让的一面。\u003c/li>\n\u003cli>\u003cstrong>家宅内的较真拉扯（田宅宫天机生年忌+自化权+陀罗）\u003c/strong>：如果分歧发生在同居、婚姻或柴米油盐的具体事务中，田宅宫的天机忌权交战配合陀罗就会被引爆。表现为：\u003cstrong>双方对家里具体事情的规矩、细节、谁说了算展开旷日持久的精神拉扯与反复辩论，事情很难利索翻篇，往往原地打转、不断消耗心力\u003c/strong>。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n"},{"id":"S1-3","title":"三、 吸引我的人、我需要的人和适合长期相处的人，是否有区别？","sourceMarkdown":"#### 1. 明确判断\r\n**有非常清晰且不可忽视的结构性区别**。正是这三者的错位，容易让你陷入感情的拉扯与困惑。\r\n\r\n#### 2. 三者的具体拆解\r\n*   **【吸引你的人】—— 具备光鲜外表、强势担当与神秘气场者（天府+铃星+咸池）**\r\n    *   你容易被那些有主见、有事业心、像天府一样稳得住场面、甚至有点“霸道总裁”或“管家统领”气质的人打动。对方如果带点深沉内敛（铃星）和生活情调（咸池），会迅速引发你的审美与荷尔蒙共鸣。\r\n*   **【你需要的人】—— 能托底现实、分担责任且认可你独立主权的合作者（天府+禄存照夫妻）**\r\n    *   因为你自身能力强、野心大、追求卓越（官禄紫杀禄存），你真正需要的是在现实、资源或事业上能与你平起平坐，能在风雨来临时为你提供稳固依靠、而不是靠你单方面供养的成熟伴侣。\r\n*   **【适合长期相处的人】—— 内核极度松弛大度、情绪稳定、绝不搞冷暴力与精神绑架的人**\r\n    *   **核心矛盾所在**：吸引你的“天府+铃星”往往自带“爱指挥（天府）”和“暗较劲、生闷气（铃星）”的特质。一旦落地长期相处，加上对方“夫忌入命”对你产生的占有欲与挑剔，这种强对强的组合就会演变成权力争夺与冷战。\r\n    *   **长期相处的破局之道**：最适合你长期生活的人，必须拥有极高的情绪包容度。面对你偶发的高要求和家宅细节较真（田宅天机忌权陀罗），对方不能用铃星式的冷战或管束来回应，而必须能够像润滑剂一样包容化解，懂得“遇事直说、不藏心机、在生活琐事上乐于退让”。","sourceHtml":"\u003ch4>1. 明确判断\u003c/h4>\n\u003cp>\u003cstrong>有非常清晰且不可忽视的结构性区别\u003c/strong>。正是这三者的错位，容易让你陷入感情的拉扯与困惑。\u003c/p>\n\u003ch4>2. 三者的具体拆解\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>【吸引你的人】—— 具备光鲜外表、强势担当与神秘气场者（天府+铃星+咸池）\u003c/strong>\n\u003cul>\n\u003cli>你容易被那些有主见、有事业心、像天府一样稳得住场面、甚至有点“霸道总裁”或“管家统领”气质的人打动。对方如果带点深沉内敛（铃星）和生活情调（咸池），会迅速引发你的审美与荷尔蒙共鸣。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>【你需要的人】—— 能托底现实、分担责任且认可你独立主权的合作者（天府+禄存照夫妻）\u003c/strong>\n\u003cul>\n\u003cli>因为你自身能力强、野心大、追求卓越（官禄紫杀禄存），你真正需要的是在现实、资源或事业上能与你平起平坐，能在风雨来临时为你提供稳固依靠、而不是靠你单方面供养的成熟伴侣。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>【适合长期相处的人】—— 内核极度松弛大度、情绪稳定、绝不搞冷暴力与精神绑架的人\u003c/strong>\n\u003cul>\n\u003cli>\u003cstrong>核心矛盾所在\u003c/strong>：吸引你的“天府+铃星”往往自带“爱指挥（天府）”和“暗较劲、生闷气（铃星）”的特质。一旦落地长期相处，加上对方“夫忌入命”对你产生的占有欲与挑剔，这种强对强的组合就会演变成权力争夺与冷战。\u003c/li>\n\u003cli>\u003cstrong>长期相处的破局之道\u003c/strong>：最适合你长期生活的人，必须拥有极高的情绪包容度。面对你偶发的高要求和家宅细节较真（田宅天机忌权陀罗），对方不能用铃星式的冷战或管束来回应，而必须能够像润滑剂一样包容化解，懂得“遇事直说、不藏心机、在生活琐事上乐于退让”。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n"},{"id":"S1-4","title":"四、 哪些问题换了对象仍可能再次出现？哪些取决于对方或环境？","sourceMarkdown":"#### 1. 换了对象仍可能因为你的性格与习惯再次出现的问题（主观内生模式）\r\n*   **“被索取感与被管束感”的周期性复发（夫妻癸干化贪狼忌入命）**：\r\n    *   这是你盘面自带的客体投射机制。因为你能力出众且懂得照顾人，你在关系中容易在不知不觉中承担起“主理人”的角色，结果反而纵容或吸引了那些把精神寄托全盘压在你身上的伴侣。每换一个对象，初期你享受对方的粘人与在乎，中后期就极易因为对方的过度依赖、患得患失或管束施压而感到窒息。\r\n*   **同居落地后的“琐事内耗与规矩拉扯”（田宅宫天机忌、自化权、陀罗）**：\r\n    *   田宅宫是你私密领地的缩影。天机忌+自化权主在家宅内部思维打结、规矩严苛且要争夺掌控权；陀罗主拖延磨蹭、暗暗内耗。无论换谁同居，只要两人生活习惯不一致，你自身就容易陷入“看不惯、想改造对方、反复纠结挑刺、越争辩越心烦”的心智死循环。\r\n*   **“底线被触后的决绝断裂”（命武贪 vs 身紫杀）**：\r\n    *   武曲与七杀皆属金，主刚毅与决断。你在关系好时懂得柔情（贪狼禄、右弼科），但内心设定了极严格的“自尊底线”。一旦对方越界且反复消耗你的耐心，你极容易启动“情感断崖式冷切断”，宁可彻底斩断也不愿在消耗中苟延残喘。\r\n\r\n#### 2. 取决于对方性格或环境的外部变量（客体与情境模式）\r\n*   **冲突发生时，是“冷战暗耗”还是“良性化解”（取决于对方是否坐实铃星特质）**：\r\n    *   夫妻宫的铃星是伴侣特质的镜像。如果对方现实中是一个情商通透、心胸豁达、有话摊开讲的人，就能有效化解你盘中“铃星”的破坏力；反之，若对方同样是个深沉自负、习惯冷暴力冷战的人，分歧就会演变成漫长而痛苦的内耗。\r\n*   **财务与共同资产的互动方向（夫妻癸干破军化禄入财帛）**：\r\n    *   夫妻宫化禄入财帛，代表伴侣在金钱消费或资产运用上会深深卷入你的财务系统。这段关系究竟是在经济上共同做大蛋糕、互相扶持，还是演变成对方大手大脚破耗你的财物，完全取决于对方现实中的经济实力、理财成熟度以及双方的法律与资产界限安排。\r\n*   **大限行运的阶段性触发（当前24–33岁癸亥大限）**：\r\n    *   问事时间为2026年（虚岁29），你目前正处于**24–33岁癸亥大限**，**大限命宫正好重叠本命夫妻宫（癸亥）**！\r\n    *   这一大限的宫干正是“癸”，大限命宫再度飞出**贪狼化忌入本命命宫（大限福德宫）**。这意味着在当下的这十年里，亲密关系的建立、拉扯、情绪压力与自我救赎，被全盘最高频度地引动。这并非一生不变的永恒僵局，而是当前大限特定环境下的高压考验，走到下一大限（34–43岁壬戌），焦点与互动模式便会随之换轨。","sourceHtml":"\u003ch4>1. 换了对象仍可能因为你的性格与习惯再次出现的问题（主观内生模式）\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>“被索取感与被管束感”的周期性复发（夫妻癸干化贪狼忌入命）\u003c/strong>：\n\u003cul>\n\u003cli>这是你盘面自带的客体投射机制。因为你能力出众且懂得照顾人，你在关系中容易在不知不觉中承担起“主理人”的角色，结果反而纵容或吸引了那些把精神寄托全盘压在你身上的伴侣。每换一个对象，初期你享受对方的粘人与在乎，中后期就极易因为对方的过度依赖、患得患失或管束施压而感到窒息。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>同居落地后的“琐事内耗与规矩拉扯”（田宅宫天机忌、自化权、陀罗）\u003c/strong>：\n\u003cul>\n\u003cli>田宅宫是你私密领地的缩影。天机忌+自化权主在家宅内部思维打结、规矩严苛且要争夺掌控权；陀罗主拖延磨蹭、暗暗内耗。无论换谁同居，只要两人生活习惯不一致，你自身就容易陷入“看不惯、想改造对方、反复纠结挑刺、越争辩越心烦”的心智死循环。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>“底线被触后的决绝断裂”（命武贪 vs 身紫杀）\u003c/strong>：\n\u003cul>\n\u003cli>武曲与七杀皆属金，主刚毅与决断。你在关系好时懂得柔情（贪狼禄、右弼科），但内心设定了极严格的“自尊底线”。一旦对方越界且反复消耗你的耐心，你极容易启动“情感断崖式冷切断”，宁可彻底斩断也不愿在消耗中苟延残喘。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n\u003ch4>2. 取决于对方性格或环境的外部变量（客体与情境模式）\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>冲突发生时，是“冷战暗耗”还是“良性化解”（取决于对方是否坐实铃星特质）\u003c/strong>：\n\u003cul>\n\u003cli>夫妻宫的铃星是伴侣特质的镜像。如果对方现实中是一个情商通透、心胸豁达、有话摊开讲的人，就能有效化解你盘中“铃星”的破坏力；反之，若对方同样是个深沉自负、习惯冷暴力冷战的人，分歧就会演变成漫长而痛苦的内耗。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>财务与共同资产的互动方向（夫妻癸干破军化禄入财帛）\u003c/strong>：\n\u003cul>\n\u003cli>夫妻宫化禄入财帛，代表伴侣在金钱消费或资产运用上会深深卷入你的财务系统。这段关系究竟是在经济上共同做大蛋糕、互相扶持，还是演变成对方大手大脚破耗你的财物，完全取决于对方现实中的经济实力、理财成熟度以及双方的法律与资产界限安排。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>大限行运的阶段性触发（当前24–33岁癸亥大限）\u003c/strong>：\n\u003cul>\n\u003cli>问事时间为2026年（虚岁29），你目前正处于\u003cstrong>24–33岁癸亥大限\u003c/strong>，\u003cstrong>大限命宫正好重叠本命夫妻宫（癸亥）\u003c/strong>！\u003c/li>\n\u003cli>这一大限的宫干正是“癸”，大限命宫再度飞出\u003cstrong>贪狼化忌入本命命宫（大限福德宫）\u003c/strong>。这意味着在当下的这十年里，亲密关系的建立、拉扯、情绪压力与自我救赎，被全盘最高频度地引动。这并非一生不变的永恒僵局，而是当前大限特定环境下的高压考验，走到下一大限（34–43岁壬戌），焦点与互动模式便会随之换轨。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n"}]},{"question":2,"title":"相处、边界与长久关系","intro":"在两性关系的演化中，性格只是底色，**宫位之间的动力交互（四化飞伏与宫位叠合）才是决定关系如何在时间中展开的真实轨迹**。","openingHtml":"\u003cp>在两性关系的演化中，性格只是底色，\u003cstrong>宫位之间的动力交互（四化飞伏与宫位叠合）才是决定关系如何在时间中展开的真实轨迹\u003c/strong>。\u003c/p>\n","sections":[{"id":"S2-1","title":"一、 关系的四个阶段：哪些环节最值得关注？什么真正影响长久性？","sourceMarkdown":"#### 1. 核心判断\r\n在**“开始关系 ➔ 逐渐亲密 ➔ 发生分歧 ➔ 长期共同生活”**四个环节中：\r\n*   **“逐渐亲密”是你的关系体验转折点**；\r\n*   **“长期共同生活（落地同居/婚姻）”是决定你关系长久性与质量的最核心命脉环节**；\r\n*   真正影响关系成败的，**绝不是恋爱初期的心动与吸引，而是“亲密后的掌控边界”与“同居落地后的生活秩序拉扯”**。\r\n\r\n#### 2. 各环节的具体表现与关键依据\r\n*   **【开始关系】—— 门槛最低、极易展开（轻度关注）**\r\n    *   **表现**：由于命宫坐武曲庙、贪狼庙化禄并见天魁，迁移宫化武曲禄、贪狼权入命宫，你在社交与异性互动中极具魅力、情商极高，善于理解他人需求且谈吐体面。此时关系的开始通常非常顺畅，彼此能迅速建立好感。\r\n*   **【逐渐亲密】—— 蜜月期向索取期的质变（高度关注）**\r\n    *   **表现**：一旦双方确认专属关系、感情走向深入，伴侣的互动模式会发生剧烈变化。\r\n    *   **关键依据**：**本命夫妻宫（癸亥）干飞贪狼化忌直接进入你的命宫（乙丑）**。课程明确指出，“忌比权更黏，是抓整个人”。伴侣在关系确立前或许大度稳重（天府象），但一旦进入深度亲密，对方便极易展现出极强的情感占有欲、查勤管束、患得患失或心理依赖，将自身的情绪焦虑全面压在你身上。你起初或许视其为在乎，但很快就会产生强烈的窒息感与“被索取感”。\r\n*   **【发生分歧】—— 冷战暗耗与硬碰硬的对峙（中度关注）**\r\n    *   **表现**：夫妻宫坐铃星利，身宫（丁巳）坐紫微旺、七杀平带禄存，正照夫妻宫。课程指出，天府见铃星主内敛慢热、暗自较劲；而武曲与紫杀皆属刚烈之星，骨子里吃软不吃硬。当分歧发生时，对方倾向于生闷气、冷战或暗施心理压力（铃星）；你虽有福德天相右弼科试图维持体面，但一旦对方触碰你的底线，你绝不委曲求全，极易直接硬碰硬，导致僵局难以软化。\r\n*   **【长期共同生活】—— 全盘最核心的真正考场（最值得生死关注！）**\r\n    *   **表现**：恋爱时风平浪静，但一旦同居、买房、结婚或天天生活在同一物理空间，摩擦会呈几何倍数爆发。\r\n    *   **关键依据**：**田宅宫（丙辰）坐天机生年忌、自化权（离心权），并与陀罗庙同宫**；同时**命宫乙干化天机禄、天梁权双双飞入田宅宫**。\r\n        *   课程明确指出，“权忌交战”主剧烈争夺与拉扯，天机忌主思维打结、规矩严苛、观念不合，陀罗主原地打转、旷日持久的精神暗耗。\r\n        *   你出于深爱愿意将对方纳入家宅生活（命禄权入田），但由于田宅宫自身的权忌陀罗结构，两人在同一屋檐下的生活琐事、作息秩序、家务分工及私人空间划分上，极易产生没完没了的辩论与细节挑刺。**这段关系能不能走完一辈子，90%取决于能不能平稳度过“同居生活关”**。","sourceHtml":"\u003ch4>1. 核心判断\u003c/h4>\n\u003cp>在\u003cstrong>“开始关系 ➔ 逐渐亲密 ➔ 发生分歧 ➔ 长期共同生活”\u003c/strong>四个环节中：\u003c/p>\n\u003cul>\n\u003cli>\u003cstrong>“逐渐亲密”是你的关系体验转折点\u003c/strong>；\u003c/li>\n\u003cli>\u003cstrong>“长期共同生活（落地同居/婚姻）”是决定你关系长久性与质量的最核心命脉环节\u003c/strong>；\u003c/li>\n\u003cli>真正影响关系成败的，\u003cstrong>绝不是恋爱初期的心动与吸引，而是“亲密后的掌控边界”与“同居落地后的生活秩序拉扯”\u003c/strong>。\u003c/li>\n\u003c/ul>\n\u003ch4>2. 各环节的具体表现与关键依据\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>【开始关系】—— 门槛最低、极易展开（轻度关注）\u003c/strong>\n\u003cul>\n\u003cli>\u003cstrong>表现\u003c/strong>：由于命宫坐武曲庙、贪狼庙化禄并见天魁，迁移宫化武曲禄、贪狼权入命宫，你在社交与异性互动中极具魅力、情商极高，善于理解他人需求且谈吐体面。此时关系的开始通常非常顺畅，彼此能迅速建立好感。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>【逐渐亲密】—— 蜜月期向索取期的质变（高度关注）\u003c/strong>\n\u003cul>\n\u003cli>\u003cstrong>表现\u003c/strong>：一旦双方确认专属关系、感情走向深入，伴侣的互动模式会发生剧烈变化。\u003c/li>\n\u003cli>\u003cstrong>关键依据\u003c/strong>：\u003cstrong>本命夫妻宫（癸亥）干飞贪狼化忌直接进入你的命宫（乙丑）\u003c/strong>。课程明确指出，“忌比权更黏，是抓整个人”。伴侣在关系确立前或许大度稳重（天府象），但一旦进入深度亲密，对方便极易展现出极强的情感占有欲、查勤管束、患得患失或心理依赖，将自身的情绪焦虑全面压在你身上。你起初或许视其为在乎，但很快就会产生强烈的窒息感与“被索取感”。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>【发生分歧】—— 冷战暗耗与硬碰硬的对峙（中度关注）\u003c/strong>\n\u003cul>\n\u003cli>\u003cstrong>表现\u003c/strong>：夫妻宫坐铃星利，身宫（丁巳）坐紫微旺、七杀平带禄存，正照夫妻宫。课程指出，天府见铃星主内敛慢热、暗自较劲；而武曲与紫杀皆属刚烈之星，骨子里吃软不吃硬。当分歧发生时，对方倾向于生闷气、冷战或暗施心理压力（铃星）；你虽有福德天相右弼科试图维持体面，但一旦对方触碰你的底线，你绝不委曲求全，极易直接硬碰硬，导致僵局难以软化。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>【长期共同生活】—— 全盘最核心的真正考场（最值得生死关注！）\u003c/strong>\n\u003cul>\n\u003cli>\u003cstrong>表现\u003c/strong>：恋爱时风平浪静，但一旦同居、买房、结婚或天天生活在同一物理空间，摩擦会呈几何倍数爆发。\u003c/li>\n\u003cli>\u003cstrong>关键依据\u003c/strong>：\u003cstrong>田宅宫（丙辰）坐天机生年忌、自化权（离心权），并与陀罗庙同宫\u003c/strong>；同时\u003cstrong>命宫乙干化天机禄、天梁权双双飞入田宅宫\u003c/strong>。\n\u003cul>\n\u003cli>课程明确指出，“权忌交战”主剧烈争夺与拉扯，天机忌主思维打结、规矩严苛、观念不合，陀罗主原地打转、旷日持久的精神暗耗。\u003c/li>\n\u003cli>你出于深爱愿意将对方纳入家宅生活（命禄权入田），但由于田宅宫自身的权忌陀罗结构，两人在同一屋檐下的生活琐事、作息秩序、家务分工及私人空间划分上，极易产生没完没了的辩论与细节挑刺。\u003cstrong>这段关系能不能走完一辈子，90%取决于能不能平稳度过“同居生活关”\u003c/strong>。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n"},{"id":"S2-2","title":"二、 你的哪些特点能经营好关系，又会在什么条件下成为负担？","sourceMarkdown":"#### 1. 能够经营好关系的优势\r\n*   **高情商的共情与资源共享意愿（命宫贪狼生年禄+天魁）**：\r\n    你非常清楚在人际与感情中如何给予对方舒适的情绪价值，懂情调、有品味，且具备极强的现实办事能力，能与伴侣共同创造美好的物质与生活体验。\r\n*   **强大的家庭建设与长远规划能力（命宫化天机禄、天梁权入田宅）**：\r\n    你对家庭绝不敷衍，愿意主动承担买房置业、生活兜底、搭建安稳生活环境的责任，是一个能在现实风雨中为家庭提供坚实庇护的可靠盟友。\r\n*   **维持大局体面的克制修养（福德宫天相陷+右弼生年科）**：\r\n    科星主理性与适度缓冲。你在感情遇到小风浪时，能够顾及双方颜面与尊严，不至于在公共场合把关系撕得粉碎，给予彼此最初的台阶与体面。\r\n\r\n#### 2. 在何种条件下会转变为关系的致命负担？\r\n*   **当“愿意操心”退化为“田宅权忌陀罗的细节较真与微观管理”**：\r\n    *   *触发条件*：双方朝夕相处、进入日常生活细节。\r\n    *   *负担机制*：田宅坐天机生年忌+自化权+陀罗。你对家庭秩序和生活规则有着极其执着甚至完美主义的高标准。当伴侣的行为方式不符合你的预期时，你容易把天梁的“照顾”演变成“说教与纠偏”，天机的敏感多虑演变成反复纠结，陀罗则让你暗自生闷气、翻旧账。这种无处不在的微观审视，会让伴侣感到窒息和挫败，也让你自身心力交瘁。\r\n*   **当“极强傲骨”在遭遇“伴侣情感窒息（夫忌入命）”时触发“绝决切断”**：\r\n    *   *触发条件*：伴侣因为不安全感而频繁查勤、无理取闹或情感勒索（夫忌入命）。\r\n    *   *负担机制*：你的身宫是官禄紫杀禄存。你无法长期忍受被当成弱者或被随意摆布。一旦你觉得对方正在无底线消耗你的尊严与精力，你内心的武曲金性与紫杀决断就会瞬间启动。你会直接关闭沟通通道，表现出极端的冷漠与绝情，拒绝给关系留任何回旋余地。","sourceHtml":"\u003ch4>1. 能够经营好关系的优势\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>高情商的共情与资源共享意愿（命宫贪狼生年禄+天魁）\u003c/strong>：\n你非常清楚在人际与感情中如何给予对方舒适的情绪价值，懂情调、有品味，且具备极强的现实办事能力，能与伴侣共同创造美好的物质与生活体验。\u003c/li>\n\u003cli>\u003cstrong>强大的家庭建设与长远规划能力（命宫化天机禄、天梁权入田宅）\u003c/strong>：\n你对家庭绝不敷衍，愿意主动承担买房置业、生活兜底、搭建安稳生活环境的责任，是一个能在现实风雨中为家庭提供坚实庇护的可靠盟友。\u003c/li>\n\u003cli>\u003cstrong>维持大局体面的克制修养（福德宫天相陷+右弼生年科）\u003c/strong>：\n科星主理性与适度缓冲。你在感情遇到小风浪时，能够顾及双方颜面与尊严，不至于在公共场合把关系撕得粉碎，给予彼此最初的台阶与体面。\u003c/li>\n\u003c/ul>\n\u003ch4>2. 在何种条件下会转变为关系的致命负担？\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>当“愿意操心”退化为“田宅权忌陀罗的细节较真与微观管理”\u003c/strong>：\n\u003cul>\n\u003cli>\u003cem>触发条件\u003c/em>：双方朝夕相处、进入日常生活细节。\u003c/li>\n\u003cli>\u003cem>负担机制\u003c/em>：田宅坐天机生年忌+自化权+陀罗。你对家庭秩序和生活规则有着极其执着甚至完美主义的高标准。当伴侣的行为方式不符合你的预期时，你容易把天梁的“照顾”演变成“说教与纠偏”，天机的敏感多虑演变成反复纠结，陀罗则让你暗自生闷气、翻旧账。这种无处不在的微观审视，会让伴侣感到窒息和挫败，也让你自身心力交瘁。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>当“极强傲骨”在遭遇“伴侣情感窒息（夫忌入命）”时触发“绝决切断”\u003c/strong>：\n\u003cul>\n\u003cli>\u003cem>触发条件\u003c/em>：伴侣因为不安全感而频繁查勤、无理取闹或情感勒索（夫忌入命）。\u003c/li>\n\u003cli>\u003cem>负担机制\u003c/em>：你的身宫是官禄紫杀禄存。你无法长期忍受被当成弱者或被随意摆布。一旦你觉得对方正在无底线消耗你的尊严与精力，你内心的武曲金性与紫杀决断就会瞬间启动。你会直接关闭沟通通道，表现出极端的冷漠与绝情，拒绝给关系留任何回旋余地。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n"},{"id":"S2-3","title":"三、 反复出现的相处过程是怎样一步步形成的？","sourceMarkdown":"如果过往或未来存在某种反复出现的相处模式，它在你的命盘中有着非常清晰的**动态演进链条**：\r\n\r\n【第一步：体面吸引】\r\n命宫武贪禄魁 ➔ 吸引并选择稳重大度、有主见、具备现实能力的伴侣（天府+左辅），双方以高品质社交和现实互助切入。\r\n       ▼\r\n【第二步：深陷与锁紧】\r\n关系深入确认 ➔ 对方触发“夫妻癸干贪狼化忌入命”（夫忌入命）：伴侣开始表现出极强的情感黏附、占有欲、疑心或挑剔，将个人安全感全面寄托在你身上。\r\n       ▼\r\n【第三步：同居落地与阵地冲突】\r\n命主以真情回应（命化禄权入田），双方同居或共谋生活 ➔ 田宅宫“天机忌+自化权+陀罗”被全面引爆：\r\n日常规矩、家务细节、空间主导权反复拉扯；对方用“铃星式冷战与施压”应对，命主用“天机权陀的反复较真与说教”抗衡。\r\n       ▼\r\n【第四步：窒息爆发与绝决撤离】\r\n伴侣越抓紧管束（夫忌入命），命主越渴望逃离；冷战消耗磨尽耐心后，身宫紫杀与命宫武曲启动“断崖式切割”，双方在极其疲惫中走向停滞或分离。","sourceHtml":"\u003cp>如果过往或未来存在某种反复出现的相处模式，它在你的命盘中有着非常清晰的\u003cstrong>动态演进链条\u003c/strong>：\u003c/p>\n\u003cp>【第一步：体面吸引】\n命宫武贪禄魁 ➔ 吸引并选择稳重大度、有主见、具备现实能力的伴侣（天府+左辅），双方以高品质社交和现实互助切入。\n▼\n【第二步：深陷与锁紧】\n关系深入确认 ➔ 对方触发“夫妻癸干贪狼化忌入命”（夫忌入命）：伴侣开始表现出极强的情感黏附、占有欲、疑心或挑剔，将个人安全感全面寄托在你身上。\n▼\n【第三步：同居落地与阵地冲突】\n命主以真情回应（命化禄权入田），双方同居或共谋生活 ➔ 田宅宫“天机忌+自化权+陀罗”被全面引爆：\n日常规矩、家务细节、空间主导权反复拉扯；对方用“铃星式冷战与施压”应对，命主用“天机权陀的反复较真与说教”抗衡。\n▼\n【第四步：窒息爆发与绝决撤离】\n伴侣越抓紧管束（夫忌入命），命主越渴望逃离；冷战消耗磨尽耐心后，身宫紫杀与命宫武曲启动“断崖式切割”，双方在极其疲惫中走向停滞或分离。\u003c/p>\n"},{"id":"S2-4","title":"四、 什么样的伴侣特点与相处方式真正适合你？","sourceMarkdown":"基于全盘的星曜与四化配置，要打破上述循环，以下**现实条件与相处模式**是至关重要的破局关键：\r\n\r\n#### 1. 伴侣的核心特质：情绪内核极度松弛，绝不搞“冷战与心机”\r\n*   **依据**：你的夫妻宫坐天府+铃星，且夫忌入命。\r\n*   **匹配标准**：\r\n    *   对方可以有大局担当与事业心（契合天府），但**日常情绪必须松弛通透、豁达大度**。\r\n    *   最忌讳找同样心思深沉、遇事冷暴力、生闷气（坐实铃星阴暗面）的人。对方必须是**“有话当场直说、笑脸化解尴尬、不记仇、不搞精神控制”**的性格。当你因为琐事焦虑纠结（田宅天机忌）时，对方能以幽默宽厚的态度包容，而不是反向对抗。\r\n\r\n#### 2. 自主空间（物理与心理距离）是关系的“第一保鲜剂”\r\n*   **依据**：田宅宫天机忌权陀罗，夫妻宫夫忌入命。\r\n*   **相处方式**：\r\n    *   课程在多处明确指出，面对夫妻与家宅系统的煞忌交战，“聚少离多、保留独立空间、各自忙碌事业”往往是减少摩擦最有效的现实解法。\r\n    *   **切忌整天腻在一起或过度过问彼此日常细节**。在居住安排上，双方最好拥有各自独立的书房或私人空间；在生活节奏上，允许各自出差、加班或拥有独立的社交圈子。**适当的物理距离，能瞬间解除田宅陀罗的琐碎内耗与夫妻忌入命的窒息感**。\r\n\r\n#### 3. 财务与金钱：必须设立清晰明晰的“防火墙”\r\n*   **依据**：\r\n    *   本命夫妻宫癸干**破军化禄入财帛宫（辛酉）**；\r\n    *   本命田宅宫丙干**廉贞化忌入财帛宫（辛酉）**；\r\n    *   课程提示：夫妻禄入财代表伴侣会深度卷入金钱系统；田宅忌入财则代表家宅、共同生活或同居开销极易成为财务损耗与争吵由头。\r\n*   **相处方式**：\r\n    *   双方可以共同承担家庭开销或建立共同生活基金，但**个人的核心资产、储蓄账户与投资决策必须保持高度独立，账目明晰**。\r\n    *   绝不可因为感情上头而为伴侣背负债务、进行模糊不清的联合高风险投资，更不要把房产产权搞成混乱的糊涂账，否则极易在感情发生裂痕时引发严重的现实纠纷。\r\n\r\n#### 4. 事业与家庭权力的分工：生活小事由你做主，社会事业彼此并肩\r\n*   **依据**：身宫官禄坐紫微七杀禄存，田宅天梁权。\r\n*   **相处方式**：\r\n    *   你在社会和职场上有极高的自我实现要求，对方必须发自内心认可你的野心与工作节奏，不能要求你回归家庭做顺从的附属品。\r\n    *   而在家庭内部日常生活的微观管理上（天梁权），最适合你的伴侣是“在生活细节上愿意放手、乐于听你安排、不与你争抢琐事主导权”的人。外面是并肩作战的平起平坐，家里是由你定规矩的安心踏实，这种“大独立、小包容”的格局才能让你真正卸下防备。","sourceHtml":"\u003cp>基于全盘的星曜与四化配置，要打破上述循环，以下\u003cstrong>现实条件与相处模式\u003c/strong>是至关重要的破局关键：\u003c/p>\n\u003ch4>1. 伴侣的核心特质：情绪内核极度松弛，绝不搞“冷战与心机”\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>依据\u003c/strong>：你的夫妻宫坐天府+铃星，且夫忌入命。\u003c/li>\n\u003cli>\u003cstrong>匹配标准\u003c/strong>：\n\u003cul>\n\u003cli>对方可以有大局担当与事业心（契合天府），但\u003cstrong>日常情绪必须松弛通透、豁达大度\u003c/strong>。\u003c/li>\n\u003cli>最忌讳找同样心思深沉、遇事冷暴力、生闷气（坐实铃星阴暗面）的人。对方必须是\u003cstrong>“有话当场直说、笑脸化解尴尬、不记仇、不搞精神控制”\u003c/strong>的性格。当你因为琐事焦虑纠结（田宅天机忌）时，对方能以幽默宽厚的态度包容，而不是反向对抗。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n\u003ch4>2. 自主空间（物理与心理距离）是关系的“第一保鲜剂”\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>依据\u003c/strong>：田宅宫天机忌权陀罗，夫妻宫夫忌入命。\u003c/li>\n\u003cli>\u003cstrong>相处方式\u003c/strong>：\n\u003cul>\n\u003cli>课程在多处明确指出，面对夫妻与家宅系统的煞忌交战，“聚少离多、保留独立空间、各自忙碌事业”往往是减少摩擦最有效的现实解法。\u003c/li>\n\u003cli>\u003cstrong>切忌整天腻在一起或过度过问彼此日常细节\u003c/strong>。在居住安排上，双方最好拥有各自独立的书房或私人空间；在生活节奏上，允许各自出差、加班或拥有独立的社交圈子。\u003cstrong>适当的物理距离，能瞬间解除田宅陀罗的琐碎内耗与夫妻忌入命的窒息感\u003c/strong>。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n\u003ch4>3. 财务与金钱：必须设立清晰明晰的“防火墙”\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>依据\u003c/strong>：\n\u003cul>\n\u003cli>本命夫妻宫癸干\u003cstrong>破军化禄入财帛宫（辛酉）\u003c/strong>；\u003c/li>\n\u003cli>本命田宅宫丙干\u003cstrong>廉贞化忌入财帛宫（辛酉）\u003c/strong>；\u003c/li>\n\u003cli>课程提示：夫妻禄入财代表伴侣会深度卷入金钱系统；田宅忌入财则代表家宅、共同生活或同居开销极易成为财务损耗与争吵由头。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>相处方式\u003c/strong>：\n\u003cul>\n\u003cli>双方可以共同承担家庭开销或建立共同生活基金，但\u003cstrong>个人的核心资产、储蓄账户与投资决策必须保持高度独立，账目明晰\u003c/strong>。\u003c/li>\n\u003cli>绝不可因为感情上头而为伴侣背负债务、进行模糊不清的联合高风险投资，更不要把房产产权搞成混乱的糊涂账，否则极易在感情发生裂痕时引发严重的现实纠纷。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n\u003ch4>4. 事业与家庭权力的分工：生活小事由你做主，社会事业彼此并肩\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>依据\u003c/strong>：身宫官禄坐紫微七杀禄存，田宅天梁权。\u003c/li>\n\u003cli>\u003cstrong>相处方式\u003c/strong>：\n\u003cul>\n\u003cli>你在社会和职场上有极高的自我实现要求，对方必须发自内心认可你的野心与工作节奏，不能要求你回归家庭做顺从的附属品。\u003c/li>\n\u003cli>而在家庭内部日常生活的微观管理上（天梁权），最适合你的伴侣是“在生活细节上愿意放手、乐于听你安排、不与你争抢琐事主导权”的人。外面是并肩作战的平起平坐，家里是由你定规矩的安心踏实，这种“大独立、小包容”的格局才能让你真正卸下防备。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n"},{"id":"S2-5","title":"五、 当前时层提示（24–33岁癸亥大限）","sourceMarkdown":"需要特别看清的是：问事时间为2026年（虚岁29），你目前正处于**24–33岁癸亥大限**，**大限命宫正好叠合本命夫妻宫（癸亥）**。\r\n*   这一大限的宫干正是“癸”，大限命宫再度飞出**贪狼化忌入本命命宫（大限福德宫）**。\r\n*   这说明**上述“亲密关系的控制、黏缠、精神内耗与空间争夺”，正是你当前这十年大运集中爆发与修行的主课题**。看清这一机制，主动拉开生活物理距离、守住财务独立底线、放松对家宅生活细节的掌控，便是你在这段运势中保护自我与经营感情的最佳心法。","sourceHtml":"\u003cp>需要特别看清的是：问事时间为2026年（虚岁29），你目前正处于\u003cstrong>24–33岁癸亥大限\u003c/strong>，\u003cstrong>大限命宫正好叠合本命夫妻宫（癸亥）\u003c/strong>。\u003c/p>\n\u003cul>\n\u003cli>这一大限的宫干正是“癸”，大限命宫再度飞出\u003cstrong>贪狼化忌入本命命宫（大限福德宫）\u003c/strong>。\u003c/li>\n\u003cli>这说明\u003cstrong>上述“亲密关系的控制、黏缠、精神内耗与空间争夺”，正是你当前这十年大运集中爆发与修行的主课题\u003c/strong>。看清这一机制，主动拉开生活物理距离、守住财务独立底线、放松对家宅生活细节的掌控，便是你在这段运势中保护自我与经营感情的最佳心法。\u003c/li>\n\u003c/ul>\n"}]},{"question":3,"title":"2026—2027：感情的机会与考验","intro":"","openingHtml":"\u003cspan>\u003c/span>","sections":[{"id":"S3-1","title":"一、 两年总体节奏与核心机制对比","sourceMarkdown":"目前问事时间为 **2026年11月17日**（农历十月初九，丙午年己亥月），你正处在 **24–33岁癸亥大限**（大限命宫重叠本命夫妻宫癸亥）。\r\n\r\n从整个大限来看，大限命宫（癸亥）再度飞出**贪狼化忌入本命命宫/大限福德宫（乙丑）**，这奠定了整整十年里伴侣对你的情感执着、精神索取与管束压力是常态化背景。然而，**2026丙午年剩余阶段**与即将到来的**2027丁未年**，在感情推进的机制与侧重点上有着质的区别：\r\n\r\n| 维度 | 2026 丙午年（剩余阶段） | 2027 丁未年 |\r\n| :--- | :--- | :--- |\r\n| **流年命宫与焦点** | **流年命宫在午（本命交友/大限疾厄）**，对宫子位为本命兄弟、流年迁移宫，天同旺、太阴庙，太阴带生年权与向心权 | **流年命宫在未（本命迁移/大限财帛）**，对宫正照本命命宫丑（武曲贪狼禄） |\r\n| **四化核心牵引** | **天同化禄入子、天机化权入田、廉贞化忌入财**（冲福德） | **太阴化禄入子、天同化权入子、天机化科入辰、巨门化忌入寅**（冲申位） |\r\n| **关键主题** | **“关系界限与现实开销的冲撞”**：从社交/暧昧向内收拢，但财务与精神压力凸显 | **“个人主导权回归与严肃承诺/名分确立”**：外部桃花与承诺机遇大增，但直面深层磨合与家庭阻力 |\r\n| **关系推进节点** | 适合**理清边界、观察现实条件、踩刹车** | 适合**对外公开、确立名分、推进严肃关系**，或**引爆沉疴彻底切割** |","sourceHtml":"\u003cp>目前问事时间为 \u003cstrong>2026年11月17日\u003c/strong>（农历十月初九，丙午年己亥月），你正处在 \u003cstrong>24–33岁癸亥大限\u003c/strong>（大限命宫重叠本命夫妻宫癸亥）。\u003c/p>\n\u003cp>从整个大限来看，大限命宫（癸亥）再度飞出\u003cstrong>贪狼化忌入本命命宫/大限福德宫（乙丑）\u003c/strong>，这奠定了整整十年里伴侣对你的情感执着、精神索取与管束压力是常态化背景。然而，\u003cstrong>2026丙午年剩余阶段\u003c/strong>与即将到来的\u003cstrong>2027丁未年\u003c/strong>，在感情推进的机制与侧重点上有着质的区别：\u003c/p>\n\u003ctable>\n\u003cthead>\n\u003ctr>\n\u003cth style=\"text-align:left\">维度\u003c/th>\n\u003cth style=\"text-align:left\">2026 丙午年（剩余阶段）\u003c/th>\n\u003cth style=\"text-align:left\">2027 丁未年\u003c/th>\n\u003c/tr>\n\u003c/thead>\n\u003ctbody>\n\u003ctr>\n\u003ctd style=\"text-align:left\">\u003cstrong>流年命宫与焦点\u003c/strong>\u003c/td>\n\u003ctd style=\"text-align:left\">\u003cstrong>流年命宫在午（本命交友/大限疾厄）\u003c/strong>，对宫子位为本命兄弟、流年迁移宫，天同旺、太阴庙，太阴带生年权与向心权\u003c/td>\n\u003ctd style=\"text-align:left\">\u003cstrong>流年命宫在未（本命迁移/大限财帛）\u003c/strong>，对宫正照本命命宫丑（武曲贪狼禄）\u003c/td>\n\u003c/tr>\n\u003ctr>\n\u003ctd style=\"text-align:left\">\u003cstrong>四化核心牵引\u003c/strong>\u003c/td>\n\u003ctd style=\"text-align:left\">\u003cstrong>天同化禄入子、天机化权入田、廉贞化忌入财\u003c/strong>（冲福德）\u003c/td>\n\u003ctd style=\"text-align:left\">\u003cstrong>太阴化禄入子、天同化权入子、天机化科入辰、巨门化忌入寅\u003c/strong>（冲申位）\u003c/td>\n\u003c/tr>\n\u003ctr>\n\u003ctd style=\"text-align:left\">\u003cstrong>关键主题\u003c/strong>\u003c/td>\n\u003ctd style=\"text-align:left\">\u003cstrong>“关系界限与现实开销的冲撞”\u003c/strong>：从社交/暧昧向内收拢，但财务与精神压力凸显\u003c/td>\n\u003ctd style=\"text-align:left\">\u003cstrong>“个人主导权回归与严肃承诺/名分确立”\u003c/strong>：外部桃花与承诺机遇大增，但直面深层磨合与家庭阻力\u003c/td>\n\u003c/tr>\n\u003ctr>\n\u003ctd style=\"text-align:left\">\u003cstrong>关系推进节点\u003c/strong>\u003c/td>\n\u003ctd style=\"text-align:left\">适合\u003cstrong>理清边界、观察现实条件、踩刹车\u003c/strong>\u003c/td>\n\u003ctd style=\"text-align:left\">适合\u003cstrong>对外公开、确立名分、推进严肃关系\u003c/strong>，或\u003cstrong>引爆沉疴彻底切割\u003c/strong>\u003c/td>\n\u003c/tr>\n\u003c/tbody>\n\u003c/table>\n"},{"id":"S3-2","title":"二、 2026年剩余阶段（丙午年秋冬）：机会、阻力与选择方式","sourceMarkdown":"#### 1. 机会点与阻力分析\r\n*   **机会特点（外围向内试探）**：\r\n    *   2026年流年命宫在午，流年夫妻宫在辰（叠本命田宅宫，坐天机生年忌、自化权、陀罗）。\r\n    *   流年干丙使**天同化禄入子**（流年迁移宫），同时天机化权入辰位流年夫妻宫；辰位另有本命子女宫壬干飞入的天梁向心禄。此时的关系多由社交、朋友聚会或外围活动衍生而来，具有一定的浪漫或亲密试探性。\r\n*   **阻力与现实压力（精神与财务的隐形消耗）**：\r\n    *   丙干使**廉贞化忌入酉（本命财帛/大限夫妻/流年田宅）**，直接正照卯位（本命福德/大限官禄/流年子女）。\r\n    *   **核心阻力在“精神压力与金钱/人际摩擦”**：廉贞化忌入财冲福德，意味着年底阶段感情极易牵扯到现实花销、共同人际圈或人情往来的分歧，进而让你精神紧绷、感到心累消耗。同时，流年夫妻宫坐田宅天机忌权陀，凡是试图在年底敲定同居、见家人或深入家庭生活细节的举动，都会遇到思维打结与习惯不合的拉扯。\r\n*   **你的选择方式**：\r\n    *   **收拢防线、拒绝上头**。面对年底的各种情感互动，你更看重**“这段关系是否消耗我的精神与精力”**。你会本能地压制冲动，把重心收回到自己的生活秩序中，对伴侣或追求者的过度要求采取冷处理。","sourceHtml":"\u003ch4>1. 机会点与阻力分析\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>机会特点（外围向内试探）\u003c/strong>：\n\u003cul>\n\u003cli>2026年流年命宫在午，流年夫妻宫在辰（叠本命田宅宫，坐天机生年忌、自化权、陀罗）。\u003c/li>\n\u003cli>流年干丙使\u003cstrong>天同化禄入子\u003c/strong>（流年迁移宫），同时天机化权入辰位流年夫妻宫；辰位另有本命子女宫壬干飞入的天梁向心禄。此时的关系多由社交、朋友聚会或外围活动衍生而来，具有一定的浪漫或亲密试探性。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>阻力与现实压力（精神与财务的隐形消耗）\u003c/strong>：\n\u003cul>\n\u003cli>丙干使\u003cstrong>廉贞化忌入酉（本命财帛/大限夫妻/流年田宅）\u003c/strong>，直接正照卯位（本命福德/大限官禄/流年子女）。\u003c/li>\n\u003cli>\u003cstrong>核心阻力在“精神压力与金钱/人际摩擦”\u003c/strong>：廉贞化忌入财冲福德，意味着年底阶段感情极易牵扯到现实花销、共同人际圈或人情往来的分歧，进而让你精神紧绷、感到心累消耗。同时，流年夫妻宫坐田宅天机忌权陀，凡是试图在年底敲定同居、见家人或深入家庭生活细节的举动，都会遇到思维打结与习惯不合的拉扯。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>你的选择方式\u003c/strong>：\n\u003cul>\n\u003cli>\u003cstrong>收拢防线、拒绝上头\u003c/strong>。面对年底的各种情感互动，你更看重\u003cstrong>“这段关系是否消耗我的精神与精力”\u003c/strong>。你会本能地压制冲动，把重心收回到自己的生活秩序中，对伴侣或追求者的过度要求采取冷处理。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n"},{"id":"S3-3","title":"三、 2027年（丁未年）：机会、阻力与选择方式","sourceMarkdown":"#### 1. 机会点与深层推进（质的飞跃）\r\n*   **机会特点（高光正照、名分与严肃契约机缘）**：\r\n    *   2027流年命宫进入未（本命迁移/大限财帛），流年夫妻宫在巳（重叠**本命官禄/身宫**，坐紫微旺、七杀平、禄存）。\r\n    *   未宫与丑宫（本命命宫武贪禄魁）形成本对正照；未宫化武曲禄、贪狼权入丑位本命命宫，由丑宫接受向心禄权，流年夫妻宫更是见到了高规格的紫杀禄存！\r\n    *   **无论单身还是已有伴侣，2027年都是关系推向“严肃承诺、公开名分、社会认可”的极强年份**。这一年遇到的对象，或者伴侣展现出来的特质，会高度符合你对“有能力、有担当、社会地位对等”的务实追求。\r\n*   **阻力与考验：长辈、文书与深层信任**：\r\n    *   丁干使巨门化忌入甲寅（本命父母宫／当前大限田宅宫／2027流年疾厄宫），正冲庚申（本命疾厄宫／当前大限子女宫／2027流年父母宫）。\r\n    *   巨门主口舌争端、隐瞒与信任缺乏，文昌陷地同坐父母宫。巨门忌坐本命父母/流年疾厄，冲本命疾厄/流年父母。这意味着2027年要确立名分、推进婚约或见家长时，**最容易遇到的阻力是双方家庭长辈的意见、契约文书上的分歧、或因隐瞒不坦诚而引发的言语信任危机**，而不是日常起居谁洗碗的琐事。\r\n    *   寅位是大限田宅宫，巨门忌入大限田宅，代表这十年大运的“家庭根据地”坐了巨门忌，双方在构建长远家庭基础时，容易有暗藏的隔阂、不透明或现实家宅阻滞。\r\n    *   辰位在2027年是流年子女宫（主两性亲密交往、约会场景、桃花活动）。天机化科入流年子女，且辰位本有天梁庙、天机自化离心权，这意味着2027年你在**恋爱约会、亲密关系互动、或者备孕/子女议题上**，表现得非常理性、斯文且有条理，善于用讲道理、立规矩的方式化解尴尬，不再像2026年那样充满私密领地的防备与焦虑。\r\n    *   辰为大限仆役，化科代表在此大限的人际往来中，能通过朋友、平辈或合伙关系获得体面的建议与声誉背书。\r\n*   **你的选择方式**：\r\n    *   **夺回主动权、注重现实结果**。2027年你身宫紫微七杀的气场全面接管流年夫妻系统。你不再愿意委屈求全或在暧昧拉扯中耗费心力，你最看重的是**“能不能堂堂正正走下去、未来生活规划是否绝对清晰可靠”**。合适则雷厉风行敲定长远承诺，触碰底线则毫不拖泥带水。","sourceHtml":"\u003ch4>1. 机会点与深层推进（质的飞跃）\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>机会特点（高光正照、名分与严肃契约机缘）\u003c/strong>：\n\u003cul>\n\u003cli>2027流年命宫进入未（本命迁移/大限财帛），流年夫妻宫在巳（重叠\u003cstrong>本命官禄/身宫\u003c/strong>，坐紫微旺、七杀平、禄存）。\u003c/li>\n\u003cli>未宫与丑宫（本命命宫武贪禄魁）形成本对正照；未宫化武曲禄、贪狼权入丑位本命命宫，由丑宫接受向心禄权，流年夫妻宫更是见到了高规格的紫杀禄存！\u003c/li>\n\u003cli>\u003cstrong>无论单身还是已有伴侣，2027年都是关系推向“严肃承诺、公开名分、社会认可”的极强年份\u003c/strong>。这一年遇到的对象，或者伴侣展现出来的特质，会高度符合你对“有能力、有担当、社会地位对等”的务实追求。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>阻力与考验：长辈、文书与深层信任\u003c/strong>：\n\u003cul>\n\u003cli>丁干使巨门化忌入甲寅（本命父母宫／当前大限田宅宫／2027流年疾厄宫），正冲庚申（本命疾厄宫／当前大限子女宫／2027流年父母宫）。\u003c/li>\n\u003cli>巨门主口舌争端、隐瞒与信任缺乏，文昌陷地同坐父母宫。巨门忌坐本命父母/流年疾厄，冲本命疾厄/流年父母。这意味着2027年要确立名分、推进婚约或见家长时，\u003cstrong>最容易遇到的阻力是双方家庭长辈的意见、契约文书上的分歧、或因隐瞒不坦诚而引发的言语信任危机\u003c/strong>，而不是日常起居谁洗碗的琐事。\u003c/li>\n\u003cli>寅位是大限田宅宫，巨门忌入大限田宅，代表这十年大运的“家庭根据地”坐了巨门忌，双方在构建长远家庭基础时，容易有暗藏的隔阂、不透明或现实家宅阻滞。\u003c/li>\n\u003cli>辰位在2027年是流年子女宫（主两性亲密交往、约会场景、桃花活动）。天机化科入流年子女，且辰位本有天梁庙、天机自化离心权，这意味着2027年你在\u003cstrong>恋爱约会、亲密关系互动、或者备孕/子女议题上\u003c/strong>，表现得非常理性、斯文且有条理，善于用讲道理、立规矩的方式化解尴尬，不再像2026年那样充满私密领地的防备与焦虑。\u003c/li>\n\u003cli>辰为大限仆役，化科代表在此大限的人际往来中，能通过朋友、平辈或合伙关系获得体面的建议与声誉背书。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>你的选择方式\u003c/strong>：\n\u003cul>\n\u003cli>\u003cstrong>夺回主动权、注重现实结果\u003c/strong>。2027年你身宫紫微七杀的气场全面接管流年夫妻系统。你不再愿意委屈求全或在暧昧拉扯中耗费心力，你最看重的是\u003cstrong>“能不能堂堂正正走下去、未来生活规划是否绝对清晰可靠”\u003c/strong>。合适则雷厉风行敲定长远承诺，触碰底线则毫不拖泥带水。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n"},{"id":"S3-4","title":"四、 状态分化解读（单身 vs 已有伴侣）","sourceMarkdown":"#### 1. 若当前处于单身状态\r\n*   **2026年剩余阶段**：\r\n    *   容易出现带有社交、职场或生活圈属性的桃花接触，但多流于浅层互动或情绪拉扯。对方若急于确定关系或过度查勤管束，极易踩到你的防备雷区；年底前你更倾向于观望，不易轻易交出全部信任。\r\n*   **2027年**：\r\n    *   **正缘与严肃恋爱的高发期**。流年夫妻宫见紫杀禄存，流年命对命宫见武贪禄魁，极易出现个人能力强、社会形象体面、做事干脆利落的对象。你会被对方的可靠与决断吸引，关系有极大机会迅速公开并走向确立。但深入接触后需警惕双方家庭理念的磨合（巨门忌入本命父母／大限田宅，冲申位）。\r\n\r\n#### 2. 若当前已有伴侣（恋爱中或已婚）\r\n*   **2026年剩余阶段**：\r\n    *   正处于考验彼此空间感的疲劳期。对方可能因不安全感而施加情感管束（夫忌入命），两人在财务开销（廉贞忌冲福德）或生活琐碎事务上易有隐性心结。此时切忌强行推进同居或改造对方，宜给彼此留足物理与心理空隙。\r\n*   **2027年**：\r\n    *   **关系的“定性与分水岭之年”**。流年夫妻宫叠身宫紫杀，面临“是领证确立长远承诺，还是彻底解决长期累积矛盾”的抉择。如果双方在家庭定位、房产规划和深层沟通上能经受住巨门忌入大限田宅、本命父母宫的信任与文书考验，关系能迈入极为稳固的社会盟友阶段；反之，若矛盾长期无法化解，紫杀的决绝决断力会被引爆，促使你快刀斩乱麻走向切割。","sourceHtml":"\u003ch4>1. 若当前处于单身状态\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>2026年剩余阶段\u003c/strong>：\n\u003cul>\n\u003cli>容易出现带有社交、职场或生活圈属性的桃花接触，但多流于浅层互动或情绪拉扯。对方若急于确定关系或过度查勤管束，极易踩到你的防备雷区；年底前你更倾向于观望，不易轻易交出全部信任。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>2027年\u003c/strong>：\n\u003cul>\n\u003cli>\u003cstrong>正缘与严肃恋爱的高发期\u003c/strong>。流年夫妻宫见紫杀禄存，流年命对命宫见武贪禄魁，极易出现个人能力强、社会形象体面、做事干脆利落的对象。你会被对方的可靠与决断吸引，关系有极大机会迅速公开并走向确立。但深入接触后需警惕双方家庭理念的磨合（巨门忌入本命父母／大限田宅，冲申位）。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n\u003ch4>2. 若当前已有伴侣（恋爱中或已婚）\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>2026年剩余阶段\u003c/strong>：\n\u003cul>\n\u003cli>正处于考验彼此空间感的疲劳期。对方可能因不安全感而施加情感管束（夫忌入命），两人在财务开销（廉贞忌冲福德）或生活琐碎事务上易有隐性心结。此时切忌强行推进同居或改造对方，宜给彼此留足物理与心理空隙。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>2027年\u003c/strong>：\n\u003cul>\n\u003cli>\u003cstrong>关系的“定性与分水岭之年”\u003c/strong>。流年夫妻宫叠身宫紫杀，面临“是领证确立长远承诺，还是彻底解决长期累积矛盾”的抉择。如果双方在家庭定位、房产规划和深层沟通上能经受住巨门忌入大限田宅、本命父母宫的信任与文书考验，关系能迈入极为稳固的社会盟友阶段；反之，若矛盾长期无法化解，紫杀的决绝决断力会被引爆，促使你快刀斩乱麻走向切割。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n"},{"id":"S3-5","title":"五、 最重要的三条感情判断","sourceMarkdown":"1.  **2026年底重在“守界防耗”，2027年才是“定性与结果”的主场**：\r\n    2026年剩余时间切勿在情绪上头或被催促时强行推进关系落地，凡事多设财务与精神防火墙；把决定性的考察与实质性的名分确立放到2027年，彼时气场与机缘更加明朗。\r\n2.  **推进关系必须直面“长辈、文书与深层信任”的现实考验**：\r\n    2027年若要从恋爱走向长远生活，真正的生死考场在于**“长远家庭基础、文书名分、双方长辈态度及深层坦诚度”**。必须把话摆在明面上谈清楚，切忌带着隐瞒或含糊妥协进入共同生活。\r\n3.  **伴侣能力可以强，但言语沟通与情绪底色必须宽厚**：\r\n    你的盘面在2027年极易吸引强人（紫杀天府），但如果对方言辞刻薄、遇事爱翻旧账猜忌（引动巨门忌与天府铃星），即便现实条件再好也会沦为精神苦狱；唯有懂得在琐事上装糊涂、语言温和包容的人，才能真正与你携手长久。","sourceHtml":"\u003col>\n\u003cli>\u003cstrong>2026年底重在“守界防耗”，2027年才是“定性与结果”的主场\u003c/strong>：\n2026年剩余时间切勿在情绪上头或被催促时强行推进关系落地，凡事多设财务与精神防火墙；把决定性的考察与实质性的名分确立放到2027年，彼时气场与机缘更加明朗。\u003c/li>\n\u003cli>\u003cstrong>推进关系必须直面“长辈、文书与深层信任”的现实考验\u003c/strong>：\n2027年若要从恋爱走向长远生活，真正的生死考场在于\u003cstrong>“长远家庭基础、文书名分、双方长辈态度及深层坦诚度”\u003c/strong>。必须把话摆在明面上谈清楚，切忌带着隐瞒或含糊妥协进入共同生活。\u003c/li>\n\u003cli>\u003cstrong>伴侣能力可以强，但言语沟通与情绪底色必须宽厚\u003c/strong>：\n你的盘面在2027年极易吸引强人（紫杀天府），但如果对方言辞刻薄、遇事爱翻旧账猜忌（引动巨门忌与天府铃星），即便现实条件再好也会沦为精神苦狱；唯有懂得在琐事上装糊涂、语言温和包容的人，才能真正与你携手长久。\u003c/li>\n\u003c/ol>\n"},{"id":"S3-6","title":"六、 感情与事业心力的牵连","sourceMarkdown":"廉贞忌坐入的不只是流年田宅，它直接坐落在大限夫妻宫（大限伴侣的实质载体）。伴侣在这个大限里的现实表现，在2026年底直接与你的家宅、同居空间和财务系统发生剧烈冲撞。\r\n\r\n廉贞化忌冲对宫卯位（大限官禄＋本命福德＋流年子女），说明年底若在感情上强行粘稠、过度介入对方的财务或强行推进同居，不仅会直接导致你精神压力激增，更会直接干扰到你在大限阶段的事业发展节奏与心力专注度。","sourceHtml":"\u003cp>廉贞忌坐入的不只是流年田宅，它直接坐落在大限夫妻宫（大限伴侣的实质载体）。伴侣在这个大限里的现实表现，在2026年底直接与你的家宅、同居空间和财务系统发生剧烈冲撞。\u003c/p>\n\u003cp>廉贞化忌冲对宫卯位（大限官禄＋本命福德＋流年子女），说明年底若在感情上强行粘稠、过度介入对方的财务或强行推进同居，不仅会直接导致你精神压力激增，更会直接干扰到你在大限阶段的事业发展节奏与心力专注度。\u003c/p>\n"}]},{"question":4,"title":"事业本事与适合的发展方式","intro":"你在事业上的格局非常鲜明：**外在具备极高情商与现实变现嗅觉，内在具有极强的将帅决断力与山头意识，属于典型的“将相兼备、能攻能守、能把资源迅速变现并建立独立阵地”的实干主理人**。","openingHtml":"\u003cp>你在事业上的格局非常鲜明：\u003cstrong>外在具备极高情商与现实变现嗅觉，内在具有极强的将帅决断力与山头意识，属于典型的“将相兼备、能攻能守、能把资源迅速变现并建立独立阵地”的实干主理人\u003c/strong>。\u003c/p>\n","sections":[{"id":"S4-1","title":"一、 你是怎样的工作者？主要本事在哪里？","sourceMarkdown":"#### 1. 核心判断\r\n你不是安分守己的纯事务型螺丝钉，也不是脱离现实的纯理论研究者。你是一个**“极度务实、擅长攻坚与资源转化、对成果和变现极度敏感、且必须拥有独立主导权”的攻防兼备型工作者**。\r\n\r\n#### 2. 主要本事与关键盘面依据\r\n*   **资源嗅觉、敏锐共情与“生财转化力”（命宫武曲庙、贪狼庙化禄+天魁，迁移化武曲禄、贪狼权入命）**：\r\n    *   武曲是正财星，贪狼是欲望、情商、社交与资源整合之星，且贪狼自带生年禄。\r\n    *   在课程中，贪狼禄不仅主好人缘，在事业中更是**对市场需求、客户痛点、资源交换规则有着本能的敏锐嗅觉**；武曲则赋予你强大的数字观念与交付执行力。\r\n    *   对宫迁移（己未）又送来向心武曲禄与贪狼权。这代表**只要你走向外部市场、接触外部客户与社会平台，外界就会源源不断给你递来资源、项目与掌权扩张的机会**。你能把看似散乱的人脉与信息迅速转化为实打实的业绩或商业成果。\r\n*   **统领大局、定盘托底的“将帅担当”（身宫在官禄坐紫微旺、七杀平+禄存）**：\r\n    *   身宫（后半生行事偏好与实际着力点）落在官禄宫，坐紫微、七杀与禄存。\r\n    *   课程指出，紫微为帝星，七杀为战将，紫杀同宫主**“将在前线，亲力亲为，敢扛最硬的指标，能开辟新局面”**；禄存同宫更代表你追求的是高度稳固、有资产沉淀、抗风险能力极强的实体成果。你在工作中骨子极硬，遇到突发危机或混乱局面时，能迅速稳住阵脚、拍板定案，具有天然的领袖气质。\r\n*   **极强的制度边界感与防御意识（官禄禄存正照夫妻天府）**：\r\n    *   你既有贪狼开疆拓土的灵活性，又有禄存与紫微守住底线的稳健。你绝不会盲目冒险，每一笔账、每一个合作条约、每一次交付，你都会把风控与收益边界算得清清楚楚。","sourceHtml":"\u003ch4>1. 核心判断\u003c/h4>\n\u003cp>你不是安分守己的纯事务型螺丝钉，也不是脱离现实的纯理论研究者。你是一个\u003cstrong>“极度务实、擅长攻坚与资源转化、对成果和变现极度敏感、且必须拥有独立主导权”的攻防兼备型工作者\u003c/strong>。\u003c/p>\n\u003ch4>2. 主要本事与关键盘面依据\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>资源嗅觉、敏锐共情与“生财转化力”（命宫武曲庙、贪狼庙化禄+天魁，迁移化武曲禄、贪狼权入命）\u003c/strong>：\n\u003cul>\n\u003cli>武曲是正财星，贪狼是欲望、情商、社交与资源整合之星，且贪狼自带生年禄。\u003c/li>\n\u003cli>在课程中，贪狼禄不仅主好人缘，在事业中更是\u003cstrong>对市场需求、客户痛点、资源交换规则有着本能的敏锐嗅觉\u003c/strong>；武曲则赋予你强大的数字观念与交付执行力。\u003c/li>\n\u003cli>对宫迁移（己未）又送来向心武曲禄与贪狼权。这代表\u003cstrong>只要你走向外部市场、接触外部客户与社会平台，外界就会源源不断给你递来资源、项目与掌权扩张的机会\u003c/strong>。你能把看似散乱的人脉与信息迅速转化为实打实的业绩或商业成果。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>统领大局、定盘托底的“将帅担当”（身宫在官禄坐紫微旺、七杀平+禄存）\u003c/strong>：\n\u003cul>\n\u003cli>身宫（后半生行事偏好与实际着力点）落在官禄宫，坐紫微、七杀与禄存。\u003c/li>\n\u003cli>课程指出，紫微为帝星，七杀为战将，紫杀同宫主\u003cstrong>“将在前线，亲力亲为，敢扛最硬的指标，能开辟新局面”\u003c/strong>；禄存同宫更代表你追求的是高度稳固、有资产沉淀、抗风险能力极强的实体成果。你在工作中骨子极硬，遇到突发危机或混乱局面时，能迅速稳住阵脚、拍板定案，具有天然的领袖气质。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>极强的制度边界感与防御意识（官禄禄存正照夫妻天府）\u003c/strong>：\n\u003cul>\n\u003cli>你既有贪狼开疆拓土的灵活性，又有禄存与紫微守住底线的稳健。你绝不会盲目冒险，每一笔账、每一个合作条约、每一次交付，你都会把风控与收益边界算得清清楚楚。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n"},{"id":"S4-2","title":"二、 适合承担什么职责、怎样发展？适合的任务、工作方式与环境","sourceMarkdown":"#### 1. 适合承担的职责\r\n*   **业务主理人 / 独立部门负责人 / 核心项目操盘手**：能够自负盈亏、带领团队攻克明确业绩或交付指标的岗位。\r\n*   **高客单转化 / 核心资源对接收割者**：利用高情商、专业度与气场，搞定关键客户、促成大额合作或复杂商务谈判的职责。\r\n*   **资产与实体项目运营者**：涉及供应链、实体资产配置、稳健型商业项目搭建与统筹管理。\r\n\r\n#### 2. 适合的任务类型\r\n*   **从“0到1打硬仗”或“从1到10立规矩”的任务**（契合紫微七杀）：目标清晰、阻力较大、需要强势推进打破僵局的任务，最能激发你的潜能。\r\n*   **利益链条复杂、需要高度情商与利益平衡的任务**（契合武曲贪狼禄）：单纯靠技术搞不定的事，需要协调各方诉求、通过利益共赢促成落地的复合型任务。\r\n*   **拒绝纯琐碎、无权无利的重复性苦力**：若任务只要求按部就班当工具人、无权做决定、也看不到现实回报，你会极度厌烦。\r\n\r\n#### 3. 适合的工作方式与环境\r\n*   **工作方式：目标导向 + 高度自主裁量权**\r\n    *   你最适合“定好核心目标与考核指标，中间具体怎么执行、用什么人、怎么分配资源由你说了算”的机制。\r\n    *   你极度排斥被微观管理，不能忍受领导每天查考勤、抠细枝末节的汇报格式。\r\n*   **组织环境：扁平化、看重战功、靠山明确的环境**\r\n    *   **能直面高层或外部市场**：命坐天魁，迁移见禄权入命，你非常适合在高层注视下直接拿成果说话，或者直接与外部市场打交道。\r\n    *   **山头林立但给你划定独立势力范围的环境**：身坐紫杀禄存，你适合拥有自己的一亩三分地（闭环业务线），在自己的领地里行使主权。","sourceHtml":"\u003ch4>1. 适合承担的职责\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>业务主理人 / 独立部门负责人 / 核心项目操盘手\u003c/strong>：能够自负盈亏、带领团队攻克明确业绩或交付指标的岗位。\u003c/li>\n\u003cli>\u003cstrong>高客单转化 / 核心资源对接收割者\u003c/strong>：利用高情商、专业度与气场，搞定关键客户、促成大额合作或复杂商务谈判的职责。\u003c/li>\n\u003cli>\u003cstrong>资产与实体项目运营者\u003c/strong>：涉及供应链、实体资产配置、稳健型商业项目搭建与统筹管理。\u003c/li>\n\u003c/ul>\n\u003ch4>2. 适合的任务类型\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>从“0到1打硬仗”或“从1到10立规矩”的任务\u003c/strong>（契合紫微七杀）：目标清晰、阻力较大、需要强势推进打破僵局的任务，最能激发你的潜能。\u003c/li>\n\u003cli>\u003cstrong>利益链条复杂、需要高度情商与利益平衡的任务\u003c/strong>（契合武曲贪狼禄）：单纯靠技术搞不定的事，需要协调各方诉求、通过利益共赢促成落地的复合型任务。\u003c/li>\n\u003cli>\u003cstrong>拒绝纯琐碎、无权无利的重复性苦力\u003c/strong>：若任务只要求按部就班当工具人、无权做决定、也看不到现实回报，你会极度厌烦。\u003c/li>\n\u003c/ul>\n\u003ch4>3. 适合的工作方式与环境\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>工作方式：目标导向 + 高度自主裁量权\u003c/strong>\n\u003cul>\n\u003cli>你最适合“定好核心目标与考核指标，中间具体怎么执行、用什么人、怎么分配资源由你说了算”的机制。\u003c/li>\n\u003cli>你极度排斥被微观管理，不能忍受领导每天查考勤、抠细枝末节的汇报格式。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>组织环境：扁平化、看重战功、靠山明确的环境\u003c/strong>\n\u003cul>\n\u003cli>\u003cstrong>能直面高层或外部市场\u003c/strong>：命坐天魁，迁移见禄权入命，你非常适合在高层注视下直接拿成果说话，或者直接与外部市场打交道。\u003c/li>\n\u003cli>\u003cstrong>山头林立但给你划定独立势力范围的环境\u003c/strong>：身坐紫杀禄存，你适合拥有自己的一亩三分地（闭环业务线），在自己的领地里行使主权。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n"},{"id":"S4-3","title":"三、 你怎样学习和积累本事？什么能让你持续投入？","sourceMarkdown":"#### 1. 你怎样学习和积累本事？\r\n*   **“战火与实操中淬炼”（武贪+紫杀，而非纯书斋死读）**：\r\n    *   你的本事不是靠关在象牙塔里读死书学来的。武曲和七杀都是实战派的金性星曜，你最快的成长方式是**直接下场做项目、管事情、踩坑并即时复盘**。\r\n    *   在实操中，只要把你的利益或责任绑定进去，你的心智和手腕会以极高的速度完成迭代。\r\n*   **“高人指点与关键资源点拨”（命坐天魁，天机化科）**：\r\n    *   天魁是贵人星，你善于向行业内的权威、前辈或成功操盘手学习核心经验。你往往不是全盘照搬，而是敏锐抓住对方最核心的商业逻辑或做人做事的精髓，迅速化为己用。\r\n*   **“建立严谨的底层逻辑与标准流”（田宅天机生年忌+自化权+陀罗，父母文昌陷）**：\r\n    *   天机忌权带陀罗在田宅（潜意识的底层根据地），你对知识体系有着极其较真、甚至略带焦虑的钻研精神。你学习一项技能，必须搞懂它的底层运作逻辑、把规则扣严实，否则你内心会缺乏掌控感。这种“打破砂锅问到底”的劲头，使你的专业底子往往非常扎实。\r\n\r\n#### 2. 什么能让你持续投入？\r\n*   **看得见、摸得着的现实回报（武曲正财 + 贪狼禄 + 官禄禄存）**：\r\n    *   画大饼、谈情怀对你基本无效。能让你夜以继日投入的动力，必须是**真金白银的提成、股权期权、明确的资产沉淀，或者社会地位与职级的实质性晋升**。\r\n*   **拥有说了算的权力与掌控感（紫杀身宫）**：\r\n    *   当一个项目是由你主导、打上你个人烙印、成功后能带来极强成就感与权威感时，你的精力就像取之不尽的发动机。","sourceHtml":"\u003ch4>1. 你怎样学习和积累本事？\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>“战火与实操中淬炼”（武贪+紫杀，而非纯书斋死读）\u003c/strong>：\n\u003cul>\n\u003cli>你的本事不是靠关在象牙塔里读死书学来的。武曲和七杀都是实战派的金性星曜，你最快的成长方式是\u003cstrong>直接下场做项目、管事情、踩坑并即时复盘\u003c/strong>。\u003c/li>\n\u003cli>在实操中，只要把你的利益或责任绑定进去，你的心智和手腕会以极高的速度完成迭代。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>“高人指点与关键资源点拨”（命坐天魁，天机化科）\u003c/strong>：\n\u003cul>\n\u003cli>天魁是贵人星，你善于向行业内的权威、前辈或成功操盘手学习核心经验。你往往不是全盘照搬，而是敏锐抓住对方最核心的商业逻辑或做人做事的精髓，迅速化为己用。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>“建立严谨的底层逻辑与标准流”（田宅天机生年忌+自化权+陀罗，父母文昌陷）\u003c/strong>：\n\u003cul>\n\u003cli>天机忌权带陀罗在田宅（潜意识的底层根据地），你对知识体系有着极其较真、甚至略带焦虑的钻研精神。你学习一项技能，必须搞懂它的底层运作逻辑、把规则扣严实，否则你内心会缺乏掌控感。这种“打破砂锅问到底”的劲头，使你的专业底子往往非常扎实。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n\u003ch4>2. 什么能让你持续投入？\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>看得见、摸得着的现实回报（武曲正财 + 贪狼禄 + 官禄禄存）\u003c/strong>：\n\u003cul>\n\u003cli>画大饼、谈情怀对你基本无效。能让你夜以继日投入的动力，必须是\u003cstrong>真金白银的提成、股权期权、明确的资产沉淀，或者社会地位与职级的实质性晋升\u003c/strong>。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>拥有说了算的权力与掌控感（紫杀身宫）\u003c/strong>：\n\u003cul>\n\u003cli>当一个项目是由你主导、打上你个人烙印、成功后能带来极强成就感与权威感时，你的精力就像取之不尽的发动机。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n"},{"id":"S4-4","title":"四、 什么容易使你的能力难以兑现？（核心卡点）","sourceMarkdown":"#### 1. 财帛宫廉贞平、破军陷与煞忌冲耗：交付落地与落袋为安的损耗\r\n*   **盘面依据**：财帛宫在辛酉，坐**廉贞平、破军陷**。辛干使文昌化忌入甲寅（本命父母/大限田宅），冲申位疾厄。\r\n*   **表现**：\r\n    *   破军在财帛主“开销大、资金流大进大出、敢于投入但波动剧烈”；廉贞主权谋与复杂关系。\r\n    *   你的命宫（武贪禄）和官禄（紫杀禄存）非常强，说明你能揽来大业务、也能把盘子支棱起来；但**财帛宫廉贞平、破军陷的组合，往往导致你在把事情转化为“长期、稳定、落袋为安的纯利润”时，面临巨大的损耗与周转风险**。\r\n    *   很多时候是“业务流水非常漂亮、名气很大，但中间环节成本高昂、应收账款滞纳，或者又被你投入到下一轮扩张中”，导致实际落入个人口袋的现金流与你的付出不成正比。\r\n\r\n#### 2. “大包大揽+防备多疑”导致团队协同脱节\r\n*   **盘面依据**：身宫官禄坐七杀带禄存，正照夫妻宫天府铃星。\r\n*   **表现**：\r\n    *   禄存虽主财禄与稳健，但也主“孤立、防卫、保守与不轻易信人”；七杀主凡事信不过别人、喜欢亲自冲锋。\r\n    *   在事业成长到一定体量时，你容易陷入**“觉得下属干得太慢太差，索性自己全干了”**的陷阱。你不敢轻易放权，把所有核心节点全抓在自己手里，结果把自己累得精疲力竭，反而限制了业务的进一步放大。\r\n\r\n#### 3. 规章制度、合同文书与长辈/上级的摩擦（父母宫文昌陷，辛干化昌忌）\r\n*   **盘面依据**：本命父母宫在甲寅，坐文昌陷；财帛宫辛干飞文昌化忌入父母宫。\r\n*   **表现**：\r\n    *   父母宫代表领导、法规、审计、资质与制度。文昌陷坐父母，财帛宫飞文昌忌入此宫、冲申位疾厄，说明你在搞钱、开展业务的过程中，**极容易在合同条款、合规流程、审批文书、或与顶头上司的汇报对齐上吃闷亏**。\r\n    *   你重在往前冲拿结果，若忽视了合规漏洞或得罪了制度掌控者，容易在最后关头被规章流程或上级意志卡脖子。","sourceHtml":"\u003ch4>1. 财帛宫廉贞平、破军陷与煞忌冲耗：交付落地与落袋为安的损耗\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>盘面依据\u003c/strong>：财帛宫在辛酉，坐\u003cstrong>廉贞平、破军陷\u003c/strong>。辛干使文昌化忌入甲寅（本命父母/大限田宅），冲申位疾厄。\u003c/li>\n\u003cli>\u003cstrong>表现\u003c/strong>：\n\u003cul>\n\u003cli>破军在财帛主“开销大、资金流大进大出、敢于投入但波动剧烈”；廉贞主权谋与复杂关系。\u003c/li>\n\u003cli>你的命宫（武贪禄）和官禄（紫杀禄存）非常强，说明你能揽来大业务、也能把盘子支棱起来；但\u003cstrong>财帛宫廉贞平、破军陷的组合，往往导致你在把事情转化为“长期、稳定、落袋为安的纯利润”时，面临巨大的损耗与周转风险\u003c/strong>。\u003c/li>\n\u003cli>很多时候是“业务流水非常漂亮、名气很大，但中间环节成本高昂、应收账款滞纳，或者又被你投入到下一轮扩张中”，导致实际落入个人口袋的现金流与你的付出不成正比。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n\u003ch4>2. “大包大揽+防备多疑”导致团队协同脱节\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>盘面依据\u003c/strong>：身宫官禄坐七杀带禄存，正照夫妻宫天府铃星。\u003c/li>\n\u003cli>\u003cstrong>表现\u003c/strong>：\n\u003cul>\n\u003cli>禄存虽主财禄与稳健，但也主“孤立、防卫、保守与不轻易信人”；七杀主凡事信不过别人、喜欢亲自冲锋。\u003c/li>\n\u003cli>在事业成长到一定体量时，你容易陷入\u003cstrong>“觉得下属干得太慢太差，索性自己全干了”\u003c/strong>的陷阱。你不敢轻易放权，把所有核心节点全抓在自己手里，结果把自己累得精疲力竭，反而限制了业务的进一步放大。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n\u003ch4>3. 规章制度、合同文书与长辈/上级的摩擦（父母宫文昌陷，辛干化昌忌）\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>盘面依据\u003c/strong>：本命父母宫在甲寅，坐文昌陷；财帛宫辛干飞文昌化忌入父母宫。\u003c/li>\n\u003cli>\u003cstrong>表现\u003c/strong>：\n\u003cul>\n\u003cli>父母宫代表领导、法规、审计、资质与制度。文昌陷坐父母，财帛宫飞文昌忌入此宫、冲申位疾厄，说明你在搞钱、开展业务的过程中，\u003cstrong>极容易在合同条款、合规流程、审批文书、或与顶头上司的汇报对齐上吃闷亏\u003c/strong>。\u003c/li>\n\u003cli>你重在往前冲拿结果，若忽视了合规漏洞或得罪了制度掌控者，容易在最后关头被规章流程或上级意志卡脖子。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n"},{"id":"S4-5","title":"五、 换环境依然可能重复的问题 vs 换对环境能显著改善的问题","sourceMarkdown":"#### 1. 即使换了环境，依然容易因你的习惯而重复的问题（内生性课题）\r\n*   **“大权独揽后的身心过载”**：\r\n    *   无论去哪家公司或自己创业，只要你做事，你那种紫杀式的掌控欲与禄存的防备心就会冒头。你总是很难忍受别人办事的低效，最后又变成你一个人扛下所有责任，陷入周期性的身心疲惫。\r\n*   **“资产周转的大进大出与资金焦虑（财帛廉破）”**：\r\n    *   你骨子里有破军的开拓冒险基因，赚了钱就想继续滚大盘子，或者为了拿下大单愿意垫资、重度投入。这种对资金的高杠杆运作与消耗习惯，换了平台依然会存在，必须在心智上建立强制储蓄与利润隔离机制。\r\n*   **“底层逻辑未闭环时的焦虑内耗（田宅天机忌陀）”**：\r\n    *   在工作筹备阶段，由于你极其在乎底层逻辑的安全感，你容易在方案细节、风控假设上自我纠结、反复推演（陀罗打转），甚至在前期把团队逼得神经紧张。\r\n\r\n#### 2. 确实需要选对环境才能改善的问题（环境依赖性课题）\r\n*   **直属上级的权力风格与容人度（规避父母宫文昌陷的压制）**：\r\n    *   **差环境**：遇到控制欲极强、嫉贤妒能、整天挑你汇报字眼和流程合规的官僚型领导。在那种环境下，你的锋芒（紫杀武贪）会被视为威胁，文昌陷的文书雷区会被无限放大，你会极其痛苦甚至发生严重龃龉。\r\n    *   **好环境**：遇到看重成果、愿意放权、能在组织高层为你遮风挡雨、只考核最终业绩的开明统帅。你只要负责在前线攻城略地，后台由对方替你搞定合规与人事，你的能量能释放十倍。\r\n*   **考核机制是否与“利益直接挂钩”**：\r\n    *   **差环境**：大锅饭国企、吃资历的大厂中台或纯事务性行政部门。无论你多么能干，收益与职级都锁死在既定年资上，这会瞬间杀死武贪与禄存的自驱力，让你感到才能被活埋。\r\n    *   **好环境**：强激励机制的商业机构、独立核算的事业部、核心业务线或自主创业合伙。只要回报与打下的战果成正比，你爆发出的战斗力将极为惊人。\r\n*   **业务属性必须具备“外部延展性”（激活迁移禄权入命）**：\r\n    *   **差环境**：完全封闭对内、天天与内部同事勾心斗角内耗的死水环境。\r\n    *   **好环境**：需要面向外部市场、与外部供应商/大客户/跨国界跨领域打交道的开放生态。迁移宫给命宫输送的武曲禄、贪狼权，只有在你走向外部广阔天地时，才能被最大限度地激活。","sourceHtml":"\u003ch4>1. 即使换了环境，依然容易因你的习惯而重复的问题（内生性课题）\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>“大权独揽后的身心过载”\u003c/strong>：\n\u003cul>\n\u003cli>无论去哪家公司或自己创业，只要你做事，你那种紫杀式的掌控欲与禄存的防备心就会冒头。你总是很难忍受别人办事的低效，最后又变成你一个人扛下所有责任，陷入周期性的身心疲惫。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>“资产周转的大进大出与资金焦虑（财帛廉破）”\u003c/strong>：\n\u003cul>\n\u003cli>你骨子里有破军的开拓冒险基因，赚了钱就想继续滚大盘子，或者为了拿下大单愿意垫资、重度投入。这种对资金的高杠杆运作与消耗习惯，换了平台依然会存在，必须在心智上建立强制储蓄与利润隔离机制。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>“底层逻辑未闭环时的焦虑内耗（田宅天机忌陀）”\u003c/strong>：\n\u003cul>\n\u003cli>在工作筹备阶段，由于你极其在乎底层逻辑的安全感，你容易在方案细节、风控假设上自我纠结、反复推演（陀罗打转），甚至在前期把团队逼得神经紧张。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n\u003ch4>2. 确实需要选对环境才能改善的问题（环境依赖性课题）\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>直属上级的权力风格与容人度（规避父母宫文昌陷的压制）\u003c/strong>：\n\u003cul>\n\u003cli>\u003cstrong>差环境\u003c/strong>：遇到控制欲极强、嫉贤妒能、整天挑你汇报字眼和流程合规的官僚型领导。在那种环境下，你的锋芒（紫杀武贪）会被视为威胁，文昌陷的文书雷区会被无限放大，你会极其痛苦甚至发生严重龃龉。\u003c/li>\n\u003cli>\u003cstrong>好环境\u003c/strong>：遇到看重成果、愿意放权、能在组织高层为你遮风挡雨、只考核最终业绩的开明统帅。你只要负责在前线攻城略地，后台由对方替你搞定合规与人事，你的能量能释放十倍。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>考核机制是否与“利益直接挂钩”\u003c/strong>：\n\u003cul>\n\u003cli>\u003cstrong>差环境\u003c/strong>：大锅饭国企、吃资历的大厂中台或纯事务性行政部门。无论你多么能干，收益与职级都锁死在既定年资上，这会瞬间杀死武贪与禄存的自驱力，让你感到才能被活埋。\u003c/li>\n\u003cli>\u003cstrong>好环境\u003c/strong>：强激励机制的商业机构、独立核算的事业部、核心业务线或自主创业合伙。只要回报与打下的战果成正比，你爆发出的战斗力将极为惊人。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>业务属性必须具备“外部延展性”（激活迁移禄权入命）\u003c/strong>：\n\u003cul>\n\u003cli>\u003cstrong>差环境\u003c/strong>：完全封闭对内、天天与内部同事勾心斗角内耗的死水环境。\u003c/li>\n\u003cli>\u003cstrong>好环境\u003c/strong>：需要面向外部市场、与外部供应商/大客户/跨国界跨领域打交道的开放生态。迁移宫给命宫输送的武曲禄、贪狼权，只有在你走向外部广阔天地时，才能被最大限度地激活。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n"},{"id":"S4-6","title":"六、 总结与事业核心建议","sourceMarkdown":"你天生就是**“拿结果的战将与主理人”**。\r\n*   **战术上**：继续发挥你武贪禄魁的高情商敏锐嗅觉与紫杀禄存的强大攻坚力，把业务主导权抓在手里；\r\n*   **防守上**：必须警惕财帛廉破的现金流损耗与文昌陷的合同合规隐患，每一项成果落地都要“见好就收、利润封顶落袋”；\r\n*   **格局上**：学会克服紫杀禄存的猜疑与大包大揽，通过合理的制度把琐碎执行分流给下属，将自己真正解脱出来，聚焦于战略方向与外部资源的持续收割。","sourceHtml":"\u003cp>你天生就是\u003cstrong>“拿结果的战将与主理人”\u003c/strong>。\u003c/p>\n\u003cul>\n\u003cli>\u003cstrong>战术上\u003c/strong>：继续发挥你武贪禄魁的高情商敏锐嗅觉与紫杀禄存的强大攻坚力，把业务主导权抓在手里；\u003c/li>\n\u003cli>\u003cstrong>防守上\u003c/strong>：必须警惕财帛廉破的现金流损耗与文昌陷的合同合规隐患，每一项成果落地都要“见好就收、利润封顶落袋”；\u003c/li>\n\u003cli>\u003cstrong>格局上\u003c/strong>：学会克服紫杀禄存的猜疑与大包大揽，通过合理的制度把琐碎执行分流给下属，将自己真正解脱出来，聚焦于战略方向与外部资源的持续收割。\u003c/li>\n\u003c/ul>\n"}]},{"question":5,"title":"2026—2027：事业与收入","intro":"在紫微斗数的行运架构中，**大限是十年环境的底色与战略中枢，流年则是战术切入点与具体事件的承载面**。","openingHtml":"\u003cp>在紫微斗数的行运架构中，\u003cstrong>大限是十年环境的底色与战略中枢，流年则是战术切入点与具体事件的承载面\u003c/strong>。\u003c/p>\n","sections":[{"id":"S5-1","title":"一、 两年事业的核心区别与演进脉络","sourceMarkdown":"| 维度 | 2026 丙午年（剩余阶段） | 2027 丁未年 |\r\n| :--- | :--- | :--- |\r\n| **流年定位与重心** | **流年命宫在午（本命交友/大限疾厄）**，流年官禄在戌（无十四主星，对宫辰为天机天梁；天同、太阴在子位流迁，太阴带生年权与向心权）。\u003cbr>重心在**“人际协调、执行落地、修补防守与现金流回笼”**。 | **流年命宫在未（本命迁移/大限财帛）**，流年官禄在亥（重叠大限命宫/本命夫妻，天府左辅铃星）。\u003cbr>重心在**“平台跃迁、对外开疆拓土、独立执掌大权与确立山头”**。 |\r\n| **四化核心牵引** | 丙干：天同禄入子（流迁）、天机权入辰（流夫/本田）、昌科入寅（流财）、**廉贞忌入酉（流田/本财/大妻），正冲卯位（流子/本福/大官）**。 | 丁干：太阴禄、天同权入子（流友）、天机科入辰（流子/本田）、**巨门忌入寅（流疾/本父/大田），正冲申位（流父/本疾/大子）**。 |\r\n| **变动的核心性质** | **业务层面与项目细节的调整**。多体现为内部协同、清账收尾、应对合规或资金垫付压力，不宜轻易颠覆平台。 | **平台、地位、核心业务线或合作方式的重大升级**。极易出现外部猎头邀约、开拓新市场/新分支、自立门户或拿到核心操盘大权。 |","sourceHtml":"\u003ctable>\n\u003cthead>\n\u003ctr>\n\u003cth style=\"text-align:left\">维度\u003c/th>\n\u003cth style=\"text-align:left\">2026 丙午年（剩余阶段）\u003c/th>\n\u003cth style=\"text-align:left\">2027 丁未年\u003c/th>\n\u003c/tr>\n\u003c/thead>\n\u003ctbody>\n\u003ctr>\n\u003ctd style=\"text-align:left\">\u003cstrong>流年定位与重心\u003c/strong>\u003c/td>\n\u003ctd style=\"text-align:left\">\u003cstrong>流年命宫在午（本命交友/大限疾厄）\u003c/strong>，流年官禄在戌（无十四主星，对宫辰为天机天梁；天同、太阴在子位流迁，太阴带生年权与向心权）。\u003cbr>重心在\u003cstrong>“人际协调、执行落地、修补防守与现金流回笼”\u003c/strong>。\u003c/td>\n\u003ctd style=\"text-align:left\">\u003cstrong>流年命宫在未（本命迁移/大限财帛）\u003c/strong>，流年官禄在亥（重叠大限命宫/本命夫妻，天府左辅铃星）。\u003cbr>重心在\u003cstrong>“平台跃迁、对外开疆拓土、独立执掌大权与确立山头”\u003c/strong>。\u003c/td>\n\u003c/tr>\n\u003ctr>\n\u003ctd style=\"text-align:left\">\u003cstrong>四化核心牵引\u003c/strong>\u003c/td>\n\u003ctd style=\"text-align:left\">丙干：天同禄入子（流迁）、天机权入辰（流夫/本田）、昌科入寅（流财）、\u003cstrong>廉贞忌入酉（流田/本财/大妻），正冲卯位（流子/本福/大官）\u003c/strong>。\u003c/td>\n\u003ctd style=\"text-align:left\">丁干：太阴禄、天同权入子（流友）、天机科入辰（流子/本田）、\u003cstrong>巨门忌入寅（流疾/本父/大田），正冲申位（流父/本疾/大子）\u003c/strong>。\u003c/td>\n\u003c/tr>\n\u003ctr>\n\u003ctd style=\"text-align:left\">\u003cstrong>变动的核心性质\u003c/strong>\u003c/td>\n\u003ctd style=\"text-align:left\">\u003cstrong>业务层面与项目细节的调整\u003c/strong>。多体现为内部协同、清账收尾、应对合规或资金垫付压力，不宜轻易颠覆平台。\u003c/td>\n\u003ctd style=\"text-align:left\">\u003cstrong>平台、地位、核心业务线或合作方式的重大升级\u003c/strong>。极易出现外部猎头邀约、开拓新市场/新分支、自立门户或拿到核心操盘大权。\u003c/td>\n\u003c/tr>\n\u003c/tbody>\n\u003c/table>\n"},{"id":"S5-2","title":"二、 2026年剩余阶段（丙午年秋冬）：机会、阻力与工作状态","sourceMarkdown":"#### 1. 核心判断\r\n年底阶段你的事业处于**“攻守转换的防守期”**。此时切忌盲目扩大战线或垫资扩张，核心任务是**“防范资金与精力被过度消耗，守住既有基本盘，理清业务账目”**。\r\n\r\n#### 2. 各维度具体表现与盘面依据\r\n*   **承担责任与工作内容**：\r\n    *   流年命在午（交友位），流官在戌（子女位）。你的工作重心大量消耗在“对外沟通、对接合作方、解决琐碎人际协调、处理历史遗留项目”上。\r\n    *   天同禄入流迁，代表外部看似机会活跃、应酬往来多，但大多属于试探性、合作性意向，真正要落到合同与实权上阻力重重。\r\n*   **收入回报与资金阻力（关键考场）**：\r\n    *   **核心依据**：丙干**廉贞化忌直接坐入辛酉（流年田宅 / 本命财帛 / 大限夫妻），正冲乙卯（流年子女 / 本命福德 / 大限官禄）**。\r\n    *   **表现**：廉贞化忌在财帛冲大限官禄（大运事业气数位）。这表明年底你在金钱上有明显的**“回款受阻、垫资压力、项目超支或因合作方/伴侣事务导致财务周转吃紧”**。这种财务与资源上的卡顿，会直接反噬到你的精神状态（冲福德）和工作专注度（冲大官），让你感到心力交瘁。\r\n*   **合作关系与自主空间**：\r\n    *   合作方此时往往自顾不暇或对条件极其苛刻；廉贞忌在流田，代表你的“根据地/后方资源”在被向外抽取。\r\n    *   此时你的自主空间被压缩，大部分时间是在被动应对外部需求或修补漏洞。","sourceHtml":"\u003ch4>1. 核心判断\u003c/h4>\n\u003cp>年底阶段你的事业处于\u003cstrong>“攻守转换的防守期”\u003c/strong>。此时切忌盲目扩大战线或垫资扩张，核心任务是\u003cstrong>“防范资金与精力被过度消耗，守住既有基本盘，理清业务账目”\u003c/strong>。\u003c/p>\n\u003ch4>2. 各维度具体表现与盘面依据\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>承担责任与工作内容\u003c/strong>：\n\u003cul>\n\u003cli>流年命在午（交友位），流官在戌（子女位）。你的工作重心大量消耗在“对外沟通、对接合作方、解决琐碎人际协调、处理历史遗留项目”上。\u003c/li>\n\u003cli>天同禄入流迁，代表外部看似机会活跃、应酬往来多，但大多属于试探性、合作性意向，真正要落到合同与实权上阻力重重。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>收入回报与资金阻力（关键考场）\u003c/strong>：\n\u003cul>\n\u003cli>\u003cstrong>核心依据\u003c/strong>：丙干\u003cstrong>廉贞化忌直接坐入辛酉（流年田宅 / 本命财帛 / 大限夫妻），正冲乙卯（流年子女 / 本命福德 / 大限官禄）\u003c/strong>。\u003c/li>\n\u003cli>\u003cstrong>表现\u003c/strong>：廉贞化忌在财帛冲大限官禄（大运事业气数位）。这表明年底你在金钱上有明显的\u003cstrong>“回款受阻、垫资压力、项目超支或因合作方/伴侣事务导致财务周转吃紧”\u003c/strong>。这种财务与资源上的卡顿，会直接反噬到你的精神状态（冲福德）和工作专注度（冲大官），让你感到心力交瘁。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>合作关系与自主空间\u003c/strong>：\n\u003cul>\n\u003cli>合作方此时往往自顾不暇或对条件极其苛刻；廉贞忌在流田，代表你的“根据地/后方资源”在被向外抽取。\u003c/li>\n\u003cli>此时你的自主空间被压缩，大部分时间是在被动应对外部需求或修补漏洞。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n"},{"id":"S5-3","title":"三、 2027年（丁未年）：机会、阻力与全面跃迁","sourceMarkdown":"#### 1. 核心判断\r\n2027年是你在当前大限中**“事业爆发力最强、最容易打破天花板、真正确立独立阵地”的高光年份**。你的角色将从“一线执行与防守协调”直接跃升为**“独立操盘手、主导者或开疆拓土的统领”**。\r\n\r\n#### 2. 各维度具体表现与盘面依据\r\n*   **平台跃迁与自主空间（最大机会）**：\r\n    *   **核心依据**：流年命宫在未（本命迁移 / 大限财帛），未宫对宫正照本命命宫丑（武曲庙、贪狼庙化禄、天魁，且接纳己未化来的武曲禄与贪狼权）；**流年官禄宫在亥（重叠大限命宫 / 本命夫妻，坐天府得、左辅）**；流年夫妻宫在巳（重叠**本命官禄/身宫**，坐紫微旺、七杀平、禄存）。\r\n    *   **表现**：\r\n        *   **自主空间达到顶峰**：流命走入迁移，流官坐天府（令星、掌柜星），流夫（事业对宫）照紫杀禄存。你在这一年极难再被别人微观管理，你将获得极高的业务独立裁量权，甚至直接独立负责一条完整的业务线、一个独立的区域市场、或以合伙人姿态主导项目。\r\n        *   **外部向心力极强**：走向外部市场、差旅、外埠业务或对接更高维度的平台，会极大激发你的潜能。如果换工作或变动，多偏向于**“被高薪挖角去开辟新部门、或从单一雇员转向利益分成更深的分支业务负责人”**。\r\n*   **工作内容与承担责任**：\r\n    *   从2026年的琐碎协调，转变为**“制定战略规划、统筹大局资源、攻克大客户与重大业绩指标”**。你需要像天府一样管全局、像七杀一样打硬仗。\r\n*   **合作关系**：\r\n    *   流官见左辅，流友（甲子）见太阴化禄、天同化权。这意味着你能接触到实力雄厚、资金充沛的合作方或团队下属，外部合作层级显著提升。\r\n*   **收入回报与阻力考场（关键暗礁）**：\r\n    *   **收入回报**：流年命宫踏入大限财帛宫，且正照本命武贪生年禄与向心禄权，收入流水、业务规模和提成空间会呈现几何级数的扩张。\r\n    *   **核心阻力（文书、资质、制度与高层信任）**：\r\n        *   **核心依据**：丁干使**巨门化忌入甲寅（流年疾厄 / 本命父母 / 大限田宅），正冲庚申（流年父母 / 本命疾厄 / 大限子女）**。父母宫本坐文昌陷。\r\n        *   **表现**：巨门主口舌争端、暗藏条款、是非与信任隔阂；文昌陷坐父母，与2027巨门忌同宫，正冲申位，父疾线全盘震荡。\r\n        *   这代表2027年你在大展拳脚时，**最容易绊倒你的不是市场竞争，而是“合同契约漏洞、合规资质审核、发票账目问题、或者与原单位/监管部门/高层管理者的言语误解与政策摩擦”**。稍有不慎，容易陷入长期的文书纠纷或信任危机。","sourceHtml":"\u003ch4>1. 核心判断\u003c/h4>\n\u003cp>2027年是你在当前大限中\u003cstrong>“事业爆发力最强、最容易打破天花板、真正确立独立阵地”的高光年份\u003c/strong>。你的角色将从“一线执行与防守协调”直接跃升为\u003cstrong>“独立操盘手、主导者或开疆拓土的统领”\u003c/strong>。\u003c/p>\n\u003ch4>2. 各维度具体表现与盘面依据\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>平台跃迁与自主空间（最大机会）\u003c/strong>：\n\u003cul>\n\u003cli>\u003cstrong>核心依据\u003c/strong>：流年命宫在未（本命迁移 / 大限财帛），未宫对宫正照本命命宫丑（武曲庙、贪狼庙化禄、天魁，且接纳己未化来的武曲禄与贪狼权）；\u003cstrong>流年官禄宫在亥（重叠大限命宫 / 本命夫妻，坐天府得、左辅）\u003c/strong>；流年夫妻宫在巳（重叠\u003cstrong>本命官禄/身宫\u003c/strong>，坐紫微旺、七杀平、禄存）。\u003c/li>\n\u003cli>\u003cstrong>表现\u003c/strong>：\n\u003cul>\n\u003cli>\u003cstrong>自主空间达到顶峰\u003c/strong>：流命走入迁移，流官坐天府（令星、掌柜星），流夫（事业对宫）照紫杀禄存。你在这一年极难再被别人微观管理，你将获得极高的业务独立裁量权，甚至直接独立负责一条完整的业务线、一个独立的区域市场、或以合伙人姿态主导项目。\u003c/li>\n\u003cli>\u003cstrong>外部向心力极强\u003c/strong>：走向外部市场、差旅、外埠业务或对接更高维度的平台，会极大激发你的潜能。如果换工作或变动，多偏向于\u003cstrong>“被高薪挖角去开辟新部门、或从单一雇员转向利益分成更深的分支业务负责人”\u003c/strong>。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>工作内容与承担责任\u003c/strong>：\n\u003cul>\n\u003cli>从2026年的琐碎协调，转变为\u003cstrong>“制定战略规划、统筹大局资源、攻克大客户与重大业绩指标”\u003c/strong>。你需要像天府一样管全局、像七杀一样打硬仗。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>合作关系\u003c/strong>：\n\u003cul>\n\u003cli>流官见左辅，流友（甲子）见太阴化禄、天同化权。这意味着你能接触到实力雄厚、资金充沛的合作方或团队下属，外部合作层级显著提升。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>收入回报与阻力考场（关键暗礁）\u003c/strong>：\n\u003cul>\n\u003cli>\u003cstrong>收入回报\u003c/strong>：流年命宫踏入大限财帛宫，且正照本命武贪生年禄与向心禄权，收入流水、业务规模和提成空间会呈现几何级数的扩张。\u003c/li>\n\u003cli>\u003cstrong>核心阻力（文书、资质、制度与高层信任）\u003c/strong>：\n\u003cul>\n\u003cli>\u003cstrong>核心依据\u003c/strong>：丁干使\u003cstrong>巨门化忌入甲寅（流年疾厄 / 本命父母 / 大限田宅），正冲庚申（流年父母 / 本命疾厄 / 大限子女）\u003c/strong>。父母宫本坐文昌陷。\u003c/li>\n\u003cli>\u003cstrong>表现\u003c/strong>：巨门主口舌争端、暗藏条款、是非与信任隔阂；文昌陷坐父母，与2027巨门忌同宫，正冲申位，父疾线全盘震荡。\u003c/li>\n\u003cli>这代表2027年你在大展拳脚时，\u003cstrong>最容易绊倒你的不是市场竞争，而是“合同契约漏洞、合规资质审核、发票账目问题、或者与原单位/监管部门/高层管理者的言语误解与政策摩擦”\u003c/strong>。稍有不慎，容易陷入长期的文书纠纷或信任危机。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n"},{"id":"S5-4","title":"四、 结合你的本事：哪些方向值得争取？哪些事情投入多却回报有限？","sourceMarkdown":"结合你“武贪禄魁的敏锐转化力”与“紫杀禄存的阵地掌控力”，两年的战略取舍如下：\r\n\r\n#### 1. 绝对值得争取的高回报方向\r\n*   **“独立带队、自负盈亏、利益直接绑定的业务线”（2027重点突击）**：\r\n    *   借由2027年流官天府左辅与身宫紫杀的强旺势头，极力争取独立负责一个新业务、新品牌或新区域。你有极强的算账与变现能力（武贪正照），这种能让你拥有主导权且利润直接挂钩的赛道，投入产出比最高。\r\n*   **“深耕高价值外部客户或高客单转化”（利用迁移向心禄权）**：\r\n    *   凡是需要“出外、见大客户、搞定复杂利益链条”的事，勇敢接下。外界会给你递资源，你的情商与气场能最大化变现。\r\n*   **“在2026年底建立严格的业务回款与风控隔离机制”**：\r\n    *   在2026年把历史项目的款项追回，厘清权责。虽然过程磨人（廉贞忌），但这是守住胜利果实的关键。\r\n\r\n#### 2. 极易投入多、回报有限甚至反噬的深坑\r\n*   **在2026年底盲目接下“需要重度垫资或回报期模糊的合作项目”**：\r\n    *   2026流年田宅坐廉贞忌冲大官，此时任何打着“未来有大收益”、但现在需要你压上大量现金、时间去搞人情关系的合作，最后大概率沦为资金黑洞，严重拖垮你的事业气数。\r\n*   **在2027年参与“合同权责含糊、合规打擦边球的灰色业务”**：\r\n    *   2027巨门化忌入寅，与文昌陷同宫，正冲申位。任何依赖口头承诺、没有严密法律条文保护、或者存在资质瑕疵的事，无论表面利润多诱人，最终都极其容易因口舌是非、审计调查或合作方翻脸不认人，导致付出付诸东流。\r\n*   **事必躬亲的“保姆式管理”（重度消耗紫杀与天机）**：\r\n    *   如果你把精力浪费在替下属改每一份PPT、扣每一个表格细节上，田宅天机忌陀罗的内耗就会爆发，你会被琐碎事务死死缠住，从而错失2027年外部扩张（迁移照命）的历史性机遇。","sourceHtml":"\u003cp>结合你“武贪禄魁的敏锐转化力”与“紫杀禄存的阵地掌控力”，两年的战略取舍如下：\u003c/p>\n\u003ch4>1. 绝对值得争取的高回报方向\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>“独立带队、自负盈亏、利益直接绑定的业务线”（2027重点突击）\u003c/strong>：\n\u003cul>\n\u003cli>借由2027年流官天府左辅与身宫紫杀的强旺势头，极力争取独立负责一个新业务、新品牌或新区域。你有极强的算账与变现能力（武贪正照），这种能让你拥有主导权且利润直接挂钩的赛道，投入产出比最高。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>“深耕高价值外部客户或高客单转化”（利用迁移向心禄权）\u003c/strong>：\n\u003cul>\n\u003cli>凡是需要“出外、见大客户、搞定复杂利益链条”的事，勇敢接下。外界会给你递资源，你的情商与气场能最大化变现。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>“在2026年底建立严格的业务回款与风控隔离机制”\u003c/strong>：\n\u003cul>\n\u003cli>在2026年把历史项目的款项追回，厘清权责。虽然过程磨人（廉贞忌），但这是守住胜利果实的关键。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n\u003ch4>2. 极易投入多、回报有限甚至反噬的深坑\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>在2026年底盲目接下“需要重度垫资或回报期模糊的合作项目”\u003c/strong>：\n\u003cul>\n\u003cli>2026流年田宅坐廉贞忌冲大官，此时任何打着“未来有大收益”、但现在需要你压上大量现金、时间去搞人情关系的合作，最后大概率沦为资金黑洞，严重拖垮你的事业气数。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>在2027年参与“合同权责含糊、合规打擦边球的灰色业务”\u003c/strong>：\n\u003cul>\n\u003cli>2027巨门化忌入寅，与文昌陷同宫，正冲申位。任何依赖口头承诺、没有严密法律条文保护、或者存在资质瑕疵的事，无论表面利润多诱人，最终都极其容易因口舌是非、审计调查或合作方翻脸不认人，导致付出付诸东流。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>事必躬亲的“保姆式管理”（重度消耗紫杀与天机）\u003c/strong>：\n\u003cul>\n\u003cli>如果你把精力浪费在替下属改每一份PPT、扣每一个表格细节上，田宅天机忌陀罗的内耗就会爆发，你会被琐碎事务死死缠住，从而错失2027年外部扩张（迁移照命）的历史性机遇。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n"},{"id":"S5-5","title":"五、 给你的发展建议与行动心法","sourceMarkdown":"1.  **2026年底（丙午）：“收网、清账、稳心态”**\r\n    面对业务摩擦与人际消耗，保持冷静态势。拒绝无意义的酒局与空头合作，把主要精力放在既有业务的安全交付和资金回笼上，为来年的爆发积蓄弹药。\r\n2.  **2027年（丁未）：“出击、称帅、锁文书”**\r\n    这一年只要有走向更大平台、独立主导业务、或走向外部市场的机会，绝不退缩，果断亮剑争取名分与主权；但在签字盖章、合同拟定、股权协议以及向上汇报时，必须做到十二分的法务严密与流程透明，彻底掐灭巨门忌的口舌与文书隐患。","sourceHtml":"\u003col>\n\u003cli>\u003cstrong>2026年底（丙午）：“收网、清账、稳心态”\u003c/strong>\n面对业务摩擦与人际消耗，保持冷静态势。拒绝无意义的酒局与空头合作，把主要精力放在既有业务的安全交付和资金回笼上，为来年的爆发积蓄弹药。\u003c/li>\n\u003cli>\u003cstrong>2027年（丁未）：“出击、称帅、锁文书”\u003c/strong>\n这一年只要有走向更大平台、独立主导业务、或走向外部市场的机会，绝不退缩，果断亮剑争取名分与主权；但在签字盖章、合同拟定、股权协议以及向上汇报时，必须做到十二分的法务严密与流程透明，彻底掐灭巨门忌的口舌与文书隐患。\u003c/li>\n\u003c/ol>\n"},{"id":"S5-6","title":"六、 关于2026年事业节奏的补充","sourceMarkdown":"2026流年官禄宫在戌无主星，直接受对宫辰位（本命田宅/2026流年夫妻，坐天机生年忌+离心权+陀罗，且得流年天机化权）的影响。这意味着2026年事业发展本就**缺乏稳定的内部自主抓手，更容易受制于合作方、伴侣或领地内部的拉扯**。\r\n    *   而天同、太阴双权真正在甲子（2026流年迁移宫），代表2026年在外部社交、走动或外部合作意向中确实存在声势或意向，但因为流年官禄本宫无主星托底，这些外部意向在年底很难转化为直接落地的权责，反衬出“2026年底重在防守协调、不宜盲目扩张”的判断成立。","sourceHtml":"\u003cp>2026流年官禄宫在戌无主星，直接受对宫辰位（本命田宅/2026流年夫妻，坐天机生年忌+离心权+陀罗，且得流年天机化权）的影响。这意味着2026年事业发展本就\u003cstrong>缺乏稳定的内部自主抓手，更容易受制于合作方、伴侣或领地内部的拉扯\u003c/strong>。\n*   而天同、太阴双权真正在甲子（2026流年迁移宫），代表2026年在外部社交、走动或外部合作意向中确实存在声势或意向，但因为流年官禄本宫无主星托底，这些外部意向在年底很难转化为直接落地的权责，反衬出“2026年底重在防守协调、不宜盲目扩张”的判断成立。\u003c/p>\n"}]},{"question":6,"title":"事业与感情，共同的人生主线","intro":"","openingHtml":"\u003cspan>\u003c/span>","sections":[{"id":"S6-1","title":"一、 最值得记住的三条事业判断及其对发展选择的决定性影响","sourceMarkdown":"这三条判断不仅概括了你的事业格局与运势节奏，更直接规定了你在面对职业岔路口时**“选什么、放弃什么、怎样打赢”**的实操策略。\r\n\r\n\n#### 1. 结构定位：“将相兼备的阵地操盘手”，必须以“自负盈亏的独立主导权”为择业第一硬指标\r\n*   **深层展开（未讲透的线索）**：\r\n    你的命宫是武曲庙、贪狼庙化禄带天魁，身宫在官禄坐紫微旺、七杀平带禄存。在斗数构架中，武贪生年禄主“敏锐嗅觉、高情商谈判与强大的生财变现力”；身宫紫杀禄存则主“坐镇将帅、自立规矩、追求高度安全与资产沉淀”。\r\n    这意味着你兼具**前线开拓者的灵活性**与**幕后统帅的霸气**。你骨子里最排斥的不是加班或高压，而是“被外行微观管理”以及“干出成绩却由别人决定分多少”。\r\n*   **内在冲突与取舍**：\r\n    *   *冲突点*：贪狼禄喜欢在外部市场游刃有余、广结善缘；但身宫紫杀禄存又有极强的防御心与独占欲（信不过下属或同僚，总想亲自包揽控盘）。\r\n    *   *最终取舍*：**最终必须以“紫杀禄存的闭环主导权”为纲，以“贪狼禄的灵活性”为用**。你绝不适合长期在大机构里做层层汇报、没有拍板权的“大螺丝钉”；任何不能给你划定独立势力范围、不看战功只看站队的岗位，无论薪酬表面多高，都会迅速窒息你的能量。\r\n*   **如何影响发展选择**：\r\n    *   **选择赛道**：优先选择“业务线独立核算、目标明确、打下战功直接拿分红/分润”的方向（如独立业务部门主理人、高客单复杂业务操盘、关键市场开拓），或者以项目合伙人身份做事。\r\n    *   **管理突破**：必须强行克服“凡事信不过别人、大包大揽”的习惯。你只需牢牢掌控“钱流节点（财帛风控）”与“最终交付验收权（紫杀）”，把过程细节通过流程分发出去，否则你的精力上限就会直接锁死业务规模的天花板。\r\n\r\n\n#### 2. 财富与交付命门：财帛宫廉贞平、破军陷，业务必须“重现金流落袋，严防垫资、长周期沉淀与账目漏洞”\r\n*   **深层展开（未讲透的线索）**：\r\n    你的命官极强（武贪双庙化禄、紫微七杀），但财帛宫落在辛酉，坐**廉贞平、破军陷**；且辛干飞**文昌化忌直入甲寅（本命父母宫，受冲的是申位疾厄宫）**。\r\n    在课程中，破军陷在财帛主“资金流大进大出、敢打敢拼但极难沉淀”，容易赚快钱也容易一把亏回去；破军陷且同宫见火星，增加资金运用的急躁与波动；辛干文昌化忌入父母（契约、法规、审计位），意味着**你在财务上最容易栽在“合同漏洞、开票与法务瑕疵、以及合作伙伴账目不清”上**。\r\n*   **内在冲突与取舍**：\r\n    *   *冲突点*：破军的冒险本能促使你想把赚到的钱立即复投、滚动杠杆以追求更大体量；但官禄宫的禄存却极度渴望安全垫，本命田宅的天机忌陀罗更承受不住资金断流的惊涛骇浪。\r\n    *   *最终取舍*：**最终必须彻底压制破军的投机冲动，听从禄存的保守风控指令**。宁可发展慢一点，也必须守住“确定性利润落袋”。\r\n*   **如何影响发展选择**：\r\n    *   **合同与合作硬原则**：绝不做回款周期漫长、权责含糊、全凭口头讲义气的项目；严防重资产垫资；合同拟定必须做到字斟句酌、法务闭环。\r\n    *   **资金蓄水池机制**：每一笔业务做成，必须强行把核心利润抽离出业务周转账户，转入低风险实体或锁定储蓄中，严禁业务资金与个人身家混同。\r\n\r\n\n#### 3. 运势战略节律：2026年底“退回防守、回笼资金、理清账目”，2027年“果断抢滩、公开掌权、严防合规”\r\n*   **深层展开（两年差异与落子重心）**：\r\n    *   **2026年剩余阶段（丙午）**：流年命在戊午，流年田宅在辛酉，坐廉贞化忌，**正冲乙卯（流年子女 / 本命福德 / 当前大限官禄）**。大限官禄（事业气数）直接被冲，说明年底是典型的“耗散防守期”。此时任何试图在业务上强行大举扩张、或垫付大额资金的行为，都会直接打碎你的事业专注度与精神状态。\r\n    *   **2027年（丁未）**：流年命宫踏入己未（本命迁移 / 当前大限财帛），正照本命武贪禄魁；流年官禄在癸亥（当前大限命宫，天府左辅）；流年夫妻在丁巳（重叠本命官禄/身宫，紫微七杀禄存）。但丁干**巨门化忌入甲寅（本命父母 / 当前大限田宅 / 2027流年疾厄）**，正冲庚申。\r\n*   **如何影响发展选择**：\r\n    *   **2026年底的动作**：**“做减法、收应收、踩刹车”**。拒绝一切看似宏大但需要你承担资金风险的新提案；不急于在年底前做职业跳槽定夺，把精力放在收尾和清理历史账目上。\r\n    *   **2027年的动作**：**“抢山头、谈名分、锁合规”**。这一年有极强的高规格平台机遇或外部主导权砸向你，必须果断走向台前争夺主导地位（天府紫杀禄存）；但巨门忌坐大限田宅冲父疾线，提醒你在签字盖章、股权分配、劳动协议和资质审批上必须聘请专业人士严审，杜绝一切隐患。","sourceHtml":"\u003cp>这三条判断不仅概括了你的事业格局与运势节奏，更直接规定了你在面对职业岔路口时\u003cstrong>“选什么、放弃什么、怎样打赢”\u003c/strong>的实操策略。\u003c/p>\n\u003ch4>1. 结构定位：“将相兼备的阵地操盘手”，必须以“自负盈亏的独立主导权”为择业第一硬指标\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>深层展开（未讲透的线索）\u003c/strong>：\n你的命宫是武曲庙、贪狼庙化禄带天魁，身宫在官禄坐紫微旺、七杀平带禄存。在斗数构架中，武贪生年禄主“敏锐嗅觉、高情商谈判与强大的生财变现力”；身宫紫杀禄存则主“坐镇将帅、自立规矩、追求高度安全与资产沉淀”。\n这意味着你兼具\u003cstrong>前线开拓者的灵活性\u003c/strong>与\u003cstrong>幕后统帅的霸气\u003c/strong>。你骨子里最排斥的不是加班或高压，而是“被外行微观管理”以及“干出成绩却由别人决定分多少”。\u003c/li>\n\u003cli>\u003cstrong>内在冲突与取舍\u003c/strong>：\n\u003cul>\n\u003cli>\u003cem>冲突点\u003c/em>：贪狼禄喜欢在外部市场游刃有余、广结善缘；但身宫紫杀禄存又有极强的防御心与独占欲（信不过下属或同僚，总想亲自包揽控盘）。\u003c/li>\n\u003cli>\u003cem>最终取舍\u003c/em>：\u003cstrong>最终必须以“紫杀禄存的闭环主导权”为纲，以“贪狼禄的灵活性”为用\u003c/strong>。你绝不适合长期在大机构里做层层汇报、没有拍板权的“大螺丝钉”；任何不能给你划定独立势力范围、不看战功只看站队的岗位，无论薪酬表面多高，都会迅速窒息你的能量。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>如何影响发展选择\u003c/strong>：\n\u003cul>\n\u003cli>\u003cstrong>选择赛道\u003c/strong>：优先选择“业务线独立核算、目标明确、打下战功直接拿分红/分润”的方向（如独立业务部门主理人、高客单复杂业务操盘、关键市场开拓），或者以项目合伙人身份做事。\u003c/li>\n\u003cli>\u003cstrong>管理突破\u003c/strong>：必须强行克服“凡事信不过别人、大包大揽”的习惯。你只需牢牢掌控“钱流节点（财帛风控）”与“最终交付验收权（紫杀）”，把过程细节通过流程分发出去，否则你的精力上限就会直接锁死业务规模的天花板。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n\u003ch4>2. 财富与交付命门：财帛宫廉贞平、破军陷，业务必须“重现金流落袋，严防垫资、长周期沉淀与账目漏洞”\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>深层展开（未讲透的线索）\u003c/strong>：\n你的命官极强（武贪双庙化禄、紫微七杀），但财帛宫落在辛酉，坐\u003cstrong>廉贞平、破军陷\u003c/strong>；且辛干飞\u003cstrong>文昌化忌直入甲寅（本命父母宫，受冲的是申位疾厄宫）\u003c/strong>。\n在课程中，破军陷在财帛主“资金流大进大出、敢打敢拼但极难沉淀”，容易赚快钱也容易一把亏回去；破军陷且同宫见火星，增加资金运用的急躁与波动；辛干文昌化忌入父母（契约、法规、审计位），意味着\u003cstrong>你在财务上最容易栽在“合同漏洞、开票与法务瑕疵、以及合作伙伴账目不清”上\u003c/strong>。\u003c/li>\n\u003cli>\u003cstrong>内在冲突与取舍\u003c/strong>：\n\u003cul>\n\u003cli>\u003cem>冲突点\u003c/em>：破军的冒险本能促使你想把赚到的钱立即复投、滚动杠杆以追求更大体量；但官禄宫的禄存却极度渴望安全垫，本命田宅的天机忌陀罗更承受不住资金断流的惊涛骇浪。\u003c/li>\n\u003cli>\u003cem>最终取舍\u003c/em>：\u003cstrong>最终必须彻底压制破军的投机冲动，听从禄存的保守风控指令\u003c/strong>。宁可发展慢一点，也必须守住“确定性利润落袋”。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>如何影响发展选择\u003c/strong>：\n\u003cul>\n\u003cli>\u003cstrong>合同与合作硬原则\u003c/strong>：绝不做回款周期漫长、权责含糊、全凭口头讲义气的项目；严防重资产垫资；合同拟定必须做到字斟句酌、法务闭环。\u003c/li>\n\u003cli>\u003cstrong>资金蓄水池机制\u003c/strong>：每一笔业务做成，必须强行把核心利润抽离出业务周转账户，转入低风险实体或锁定储蓄中，严禁业务资金与个人身家混同。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n\u003ch4>3. 运势战略节律：2026年底“退回防守、回笼资金、理清账目”，2027年“果断抢滩、公开掌权、严防合规”\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>深层展开（两年差异与落子重心）\u003c/strong>：\n\u003cul>\n\u003cli>\u003cstrong>2026年剩余阶段（丙午）\u003c/strong>：流年命在戊午，流年田宅在辛酉，坐廉贞化忌，\u003cstrong>正冲乙卯（流年子女 / 本命福德 / 当前大限官禄）\u003c/strong>。大限官禄（事业气数）直接被冲，说明年底是典型的“耗散防守期”。此时任何试图在业务上强行大举扩张、或垫付大额资金的行为，都会直接打碎你的事业专注度与精神状态。\u003c/li>\n\u003cli>\u003cstrong>2027年（丁未）\u003c/strong>：流年命宫踏入己未（本命迁移 / 当前大限财帛），正照本命武贪禄魁；流年官禄在癸亥（当前大限命宫，天府左辅）；流年夫妻在丁巳（重叠本命官禄/身宫，紫微七杀禄存）。但丁干\u003cstrong>巨门化忌入甲寅（本命父母 / 当前大限田宅 / 2027流年疾厄）\u003c/strong>，正冲庚申。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>如何影响发展选择\u003c/strong>：\n\u003cul>\n\u003cli>\u003cstrong>2026年底的动作\u003c/strong>：\u003cstrong>“做减法、收应收、踩刹车”\u003c/strong>。拒绝一切看似宏大但需要你承担资金风险的新提案；不急于在年底前做职业跳槽定夺，把精力放在收尾和清理历史账目上。\u003c/li>\n\u003cli>\u003cstrong>2027年的动作\u003c/strong>：\u003cstrong>“抢山头、谈名分、锁合规”\u003c/strong>。这一年有极强的高规格平台机遇或外部主导权砸向你，必须果断走向台前争夺主导地位（天府紫杀禄存）；但巨门忌坐大限田宅冲父疾线，提醒你在签字盖章、股权分配、劳动协议和资质审批上必须聘请专业人士严审，杜绝一切隐患。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n"},{"id":"S6-2","title":"二、 事业与感情的深层联系：同一个人的共同底色与互相影响","sourceMarkdown":"这两套分析绝非割裂的拼盘，而是完全贯通于你同一套**命理骨架与行事底层逻辑**之中。\r\n\r\n#### 1. 共同的底层性格与相处习惯（共通主线）\r\n*   **“开局高情商亲和，底色极刚决不妥协”**：\r\n    *   *在感情中*：命宫贪狼禄让你懂情趣、懂包容，但身宫紫微七杀禄存决定了你吃软不吃硬，一旦对方触碰底线便毫不留情绝决切割。\r\n    *   *在事业中*：你同样善于商务交际、深谙利益互惠（武贪禄魁），但一旦涉及业务方向与原则底线，你的将帅霸权（紫杀）寸步不让，绝不容许他人指手画脚。\r\n*   **“对根据地和生活细节的较真内耗（田宅天机忌+自化权+陀罗）”**：\r\n    *   *在感情中*：落地同居后，容易对生活规矩、家务细节不断挑剔、思维打结、翻旧账。\r\n    *   *在事业中*：项目筹备期容易在底层逻辑、方案漏洞和假设上过度纠结、反复推演，给团队和自己带来巨大的精神内耗。\r\n*   **“大包大揽带来的窒息与疲惫”**：\r\n    *   *在感情中*：容易习惯性替伴侣操心拿主意，结果吸引或纵容了对方的情感依赖（夫忌入命），反过来让自己感到被索取和沉重。\r\n    *   *在事业中*：觉得下属办事不牢靠，索性全抓在手里，导致自己身心过载、难以规模化。\r\n\r\n#### 2. 各自独立的维度（不可混为一谈的部分）\r\n*   **感情的专属困境：客体的情感索取与反弹（夫妻癸干贪狼忌入命）**\r\n    这是亲密关系独有的引动。你在职场上极少会任由合作伙伴对你进行无底线的情感绑架；但在感情里，伴侣往往会把其个人的脆弱与焦虑倾倒给你，这种“被死死抓住整个人”的沉重感是感情特有的。\r\n*   **事业的专属困境：现金流与合约合规风险（财帛廉贞平、破军陷、父母文昌陷）**\r\n    这是商业与社会的客观规则对你的考验，取决于市场周期、法律规范与商业利益博弈，无法简单用“性格强弱”来解释。\r\n\r\n#### 3. 事业与感情是怎样在盘面上真正互相影响的？（核心证据链）\r\n*   **当前大限（24–33岁癸亥）将二者深度捆绑**：\r\n    你当前的大限命宫，**正好重叠你的本命夫妻宫（癸亥）**！这决定了在这十年里，**感情状态的稳固与否，直接作为你个人运势的基座，剧烈牵动你的事业心力**。\r\n*   **2026年底的现实共振点（辛酉）**：\r\n    辛酉位在全盘中身兼三职：**本命财帛宫 / 当前大限夫妻宫 / 2026流年田宅宫**；对宫乙卯则是**本命福德宫 / 当前大限官禄宫 / 2026流年子女宫**。\r\n    2026丙干使**廉贞化忌直接坐入辛酉，正冲乙卯**！\r\n    *   **具体的互相影响**：如果年底你在感情上发生激烈的空间争夺或伴侣出现危机（大限夫妻/流年田宅受忌），不仅会导致家庭内部鸡犬不宁，**更会直接抽干你的资金流动性（本命财帛坐忌），并直接击溃你在年底的事业专注力与业务推进节奏（正冲大限官禄）**。反过来，若年底业务资金受阻，也会迅速激化亲密关系的矛盾。\r\n*   **2027年的良性托举与共同考验**：\r\n    2027流年夫妻宫重叠本命官禄/身宫（丁巳，紫杀禄存），流年官禄宫重叠大限命宫/本命夫妻（癸亥，天府左辅）。这表明到2027年，**你的事业平台晋升与严肃伴侣的出现/定性是高度同频共振的**——真正适合你的伴侣，必然是在社会能力上能与你并肩作战、在名分上能与你平起平坐的强有力盟友；而你们共同面临的深层考验，则是双方长辈和家庭根基的合规接纳（巨门忌入大田冲父疾）。","sourceHtml":"\u003cp>这两套分析绝非割裂的拼盘，而是完全贯通于你同一套\u003cstrong>命理骨架与行事底层逻辑\u003c/strong>之中。\u003c/p>\n\u003ch4>1. 共同的底层性格与相处习惯（共通主线）\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>“开局高情商亲和，底色极刚决不妥协”\u003c/strong>：\n\u003cul>\n\u003cli>\u003cem>在感情中\u003c/em>：命宫贪狼禄让你懂情趣、懂包容，但身宫紫微七杀禄存决定了你吃软不吃硬，一旦对方触碰底线便毫不留情绝决切割。\u003c/li>\n\u003cli>\u003cem>在事业中\u003c/em>：你同样善于商务交际、深谙利益互惠（武贪禄魁），但一旦涉及业务方向与原则底线，你的将帅霸权（紫杀）寸步不让，绝不容许他人指手画脚。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>“对根据地和生活细节的较真内耗（田宅天机忌+自化权+陀罗）”\u003c/strong>：\n\u003cul>\n\u003cli>\u003cem>在感情中\u003c/em>：落地同居后，容易对生活规矩、家务细节不断挑剔、思维打结、翻旧账。\u003c/li>\n\u003cli>\u003cem>在事业中\u003c/em>：项目筹备期容易在底层逻辑、方案漏洞和假设上过度纠结、反复推演，给团队和自己带来巨大的精神内耗。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>“大包大揽带来的窒息与疲惫”\u003c/strong>：\n\u003cul>\n\u003cli>\u003cem>在感情中\u003c/em>：容易习惯性替伴侣操心拿主意，结果吸引或纵容了对方的情感依赖（夫忌入命），反过来让自己感到被索取和沉重。\u003c/li>\n\u003cli>\u003cem>在事业中\u003c/em>：觉得下属办事不牢靠，索性全抓在手里，导致自己身心过载、难以规模化。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003c/ul>\n\u003ch4>2. 各自独立的维度（不可混为一谈的部分）\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>感情的专属困境：客体的情感索取与反弹（夫妻癸干贪狼忌入命）\u003c/strong>\n这是亲密关系独有的引动。你在职场上极少会任由合作伙伴对你进行无底线的情感绑架；但在感情里，伴侣往往会把其个人的脆弱与焦虑倾倒给你，这种“被死死抓住整个人”的沉重感是感情特有的。\u003c/li>\n\u003cli>\u003cstrong>事业的专属困境：现金流与合约合规风险（财帛廉贞平、破军陷、父母文昌陷）\u003c/strong>\n这是商业与社会的客观规则对你的考验，取决于市场周期、法律规范与商业利益博弈，无法简单用“性格强弱”来解释。\u003c/li>\n\u003c/ul>\n\u003ch4>3. 事业与感情是怎样在盘面上真正互相影响的？（核心证据链）\u003c/h4>\n\u003cul>\n\u003cli>\u003cstrong>当前大限（24–33岁癸亥）将二者深度捆绑\u003c/strong>：\n你当前的大限命宫，\u003cstrong>正好重叠你的本命夫妻宫（癸亥）\u003c/strong>！这决定了在这十年里，\u003cstrong>感情状态的稳固与否，直接作为你个人运势的基座，剧烈牵动你的事业心力\u003c/strong>。\u003c/li>\n\u003cli>\u003cstrong>2026年底的现实共振点（辛酉）\u003c/strong>：\n辛酉位在全盘中身兼三职：\u003cstrong>本命财帛宫 / 当前大限夫妻宫 / 2026流年田宅宫\u003c/strong>；对宫乙卯则是\u003cstrong>本命福德宫 / 当前大限官禄宫 / 2026流年子女宫\u003c/strong>。\n2026丙干使\u003cstrong>廉贞化忌直接坐入辛酉，正冲乙卯\u003c/strong>！\n\u003cul>\n\u003cli>\u003cstrong>具体的互相影响\u003c/strong>：如果年底你在感情上发生激烈的空间争夺或伴侣出现危机（大限夫妻/流年田宅受忌），不仅会导致家庭内部鸡犬不宁，\u003cstrong>更会直接抽干你的资金流动性（本命财帛坐忌），并直接击溃你在年底的事业专注力与业务推进节奏（正冲大限官禄）\u003c/strong>。反过来，若年底业务资金受阻，也会迅速激化亲密关系的矛盾。\u003c/li>\n\u003c/ul>\n\u003c/li>\n\u003cli>\u003cstrong>2027年的良性托举与共同考验\u003c/strong>：\n2027流年夫妻宫重叠本命官禄/身宫（丁巳，紫杀禄存），流年官禄宫重叠大限命宫/本命夫妻（癸亥，天府左辅）。这表明到2027年，\u003cstrong>你的事业平台晋升与严肃伴侣的出现/定性是高度同频共振的\u003c/strong>——真正适合你的伴侣，必然是在社会能力上能与你并肩作战、在名分上能与你平起平坐的强有力盟友；而你们共同面临的深层考验，则是双方长辈和家庭根基的合规接纳（巨门忌入大田冲父疾）。\u003c/li>\n\u003c/ul>\n"},{"id":"S6-3","title":"三、 进一步了解现实情况","sourceMarkdown":"为避免将推演停留于纯逻辑模型，若你希望在后续探讨中进一步校准具体的现实选择，以下三个核心背景信息最为关键：\r\n\r\n1.  **目前现实中你的业务/工作形态更偏向哪一类？**（例如：受雇于体系化大机构、担任企业内部独立业务线负责人、自己创业/自由职业主理人、还是处于转换与探索期？）\r\n2.  **当前在财务运作与收入分配上，你的支配权如何？**（主要依靠固定年薪，还是有直接绑定的高比例业务分红/股权/独立营收流水？过往是否有项目资金垫付或账目受阻的经历？）\r\n3.  **在团队或业务推进中，你目前是否有法律合规、合同契约、或与核心领导/投资长辈之间的沟通卡点正在发生？**","sourceHtml":"\u003cp>为避免将推演停留于纯逻辑模型，若你希望在后续探讨中进一步校准具体的现实选择，以下三个核心背景信息最为关键：\u003c/p>\n\u003col>\n\u003cli>\u003cstrong>目前现实中你的业务/工作形态更偏向哪一类？\u003c/strong>（例如：受雇于体系化大机构、担任企业内部独立业务线负责人、自己创业/自由职业主理人、还是处于转换与探索期？）\u003c/li>\n\u003cli>\u003cstrong>当前在财务运作与收入分配上，你的支配权如何？\u003c/strong>（主要依靠固定年薪，还是有直接绑定的高比例业务分红/股权/独立营收流水？过往是否有项目资金垫付或账目受阻的经历？）\u003c/li>\n\u003cli>\u003cstrong>在团队或业务推进中，你目前是否有法律合规、合同契约、或与核心领导/投资长辈之间的沟通卡点正在发生？\u003c/strong>\u003c/li>\n\u003c/ol>\n"}]}]};
+    const STORAGE_KEY = 'reading-7f3a9c28-v1';
+    const root = document.documentElement;
+    const reportBody = document.getElementById('reportBody');
+    const selectionToolbar = document.getElementById('selectionToolbar');
+    let state = loadState();
+    let pendingSelection = null;
+    let editingId = null;
+    let noteColor = 'yellow';
+    let toastTimer;
+    let scrollFrame;
+
+    function loadState() {
+      const fallback = { settings:{font:18,line:1.92,theme:'paper'}, annotations:[], scroll:0 };
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+        return saved ? { ...fallback, ...saved, settings:{...fallback.settings,...saved.settings}, annotations:Array.isArray(saved.annotations)?saved.annotations:[] } : fallback;
+      } catch { return fallback; }
+    }
+    function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+    function escapeHtml(value) { return String(value).replace(/[&<>"']/g, function(char){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[char]; }); }
+    function showToast(message) { const toast=document.getElementById('toast'); toast.textContent=message; toast.classList.add('open'); clearTimeout(toastTimer); toastTimer=setTimeout(function(){toast.classList.remove('open');},2200); }
+    function blockTextMap() {
+      const map = { 'reading-note': document.querySelector('[data-block-id="reading-note"]')?.textContent || '' };
+      REPORT.chapters.forEach(function(chapter){ chapter.sections.forEach(function(section){ if(section.sourceHtml){map[section.id+'-answer']={html:section.sourceHtml};}else{['answer','reasoning','synthesis','boundary'].forEach(function(field){ if(section[field]) map[section.id+'-'+field]=section[field]; });} }); });
+      return map;
+    }
+    function renderReport() {
+      reportBody.innerHTML = REPORT.chapters.map(function(chapter,index){
+        const chapterId='chapter-'+String(chapter.question).toLowerCase();
+        const sections=chapter.sections.map(function(section){
+          return '<section class="topic" id="'+escapeHtml(section.id.toLowerCase())+'">'+
+            '<h3>'+escapeHtml(section.title)+'</h3>'+
+            (section.sourceHtml?'<div class="source-body" data-block-id="'+escapeHtml(section.id)+'-answer">'+section.sourceHtml+'</div>':(section.answer?'<p class="lead" data-block-id="'+escapeHtml(section.id)+'-answer">'+escapeHtml(section.answer)+'</p>':''))+
+            (section.reasoning?'<div class="analysis-label">论盘依据</div><p class="reasoning" data-block-id="'+escapeHtml(section.id)+'-reasoning">'+escapeHtml(section.reasoning)+'</p>':'')+
+            (section.synthesis?'<div class="analysis-label">合参结果</div><p class="synthesis" data-block-id="'+escapeHtml(section.id)+'-synthesis">'+escapeHtml(section.synthesis)+'</p>':'')+
+            (section.boundary?'<p class="boundary" data-block-id="'+escapeHtml(section.id)+'-boundary">'+escapeHtml(section.boundary)+'</p>':'')+
+          '</section>';
+        }).join('');
+        return '<section class="chapter" id="'+chapterId+'"><p class="chapter-label">第 '+(index+1)+' 章</p><h2>'+escapeHtml(chapter.title)+'</h2>'+(chapter.openingHtml?'<div class="source-body supplement-opening">'+chapter.openingHtml+'</div>':'<details class="method"><summary>本章取法</summary><p>'+escapeHtml(chapter.intro)+'</p>'+(chapter.introHtml||'')+'</details>')+sections+'</section>';
+      }).join('');
+      document.getElementById('tocList').innerHTML = REPORT.chapters.map(function(chapter,index){ return '<li><a href="#chapter-'+String(chapter.question).toLowerCase()+'"><small>'+(index+1).toString().padStart(2,'0')+'</small><span>'+escapeHtml(chapter.title)+'</span></a></li>'; }).join('');
+      renderHighlights(); renderAnnotations();
+    }
+    function contextFor(blockId) {
+      const sectionId=blockId.replace(/-(?:answer|reasoning|synthesis|boundary)$/,'');
+      for(const chapter of REPORT.chapters){ const section=chapter.sections.find(function(item){return item.id===sectionId;}); if(section) return chapter.title+' · '+section.title; }
+      return '阅读说明';
+    }
+    function renderAnnotations() {
+      const list=document.getElementById('annotationList');
+      if(!state.annotations.length){ list.innerHTML='<div class="empty-state">还没有批注。<br>在正文里长按并选中文字即可开始。</div>'; return; }
+      list.innerHTML=state.annotations.map(function(item){
+        return '<div class="annotation-item"><span class="annotation-swatch color-'+escapeHtml(item.color)+'"></span><div class="annotation-copy"><p class="annotation-quote">'+escapeHtml(item.quote)+'</p>'+(item.note?'<p class="annotation-note">'+escapeHtml(item.note)+'</p>':'')+'<p class="annotation-context">'+escapeHtml(item.context)+'</p></div><div class="annotation-actions"><button class="mini-btn" type="button" data-locate="'+escapeHtml(item.id)+'" aria-label="定位原文">⌖</button><button class="mini-btn" type="button" data-edit="'+escapeHtml(item.id)+'" aria-label="编辑批注">✎</button></div></div>';
+      }).join('');
+    }
+    function applySettings() {
+      root.style.setProperty('--font-size',state.settings.font+'px'); root.style.setProperty('--line-height',Number(state.settings.line).toFixed(2)); root.dataset.theme=state.settings.theme;
+      document.getElementById('fontValue').textContent=state.settings.font; document.getElementById('lineValue').textContent=Number(state.settings.line).toFixed(2);
+      document.querySelectorAll('.theme-dot').forEach(function(button){button.classList.toggle('active',button.dataset.theme===state.settings.theme);});
+      document.getElementById('themeColor').content=state.settings.theme==='dark'?'#191a1c':state.settings.theme==='green'?'#e3ebdf':state.settings.theme==='white'?'#fcfcfb':'#f5f2ea'; saveState();
+    }
+    function openSheet(id) { closeSheets(); document.getElementById(id).classList.add('open'); document.getElementById('overlay').classList.add('open'); if(id==='annotationsSheet') renderAnnotations(); }
+    function closeSheets() { document.querySelectorAll('.sheet.open').forEach(function(sheet){sheet.classList.remove('open');}); document.getElementById('overlay').classList.remove('open'); }
+    function clearSelection() { pendingSelection=null; selectionToolbar.classList.remove('open'); const selection=getSelection(); if(selection) selection.removeAllRanges(); }
+    function textOffset(block,node,offset) { const range=document.createRange(); range.selectNodeContents(block); range.setEnd(node,offset); return range.toString().length; }
+    function captureSelection() {
+      const selection=getSelection(); if(!selection || selection.isCollapsed || !selection.rangeCount) return;
+      const range=selection.getRangeAt(0); const startElement=range.startContainer.nodeType===1?range.startContainer:range.startContainer.parentElement; const endElement=range.endContainer.nodeType===1?range.endContainer:range.endContainer.parentElement;
+      const startBlock=startElement?.closest('[data-block-id]'); const endBlock=endElement?.closest('[data-block-id]'); if(!startBlock || !endBlock) return;
+      const blocks=Array.from(document.querySelectorAll('main [data-block-id]')); let startIndex=blocks.indexOf(startBlock),endIndex=blocks.indexOf(endBlock); if(startIndex<0||endIndex<0)return; if(startIndex>endIndex){const temp=startIndex;startIndex=endIndex;endIndex=temp;}
+      const segments=[]; for(let index=startIndex;index<=endIndex;index+=1){const block=blocks[index];const length=block.textContent.length;const start=index===startIndex?textOffset(block,range.startContainer,range.startOffset):0;const end=index===endIndex?textOffset(block,range.endContainer,range.endOffset):length;if(end>start)segments.push({blockId:block.dataset.blockId,start:start,end:end});}
+      const quote=selection.toString().replace(/s+/g,' ').trim(); if(!quote||!segments.length)return; pendingSelection={quote:quote,segments:segments,context:contextFor(segments[0].blockId)}; selectionToolbar.classList.add('open');
+    }
+    function overlaps(segments,ignoreId) { return state.annotations.some(function(item){if(item.id===ignoreId)return false;return item.segments.some(function(existing){return segments.some(function(segment){return existing.blockId===segment.blockId&&segment.start<existing.end&&segment.end>existing.start;});});}); }
+    function createAnnotation(color,note) {
+      if(!pendingSelection)return null; if(overlaps(pendingSelection.segments,null)){showToast('这段已经有标记，可从批注列表修改');return null;}
+      const item={id:crypto.randomUUID?crypto.randomUUID():String(Date.now())+Math.random(),color:color,quote:pendingSelection.quote,note:note||'',context:pendingSelection.context,segments:pendingSelection.segments,createdAt:new Date().toISOString()}; state.annotations.push(item);saveState();clearSelection();renderHighlights();renderAnnotations();return item;
+    }
+    function findTextPoint(element,target) { const walker=document.createTreeWalker(element,NodeFilter.SHOW_TEXT);let node,seen=0;while((node=walker.nextNode())){const next=seen+node.nodeValue.length;if(target<=next)return{node:node,offset:Math.max(0,target-seen)};seen=next;}return null; }
+    function renderHighlights() {
+      const originals=blockTextMap(); Object.entries(originals).forEach(function(entry){const element=document.querySelector('[data-block-id="'+entry[0]+'"]');if(element){if(typeof entry[1]==='object')element.innerHTML=entry[1].html;else element.textContent=entry[1];}});
+      const byBlock={};state.annotations.forEach(function(item){item.segments.forEach(function(segment){(byBlock[segment.blockId]||=[]).push({...segment,item:item});});});
+      Object.entries(byBlock).forEach(function(entry){const element=document.querySelector('[data-block-id="'+entry[0]+'"]');if(!element)return;entry[1].sort(function(a,b){return b.start-a.start;}).forEach(function(segment){const start=findTextPoint(element,segment.start),end=findTextPoint(element,segment.end);if(!start||!end)return;const range=document.createRange();range.setStart(start.node,start.offset);range.setEnd(end.node,end.offset);const mark=document.createElement('mark');mark.className='reader-highlight'+(segment.item.note?' has-note':'');mark.dataset.annotationId=segment.item.id;mark.dataset.color=segment.item.color;try{range.surroundContents(mark);}catch{}});});
+    }
+    function openNoteEditor(item) { editingId=item?.id||null;noteColor=item?.color||'yellow';document.getElementById('noteTitle').textContent=item?'编辑批注':'添加批注';document.getElementById('noteQuote').textContent=item?.quote||pendingSelection?.quote||'';document.getElementById('noteText').value=item?.note||'';document.getElementById('deleteNoteBtn').hidden=!item;document.querySelectorAll('[data-note-color]').forEach(function(button){button.classList.toggle('active',button.dataset.noteColor===noteColor);});openSheet('noteSheet');setTimeout(function(){document.getElementById('noteText').focus();},260); }
+    function saveNote() { const note=document.getElementById('noteText').value.trim();if(editingId){const item=state.annotations.find(function(value){return value.id===editingId;});if(item){item.note=note;item.color=noteColor;}saveState();closeSheets();renderHighlights();renderAnnotations();showToast('批注已保存');}else{const item=createAnnotation(noteColor,note);if(item){closeSheets();showToast(note?'批注已保存':'重点已标记');}} }
+    function deleteNote() { if(!editingId)return;state.annotations=state.annotations.filter(function(item){return item.id!==editingId;});saveState();closeSheets();renderHighlights();renderAnnotations();showToast('批注已删除'); }
+    function locateNote(id) { const mark=document.querySelector('mark[data-annotation-id="'+id+'"]');if(mark){closeSheets();mark.scrollIntoView({behavior:'smooth',block:'center'});} }
+    function notesText() { if(!state.annotations.length)return '';return '《紫微斗数进阶论盘》批注\n\n'+state.annotations.map(function(item,index){return (index+1)+'. '+item.context+'\n「'+item.quote+'」'+(item.note?'\n批注：'+item.note:'');}).join('\n\n'); }
+    function reportText() {
+      const lines=[REPORT.title,'',REPORT.subtitle,'','阅读之前','',document.querySelector('[data-block-id="reading-note"]')?.textContent||''];
+      REPORT.chapters.forEach(function(chapter,index){
+        lines.push('','第 '+(index+1)+' 章 '+chapter.title,'',chapter.intro);if(chapter.introMarkdown)lines.push('','本题看盘路径',chapter.introMarkdown);
+        chapter.sections.forEach(function(section){
+          lines.push('',section.title);
+          if(section.sourceMarkdown)lines.push('',section.sourceMarkdown);else if(section.answer)lines.push('',section.answer);
+          if(section.reasoning)lines.push('','论盘依据',section.reasoning);
+          if(section.synthesis)lines.push('','合参结果',section.synthesis);
+          if(section.boundary)lines.push('','边界与补充',section.boundary);
+        });
+      });
+      return lines.filter(function(line,index){return line!==undefined&&line!==null&&(line!==''||lines[index-1]!=='');}).join('\n').trim()+'\n';
+    }
+    async function copyText(text,message) {
+      try {
+        if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text);}else{throw new Error('Clipboard API unavailable');}
+        showToast(message);
+      } catch {
+        const area=document.createElement('textarea');area.value=text;area.setAttribute('readonly','');area.style.cssText='position:fixed;left:-9999px;top:0;opacity:0';document.body.appendChild(area);area.select();area.setSelectionRange(0,area.value.length);
+        try{if(!document.execCommand('copy'))throw new Error('Copy failed');showToast(message);}catch{showToast('复制失败，请长按正文后全选复制');}finally{area.remove();}
+      }
+    }
+    async function sharePage() { if(navigator.share){try{await navigator.share({title:document.title,url:location.href});}catch{}}else{copyText(location.href,'链接已复制');} }
+    async function shareNotes() { const text=notesText();if(!text){showToast('还没有可分享的批注');return;}if(navigator.share){try{await navigator.share({title:'论盘批注',text:text});}catch{}}else{copyText(text,'批注已复制');} }
+    function updateProgress(save) { const max=Math.max(1,document.documentElement.scrollHeight-innerHeight);const percent=Math.min(100,Math.max(0,Math.round(scrollY/max*100)));document.getElementById('progressBar').style.width=percent+'%';document.getElementById('topProgress').textContent='已读 '+percent+'%';if(save){state.scroll=scrollY;saveState();} }
+
+    renderReport();applySettings();
+    document.querySelectorAll('[data-sheet]').forEach(function(button){button.addEventListener('click',function(){openSheet(button.dataset.sheet);});});
+    document.getElementById('overlay').addEventListener('click',closeSheets);
+    document.getElementById('tocList').addEventListener('click',function(event){if(event.target.closest('a'))closeSheets();});
+    document.getElementById('fontDown').addEventListener('click',function(){state.settings.font=Math.max(16,state.settings.font-1);applySettings();});
+    document.getElementById('fontUp').addEventListener('click',function(){state.settings.font=Math.min(26,state.settings.font+1);applySettings();});
+    document.getElementById('lineDown').addEventListener('click',function(){state.settings.line=Math.max(1.65,state.settings.line-.1);applySettings();});
+    document.getElementById('lineUp').addEventListener('click',function(){state.settings.line=Math.min(2.3,state.settings.line+.1);applySettings();});
+    document.querySelectorAll('.theme-dot').forEach(function(button){button.addEventListener('click',function(){state.settings.theme=button.dataset.theme;applySettings();});});
+    document.getElementById('topShareBtn').addEventListener('click',sharePage);document.getElementById('copyFullBtn').addEventListener('click',function(){copyText(reportText(),'全文已复制');});
+    document.getElementById('shareNotesBtn').addEventListener('click',shareNotes);document.getElementById('copyNotesBtn').addEventListener('click',function(){const text=notesText();if(text)copyText(text,'批注已复制');else showToast('还没有可复制的批注');});
+    document.querySelector('main').addEventListener('click',function(event){const mark=event.target.closest('mark[data-annotation-id]');if(mark){const item=state.annotations.find(function(value){return value.id===mark.dataset.annotationId;});if(item)openNoteEditor(item);}});
+    document.querySelector('main').addEventListener('mouseup',function(){setTimeout(captureSelection,20);});document.querySelector('main').addEventListener('touchend',function(){setTimeout(captureSelection,120);},{passive:true});
+    document.querySelectorAll('[data-highlight-color]').forEach(function(button){button.addEventListener('click',function(){if(createAnnotation(button.dataset.highlightColor,''))showToast('重点已标记');});});
+    document.getElementById('selectionNoteBtn').addEventListener('click',function(){if(pendingSelection)openNoteEditor(null);});
+    document.querySelectorAll('[data-note-color]').forEach(function(button){button.addEventListener('click',function(){noteColor=button.dataset.noteColor;document.querySelectorAll('[data-note-color]').forEach(function(item){item.classList.toggle('active',item===button);});});});
+    document.getElementById('saveNoteBtn').addEventListener('click',saveNote);document.getElementById('cancelNoteBtn').addEventListener('click',function(){closeSheets();if(!editingId)clearSelection();});document.getElementById('deleteNoteBtn').addEventListener('click',deleteNote);
+    document.getElementById('annotationList').addEventListener('click',function(event){const locate=event.target.closest('[data-locate]'),edit=event.target.closest('[data-edit]');if(locate)locateNote(locate.dataset.locate);if(edit){const item=state.annotations.find(function(value){return value.id===edit.dataset.edit;});if(item)openNoteEditor(item);}});
+    addEventListener('scroll',function(){cancelAnimationFrame(scrollFrame);scrollFrame=requestAnimationFrame(function(){updateProgress(true);});},{passive:true});
+    addEventListener('load',function(){if(state.scroll>0&&state.scroll<document.documentElement.scrollHeight-innerHeight)scrollTo(0,state.scroll);updateProgress(false);});
+  </script>
+<script>document.querySelectorAll('.source-body table').forEach(t=>{const h=[...t.querySelectorAll('th')].map(x=>x.textContent);t.querySelectorAll('tbody tr').forEach(r=>[...r.children].forEach((c,i)=>c.dataset.label=h[i]||''))});</script></body>
+</html>

@@ -118,6 +118,8 @@
     },
     {"source": "/r/8e4b2a91", "destination": "/r/8e4b2a91/index.html"},
     {"source": "/r/8e4b2a91/", "destination": "/r/8e4b2a91/index.html"},
+    {"source": "/r/7f3a9c28", "destination": "/r/7f3a9c28/index.html"},
+    {"source": "/r/7f3a9c28/", "destination": "/r/7f3a9c28/index.html"},
     {
       "source": "/(.*)",
       "destination": "/index.html"
